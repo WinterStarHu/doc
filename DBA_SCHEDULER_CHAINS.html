@@ -1,0 +1,151 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="reference">
+      <meta name="DC.Title" content="DBA_SCHEDULER_CHAINS">
+      <meta name="abstract" content="DBA_SCHEDULER_CHAINS displays information about all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAINS.">
+      <meta name="description" content="DBA_SCHEDULER_CHAINS displays information about all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAINS.">
+      <meta name="DC.subject" content="DBA_SCHEDULER_CHAINS view">
+      <meta name="keywords" content="DBA_SCHEDULER_CHAINS view">
+      <meta name="DC.Creator" content="Mary Beth Roeser">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Sarika Surampudi">
+      <meta name="DC.Creator" content="Nipun Agarwal">
+      <meta name="DC.Creator" content="Rick Anderson">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Neerja Bhatt">
+      <meta name="DC.Creator" content="Tudor Bosman">
+      <meta name="DC.Creator" content="George Candea">
+      <meta name="DC.Creator" content="Wilson Chan">
+      <meta name="DC.Creator" content="Sumanta Chatterjee">
+      <meta name="DC.Creator" content="Eugene Chong">
+      <meta name="DC.Creator" content="Connie Dialeris Green">
+      <meta name="DC.Creator" content="Harvey Eneman">
+      <meta name="DC.Creator" content="Bruce Ernst">
+      <meta name="DC.Creator" content="Ira Greenberg">
+      <meta name="DC.Creator" content="Steve Harris">
+      <meta name="DC.Creator" content="Thuvan Hoang">
+      <meta name="DC.Creator" content="Lilian Hobbs">
+      <meta name="DC.Creator" content="Namit Jain">
+      <meta name="DC.Creator" content="Hakkan Jakobsson">
+      <meta name="DC.Creator" content="Bob Jenkins">
+      <meta name="DC.Creator" content="Mark Johnson">
+      <meta name="DC.Creator" content="Jonathan Klein">
+      <meta name="DC.Creator" content="Sushil Kumar">
+      <meta name="DC.Creator" content="Tirthankar Lahiri">
+      <meta name="DC.Creator" content="Bill Lee">
+      <meta name="DC.Creator" content="Yunrui Li">
+      <meta name="DC.Creator" content="Juan Loaiza">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Diana Lorentz">
+      <meta name="DC.Creator" content="Catherine Luu">
+      <meta name="DC.Creator" content="Neil MacNaughton">
+      <meta name="DC.Creator" content="Ari Mozes">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Subramanian Muralidhar">
+      <meta name="DC.Creator" content="Ravi Murthy">
+      <meta name="DC.Creator" content="Karuna Muthiah">
+      <meta name="DC.Creator" content="Arvind Nithrakashyap">
+      <meta name="DC.Creator" content="Ronald Obermarck">
+      <meta name="DC.Creator" content="Kant Patel">
+      <meta name="DC.Creator" content="Christopher Racicot">
+      <meta name="DC.Creator" content="Mark Ramacher">
+      <meta name="DC.Creator" content="Shankar Raman, Suvendu Ray">
+      <meta name="DC.Creator" content="Ann Rhee">
+      <meta name="DC.Creator" content="Kathy Rich">
+      <meta name="DC.Creator" content="Vivian Schupmann">
+      <meta name="DC.Creator" content="Debbie Steiner">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Seema Sundara">
+      <meta name="DC.Creator" content="Juan Tellez">
+      <meta name="DC.Creator" content="Alex Tsukerman">
+      <meta name="DC.Creator" content="Kothanda Umamageswaran">
+      <meta name="DC.Creator" content="Randy Urbano">
+      <meta name="DC.Creator" content="Steve Vivian">
+      <meta name="DC.Creator" content="Eric Voss">
+      <meta name="DC.Creator" content="Tak Wang">
+      <meta name="DC.Creator" content="Steve Wertheimer">
+      <meta name="DC.Creator" content="Andy Witkowski">
+      <meta name="DC.Creator" content="Daniel Wong">
+      <meta name="DC.Creator" content="Graham Wood">
+      <meta name="DC.Creator" content="Brian Wright">
+      <meta name="DC.Creator" content="Aravind Yalamanchi">
+      <meta name="DC.Creator" content="Qin Yu">
+      <meta name="DC.Creator" content="Mohamed Ziauddin">
+      <meta name="DC.Creator" content="Bert Rich">
+      <meta name="DC.Publisher" content="August2026">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-C21F8463-BD70-485C-BA35-C2B0497BA972">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="DBA_SCHEDULER_CHAINS displays information about all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAINS.">
+      <meta name="description" content="DBA_SCHEDULER_CHAINS displays information about all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAINS.">
+      <title>DBA_SCHEDULER_CHAINS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Reference">
+      <meta property="og:description" content="DBA_SCHEDULER_CHAINS displays information about all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAINS.">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2026-08-12T12:11:42-07:00">
+      <meta name="dcterms.title" content="Database Reference">
+      <meta name="dcterms.dateCopyrighted" content="2002, 2026">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96196-44">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="DBA_SCHEDULER_CHAIN_STEPS.html" title="Previous" type="text/html">
+      <link rel="next" href="DBA_SCHEDULER_CREDENTIALS.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="REFRN">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"DBA_SCHEDULER_CHAINS","description":"DBA_SCHEDULER_CHAINS displays information about all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAINS.","datePublished":"2026-08-12 CST","dateModified":"2026-08-12 CST"}</script>
+    <script>window.ohcglobal || document.write('<script src="/en/dcommon/js/global.js">\x3C/script>')</script></head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="DBA_SCHEDULER_CHAIN_STEPS.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="DBA_SCHEDULER_CREDENTIALS.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-C21F8463-BD70-485C-BA35-C2B0497BA972" name="GUID-C21F8463-BD70-485C-BA35-C2B0497BA972"></a><a id="REFRN23509"></a>
+         
+         <h2 id="REFRN-GUID-C21F8463-BD70-485C-BA35-C2B0497BA972" class="sect2"><span class="enumeration_section">5.315 </span>DBA_SCHEDULER_CHAINS
+         </h2>
+         <div class="ind">
+            <div>
+               <p><code class="codeph">DBA_SCHEDULER_CHAINS</code> displays information about all chains in the database. Its columns are the same as those in <code class="codeph">ALL_SCHEDULER_CHAINS</code>.
+               </p>
+               <div class="section">
+                  <div class="infoboxnotealso" id="GUID-C21F8463-BD70-485C-BA35-C2B0497BA972__GUID-AE7314C9-349B-4C5D-82D0-0E595BC6603D">
+                     <p class="notep1">See Also:</p>
+                     <p><span class="q">"<a href="ALL_SCHEDULER_CHAINS.html#GUID-284E02A0-2AFC-449B-8406-4DE996282EAE" title="ALL_SCHEDULER_CHAINS displays information about the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).">ALL_SCHEDULER_CHAINS</a>"</span></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>

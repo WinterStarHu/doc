@@ -1,0 +1,500 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="DC.Type" content="reference">
+      <meta name="DC.Title" content="ALL_SCHEDULER_CHAIN_STEPS">
+      <meta name="abstract" content="ALL_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).">
+      <meta name="description" content="ALL_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).">
+      <meta name="DC.subject" content="ALL_SCHEDULER_CHAIN_STEPS view">
+      <meta name="keywords" content="ALL_SCHEDULER_CHAIN_STEPS view">
+      <meta name="DC.Creator" content="Mary Beth Roeser">
+      <meta name="DC.Contributor" content="David McDermid">
+      <meta name="DC.Contributor" content="Sarika Surampudi">
+      <meta name="DC.Creator" content="Nipun Agarwal">
+      <meta name="DC.Creator" content="Rick Anderson">
+      <meta name="DC.Creator" content="Mark Bauer">
+      <meta name="DC.Creator" content="Neerja Bhatt">
+      <meta name="DC.Creator" content="Tudor Bosman">
+      <meta name="DC.Creator" content="George Candea">
+      <meta name="DC.Creator" content="Wilson Chan">
+      <meta name="DC.Creator" content="Sumanta Chatterjee">
+      <meta name="DC.Creator" content="Eugene Chong">
+      <meta name="DC.Creator" content="Connie Dialeris Green">
+      <meta name="DC.Creator" content="Harvey Eneman">
+      <meta name="DC.Creator" content="Bruce Ernst">
+      <meta name="DC.Creator" content="Ira Greenberg">
+      <meta name="DC.Creator" content="Steve Harris">
+      <meta name="DC.Creator" content="Thuvan Hoang">
+      <meta name="DC.Creator" content="Lilian Hobbs">
+      <meta name="DC.Creator" content="Namit Jain">
+      <meta name="DC.Creator" content="Hakkan Jakobsson">
+      <meta name="DC.Creator" content="Bob Jenkins">
+      <meta name="DC.Creator" content="Mark Johnson">
+      <meta name="DC.Creator" content="Jonathan Klein">
+      <meta name="DC.Creator" content="Sushil Kumar">
+      <meta name="DC.Creator" content="Tirthankar Lahiri">
+      <meta name="DC.Creator" content="Bill Lee">
+      <meta name="DC.Creator" content="Yunrui Li">
+      <meta name="DC.Creator" content="Juan Loaiza">
+      <meta name="DC.Creator" content="Rich Long">
+      <meta name="DC.Creator" content="Diana Lorentz">
+      <meta name="DC.Creator" content="Catherine Luu">
+      <meta name="DC.Creator" content="Neil MacNaughton">
+      <meta name="DC.Creator" content="Ari Mozes">
+      <meta name="DC.Creator" content="Gopal Mulagund">
+      <meta name="DC.Creator" content="Subramanian Muralidhar">
+      <meta name="DC.Creator" content="Ravi Murthy">
+      <meta name="DC.Creator" content="Karuna Muthiah">
+      <meta name="DC.Creator" content="Arvind Nithrakashyap">
+      <meta name="DC.Creator" content="Ronald Obermarck">
+      <meta name="DC.Creator" content="Kant Patel">
+      <meta name="DC.Creator" content="Christopher Racicot">
+      <meta name="DC.Creator" content="Mark Ramacher">
+      <meta name="DC.Creator" content="Shankar Raman, Suvendu Ray">
+      <meta name="DC.Creator" content="Ann Rhee">
+      <meta name="DC.Creator" content="Kathy Rich">
+      <meta name="DC.Creator" content="Vivian Schupmann">
+      <meta name="DC.Creator" content="Debbie Steiner">
+      <meta name="DC.Creator" content="Malai Stalin">
+      <meta name="DC.Creator" content="Seema Sundara">
+      <meta name="DC.Creator" content="Juan Tellez">
+      <meta name="DC.Creator" content="Alex Tsukerman">
+      <meta name="DC.Creator" content="Kothanda Umamageswaran">
+      <meta name="DC.Creator" content="Randy Urbano">
+      <meta name="DC.Creator" content="Steve Vivian">
+      <meta name="DC.Creator" content="Eric Voss">
+      <meta name="DC.Creator" content="Tak Wang">
+      <meta name="DC.Creator" content="Steve Wertheimer">
+      <meta name="DC.Creator" content="Andy Witkowski">
+      <meta name="DC.Creator" content="Daniel Wong">
+      <meta name="DC.Creator" content="Graham Wood">
+      <meta name="DC.Creator" content="Brian Wright">
+      <meta name="DC.Creator" content="Aravind Yalamanchi">
+      <meta name="DC.Creator" content="Qin Yu">
+      <meta name="DC.Creator" content="Mohamed Ziauddin">
+      <meta name="DC.Creator" content="Bert Rich">
+      <meta name="DC.Publisher" content="August2026">
+      <meta name="DC.Format" content="XHTML">
+      <meta name="DC.Identifier" content="GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583">
+      <meta name="DC.Language" content="en-US">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="abstract" content="ALL_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).">
+      <meta name="description" content="ALL_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).">
+      <title>ALL_SCHEDULER_CHAIN_STEPS</title>
+      <meta property="og:site_name" content="Oracle Help Center">
+      <meta property="og:title" content="Database Reference">
+      <meta property="og:description" content="ALL_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).">
+      <link rel="stylesheet" href="/sp_common/book-template/ohc-book-template/css/book.css">
+      <link rel="shortcut icon" href="/sp_common/book-template/ohc-common/img/favicon.ico">
+      <meta name="application-name" content="Database Reference">
+      <meta name="generator" content="DITA Open Toolkit version 1.8.5 (Mode = doc)">
+      <meta name="plugin" content="SP_docbuilder HTML plugin release 18.2.2">
+      <link rel="alternate" href="database-reference.pdf" title="PDF File" type="application/pdf">
+      <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+      <meta name="dcterms.created" content="2026-08-12T12:11:42-07:00">
+      <meta name="dcterms.title" content="Database Reference">
+      <meta name="dcterms.dateCopyrighted" content="2002, 2026">
+      <meta name="dcterms.category" content="database">
+      <meta name="dcterms.identifier" content="E96196-44">
+      
+      <meta name="dcterms.product" content="en/database/oracle/oracle-database/19">
+      
+      <link rel="prev" href="ALL_SCHEDULER_CHAIN_RULES.html" title="Previous" type="text/html">
+      <link rel="next" href="ALL_SCHEDULER_CHAINS.html" title="Next" type="text/html">
+      <script>
+        document.write('<style type="text/css">');
+        document.write('body > .noscript, body > .noscript ~ * { visibility: hidden; }');
+        document.write('</style>');
+     </script>
+      <script data-main="/sp_common/book-template/ohc-book-template/js/book-config" src="/sp_common/book-template/requirejs/require.js"></script>
+      <script>
+            if (window.require === undefined) {
+                document.write('<script data-main="sp_common/book-template/ohc-book-template/js/book-config" src="sp_common/book-template/requirejs/require.js"><\/script>');
+                document.write('<link href="sp_common/book-template/ohc-book-template/css/book.css" rel="stylesheet"/>');
+            }
+        </script>
+      <script type="application/json" id="ssot-metadata">{"primary":{"category":{"short_name":"database","element_name":"Database","display_in_url":true},"suite":{"short_name":"oracle","element_name":"Oracle","display_in_url":true},"product_group":{"short_name":"not-applicable","element_name":"Not applicable","display_in_url":false},"product":{"short_name":"oracle-database","element_name":"Oracle Database","display_in_url":true},"release":{"short_name":"19","element_name":"Release 19","display_in_url":true}}}</script>
+      
+    <meta name="dcterms.release" content="Release 19">
+    <meta name="dcterms.isVersionOf" content="REFRN">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"ALL_SCHEDULER_CHAIN_STEPS","description":"ALL_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has ALTER or EXECUTE privileges for).","datePublished":"2026-08-12 CST","dateModified":"2026-08-12 CST"}</script>
+    <script>window.ohcglobal || document.write('<script src="/en/dcommon/js/global.js">\x3C/script>')</script></head>
+   <body>
+      <div class="noscript alert alert-danger text-center" role="alert">
+         <a href="ALL_SCHEDULER_CHAIN_RULES.html" class="pull-left"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Previous</a>
+         <a href="ALL_SCHEDULER_CHAINS.html" class="pull-right">Next<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span> JavaScript must be enabled to correctly display this content
+        
+      </div>
+      <article class>
+         <a id="GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583" name="GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583"></a><a id="REFRN20508"></a>
+         
+         <h2 id="REFRN-GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583" class="sect2"><span class="enumeration_section">3.36 </span>ALL_SCHEDULER_CHAIN_STEPS
+         </h2>
+         <div class="ind">
+            <div>
+               <p><code class="codeph">ALL_SCHEDULER_CHAIN_STEPS</code> displays information about the defined steps of the chains accessible to the current user (that is, those chains that the user has <code class="codeph">ALTER</code> or <code class="codeph">EXECUTE</code> privileges for).
+               </p>
+               <div class="section">
+                  <p class="subhead1" id="GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583__GUID-08A156ED-70D3-4389-9094-1F2612FAC8E1">Related Views</p>
+               </div>
+               <div class="section">
+                  <ul style="list-style-type: disc;">
+                     <li>
+                        <p><code class="codeph">DBA_SCHEDULER_CHAIN_STEPS</code> displays information about the defined steps of all chains in the database.
+                        </p>
+                     </li>
+                     <li>
+                        <p><code class="codeph">USER_SCHEDULER_CHAIN_STEPS</code> displays information about the defined steps of the chains owned by the current user. This view does not display the <code class="codeph">OWNER</code> column.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="tblformalwide" id="GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583__GUID-CE656716-6BE0-401A-9BF2-52BBE66A7C36">
+                  <table cellpadding="4" cellspacing="0" class="FormalWide" title summary="This table describes the columns for this database view " width="100%" frame="hsides" border="1" rules="rows">
+                     <thead>
+                        <tr align="left" valign="top">
+                           <th align="left" valign="bottom" width="24%" id="d584558e194">Column</th>
+                           <th align="left" valign="bottom" width="18%" id="d584558e197">Datatype</th>
+                           <th align="left" valign="bottom" width="14%" id="d584558e200">NULL</th>
+                           <th align="left" valign="bottom" width="45%" id="d584558e203">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e208" headers="d584558e194 ">
+                              <p><code class="codeph">OWNER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e208 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e208 d584558e200 ">
+                              <p><code class="codeph">NOT NULL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e208 d584558e203 ">
+                              <p>Owner of the Scheduler chain the step is in</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e224" headers="d584558e194 ">
+                              <p><code class="codeph">CHAIN_NAME</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e224 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e224 d584558e200 ">
+                              <p><code class="codeph">NOT NULL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e224 d584558e203 ">
+                              <p>Name of the Scheduler chain the step is in</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e240" headers="d584558e194 ">
+                              <p><code class="codeph">STEP_NAME</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e240 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e240 d584558e200 ">
+                              <p><code class="codeph">NOT NULL</code></p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e240 d584558e203 ">
+                              <p>Name of the chain step</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e256" headers="d584558e194 ">
+                              <p><code class="codeph">PROGRAM_OWNER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e256 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(392)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e256 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e256 d584558e203 ">
+                              <p>Owner of the program that runs during the step</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e271" headers="d584558e194 ">
+                              <p><code class="codeph">PROGRAM_NAME</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e271 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(392)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e271 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e271 d584558e203 ">
+                              <p>Name of the program that runs during the step</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e286" headers="d584558e194 ">
+                              <p><code class="codeph">EVENT_SCHEDULE_OWNER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e286 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(392)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e286 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e286 d584558e203 ">
+                              <p>Owner of the event schedule that this step waits for</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e301" headers="d584558e194 ">
+                              <p><code class="codeph">EVENT_SCHEDULE_NAME</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e301 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(392)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e301 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e301 d584558e203 ">
+                              <p>Name of the event schedule that this step waits for</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e316" headers="d584558e194 ">
+                              <p><code class="codeph">EVENT_QUEUE_OWNER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e316 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e316 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e316 d584558e203 ">
+                              <p>Owner of the source queue into which the event will be raised</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e331" headers="d584558e194 ">
+                              <p><code class="codeph">EVENT_QUEUE_NAME</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e331 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e331 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e331 d584558e203 ">
+                              <p>Name of the source queue into which the event will be raised</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e346" headers="d584558e194 ">
+                              <p><code class="codeph">EVENT_QUEUE_AGENT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e346 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(523)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e346 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e346 d584558e203 ">
+                              <p>Name of the AQ agent used by the user on the event source queue (for a secure queue)</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e361" headers="d584558e194 ">
+                              <p><code class="codeph">EVENT_CONDITION</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e361 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(4000)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e361 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e361 d584558e203 ">
+                              <p>Boolean expression used as the subscription rule for an event on the source queue</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e377" headers="d584558e194 ">
+                              <p><code class="codeph">CREDENTIAL_OWNER</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e377 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e377 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e377 d584558e203 ">
+                              <p>Owner of the credential to be used for an external step job</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e392" headers="d584558e194 ">
+                              <p><code class="codeph">CREDENTIAL_NAME</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e392 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(128)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e392 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e392 d584558e203 ">
+                              <p>Name of the credential to be used for an external step job</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e407" headers="d584558e194 ">
+                              <p><code class="codeph">DESTINATION</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e407 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(261)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e407 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e407 d584558e203 ">
+                              <p>Destination host on which a remote step job will run</p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e422" headers="d584558e194 ">
+                              <p><code class="codeph">SKIP</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e422 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(5)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e422 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e422 d584558e203 ">
+                              <p>Indicates whether the step should be skipped (<code class="codeph">TRUE</code>) or not (<code class="codeph">FALSE</code>)
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e443" headers="d584558e194 ">
+                              <p><code class="codeph">PAUSE</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e443 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(5)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e443 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e443 d584558e203 ">
+                              <p>Indicates whether the step should be paused after running (<code class="codeph">TRUE</code>) or not (<code class="codeph">FALSE</code>)
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e464" headers="d584558e194 ">
+                              <p><code class="codeph">PAUSE_BEFORE</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e464 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(5)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e464 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e464 d584558e203 ">
+                              <p>Indicates whether the step should be paused before running (<code class="codeph">TRUE</code>) or not (<code class="codeph">FALSE</code>)
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e485" headers="d584558e194 ">
+                              <p><code class="codeph">RESTART_ON_RECOVERY</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e485 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(5)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e485 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e485 d584558e203 ">
+                              <p>Indicates whether the step should be restarted on database recovery (<code class="codeph">TRUE</code>) or not (<code class="codeph">FALSE</code>)
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e506" headers="d584558e194 ">
+                              <p><code class="codeph">RESTART_ON_FAILURE</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e506 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(5)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e506 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e506 d584558e203 ">
+                              <p>Indicates whether the step should be restarted on application failure (<code class="codeph">TRUE</code>) or not (<code class="codeph">FALSE</code>)
+                              </p>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e527" headers="d584558e194 ">
+                              <p><code class="codeph">STEP_TYPE</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e527 d584558e197 ">
+                              <p><code class="codeph">VARCHAR2(21)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e527 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e527 d584558e203 ">
+                              <p>Type of the step:</p>
+                              <ul style="list-style-type: disc;">
+                                 <li>
+                                    <p><code class="codeph">EVENT_SCHEDULE</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">INLINE_EVENT</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">SUBCHAIN</code></p>
+                                 </li>
+                                 <li>
+                                    <p><code class="codeph">PROGRAM</code></p>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr align="left" valign="top">
+                           <td align="left" valign="top" width="24%" id="d584558e559" headers="d584558e194 ">
+                              <p><code class="codeph">TIMEOUT</code></p>
+                           </td>
+                           <td align="left" valign="top" width="18%" headers="d584558e559 d584558e197 ">
+                              <p><code class="codeph">INTERVAL DAY(3) TO SECOND(0)</code></p>
+                           </td>
+                           <td align="left" valign="top" width="14%" headers="d584558e559 d584558e200 ">
+                              <p> </p>
+                           </td>
+                           <td align="left" valign="top" width="45%" headers="d584558e559 d584558e203 ">
+                              <p>Timeout for waiting on an event schedule</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="section">
+                  <div class="infoboxnotealso" id="GUID-F8CF01C8-C1AE-45A6-95D9-25F0A5E9C583__GUID-FC6BAEB3-997E-48FE-8FBF-E974E6BD7638">
+                     <p class="notep1">See Also:</p>
+                     <ul style="list-style-type: disc;">
+                        <li>
+                           <p><span class="q">"<a href="DBA_SCHEDULER_CHAIN_STEPS.html#GUID-06CE95EF-0009-41DE-BA50-F4B60F1348C0" title="DBA_SCHEDULER_CHAIN_STEPS displays information about the defined steps of all chains in the database. Its columns are the same as those in ALL_SCHEDULER_CHAIN_STEPS.">DBA_SCHEDULER_CHAIN_STEPS</a>"</span></p>
+                        </li>
+                        <li>
+                           <p><span class="q">"<a href="USER_SCHEDULER_CHAIN_STEPS.html#GUID-95CC7929-901B-41AC-8E29-CD36983BCA76" title="USER_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains owned by the current user. Its columns (except for OWNER) are the same as those in ALL_SCHEDULER_CHAIN_STEPS.">USER_SCHEDULER_CHAIN_STEPS</a>"</span></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </article>
+   </body>
+</html>
