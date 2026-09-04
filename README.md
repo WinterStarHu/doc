@@ -18,6 +18,12 @@ en/refrn/*.md  en/arpls/DBMS_SCHEDULER.md      # Scheduler 子集逐页 Markdown
 
 完整书籍清单见 [BOOKS.md](BOOKS.md)，Scheduler 视图清单见 [INDEX.md](INDEX.md)。
 
+## 全文 Markdown（便于检索）
+
+`md/` 目录：151 本书全部转为 Markdown，按 [BOOKS.md](BOOKS.md) 索引命名为 `NN-<书名>.md`（如 `54-database-reference.md`、`130-sql-language-reference.md`），便于全文搜索。
+- 148 本由 PDF 用 `pdftotext -layout` 提取
+- 3 本（sqlrf/dbseg/tdddg）由抓取的 HTML 页面按目录顺序拼接
+
 ## 来源
 
 - https://docs.oracle.com/en/database/oracle/oracle-database/19/ （书架与各书）
