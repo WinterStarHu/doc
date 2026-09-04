@@ -1,17 +1,19 @@
 # G/ — GaussDB 文档
 
-华为 GaussDB 产品文档归档。
+华为 GaussDB 产品文档归档。源为 CHM（Windows 编译帮助，GB18030 编码），已用 7z 解包全部 HTML 页并转成 Markdown，**每版本拼接成一个 MD 文件**便于全文检索。共 10 个版本、68769 页。
 
-源文件为 CHM 格式（`*.chm`，Windows 编译帮助），待解包成 HTML/Markdown 后归档于此。
+| 文件 | 页数 | 大小 |
+|---|---:|---:|
+| [云数据库-GaussDB-24.7.30.10-产品文档for-华为云Stack-8.5.0-03.md](云数据库-GaussDB-24.7.30.10-产品文档for-华为云Stack-8.5.0-03.md) | 8050 | 30M |
+| [云数据库-GaussDB-25.1.32-分布式版产品文档for-华为云Stack-8.5.1-01.md](云数据库-GaussDB-25.1.32-分布式版产品文档for-华为云Stack-8.5.1-01.md) | 5602 | 19M |
+| [云数据库-GaussDB-25.1.32-集中式版产品文档for-华为云Stack-8.5.1-01.md](云数据库-GaussDB-25.1.32-集中式版产品文档for-华为云Stack-8.5.1-01.md) | 5826 | 20M |
+| [GaussDB轻量化部署形态-25.1.32-分布式版产品文档-01.md](GaussDB轻量化部署形态-25.1.32-分布式版产品文档-01.md) | 5921 | 19M |
+| [GaussDB轻量化部署形态-25.1.32-集中式版产品文档-01.md](GaussDB轻量化部署形态-25.1.32-集中式版产品文档-01.md) | 5979 | 20M |
+| [GaussDB-AI助手-V2.0-26.861.0.1-产品文档for-轻量化部署形态.md](GaussDB-AI助手-V2.0-26.861.0.1-产品文档for-轻量化部署形态.md) | 188 | 192K |
+| [GaussDB-V2.0-25.860.0-分布式版产品文档for-华为云Stack-8.6.0-01.md](GaussDB-V2.0-25.860.0-分布式版产品文档for-华为云Stack-8.6.0-01.md) | 5758 | 20M |
+| [GaussDB-V2.0-25.860.0-集中式版产品文档for-华为云Stack-8.6.0-01.md](GaussDB-V2.0-25.860.0-集中式版产品文档for-华为云Stack-8.6.0-01.md) | 5990 | 20M |
+| [GaussDB-V2.0-26.861.1-产品文档for-华为云Stack-8.6.1-01.md](GaussDB-V2.0-26.861.1-产品文档for-华为云Stack-8.6.1-01.md) | 10800 | 43M |
+| [GaussDB-V2.0-26.861.1-产品文档for-轻量化部署形态-01.md](GaussDB-V2.0-26.861.1-产品文档for-轻量化部署形态-01.md) | 14655 | 52M |
+| [README.md](README.md) | 0 | 4.0K |
 
-## 已下载的 CHM 包（源 zip 在仓库外）
-
-- GaussDB V2.0-26.861.1 产品文档（for 华为云Stack 8.6.1）
-- GaussDB V2.0-26.861.1 产品文档（for 轻量化部署形态）
-- GaussDB V2.0-25.860.0 集中式版 / 分布式版（for 华为云Stack 8.6.0）
-- 云数据库 GaussDB 25.1.32 集中式版 / 分布式版（for 华为云Stack 8.5.1）
-- GaussDB 轻量化部署形态 25.1.32 集中式版 / 分布式版
-- 云数据库 GaussDB 24.7.30.10（for 华为云Stack 8.5.0）
-- GaussDB AI 助手 V2.0-26.861.0.1（for 轻量化部署形态）
-
-> 待办：安装 CHM 解包工具（p7zip-full / chmlib），解包并转为 Markdown 归档。
+> 源 CHM zip（约 2GB）在仓库外 `../../`。每页以 `## <标题>` 分隔，标题来自原 HTML 的 `DC.Title`。
