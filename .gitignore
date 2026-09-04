@@ -1,3 +1,3 @@
-# GaussDB CHM source archive (1.5GB, 7/10 files >100MB GitHub limit)
-# kept locally for reference; searchable Markdown is in G/*.md
+# GaussDB CHM source archive (1.5GB, split into parts) — local-only,
+# too large for GitHub push. Cloud keeps searchable Markdown (G/*.md).
 G/chm/
