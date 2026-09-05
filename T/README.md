@@ -11,3 +11,10 @@ TPC（Transaction Processing Performance Council）官方基准测试规范 PDF 
 | [TPC-V_v1.7.0.pdf](TPC-V_v1.7.0.pdf) | TPC-V（虚拟化） | 109K |
 
 > TPC 规范版权归 TPC。本地归档便于查阅，如需正式使用请遵循 TPC 的 Fair Use 政策。
+## Markdown 与中文版
+
+- `md/` — 各规范 PDF 转成的 Markdown（`pdftotext -layout`），便于全文检索。
+- `zh/` — 术语词典粗译中文草稿（SQL/代码保留原文，标有草稿提示），仅供速览，非官方译本。
+
+## 版权
+TPC 规范版权归 TPC 所有，本归档仅个人自用，侵权即删。
