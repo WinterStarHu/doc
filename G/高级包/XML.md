@@ -7,6 +7,7 @@ XML 处理相关：DOM、解析、生成、通用。
 ## DBE_XML
 
 DBE_XML支持的所有接口请参见表1：
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_XML.XML_FREE_PARSER | 释放PARSER。 |
@@ -64,23 +65,28 @@ DBE_XML支持的所有接口请参见表1：
 | DBE_XML.XML_DOM_GET_SESSION_TREE_NUM | 显示当前session中所有类型的dom树的数量。 |
 | DBE_XML.XML_DOM_GET_DOC_TREES_INFO | 显示document类型的dom树的内存占用、节点数量等统计信息。 |
 | DBE_XML.XML_DOM_GET_DETAIL_DOC_TREE_INFO | 显示特定的document变量的各类型节点数量。 |
+
 ```
 DBE_XML.XML_FREE_PARSER(
 id IN RAW(13))
 returns VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的parser类型对象。 |
+
 - DBE_XML.XML_FREE_PARSER释放给定的PARSER对象。 DBE_XML.XML_FREE_PARSER的存储过程原型为：
 ```
 DBE_XML.XML_PARSER_GET_DOC(
 id IN RAW(13))
 returns RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的parser类型对象。 |
+
   - DBE_XML.XML_PARSER_GET_DOC函数传空，返回NULL。
   - DBE_XML.XML_PARSER_GET_DOC函数传入的parser还没有解析文档，返回NULL。
 ```
@@ -88,9 +94,11 @@ DBE_XML.XML_GET_VALIDATION_MODE(
 id RAW(13))
 returns BOOL;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的parser类型对象。 |
+
 - DBE_XML.XML_GET_VALIDATION_MODE 获取给定Parser的解析验证模式。如果DTD验证开启返回TRUE，否则返回FALSE。 DBE_XML.XML_GET_VALIDATION_MODE的函数原型为：
 ```
 DBE_XML.XML_NEW_PARSER()
@@ -103,10 +111,12 @@ id RAW(13),
 xmlstr VARCHAR2)
 RETURNS VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的parser类型对象。 |
 | xmlstr | VARCHAR2 | IN | 否 | 存储XML文档的字符串。 |
+
   - xml_parse_buffer函数能够解析的字符串最大长度为32767，超过最大长度解析报错。
   - 与ORA数据库差异：字符串encoding只支持UTF-8；version字段只支持1.0，1.0-1.9解析警告但正常执行，1.9以上报错。
     - !ATTLIST to type (CHECK|check|Check) "Ch..."将报错，因默认值"Ch..."不属于括号中枚举值，而ORA数据库不报错。
@@ -119,10 +129,12 @@ id IN RAW(13),
 doc IN CLOB)
 returns VOID；
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的parser类型对象。 |
 | doc | CLOB | IN | 否 | 存储XML文档的字符串。 |
+
   - xml_parse_clob不支持解析大于1GB的CLOB。
   - 与ORA数据库差异：字符串encoding只支持UTF-8；version字段只支持1.0，1.0-1.9解析警告但正常执行，1.9以上报错。
     - !ATTLIST to type (CHECK|check|Check) "Ch..."将报错，因默认值"Ch..."不属于括号中枚举值，而ORA数据库不报错。
@@ -135,10 +147,12 @@ id RAW(13),
 validate BOOLEAN)
 returns VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的parser类型对象。 |
 | validate | BOOLEAN | IN | 是 | 要设置的模式：TRUE：开启DTD验证。FALSE：不开启验证。 |
+
   - DBE_XML.XML_SET_VALIDATION_MODE函数validate传入为空，不改变parser的解析验证模式。
   - parser初始化默认为开启DTD验证模式。
 ```
@@ -148,10 +162,12 @@ DBE_XML.XML_DOM_APPEND_CHILD(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | parentId | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | childId | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_APPEND_CHILD将newchild node添加到parent(n)节点最后面,并返回新添加的Node节点。 DBE_XML.XML_DOM_APPEND_CHILD的存储过程原型为：
 ```
 DBE_XML.XML_DOM_CREATE_ELEMENT(
@@ -160,10 +176,12 @@ DBE_XML.XML_DOM_CREATE_ELEMENT(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | tagname | VARCHAR2 | IN | 否 | 新建的DOMELEMENT名称。 |
+
 - DBE_XML.XML_DOM_CREATE_ELEMENT返回创建指定名称的DOMELEMENT对象。 DBE_XML.XML_DOM_CREATE_ELEMENT的函数原型为：
 ```
 DBE_XML.XML_DOM_CREATE_ELEMENT_NS(
@@ -173,11 +191,13 @@ DBE_XML.XML_DOM_CREATE_ELEMENT_NS(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | tagname | VARCHAR2 | IN | 否 | 新建的DOMELEMENT名称。 |
 | ns | VARCHAR2 | IN | 否 | 命名空间。 |
+
 - DBE_XML.XML_DOM_CREATE_ELEMENT_NS返回创建指定名称和命名空间的DOMELEMENT对象。 DBE_XML.XML_DOM_CREATE_ELEMENT_NS的函数原型为：
 ```
 DBE_XML.XML_DOM_CREATE_TEXT_NODE(
@@ -186,10 +206,12 @@ DBE_XML.XML_DOM_CREATE_TEXT_NODE(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | data | VARCHAR2 | IN | 否 | 新建的DOMTEXT节点内容。 |
+
 - DBE_XML.XML_DOM_CREATE_TEXT_NODE创建并返回DOMTEXT对象。 DBE_XML.XML_DOM_CREATE_TEXT_NODE的函数原型为：
 ```
 DBE_XML.XML_DOM_FREE_DOCUMENT(
@@ -197,9 +219,11 @@ DBE_XML.XML_DOM_FREE_DOCUMENT(
 )
 RETURNS VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_FREE_DOCUMENT将指定的xmldom类型对象释放。 DBE_XML.XML_DOM_FREE_DOCUMENT的存储过程原型为：
 ```
 DBE_XML.XML_DOM_FREE_ELEMENT (
@@ -207,9 +231,11 @@ DBE_XML.XML_DOM_FREE_ELEMENT (
 )
 RETURNS VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_FREE_ELEMENT将指定的xmldom类型对象释放 DBE_XML.XML_DOM_FREE_ELEMENT的存储过程原型为：
 ```
 DBE_XML.XML_DOM_FREE_NODE (
@@ -217,9 +243,11 @@ DBE_XML.XML_DOM_FREE_NODE (
 )
 RETURNS VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_FREE_NODE释放DOMNODE节点。 DBE_XML.XML_DOM_FREE_NODE的函数原型为：
 ```
 DBE_XML.XML_DOM_FREE_NODELIST(
@@ -227,9 +255,11 @@ DBE_XML.XML_DOM_FREE_NODELIST(
 )
 RETURNS VOID
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_FREE_NODELIST释放DOMNODELIST节点 DBE_XML.XML_DOM_FREE_NODELIST的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_ATTRIBUTE (
@@ -238,10 +268,12 @@ DBE_XML.XML_DOM_GET_ATTRIBUTE (
 )
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | docid | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | name | VARCHAR2 | IN | 否 | 字符串。 |
+
 - DBE_XML.XML_DOM_GET_ATTRIBUTE获取指定的xmldom类型对象的属性 DBE_XML.XML_DOM_GET_ATTRIBUTE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_ATTRIBUTES (
@@ -249,9 +281,11 @@ DBE_XML.XML_DOM_GET_ATTRIBUTES (
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_ATTRIBUTES将DOMNode节点属性值作为map返回。 DBE_XML.XML_DOM_GET_ATTRIBUTES的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_CHILD_NODES(
@@ -259,9 +293,11 @@ DBE_XML.XML_DOM_GET_CHILD_NODES(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_CHILD_NODES将节点下的若干子节点转换成节点列表 DBE_XML.XML_DOM_GET_CHILD_NODES的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME (
@@ -270,10 +306,12 @@ DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME (
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | docid | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | name | VARCHAR2 | IN | 否 | 字符串。 |
+
 - DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME获取指定的xmldom类型对象指定子节点组成的列表 DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME_NS (
@@ -283,11 +321,13 @@ DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME_NS (
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | docid | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | name | VARCHAR2 | IN | 否 | 字符串。 |
 | ns | VARCHAR2 | IN | 是 | 字符串。 |
+
 - DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME_NS获取指定的xmldom类型对象指定命名空间指定子节点组成的列表 DBE_XML.XML_DOM_GET_CHILDREN_BY_TAGNAME_NS的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_DOCUMENT_ELEMENT(
@@ -295,9 +335,11 @@ DBE_XML.XML_DOM_GET_DOCUMENT_ELEMENT(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_DOCUMENT_ELEMENT返回指定DOCUMENT的首个子节点。 DBE_XML.XML_DOM_GET_DOCUMENT_ELEMENT的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_FIRST_CHILD(
@@ -305,9 +347,11 @@ DBE_XML.XML_DOM_GET_FIRST_CHILD(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_FIRST_CHILD返回node节点的第一个子节点。 DBE_XML.XML_DOM_GET_FIRST_CHILD的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_LAST_CHILD(
@@ -315,9 +359,11 @@ DBE_XML.XML_DOM_GET_LAST_CHILD(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_LAST_CHILD返回node节点的最后一个子节点。 DBE_XML.XML_DOM_GET_LAST_CHILD的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_LENGTH(
@@ -325,9 +371,11 @@ DBE_XML.XML_DOM_GET_LENGTH(
 )
 RETURNS VOID;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_LENGTH根据类型节点中内容返回节点数。 DBE_XML.XML_DOM_GET_LENGTH的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_LOCALNAME (
@@ -335,9 +383,11 @@ DBE_XML.XML_DOM_GET_LOCALNAME (
 )
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_LOCALNAME返回给定对象的本地名称 DBE_XML.XML_DOM_GET_LOCALNAME的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_NAMED_ITEM(
@@ -346,10 +396,12 @@ DBE_XML.XML_DOM_GET_NAMED_ITEM(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | nodeName | VARCHAR2 | IN | 否 | 要检索的元素的名称。 |
+
 - DBE_XML.XML_DOM_GET_NAMED_ITEM检索由名称指定的节点 DBE_XML.XML_DOM_GET_NAMED_ITEM的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_NAMED_ITEM_NS(
@@ -359,11 +411,13 @@ DBE_XML.XML_DOM_GET_NAMED_ITEM_NS(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | nodeName | VARCHAR2 | IN | 否 | 要检索的元素的名称。 |
 | ns | VARCHAR2 | IN | 是 | 命名空间。 |
+
 - DBE_XML.XML_DOM_GET_NAMED_ITEM_NS检索由名称和命名空间指定的节点 DBE_XML.XML_DOM_GET_NAMED_ITEM_NS的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_NEXT_SIBLING(
@@ -371,9 +425,11 @@ DBE_XML.XML_DOM_GET_NEXT_SIBLING(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_NEXT_SIBLING返回该节点的下一个节点。 DBE_XML.XML_DOM_GET_NEXT_SIBLING的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_NODE_NAME(
@@ -381,9 +437,11 @@ DBE_XML.XML_DOM_GET_NODE_NAME(
 )
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_NODE_NAME返回节点的名称。 DBE_XML.XML_DOM_GET_NODE_NAME的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_NODE_TYPE(
@@ -391,27 +449,33 @@ DBE_XML.XML_DOM_GET_NODE_TYPE(
 )
 RETURNS INTEGER;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_NODE_TYPE返回节点的类型。 DBE_XML.XML_DOM_GET_NODE_TYPE的函数原型为：
 ```
 DBE_XML.XML_DOM_GET_NODE_VALUE(
 id IN RAW(13))
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_NODE_VALUE 返回NODE节点的值。 DBE_XML.XML_DOM_GET_NODE_VALUE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_PARENT_NODE(
 id IN RAW(13))
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_PARENT_NODE返回给定NODE节点的父节点。 DBE_XML.XML_DOM_GET_PARENT_NODE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_TAGNAME (
@@ -419,18 +483,22 @@ DBE_XML.XML_DOM_GET_TAGNAME (
 )
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | docid | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_TAGNAME获取指定的xmldom类型对象的标签名 DBE_XML.XML_DOM_GET_TAGNAME的存储过程原型为：
 ```
 DBE_XML.XML_DOM_HAS_CHILD_NODES(
 id IN RAW(13))
 RETURNS BOOLEAN
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_HAS_CHILD_NODES检查DOMNODE对象是否拥有任一子节点。 DBE_XML.XML_DOM_HAS_CHILD_NODES的存储过程原型为：
 ```
 DBE_XML.XML_DOM_IMPORT_NODE(
@@ -440,11 +508,13 @@ DBE_XML.XML_DOM_IMPORT_NODE(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | doc_id | RAW(13) | IN | 否 | 节点挂载的文档。 |
 | node_id | RAW(13) | IN | 否 | 将要导入的节点。 |
 | deep | BOOLEAN | IN | 否 | 设置递归导入：如果为TRUE，则导入该节点及其所有子节点。如果为FALSE，则只导入节点本身。 |
+
 - DBE_XML.XML_DOM_IMPORT_NODE该函数将节点复制到另一节点中，并将复制后的节点挂载到指定document中。若被复制节点的类型不属于xmldom的constants所规定的12种类型，则直接抛出类型不支持异常。 DBE_XML.XML_DOM_IMPORT_NODE的函数原型为：
 ```
 DBE_XML.XML_DOM_IS_NULL (
@@ -452,9 +522,11 @@ DBE_XML.XML_DOM_IS_NULL (
 )
 RETURNS BOOLEAN;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_IS_NULL判断给定对象是否为NULL，如果是则返回True，否则返回false。 DBE_XML.XML_DOM_IS_NULL的函数原型为：
 ```
 DBE_XML.XML_DOM_ITEM (
@@ -463,19 +535,23 @@ DBE_XML.XML_DOM_ITEM (
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | index | INTEGER | IN | 否 | 要检索的元素的索引。 |
+
 - DBE_XML.XML_DOM_ITEM根据索引返回list或map中与索引对应的元素。 DBE_XML.XML_DOM_ITEM的函数原型为：
 ```
 DBE_XML.XML_DOM_MAKE_ELEMENT(
 id IN RAW(13))
 RETURNS RAW(13)
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_MAKE_ELEMENT返回转换后的DOMELEMENT对象。 DBE_XML.XML_DOM_MAKE_ELEMENT的存储过程原型为：
 ```
 DBE_XML.XML_DOM_MAKENODE(
@@ -483,9 +559,11 @@ DBE_XML.XML_DOM_MAKENODE(
 )
 RETURNS DOMNODE;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_MAKENODE将给定对象强制转换为DOMNODE类型。 DBE_XML.XML_DOM_MAKENODE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_NEW_DOM_DOCUMENT_EMPTY()
@@ -498,9 +576,11 @@ DBE_XML.XML_DOM_NEW_DOM_DOCUMENT_CLOB(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | content | CLOB | IN | 否 | 指定的CLOB类型。 |
+
 - DBE_XML.XML_DOM_NEW_DOM_DOCUMENT_CLOB返回从指定的CLOB类型创建的新DOMDOCUMENT实例对象。 DBE_XML.XML_DOM_NEW_DOM_DOCUMENT_CLOB的函数原型为：
 ```
 DBE_XML.XML_DOM_NEW_DOCUMENT_XMLTYPE(
@@ -508,9 +588,11 @@ DBE_XML.XML_DOM_NEW_DOCUMENT_XMLTYPE(
 )
 RETURNS RAW(13);
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | content | CLOB | IN | 否 | 指定的CLOB类型。 |
+
 - DBE_XML.XML_DOM_NEW_DOCUMENT_XMLTYPE返回从指定的XMLType类型创建的新DOMDOCUMENT实例对象。 DBE_XML.XML_DOM_NEW_DOCUMENT_XMLTYPE的函数原型为：
 ```
 DBE_XML.XML_DOM_SET_ATTRIBUTE(
@@ -520,11 +602,13 @@ DBE_XML.XML_DOM_SET_ATTRIBUTE(
 )
 RETURNS void;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | name | VARCHAR2 | IN | 否 | 字符串。 |
 | value | VARCHAR2 | IN | 否 | 字符串。 |
+
 - DBE_XML.XML_DOM_SET_ATTRIBUTE设置指定的xmldom类型对象的属性。 DBE_XML.XML_DOM_SET_ATTRIBUTE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_SET_CHARSET(
@@ -533,10 +617,12 @@ DBE_XML.XML_DOM_SET_CHARSET(
 )
 RETURNS void;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | charset | VARCHAR2 | IN | 否 | 字符集。 |
+
 - DBE_XML.XML_DOM_SET_CHARSET设置DOMDOCUMENT的CHARSET字符集。 DBE_XML.XML_DOM_SET_CHARSET的函数原型为：
 ```
 DBE_XML.XML_DOM_SET_DOCTYPE(
@@ -547,12 +633,14 @@ DBE_XML.XML_DOM_SET_DOCTYPE(
 )
 RETURNS void;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | dtd_name | VARCHAR2 | IN | 否 | 需要初始化doctype的名称。 |
 | system_id | VARCHAR2 | IN | 否 | 需要初始化doctype的system ID。 |
 | public_id | VARCHAR2 | IN | 否 | 需要初始化doctype的public ID。 |
+
 - DBE_XML.XML_DOM_SET_DOCTYPE设置DOMDOCUMENT的外部DTD。 DBE_XML.XML_DOM_SET_DOCTYPE的函数原型为：
 ```
 DBE_XML.XML_DOM_SET_NODE_VALUE(
@@ -560,28 +648,34 @@ id IN RAW(13),
 node_value IN VARCHAR2)
 RETURNS VOID
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | node_value | VARCHAR2 | IN | 否 | 向DOMNODE对象中设置的字符串。 |
+
 - DBE_XML.XML_DOM_SET_NODE_VALUE此函数用于向DOMNODE对象中设置节点的值。 DBE_XML.XML_DOM_SET_NODE_VALUE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_WRITE_TO_BUFFER_DOC(
 id IN RAW(13))
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_WRITE_TO_BUFFER_DOC将给定的DOMDOCUMENT类型对象写入缓冲区。 DBE_XML.XML_DOM_WRITE_TO_BUFFER_DOC的存储过程原型为：
 ```
 DBE_XML.XML_DOM_WRITE_TO_BUFFER_NODE(
 id IN RAW(13))
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_WRITE_TO_BUFFER_NODE将给定的DOMNODE类型对象写入缓冲区。 DBE_XML.XML_DOM_WRITE_TO_BUFFER_NODE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_WRITE_TO_CLOB_DOC(
@@ -589,9 +683,11 @@ DBE_XML.XML_DOM_WRITE_TO_CLOB_DOC(
 )
 RETURNS VARCHAR2;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_WRITE_TO_CLOB_DOC将给定的DOMDOCUMENT类型对象写入Clob。 DBE_XML.XML_DOM_WRITE_TO_CLOB_DOC的存储过程原型为：
 ```
 DBE_XML.XML_DOM_WRITE_TO_CLOB_NODE(
@@ -599,9 +695,11 @@ DBE_XML.XML_DOM_WRITE_TO_CLOB_NODE(
 )
 RETURNS CLOB;
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_WRITE_TO_CLOB_NODE将给定的DOMNODE类型对象写入Clob。 DBE_XML.XML_DOM_WRITE_TO_CLOB_NODE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_WRITE_TO_FILE_DOC(
@@ -614,11 +712,13 @@ file_dir IN  VARCHAR2,
 charset  IN  VARCHAR2)
 RETURNS VOID PACKAGE
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 是 | 指定的xmldom类型对象。 |
 | file_dir | VARCHAR2 | IN | 否 | 要写入的文件。 |
 | charset | VARCHAR2 | IN | 否 | 指定字符集。 |
+
 - DBE_XML.XML_DOM_WRITE_TO_FILE_DOC使用数据库字符集将XML节点写入指定文件。 DBE_XML.XML_DOM_WRITE_TO_FILE_DOC的存储过程原型为：
 ```
 DBE_XML.XML_DOM_WRITE_TO_FILE_NODE(
@@ -626,10 +726,12 @@ id IN  RAW(13),
 filename IN  VARCHAR2)
 RETURNS VOID
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
 | filename | VARCHAR2 | IN | 否 | 指定文件地址。 |
+
 - DBE_XML.XML_DOM_WRITE_TO_FILE_NODE使用数据库字符集将XML节点写入指定文件。 DBE_XML.XML_DOM_WRITE_TO_FILE_NODE的存储过程原型为：
 ```
 DBE_XML.XML_DOM_GET_SESSION_TREE_NUM()
@@ -646,9 +748,11 @@ dbe_xml.xml_dom_get_detail_doc_tree_info(
 id IN  RAW(13))
 RETURNS VARCHAR2
 ```
+
 | 参数 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | id | RAW(13) | IN | 否 | 指定的xmldom类型对象。 |
+
 - DBE_XML.XML_DOM_GET_DETAIL_DOC_TREE_INFO查询传入的document内的各类型子节点的数量。 DBE_XML.XML_DOM_GET_DETAIL_DOC_TREE_INFO的函数原型为：
 父主题：
 基础接口
@@ -667,6 +771,7 @@ RETURNS VARCHAR2
 #### 接口介绍
 高级功能包DBE_XMLDOM用于访问XMLType对象，实现DOM(Document Object Model)，用于访问HTML和XML DOCUMENTS API。高级功能包DBE_XMLDOM支持的所有类型请参见表1，DBE_XMLDOM支持的所有接口请参见表2。
 DBE_XMLDOM高级包在字符集设置为SQL_ASCII的数据库内使用的情况下，输入超出ASCII范围的字符，会导致报错。
+
 | 类型名称 | 描述 |
 |---|---|
 | DOMATTR | 实现DOM Attribute接口。 |
@@ -719,16 +824,19 @@ DBE_XMLDOM高级包在字符集设置为SQL_ASCII的数据库内使用的情况�
 | DBE_XMLDOM.GETDOCTREESINFO | 显示document类型的dom树的内存占用、节点数量等统计信息。 |
 | DBE_XMLDOM.GETDETAILDOCTREEINFO | 显示特定的document变量的各类型节点数量。 |
 | DBE_XMLDOM.GETELEMENTSBYTAGNAM | 返回匹配TAGNAME的DOMNODELIST节点列表。 |
+
 ```
 DBE_XMLDOM.APPENDCHILD(
    n IN DOMNode,
    newchild IN DOMNode)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 被添加的node。 |
 | newchild | 添加的新node。 |
+
   - DOCUMENT类型节点下APPEND ATTR类型节点会报“operation not support”错误，ORA数据库在此场景下不报错，但实际并没有挂载成功。
   - ATTR类型节点下APPEND ATTR类型节点会报“operation not support”错误，ORA数据库在此场景下不报错，但实际并没有挂载成功。
   - 父节点在添加多个ATTR类型子节点时，不允许KEY值相同的子节点同时存在于同一个父节点下。
@@ -787,11 +895,13 @@ DBE_XMLDOM.CREATEELEMENT(
    ns         IN     VARCHAR2)
  RETURN DOMELEMENT;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT对象。 |
 | tagName | 新建的DOMELEMENT名称。 |
 | ns | 命名空间。 |
+
   - tagName参数传入NULL和空字符串时，都会抛出异常 "NULL or invalid TagName argument specified"
   - tagName和ns默认的最大长度为32767，超过该长度会抛出异常。
 示例：
@@ -854,10 +964,12 @@ DBE_XMLDOM.CREATETEXTNODE(
    data IN VARCHAR2)
 RETURN DOMTEXT;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT。 |
 | data | DOMText节点的内容。 |
+
   - data可以输入空字符串和NULL值。
   - data默认的最大长度为32767，超过该长度会抛出异常。
 示例：
@@ -897,9 +1009,11 @@ ANONYMOUS BLOCK EXECUTE
 DBE_XMLDOM.FREEDOCUMENT(
    doc     IN     DOMDOCUMENT);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
+
 ```
 --在DOC树中添加DOMNODE节点后，将整个DOC树的资源释放。
 DECLARE
@@ -925,9 +1039,11 @@ ANONYMOUS BLOCK EXECUTE
 DBE_XMLDOM.FREEELEMENT(
    elem     IN     DOMELEMENT);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | elem | 指定的DOMELEMENT节点。 |
+
 ```
 --从DOC中获取DOMELEMENT节点后对其进行释放，对比其free前后是否为空的情况。
 DECLARE
@@ -975,9 +1091,11 @@ ANONYMOUS BLOCK EXECUTE
 DBE_XMLDOM.FREENODE(
    n IN DOMNODE);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
   - GaussDB数据库进行FREENODE操作后，被释放的节点不会出现重新可用的情况；ORA数据库在FREENODE后存在被释放的节点重新可用并变成其他节点的情况。
   - 其他接口在调用被释放的DOMNODE节点时与ORA数据库存在差异。
 示例：
@@ -1027,9 +1145,11 @@ ANONYMOUS BLOCK EXECUTE
 DBE_XMLDOM.GETLENGTH(
    nl     IN    DOMNODELIST);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | nl | 指定的DOMNODELIST节点。 |
+
   - FREENODELIST会彻底释放NODELIST。
   - 其他接口在调用被释放的DOMNODELIST节点时与ORA数据库存在差异。
   - freenodelist不允许空值入参。
@@ -1084,11 +1204,13 @@ DBE_XMLDOM.GETATTRIBUTE(
    ns        IN     VARCHAR2)
 RETURN VARCHAR2;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | elem | 指定的DOMELEMENT节点。 |
 | name | 属性名称。 |
 | ns | 命名空间。 |
+
   - DBE_XMLDOM.GETATTRIBUTE接口的参数ns不支持传入参数" * "。
   - GaussDB数据库不支持将命名空间前缀作为属性，不允许通过DBE_XMLDOM.GETATTRIBUTE接口查询该前缀的值。
 示例：****
@@ -1153,9 +1275,11 @@ DBE_XMLDOM.GETATTRIBUTES(
    n IN DOMNode)
 RETURN DOMNAMEDNODEMAP;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --获取DOMNODE节点下的属性值并返回DOMNAMEDNODEMAP类型，输出DOMNAMEDNODEMAP的长度和第一个节点值。
 DECLARE
@@ -1202,9 +1326,11 @@ DBE_XMLDOM.GETCHILDNODES(
    n IN DOMNode)
 RETURN DOMNodeList;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --获取DOC树的第一个子节点后，将节点下的若干子节点转换成节点列表，输出其长度信息。
 DECLARE
@@ -1255,11 +1381,13 @@ DBE_XMLDOM.GETCHILDRENBYTAGNAME (
    ns        IN     VARCHAR2)
  RETURN DOMNODELIST;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | elem | 指定的DOMELEMENT节点。 |
 | name | 属性名称。 |
 | ns | 命名空间。 |
+
 ****
 ```
 --1. 按名称返回DOMELEMENT的子节点。
@@ -1350,9 +1478,11 @@ DBE_XMLDOM.GETDOCUMENTELEMENT(
    doc      IN      DOMDOCUMENT)
  RETURN DOMELEMENT;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
+
 ```
 --获取DOC树中的首个子节点，并输出该节点的名称。
 DECLARE
@@ -1382,9 +1512,11 @@ DBE_XMLDOM.GETFIRSTCHILD(
    n IN DOMNODE)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --获取DOC转换成DOMNODE类型后的第一个子节点后输出其名称和类型；在获取到的第一个子节点基础上，获取该DOMNODE的第一个子节点并输出其名称。
 DECLARE
@@ -1427,9 +1559,11 @@ DBE_XMLDOM.GETLASTCHILD(
    n IN DOMNODE)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --获取DOC转换成DOMNODE类型后的最后一个子节点后输出其名称和类型；在获取到的最后一个子节点基础上，获取该DOMNODE的最后一个子节点并输出其名称。
 DECLARE
@@ -1477,10 +1611,12 @@ DBE_XMLDOM.GETLENGTH(
    nl     IN    DOMNODELIST)
  RETURN NUMBER;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | nnm | 指定的DOMNAMEDNODEMAP类型节点。 |
 | nl | 指定的DOMNODELIST类型节点。 |
+
 ```
 --1. DOMNAMEDNODEMAP类型作为函数参数。
 DECLARE
@@ -1555,12 +1691,14 @@ DBE_XMLDOM.GETLOCALNAME(
    n      IN     DOMNODE,
    data   OUT    VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | a | 指定的DOMATTR类型节点。 |
 | elem | 指定的DOMELEMENT类型节点。 |
 | n | 指定的DOMNODE类型节点。 |
 | data | 返回的本地名称。 |
+
 ```
 --1. createAttribute函数生成attr节点，获取它的本地名称。
 DECLARE
@@ -1642,11 +1780,13 @@ DBE_XMLDOM.GETNAMEDITEM(
    ns IN VARCHAR2)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | nnm | DOMNAMEDNODEMAP。 |
 | name | 要检索的元素名称。 |
 | ns | 命名空间。 |
+
   - name和nnm可以输入NULL值，但不可不入参。
   - name和ns默认的最大长度为32767，超出该长度会报错。
   - name和ns可输入int类型，长度可超出127位。
@@ -1708,9 +1848,11 @@ DBE_XMLDOM.GETNEXTSIBLING(
    n  IN  DOMNODE)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --首先获取DOC转换成DOMNODE类型后的第一个子节点；在获取到的第一个子节点基础上，获取该DOMNODE的第一个子节点；通过DBE_XMLDOM.GETNEXTSIBLING获取该节点的下一个节点，并输出下一个节点的名称。
 DECLARE
@@ -1753,9 +1895,11 @@ DBE_XMLDOM.GETNODENAME(
    n  IN  DOMNODE)
 RETURN  VARCHAR2;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --在DOC树中获取DOMNODE节点，输出该节点的名称。
 DECLARE
@@ -1786,9 +1930,11 @@ DBE_XMLDOM.GETNODETYPE(
    n  IN  DOMNODE)
 RETURN  NUMBER;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE节点。 |
+
 ```
 --在DOC树中获取DOMNODE节点，输出该节点的类型值。
 DECLARE
@@ -1819,9 +1965,11 @@ DBE_XMLDOM.GETNODEVALUE(
    n  IN  DOMNODE)
 RETURN  VARCHAR2;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE对象。 |
+
 ```
 --将DOMTEXT类型节点转换为DOMNODE类型后获取该节点的值并输出。
 DECLARE
@@ -1848,9 +1996,11 @@ DBE_XMLDOM.GETPARENTNODE(
    n  IN  DOMNODE)
 RETURN  DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE对象。 |
+
 ```
 --向DOC树中添加子节点后，获取该子节点的父节点，输出父节点的名称。
 DECLARE
@@ -1887,9 +2037,11 @@ DBE_XMLDOM.GETTAGNAME(
    elem  IN  DOMELEMENT)
 RETURN  VARCHAR2;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | elem | 指定的DOMELEMENT节点。 |
+
 ```
 --创建DOMELEMENT节点后，输出其标签名称。
 DECLARE
@@ -1921,9 +2073,11 @@ DBE_XMLDOM.HASCHILDNODES(
    n  IN  DOMNODE)
 RETURN  BOOLEAN;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE对象。 |
+
 ```
 --创建节点child1并将其挂载到DOC树中，为child1节点添加子节点后，判断其是否拥有任一子节点。
 DECLARE
@@ -1963,11 +2117,13 @@ DBE_XMLDOM.IMPORTNODE(
    deep IN BOOLEAN)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 节点挂载的文档。 |
 | importedNode | 将要导入的节点。 |
 | deep | 设置递归导入：如果为TRUE，则导入该节点及其所有子节点。如果为FALSE，则只导入节点本身。 |
+
 ```
 --获取将DOC2树中的节点root2_node，并将其复制并挂载到DOC树中。
 DECLARE
@@ -2056,6 +2212,7 @@ DBE_XMLDOM.ISNULL(
    t       IN     DOMTEXT)
 RETURN BOOLEAN;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | a | 指定的DOMATTR类型节点。 |
@@ -2065,6 +2222,7 @@ RETURN BOOLEAN;
 | n | 指定的DOMNODE类型节点。 |
 | nl | 指定的DOMNODELIST类型节点。 |
 | t | 指定的DOMTEXT类型节点。 |
+
 ```
 --1. 通过createAttribute创建DOMATTR节点，并判断其是否为空。
 DECLARE
@@ -2149,11 +2307,13 @@ DBE_XMLDOM.ITEM(
    index IN NUMBER)
 RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | nl | DOMNODELIST。 |
 | nnm | DOMNAMEDNODEMAP。 |
 | index | 要检索的元素的索引。 |
+
 ```
 --1. 根据索引返回map中与索引对应的元素。
 DECLARE
@@ -2223,9 +2383,11 @@ DBE_XMLDOM.MAKEELEMENT(
    n IN DOMNODE)
 RETURN DOMELEMENT;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE对象。 |
+
 ```
 --将DOMELEMENT类型转换后的DOMNODE类型节点node强制转换回DOMELEMENT类型。
 DECLARE
@@ -2268,12 +2430,14 @@ DBE_XMLDOM.MAKENODE(
    t       IN     DOMTEXT)
  RETURN DOMNODE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | a | 指定的DOMATTR类型节点。 |
 | doc | 指定的DOMDOCUMENT类型节点。 |
 | elem | 指定的DOMELEMENT类型节点。 |
 | t | 指定的DOMTEXT类型节点。 |
+
 ```
 return DBE_XMLDOM.MAKENODE(doc);
 ```
@@ -2399,10 +2563,12 @@ DBE_XMLDOM.NEWDOMDOCUMENT(
    cl       IN    CLOB)
 RETURN DOMDOCUMENT;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | xmldoc | 指定的XMLType类型。 |
 | cl | 指定的CLOB类型。 |
+
   - 入参大小需限制在1GB以内。
   - 目前暂不支持外部DTD解析。
   - newdomdocument创建的doc，默认UTF-8字符集。
@@ -2491,12 +2657,14 @@ DBE_XMLDOM.SETATTRIBUTE(
    value   IN  VARCHAR2,
    ns      IN  VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | elem | 指定的DOMELEMENT节点。 |
 | name | 属性名称。 |
 | value | 属性值。 |
 | ns | 命名空间。 |
+
 ******
 ```
 --1. 按名称设置DOMELEMENT属性的值。
@@ -2596,10 +2764,12 @@ DBE_XMLDOM.SETCHARSET(
    doc       IN     DOMDocument,
    charset   IN     VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点 |
 | charset | 字符集 |
+
   - charset限制为60个字节以内。
   - 目前支持的字符集有：UTF-8、UCS-4、UCS-2、ISO-8859-1、ISO-8859-2、ISO-8859-3、ISO-8859-4、ISO-8859-5、ISO-8859-6、ISO-8859-7、ISO-8859-8、ISO-8859-9、ISO-2022-JP、Shift_JIS、EUC-JP、ASCII。输入其他字符集会报错或者可能导致输出乱码。
 示例：
@@ -2646,12 +2816,14 @@ DBE_XMLDOM.SETDOCTYPE(
   sysid   IN   VARCHAR2,
   pubid   IN   VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
 | name | 需要初始化doctype的名称。 |
 | sysid | 需要初始化doctype的system ID。 |
 | pubid | 需要初始化doctype的public ID。 |
+
 ```
 --为DOMDOCUMENT的外部DTD分别设置初始化的system ID、public ID和名称后，分别将每次修改后的DOC树输出到缓冲区。
 DECLARE
@@ -2716,10 +2888,12 @@ DBE_XMLDOM.SETNODEVALUE(
  n IN DOMNODE,
  nodeValue IN VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | n | 指定的DOMNODE对象。 |
 | nodeValue | 向DOMNODE对象中设置的字符串。 |
+
   - nodeValue可以输入空字符串和NULL值，但不会对节点值进行修改。
   - nodeValue支持转义字符'&'，序列化时自动转义。
   - nodeValue默认的最大长度受限于VARCHAR2类型，为32767字节，超过该长度会抛出异常。
@@ -2754,11 +2928,13 @@ DBE_XMLDOM.WRITETOBUFFER(
    n        IN      DOMNODE,
    buffer   INOUT  VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
 | buffer | 写入操作的缓冲区。 |
 | n | 指定的DOMNODE节点。 |
+
   - writetobuffer输出buffer限制在1GB以内。
   - 该函数会添加缩进等内容，将输出格式化。输出doc将包含XML声明version和encoding。
   - 默认以UTF-8字符集输出xml。
@@ -2823,11 +2999,13 @@ DBE_XMLDOM.WRITETOCLOB(
    n       IN      DOMNODE,
    cl      INOUT  CLOB);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
 | cl | 要写入的CLOB。 |
 | n | 指定的DOMNODE节点。 |
+
   - document入参，writetoclob大小支持1GB以内。
   - 该函数会添加缩进等内容，将输出格式化。输出doc将包含XML声明version和encoding。
   - 默认以UTF-8字符集输出xml。
@@ -2900,12 +3078,14 @@ DBE_XMLDOM.WRITETOCLOB(
    fileName   IN      VARCHAR2,
    charset   IN   VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
 | fileName | 要写入的文件。 |
 | n | 指定的DOMNODE节点。 |
 | charset | 指定字符集。 |
+
   - document入参，filename长度限制在255个字节以内，charset限制在60个字节以内，charset支持字符集请参考DBE_XMLDOM.SETCHARSET接口。
   - 该函数会添加缩进等内容，将输出格式化。输出doc将包含XML声明version和encoding。
   - 传入newdomdocument()无参创建的doc，在不指定charset时不会报错，默认UTF-8字符集。
@@ -3118,9 +3298,11 @@ END;
 00000000000000000200000001
 01000000000000000300000001
 02000000000000000400000001
+
 |ID:00000000000000000200000001	|Node count:11	|Memory used:151 byte	|
 |ID:01000000000000000300000001	|Node count:22	|Memory used:322 byte	|
 |ID:02000000000000000400000001	|Node count:48	|Memory used:654 byte	|
+
 ANONYMOUS BLOCK EXECUTE
 ```
 - DBE_XMLDOM.GETDOCTREESINFO查询当前session中Document类型的dom树信息，如内存占用等。DBE_XMLDOM.GETDOCTREESINFO的函数原型为： 该函数只统计Document类型的dom树节点。 示例：
@@ -3130,9 +3312,11 @@ DBE_XMLDOM.GETDETAILDOCTREEINFO(
 )
 RETURN VARCHAR2;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点 |
+
 ```
 -- 创建三个document，并使用该函数分别获取每一个document内的各类型节点数量
 DECLARE
@@ -3211,9 +3395,11 @@ END;
 00000000000000000200000001
 01000000000000000300000001
 02000000000000000400000001
+
 |ID:00000000000000000200000001	|Element count:5	|Attribute count:1	|Text count:4	|
 |ID:01000000000000000300000001	|Element count:9	|Attribute count:2	|Text count:10	|
 |ID:02000000000000000400000001	|Element count:18	|Attribute count:9	|Text count:20	|
+
 ANONYMOUS BLOCK EXECUTE
 ```
 - DBE_XMLDOM.GETDETAILDOCTREEINFO查询传入的document内的各类型子节点的数量。DBE_XMLDOM.GETDETAILDOCTREEINFO的函数原型为： 该函数只统计Document类型的dom树节点。 示例：
@@ -3236,12 +3422,14 @@ DBE_XMLDOM.GETELEMENTSBYTAGNAME(
    ns        IN     VARCHAR2)
  RETURN DOMNODELIST;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | doc | 指定的DOMDOCUMENT节点。 |
 | elem | 指定的DOMELEMENT节点。 |
 | tagname | 标签名称。使用通配符（*）将匹配任何标签。 |
 | ns | 命名空间。使用通配符（*）将匹配任何命名空间。 |
+
 ****
 ```
 --1. 在DOMDOCUMENT节点通过TAGNAME匹配查找，返回匹配的DOMNODELIST节点列表。
@@ -3355,12 +3543,15 @@ ANONYMOUS BLOCK EXECUTE
 
 #### 接口介绍
 DBE_XMLGEN系统包将SQL查询的结果转换为规范的XML格式，并将结果返回。支持的所有接口参考表2。
+
 | 类型名称 | 描述 |
 |---|---|
 | DBE_XMLGEN.CTXHANDLE | 用于存储XML输出状态的数据类型。 |
+
  - 在同一个session中context handle最多只允许存在65535个。关闭context handle并不会回收这个数量。
 - 输出的xml中表字段、类型与用户创建的表字段与类型大小写一致，如果需要大写字段与类型名需要在创建时用双引号包裹，显式指定。
 - NEWCONTEXTFROMHIERARCHY初始化时，能够调用SETNULLHANDLING、USENULLATTRIBUTEINDICATOR、SETCONVERTSPECIALCHARS方法设置，但不生效。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_XMLGEN.CONVERT | 将输入的字符串进行xml编码或解码操作。 |
@@ -3386,15 +3577,18 @@ DBE_XMLGEN系统包将SQL查询的结果转换为规范的XML格式，并将结�
 | > | &gt; |
 | " | &quot; |
 | ' | &apos; |
+
 ```
 DBE_XMLGEN.CONVERT(XMLSTR IN VARCHAR2, FLAG IN NUMBER := 0) RETURNS VARCHAR2;
 DBE_XMLGEN.CONVERT(XMLCLOB IN CLOB, FLAG IN NUMBER := 0) RETURNS CLOB;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | XMLSTR | 需要转换的XML字符串，VARCHAR2类型。 |
 | XMLCLOB | 需要转换的XML字符串， CLOB类型。 |
 | FLAG | 转码或解码字符串。 0：编码操作。 1：解码操作。 |
+
 ```
 -- xml解码
 SELECT DBE_XMLGEN.CONVERT('<foo/>', 1);
@@ -3414,9 +3608,11 @@ SELECT DBE_XMLGEN.CONVERT('<foo><qwe</foo>', 0);
 DBE_XMLGEN.NEWCONTEXT(QUERYSTRING IN VARCHAR2) RETURNS DBE_XMLGEN.CTXHANDLE;
 DBE_XMLGEN.NEWCONTEXT(QUERYSTRING IN SYS_REFCURSOR) RETURNS DBE_XMLGEN.CTXHANDLE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | QUERYSTRING | 用于生成XML的查询SQL语句或SYS_REFCURSOR。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -3532,9 +3728,11 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.NEWCONTEXTFROMHIERARCHY(QUERYSTRING IN VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | QUERYSTRING | 需要转换的XML字符串，VARCHAR2类型。 |
+
 ```
 -- 预置数据。
 CREATE TABLE tree_list(id NUMBER, name VARCHAR2(30), fid NUMBER);
@@ -3626,10 +3824,12 @@ DROP TABLE tree_list;
 ```
 DBE_XMLGEN.SETCONVERTSPECIALCHARS(CTX IN DBE_XMLGEN.CTXHANDLE, CONV IN BOOLEAN);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | CONV | 是否需要对输出的xml进行编码。 true：编码。false：不编码。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -3710,10 +3910,12 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.SETNULLHANDLING(CTX IN DBE_XMLGEN.CTXHANDLE, FLAG IN NUMBER := 0);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | FLAG | NULL值展示格式。 0：不展示元素。 1：元素上添加 xsi:nil="true" 属性。 2：展示自闭合元素 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -3812,10 +4014,12 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.SETROWSETTAG(CTX IN DBE_XMLGEN.CTXHANDLE, ROWSETTAGNAME IN VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | ROWSETTAGNAME | xml根节点名称。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -3890,10 +4094,12 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.SETROWTAG(CTX IN DBE_XMLGEN.CTXHANDLE, ROWTAGNAME IN VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | ROWTAGNAME | 每一行数据的tag名。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -3968,10 +4174,12 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.USENULLATTRIBUTEINDICATOR(CTX IN DBE_XMLGEN.CTXHANDLE, ATTRIND IN BOOLEAN);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | ATTRIND | 无意义。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -4010,9 +4218,11 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.USEITEMTAGSFORCOLL(CTX IN DBE_XMLGEN.CTXHANDLE);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
+
 ```
 -- 预置数据。
 CREATE TABLE test_for_array(id INT[]);
@@ -4047,9 +4257,11 @@ DROP TABLE test_for_array;
 ```
 DBE_XMLGEN.GETNUMROWSPROCESSED(CTX IN DBE_XMLGEN.CTXHANDLE);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -4137,10 +4349,12 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.SETMAXROWS(CTX IN DBE_XMLGEN.CTXHANDLE, MAXROWS IN NUMBER);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | MAXROWS | 每一次getxml最大的返回行数。 |
+
 ```
 -- 预置数据。
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
@@ -4228,10 +4442,12 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.SETSKIPROWS(CTX IN DBE_XMLGEN.CTXHANDLE, SKIPROWS IN NUMBER);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
 | SKIPROWS | 跳过SQL的头部行数。 |
+
 ```
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
 INSERT INTO department VALUES(10, 'administrator', 200, 1700);
@@ -4273,9 +4489,11 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.RESTARTQUERY(CTX IN DBE_XMLGEN.CTXHANDLE);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
+
 ```
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
 INSERT INTO department VALUES(10, 'administrator', 200, 1700);
@@ -4397,11 +4615,13 @@ DROP TABLE department;
 DBE_XMLGEN.GETXMLTYPE(SQLQUERY IN VARCHAR2, DTDORSCHEMA IN NUMBER := 0) RETURNS XMLTYPE;
 DBE_XMLGEN.GETXMLTYPE(CTX IN DBE_XMLGEN.CTXHANDLE, DTDORSCHEMA IN NUMBER := 0) RETURNS XMLTYPE;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | SQLQUERY | 需要转换成XML的查询SQL。 |
 | DTDORSCHEMA | 无意义。 |
 | CTX | context handle。 |
+
 ```
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
 INSERT INTO department VALUES(10, 'administrator', 200, 1700);
@@ -4463,12 +4683,14 @@ DBE_XMLGEN.GETXML(SQLQUERY IN VARCHAR2, DTDORSCHEMA IN NUMBER := 0) RETURNS CLOB
 DBE_XMLGEN.GETXML(CTX IN DBE_XMLGEN.CTXHANDLE, DTDORSCHEMA IN NUMBER := 0) RETURNS CLOB;
 DBE_XMLGEN.GETXML(CTX IN DBE_XMLGEN.CTXHANDLE, TMPCLOB INOUT CLOB, DTDORSCHEMA IN NUMBER := 0);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | SQLQUERY | 需要转换成XML的查询SQL。 |
 | DTDORSCHEMA | 无意义。 |
 | CTX | context handle。 |
 | TMPCLOB | 用于保存输出的XML的CLOB变量。 |
+
 ```
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
 INSERT INTO department VALUES(10, 'administrator', 200, 1700);
@@ -4588,9 +4810,11 @@ DROP TABLE department;
 ```
 DBE_XMLGEN.CLOSECONTEXT(CTX IN DBE_XMLGEN.CTXHANDLE);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CTX | context handle。 |
+
 ```
 CREATE TABLE IF NOT EXISTS department(department_id NUMBER, department_name VARCHAR2(30), manager NUMBER, location NUMBER);
 INSERT INTO department VALUES(10, 'administrator', 200, 1700);
@@ -4644,6 +4868,7 @@ DROP TABLE department;
 DBE_XMLPARSER用于将xml字符串反序列化，将存储xml文档的字符串转换为document节点。高级包DBE_XMLPARSER支持的所有接口请参见表1。
 XMLPARSER数据类型可以被用来存储XMLPARSER数据，存储Xmlparser的数量上限为16777215。XMLPARSER数据类型能够根据输入的字符串解析建立domdocument节点，高级包还提供相应的set、get型接口，对解析过程的约束属性进行操作。
 DBE_XMLPARSER高级包在字符集设置为SQL_ASCII的数据库内使用的情况下，传入超出ASCII范围的字符，会导致报错。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_XMLPARSER.FREEPARSER | 释放PARSER。 |
@@ -4653,13 +4878,16 @@ DBE_XMLPARSER高级包在字符集设置为SQL_ASCII的数据库内使用的情�
 | DBE_XMLPARSER.PARSEBUFFER | 解析VARCHAR字符串。 |
 | DBE_XMLPARSER.PARSECLOB | 解析CLOB字符串。 |
 | DBE_XMLPARSER.SETVALIDATIONMODE | 设置validate属性。 |
+
 ```
    DBE_XMLPARSER.FREEPARSER (
      p     IN     parser);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | p | 指定的parser类型对象。 |
+
 ```
 -- 新建parser ，随后释放。
 DECLARE
@@ -4677,9 +4905,11 @@ DBE_XMLPARSER.GETDOCUMENT (
   p     IN     parser)
  RETURN DOMDocument;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | p | 指定的parser类型对象。 |
+
   - GETDOCUMENT函数无传入参数，报错。
   - GETDOCUMENT函数参数parser传入为空，返回NULL。
   - GETDOCUMENT函数传入的parser还没有解析文档，返回NULL。
@@ -4727,9 +4957,11 @@ DBE_XMLPARSER.GETVALIDATIONMODE (
   p     IN     parser)
  RETURN BOOLEAN;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | p | 指定的parser类型对象。 |
+
 ```
 -- 新建parser,通过GETVALIDATIONMODE获取parser解析验证模式是否打开。
 DECLARE
@@ -4783,10 +5015,12 @@ DBE_XMLPARSER.PARSEBUFFER (
    p     IN     parser,
    doc   IN VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | p | 指定的parser类型对象。 |
 | doc | 存储XML文档的字符串。 |
+
   - PARSEBUFFER函数能够解析的字符串最大长度为32767，超过最大长度解析报错。
   - 与A数据库差异：字符串encoding只支持UTF-8；version字段只支持1.0，1.0-1.9解析警告但正常执行，1.9以上报错。
     - !ATTLIST to type (CHECK|check|Check) "Ch..."将报错，因默认值"Ch..."不属于括号中枚举值，而A数据库不报错。
@@ -4835,10 +5069,12 @@ DBE_XMLPARSER.PARSECLOB (
    p     IN     parser,
    doc   IN CLOB);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | p | 指定的parser类型对象 |
 | doc | 存储XML文档的clob字符串 |
+
   - PARSECLOB不支持解析大于等于2GB的CLOB。
   - 与A数据库差异：字符串encoding只支持UTF-8；version字段只支持1.0，1.0-1.9解析警告但正常执行，1.9以上报错。
     - !ATTLIST to type (CHECK|check|Check) "Ch..."将报错，因默认值"Ch..."不属于括号中枚举值，而A数据库不报错。
@@ -4889,10 +5125,12 @@ DBE_XMLPARSER.SETVALIDATIONMODE(
   p     IN     parser)
   yes   IN BOOLEAN);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | p | 指定的parser类型对象。 |
 | yes | 要设置的模式：TRUE：开启DTD验证。FALSE：不开启验证 |
+
   - SETVALIDATIONMODE函数yes传入为空，不改变parser的解析验证模式。
   - parser初始化默认为开启DTD验证模式。
 示例1：

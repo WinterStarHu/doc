@@ -46,6 +46,7 @@ CREATE TYPE DBE_SQL.BLOB_TABLE AS TABLE OF BLOB INDEX BY INTEGER;
 - DBE_SQL.BLOB_TABLE该类型是BLOB的TABLE类型，通过TABLE OF语法实现。 DBE_SQL.BLOB_TABLE类型的原型为：
 #### 接口介绍
 高级功能包DBE_SQL支持的接口请参见表1。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_SQL.REGISTER_CONTEXT | 打开一个游标。 |
@@ -106,6 +107,7 @@ CREATE TYPE DBE_SQL.BLOB_TABLE AS TABLE OF BLOB INDEX BY INTEGER;
 | DBE_SQL.GET_ARRAY_RESULT_INT | 读取一个SQL语句执行后的返回值（指定INT数组类型）。 |
 | DBE_SQL.SQL_SET_TABLEOF_RESULTS_TYPE_C | 动态定义一个TABLEOF类型的列。 |
 | DBE_SQL.SQL_GET_TABLEOF_VALUES_C | 读取一个已动态定义的TABLEOF类型的列值。 |
+
  - 建议使用DBE_SQL.SET_RESULT_TYPE及DBE_SQL.GET_RESULT定义参数列。
 - 当结果集大小超过GUC参数work_mem的设置值时，将触发结果集的临时磁盘存储，但临时磁盘存储最大阈值不超过512MB。
 ```
@@ -120,9 +122,11 @@ DBE_SQL.SQL_UNREGISTER_CONTEXT(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 将要关闭的游标id号。 |
+
 - DBE_SQL.SQL_UNREGISTER_CONTEXT该函数用来关闭一个游标，是DBE_SQL各项操作的结束步骤。如果在存储过程结束时未调用该函数，游标占用的内存将不会被释放。因此，关闭游标至关重要。由于异常情况可能导致存储过程提前退出，从而未能关闭游标，建议在存储过程的异常处理中包含此接口。 DBE_SQL.SQL_UNREGISTER_CONTEXT原型为：
 ```
 DBE_SQL.SQL_SET_SQL(
@@ -132,11 +136,13 @@ DBE_SQL.SQL_SET_SQL(
 )
 RETURN BOOLEAN;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行查询语句解析的游标id。 |
 | query_string | TEXT | IN | 否 | 执行解析的查询语句。 |
 | language_flag | INTEGER | IN | 否 | 版本语言号。指定不同版本的行为，1为非兼容版本，2为兼容A版本。 |
+
 - DBE_SQL.SQL_SET_SQL该函数用来解析给定游标的SQL语句或匿名块。目前语句参数仅可通过text类型传递，长度不大于1G。 DBE_SQL.SQL_SET_SQL原型为：
 ```
 DBE_SQL.SQL_RUN(
@@ -144,9 +150,11 @@ DBE_SQL.SQL_RUN(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行查询语句解析的游标id。 |
+
 - DBE_SQL.SQL_RUN该函数用于执行指定的游标。它接收一个游标id，并执行给定游标中的SQL语句或匿名块。 DBE_SQL.SQL_RUN原型为：
 ```
 DBE_SQL.NEXT_ROW(
@@ -154,9 +162,11 @@ DBE_SQL.NEXT_ROW(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
+
 - DBE_SQL.NEXT_ROW该函数返回符合查询条件的数据行数，每次调用该函数时，都会获取一个新的行数的集合，直到数据读取完毕获取不到新行为止。 DBE_SQL.NEXT_ROW原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE(
@@ -167,12 +177,14 @@ DBE_SQL.SET_RESULT_TYPE(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 查询列在返回结果中的相对位置，起始为1。 |
 | column_ref | ANYELEMENT | IN | 否 | 任意类型的变量，可根据变量类型选择适当的接口动态定义列。 |
 | maxsize | INTEGER | IN | 是 | 定义的列返回类型长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE该函数用来定义从指定游标返回的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置进行标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_CHAR(
@@ -183,12 +195,14 @@ DBE_SQL.SET_RESULT_TYPE_CHAR(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | column_ref | TEXT | IN | 否 | 需要定义的某类型的参数变量。 |
 | column_size | INTEGER | IN | 否 | 动态定义列长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_CHAR该函数用来定义从指定游标返回的CHAR类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_CHAR原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_INT(
@@ -197,10 +211,12 @@ DBE_SQL.SET_RESULT_TYPE_INT(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.SET_RESULT_TYPE_INT该函数用来定义从指定游标返回的INT类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_INT原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_LONG(
@@ -209,10 +225,12 @@ DBE_SQL.SET_RESULT_TYPE_LONG(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.SET_RESULT_TYPE_LONG该函数用来定义从指定游标返回的长列类型（非数据类型long）的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。长列的大小限制为1G。 DBE_SQL.SET_RESULT_TYPE_LONG原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_RAW(
@@ -223,12 +241,14 @@ DBE_SQL.SET_RESULT_TYPE_RAW(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | column_ref | RAW | IN | 否 | RAW类型的参数变量。 |
 | column_size | INTEGER | IN | 否 | 列的长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_RAW该函数用来定义从指定游标返回的RAW类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_RAW原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_BYTEA(
@@ -239,12 +259,14 @@ DBE_SQL.SET_RESULT_TYPE_BYTEA(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | column_ref | BYTEA | IN | 否 | BYTEA类型的参数变量。 |
 | column_size | INTEGER | IN | 否 | 列的长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_BYTEA该函数用来定义从指定游标返回的BYTEA类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_BYTEA原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_TEXT(
@@ -254,11 +276,13 @@ DBE_SQL.SET_RESULT_TYPE_TEXT(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | maxsize | INTEGER | IN | 否 | 定义的TEXT类型的最大长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_TEXT该函数用来定义从指定游标返回的TEXT类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_TEXT原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_UNKNOWN(
@@ -268,11 +292,13 @@ DBE_SQL.SET_RESULT_TYPE_UNKNOWN(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | col_type | TEXT | IN | 否 | 动态定义的参数。 |
+
 - DBE_SQL.SET_RESULT_TYPE_UNKNOWN该函数用来处理从给定游标返回的未知数据类型的列，该接口仅在数据类型无法识别时用于报错并退出。 DBE_SQL.SET_RESULT_TYPE_UNKNOWN原型为：
 ```
 DBE_SQL.GET_RESULT(
@@ -282,11 +308,13 @@ DBE_SQL.GET_RESULT(
 )
 RETURN ANYELEMENT;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 查询列在返回结果中的相对位置，起始为1。 |
 | column_value | ANYELEMENT | INOUT | 否 | 指定列的查询结果返回值。 |
+
 - DBE_SQL.GET_RESULT该函数用来返回指定游标在给定位置的元素值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT原型为：
 ```
 DBE_SQL.GET_RESULT_CHAR(
@@ -297,6 +325,7 @@ DBE_SQL.GET_RESULT_CHAR(
     actual_length INOUT INTEGER
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
@@ -304,6 +333,7 @@ DBE_SQL.GET_RESULT_CHAR(
 | tr | CHAR | INOUT | 否 | 返回值。 |
 | err | NUMERIC | INOUT | 否 | 错误号。传出参数，须传入变量做参数。目前未实现，固定传出-1。 |
 | actual_length | INTEGER | INOUT | 否 | 返回值的实际长度。 |
+
 - DBE_SQL.GET_RESULT_CHAR该函数用来返回指定游标在给定位置的CHAR类型的值，该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT_CHAR原型为：
 ```
 DBE_SQL.GET_RESULT_CHAR(
@@ -312,11 +342,13 @@ DBE_SQL.GET_RESULT_CHAR(
     tr         INOUT CHAR
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | tr | CHAR | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULT_CHAR存储过程的重载为：
 ```
 DBE_SQL.GET_RESULT_INT(
@@ -325,10 +357,12 @@ DBE_SQL.GET_RESULT_INT(
 )
 RETURN INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.GET_RESULT_INT该函数用来返回指定游标在给定位置的INT类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT_INT原型为：
 ```
 DBE_SQL.GET_RESULT_LONG(
@@ -341,6 +375,7 @@ DBE_SQL.GET_RESULT_LONG(
 )
 RETURN RECORD;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
@@ -349,6 +384,7 @@ RETURN RECORD;
 | off_set | INTEGER | IN | 否 | 返回值的起始位置。 |
 | vl | TEXT | INOUT | 否 | 返回值。 |
 | vl_length | INTEGER | INOUT | 否 | 实际返回值的长度。 |
+
 - DBE_SQL.GET_RESULT_LONG该函数用来返回指定游标在给定位置的长列（非long/bigint整型）类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT_LONG原型为：
 ```
 DBE_SQL.GET_RESULT_RAW(
@@ -359,6 +395,7 @@ DBE_SQL.GET_RESULT_RAW(
     actual_length INOUT INTEGER
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
@@ -366,6 +403,7 @@ DBE_SQL.GET_RESULT_RAW(
 | tr | RAW | INOUT | 否 | 返回的列值。 |
 | err | NUMERIC | INOUT | 否 | 错误号。传出参数，须传入变量做参数。目前未实现，固定传出-1。 |
 | actual_length | INTEGER | INOUT | 否 | 返回值的实际长度，不能长于此值，否则截断。 |
+
 - DBE_SQL.GET_RESULT_RAW该函数用来返回指定游标在给定位置的RAW类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT_RAW原型为：
 ```
 DBE_SQL.GET_RESULT_RAW(
@@ -374,11 +412,13 @@ DBE_SQL.GET_RESULT_RAW(
     tr         INOUT RAW
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | tr | RAW | INOUT | 否 | 返回的列值。 |
+
 - DBE_SQL.GET_RESULT_RAW重载为：
 ```
 DBE_SQL.GET_RESULT_BYTEA(
@@ -387,10 +427,12 @@ DBE_SQL.GET_RESULT_BYTEA(
 )
 RETURN BYTEA;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.GET_RESULT_BYTEA该函数用来返回指定游标在给定位置的BYTEA类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT_BYTEA原型为：
 ```
 DBE_SQL.GET_RESULT_TEXT(
@@ -399,10 +441,12 @@ DBE_SQL.GET_RESULT_TEXT(
 )
 RETURN TEXT;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.GET_RESULT_TEXT该函数用来返回指定游标在给定位置的TEXT类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULT_TEXT原型为：
 ```
 DBE_SQL.GET_RESULT_UNKNOWN(
@@ -412,11 +456,13 @@ DBE_SQL.GET_RESULT_UNKNOWN(
 )
 RETURN TEXT;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | col_type | TEXT | IN | 否 | 返回的参数类型。 |
+
 - DBE_SQL.GET_RESULT_UNKNOWN该函数用来返回指定游标在给定位置的未知类型的值。该接口为类型不支持时的报错处理接口。 DBE_SQL.GET_RESULT_UNKNOWN原型为：
 ```
 DBE_SQL.DBE_SQL_GET_RESULT_CHAR(
@@ -425,10 +471,12 @@ DBE_SQL.DBE_SQL_GET_RESULT_CHAR(
 )
 RETURN CHARACTER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.DBE_SQL_GET_RESULT_CHAR该函数用来返回指定游标在给定位置的CHAR类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。和DBE_SQL.GET_RESULT_CHAR的区别是，该函数不设置返回值长度，返回整个字符串。 DBE_SQL.DBE_SQL_GET_RESULT_CHAR原型为：
 ```
 DBE_SQL.DBE_SQL_GET_RESULT_LONG(
@@ -437,10 +485,12 @@ DBE_SQL.DBE_SQL_GET_RESULT_LONG(
 )
 RETURN BIGINT;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.DBE_SQL_GET_RESULT_LONG该函数用来返回指定游标在给定位置的长列（非long/bigint整型）类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。和DBE_SQL.GET_RESULT_LONG的区别在于，该函数不设置返回值长度，返回整个BIGINT值。 DBE_SQL.DBE_SQL_GET_RESULT_LONG原型为： 由于该函数的返回类型和DBE_SQL.SET_RESULT_TYPE_LONG、DBE_SQL.GET_RESULT_LONG不一致，请使用DBE_SQL.DBE_SQL_GET_RESULT_LONG2代替。
 ```
 DBE_SQL.DBE_SQL_GET_RESULT_LONG2(
@@ -449,10 +499,12 @@ DBE_SQL.DBE_SQL_GET_RESULT_LONG2(
 )
 RETURN TEXT;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
+
 - DBE_SQL.DBE_SQL_GET_RESULT_LONG2该函数用来返回指定游标在给定位置的长列（非long/bigint整型）类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。和DBE_SQL.GET_RESULT_LONG的区别在于，该函数不设置返回值长度，返回整列的值。 DBE_SQL.DBE_SQL_GET_RESULT_LONG2原型为：
 ```
 DBE_SQL.GET_RESULT_RAW(
@@ -462,11 +514,13 @@ DBE_SQL.GET_RESULT_RAW(
 )
 RETURN RAW;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行的游标id。 |
 | pos | INTEGER | IN | 否 | 动态定义列在查询中的位置。 |
 | tr | RAW | INOUT | 否 | 返回的列值。 |
+
 - DBE_SQL.DBE_SQL_GET_RESULT_RAW该函数用来返回指定游标在给定位置的RAW类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。和函数DBE_SQL.GET_RESULT_RAW的区别在于，该函数不设置返回值长度，返回整个字符串。 DBE_SQL.DBE_SQL_GET_RESULT_RAW原型为：
 ```
 DBE_SQL.IS_ACTIVE(
@@ -474,9 +528,11 @@ DBE_SQL.IS_ACTIVE(
 )
 RETURN BOOLEAN;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 被查询的游标id。 |
+
 - DBE_SQL.IS_ACTIVE该函数用来返回游标的当前状态。游标处于打开、解析、执行、定义时为true；关闭后为false；未知时报错；其余默认为关闭。 DBE_SQL.IS_ACTIVE原型为：
 ```
 DBE_SQL.LAST_ROW_COUNT(
@@ -490,9 +546,11 @@ DBE_SQL.RUN_AND_NEXT(
 )
 RETURNS INTEGER;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INTEGER | IN | 否 | 执行查询语句解析的游标id。 |
+
 - DBE_SQL.RUN_AND_NEXT该函数的功能等同于在调用SQL_RUN后接着调用NEXT_ROW。 DBE_SQL.RUN_AND_NEXT原型为：
 ```
 DBE_SQL.SQL_BIND_VARIABLE(
@@ -503,12 +561,14 @@ DBE_SQL.SQL_BIND_VARIABLE(
 )
 RETURNS void;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | query_string | TEXT | IN | 否 | 绑定的变量名。 |
 | language_flag | ANYELEMENT | IN | 否 | 绑定的值。 |
 | out_value_size | INT | IN | 是 | 返回值的大小，默认值为NULL。在兼容A模式下，仅当value参数值类型为VARCHAR或CHAR时，参数的行为与A数据库一致。 |
+
 - DBE_SQL.SQL_BIND_VARIABLE该函数用于将一个参数绑定到SQL语句，当执行该SQL语句时，将根据该绑定的值来执行。 DBE_SQL.SQL_BIND_VARIABLE原型为：
 ```
 DBE_SQL.SQL_BIND_ARRAY(
@@ -540,6 +600,7 @@ DBE_SQL.SQL_BIND_ARRAY(
 )
 RETURNS void;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -547,6 +608,7 @@ RETURNS void;
 | value | ANYINDEXBYTABLE | IN | 否 | 绑定的数组。 |
 | lower_index | INT | IN | 否 | 绑定数组的最小下标。 |
 | higher_index | INT | IN | 否 | 绑定数组的最大下标。 |
+
 - DBE_SQL.SQL_BIND_ARRAY该函数用于将一组参数绑定到SQL语句，当执行该SQL语句时，会将根据该绑定的数组来执行。 DBE_SQL.SQL_BIND_ARRAY原型为： DBE_SQL.SQL_BIND_ARRAY不支持用户自定义的table类型，请使用数据类型介绍中提供的table类型。
 ```
 DBE_SQL.SET_RESULT_TYPE_INTS(
@@ -558,6 +620,7 @@ DBE_SQL.SET_RESULT_TYPE_INTS(
 )
 RETURNS integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -565,6 +628,7 @@ RETURNS integer;
 | column_ref | ANYARRAY | IN | 否 | 标记返回的数组类型。 |
 | cnt | INT | IN | 否 | 标记一次获取多少个值。 |
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
+
 - DBE_SQL.SET_RESULT_TYPE_INTS该函数用于定义从指定游标返回的INT数组类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_INTS原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_TEXTS(
@@ -577,6 +641,7 @@ DBE_SQL.SET_RESULT_TYPE_TEXTS(
 )
 RETURNS integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -585,6 +650,7 @@ RETURNS integer;
 | cnt | INT | IN | 否 | 标记一次获取多少个值。 |
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | maxsize | INT | IN | 否 | 定义的TEXT类型的最大长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_TEXTS该函数用来定义从指定游标返回的TEXT数组类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_TEXTS原型为：
 ```
 DBE_SQL.set_result_type_raws(
@@ -597,6 +663,7 @@ DBE_SQL.set_result_type_raws(
 )
 RETURNS integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -605,6 +672,7 @@ RETURNS integer;
 | cnt | INT | IN | 否 | 标记一次获取多少个值。 |
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | column_size | INT | IN | 否 | 列的长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_RAWS该函数用来定义从指定游标返回的RAW数组类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_RAWS原型为：
 ```
 DBE_SQL.set_result_type_byteas(
@@ -617,6 +685,7 @@ DBE_SQL.set_result_type_byteas(
 )
 RETURNS integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -625,6 +694,7 @@ RETURNS integer;
 | cnt | INT | IN | 否 | 标记一次获取多少个值。 |
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | column_size | INT | IN | 否 | 列的长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_BYTEAS该函数用来定义从指定游标返回的BYTEA数组类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_BYTEAS原型为：
 ```
 DBE_SQL.SET_RESULT_TYPE_CHARS(
@@ -637,6 +707,7 @@ DBE_SQL.SET_RESULT_TYPE_CHARS(
 )
 RETURNS integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -645,6 +716,7 @@ RETURNS integer;
 | cnt | INT | IN | 否 | 标记一次获取多少个值。 |
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | column_size | INT | IN | 否 | 列的长度。 |
+
 - DBE_SQL.SET_RESULT_TYPE_CHARS该函数用来定义从指定游标返回的CHAR数组类型的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULT_TYPE_CHARS原型为：
 ```
 DBE_SQL.SET_RESULTS_TYPE(
@@ -688,6 +760,7 @@ DBE_SQL.SET_RESULTS_TYPE(
     maxsize    IN int DEFAULT 32767
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -696,6 +769,7 @@ DBE_SQL.SET_RESULTS_TYPE(
 | cnt | INT | IN | 否 | 标记一次获取多少个值。 |
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | maxsize | INT | IN | 是 | 定义的类型的最大长度。 |
+
 - DBE_SQL.SET_RESULTS_TYPE该函数用来定义从指定游标返回的列。该接口只能应用于SELECT定义的游标。定义的列通过查询列表中的相对位置来标识，传入变量的数据类型决定了该列被定义的类型。 DBE_SQL.SET_RESULTS_TYPE原型为： DBE_SQL.SET_RESULTS_TYPE不支持用户自定义的table类型，请使用数据类型介绍中提供的table类型。
 ```
 DBE_SQL.GET_RESULTS_INT(
@@ -704,11 +778,13 @@ DBE_SQL.GET_RESULTS_INT(
     column_value INOUT anyarray
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 动态定义列在查询中的位置。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULTS_INT该函数用来返回指定游标在给定位置的INT数组类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULTS_INT原型为：
 ```
 DBE_SQL.GET_RESULTS_TEXT(
@@ -717,11 +793,13 @@ DBE_SQL.GET_RESULTS_TEXT(
     column_value INOUT anyarray
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 动态定义列在查询中的位置。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULTS_TEXT该函数用来返回指定游标在给定位置的TEXT数组类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULTS_TEXT原型为：
 ```
 DBE_SQL.GET_RESULTS_RAW(
@@ -730,11 +808,13 @@ DBE_SQL.GET_RESULTS_RAW(
     column_value INOUT anyarray
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 动态定义列在查询中的位置。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULTS_RAW该函数用来返回指定游标在给定位置的RAW数组类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULTS_RAW原型为：
 ```
 DBE_SQL.GET_RESULTS_BYTEA(
@@ -743,11 +823,13 @@ DBE_SQL.GET_RESULTS_BYTEA(
     column_value INOUT anyarray
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 动态定义列在查询中的位置。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULTS_BYTEA该函数用来返回指定游标在给定位置的BYTEA数组类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULTS_BYTEA原型为：
 ```
 DBE_SQL.GET_RESULTS_CHAR(
@@ -756,11 +838,13 @@ DBE_SQL.GET_RESULTS_CHAR(
     column_value INOUT anyarray
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 动态定义列在查询中的位置。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULTS_CHAR该函数用来返回指定游标在给定位置的CHAR数组类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 DBE_SQL.GET_RESULTS_CHAR原型为：
 ```
 DBE_SQL.GET_RESULTS(
@@ -789,11 +873,13 @@ DBE_SQL.GET_RESULTS(
     column_value INOUT dbe_sql.blob_table
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标ID。 |
 | pos | INT | IN | 否 | 动态定义列在查询中的位置。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_RESULTS该函数用来返回指定游标在给定位置的数组类型的值。该接口访问的是由DBE_SQL.NEXT_ROW获取的数据。 由于DBE_SQL.GET_RESULTS的底层机制是通过数组实现的，当使用不同的数组获取同一列的返回值时，内部索引的不连续性会导致数组中填充NULL值，以确保数组索引的连续性。这将导致返回结果数组的长度和A数据库中的不一致。 DBE_SQL.GET_RESULTS原型为： DBE_SQL.GET_RESULTS不支持用户自定义的table类型，请使用数据类型介绍中提供的table类型。
 ```
 DBE_SQL.SQL_DESCRIBE_COLUMNS(
@@ -802,11 +888,13 @@ DBE_SQL.SQL_DESCRIBE_COLUMNS(
     desc_t     INOUT dbe_sql.desc_tab
 )RETURNS record ;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | col_cnt | INT | INOUT | 否 | 返回的列的数量。 |
 | desc_t | DBE_SQL.DESC_TAB | INOUT | 否 | 返回的列的描述信息。 |
+
 - DBE_SQL.SQL_DESCRIBE_COLUMNS该函数用来描述列信息，该接口只能应用于SELECT定义的游标。 DBE_SQL.SQL_DESCRIBE_COLUMNS原型为：
 ```
 DBE_SQL.DESCRIBE_COLUMNS(
@@ -815,11 +903,13 @@ DBE_SQL.DESCRIBE_COLUMNS(
     desc_t     OUT dbe_sql.desc_tab
 )
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | col_cnt | INT | OUT | 否 | 返回的列的数量。 |
 | desc_t | DBE_SQL.DESC_TAB | OUT | 否 | 返回的列的描述信息。 |
+
 - DBE_SQL.DESCRIBE_COLUMNS该函数用来描述列信息。该接口为兼容接口，只能应用于SELECT定义的游标。 DBE_SQL.DESCRIBE_COLUMNS原型为：
 - DBE_SQL.BIND_VARIABLE该函数是绑定参数接口。建议使用DBE_SQL.SQL_BIND_VARIABLE。
 ```
@@ -833,6 +923,7 @@ DBE_SQL.sql_set_results_type_c(
     maxsize    IN int
 )return integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -842,6 +933,7 @@ DBE_SQL.sql_set_results_type_c(
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | col_type | ANYELEMENT | IN | 否 | 标记返回的数组类型对应的变量类型。 |
 | maxsize | INT | IN | 否 | 定义的类型的最大长度。 |
+
 - DBE_SQL.SQL_SET_RESULTS_TYPE_C该函数动态定义一个数组类型的列，不建议用户使用。 DBE_SQL.SQL_SET_RESULTS_TYPE_C原型为：
 ```
 DBE_SQL.sql_get_values_c(
@@ -851,12 +943,14 @@ DBE_SQL.sql_get_values_c(
     result_type  IN    anyelement
 )return anyarray;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 参数位置信息。 |
 | results_type | ANYARRAY | INOUT | 否 | 获取的结果。 |
 | result_type | ANYELEMENT | IN | 否 | 获取的结果类型。 |
+
 - DBE_SQL.SQL_GET_VALUES_C该函数读取一个已动态定义的列值。不建议用户使用。 DBE_SQL.SQL_GET_VALUES_C原型为：
 ```
 DBE_SQL.get_variable_result(
@@ -865,11 +959,13 @@ DBE_SQL.get_variable_result(
     column_value INOUT anyelement
 );
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | column_value | ANYELEMENT | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_VARIABLE_RESULT该函数用来返回绑定的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_VARIABLE_RESULT原型为：
 ```
 DBE_SQL.get_variable_result_char(
@@ -878,10 +974,12 @@ DBE_SQL.get_variable_result_char(
 )
 RETURNS char
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
+
 - DBE_SQL.GET_VARIABLE_RESULT_CHAR该函数用于返回绑定的CHAR类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_VARIABLE_RESULT_CHAR原型为：
 ```
 CREATE OR REPLACE FUNCTION DBE_SQL.get_variable_result_raw(
@@ -891,11 +989,13 @@ CREATE OR REPLACE FUNCTION DBE_SQL.get_variable_result_raw(
 )
 RETURNS anyelement
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | value | ANYELEMENT | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_VARIABLE_RESULT_RAW该函数用于返回绑定的RAW类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_VARIABLE_RESULT_RAW原型为：
 ```
 CREATE OR REPLACE FUNCTION DBE_SQL.get_variable_result_text(
@@ -904,10 +1004,12 @@ CREATE OR REPLACE FUNCTION DBE_SQL.get_variable_result_text(
 )
 RETURNS text
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
+
 - DBE_SQL.GET_VARIABLE_RESULT_TEXT该函数用于返回绑定的TEXT类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_VARIABLE_RESULT_TEXT原型为：
 ```
 DBE_SQL.get_variable_result_int(
@@ -917,11 +1019,13 @@ DBE_SQL.get_variable_result_int(
 )
 RETURNS anyelement
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | value | ANYELEMENT | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_VARIABLE_RESULT_INT该函数用于返回绑定的INT类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_VARIABLE_RESULT_INT原型为：
 ```
 DBE_SQL.get_array_result_text(
@@ -930,11 +1034,13 @@ DBE_SQL.get_array_result_text(
     column_value INOUT anyarray
 )
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_ARRAY_RESULT_TEXT该函数用于返回绑定的TEXT数组类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_ARRAY_RESULT_TEXT原型为：
 ```
 DBE_SQL.get_array_result_raw(
@@ -943,11 +1049,13 @@ DBE_SQL.get_array_result_raw(
     column_value INOUT anyarray
 )
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_ARRAY_RESULT_RAW该函数用于返回绑定的RAW数组类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_ARRAY_RESULT_RAW原型为：
 ```
 DBE_SQL.get_array_result_char(
@@ -956,11 +1064,13 @@ DBE_SQL.get_array_result_char(
     column_value INOUT anyarray
 )
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_ARRAY_RESULT_CHAR该函数用于返回绑定的CHAR数组类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_ARRAY_RESULT_CHAR原型为：
 ```
 DBE_SQL.get_array_result_int(
@@ -969,11 +1079,13 @@ DBE_SQL.get_array_result_int(
     column_value INOUT anyarray
 )
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | VARCHAR2 | IN | 否 | 绑定的参数名。 |
 | column_value | ANYARRAY | INOUT | 否 | 返回值。 |
+
 - DBE_SQL.GET_ARRAY_RESULT_INT该函数用于返回绑定的INT数组类型的OUT参数的值，可以用于获取存储过程中的OUT参数。 DBE_SQL.GET_ARRAY_RESULT_INT原型为：
 ```
 DBE_SQL.SQL_SET_TABLEOF_RESULTS_TYPE_C(
@@ -986,6 +1098,7 @@ DBE_SQL.SQL_SET_TABLEOF_RESULTS_TYPE_C(
     maxsize    IN int
 )return integer;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
@@ -995,6 +1108,7 @@ DBE_SQL.SQL_SET_TABLEOF_RESULTS_TYPE_C(
 | lower_bnd | INT | IN | 否 | 标记返回数组时的开始下标。 |
 | col_type | ANYELEMENT | IN | 否 | 标记返回的数组类型对应的变量类型。 |
 | maxsize | INT | IN | 否 | 定义的类型的最大长度。 |
+
 - DBE_SQL.SQL_SET_TABLEOF_RESULTS_TYPE_C该函数动态定义一个tableof类型的列。不建议用户使用。 DBE_SQL.SQL_SET_TABLEOF_RESULTS_TYPE_C原型为：
 ```
 DBE_SQL.SQL_GET_TABLEOF_VALUES_C(
@@ -1004,12 +1118,14 @@ DBE_SQL.SQL_GET_TABLEOF_VALUES_C(
     result_type  IN    anyelement
 )return anyindexbytable;
 ```
+
 | 参数名称 | 类型 | 入参/出参 | 是否可以为空 | 描述 |
 |---|---|---|---|---|
 | context_id | INT | IN | 否 | 被查询的游标id。 |
 | pos | INT | IN | 否 | 参数位置信息。 |
 | results_type | ANYINDEXBYTABLE | INOUT | 否 | 获取的结果。 |
 | result_type | ANYELEMENT | IN | 否 | 获取的结果类型。 |
+
 - DBE_SQL.SQL_GET_TABLEOF_VALUES_C该函数读取一个已动态定义的tableof类型的列值。不建议用户使用。 DBE_SQL.SQL_GET_TABLEOF_VALUES_C原型为：
 #### 示例
 ```
@@ -1652,9 +1768,11 @@ CREATE TYPE DBE_DESCRIBE.VARCHAR2_TABLE AS TABLE OF VARCHAR2(30) INDEX BY INTEGE
 - DBE_DESCRIBE.VARCHAR2_TABLE该类型是VARCHAR2的TABLE类型，通过TABLE OF语法实现。 DBE_DESCRIBE.VARCHAR2_TABLE原型为：
 #### 接口介绍
 高级包DBE_DESCRIBE提供了接口DBE_DESCRIBE.DESCRIBE_PROCEDURE，接口描述请参见表1。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_DESCRIBE.DESCRIBE_PROCEDURE | 用来显示存储过程或函数的参数信息。 |
+
 ```
 DBE_DESCRIBE.DESCRIBE_PROCEDURE(
   object_name                IN  VARCHAR2,
@@ -1675,6 +1793,7 @@ DBE_DESCRIBE.DESCRIBE_PROCEDURE(
   include_string_constraints OUT BOOLEAN
 );
 ```
+
 | 参数 | 类型 | 是否允许为空 | 描述 |
 |---|---|---|---|
 | object_name | varchar2 | 否 | 存储过程的名称。此参数的语法格式为[[schema.]package.]function[@dblink]，其中： schema：可选，模式名称。package：可选，包名称。function：不能为空，函数或存储过程名称。dblink：可选，远程连接名称。 |
@@ -1693,6 +1812,7 @@ DBE_DESCRIBE.DESCRIBE_PROCEDURE(
 | radix | number_table | 是 | 若为数值类型（如NUMBER、INTEGER等），返回10，否则置0；数值类型请参阅数值类型。 |
 | spare | number_table | 是 | 预留参数，默认置0。 |
 | include_string_constraints | boolean | 是 | 预留参数，默认置FALSE。 |
+
   - datatype参数与A模式数据库的数据类型存在差异。GaussDB返回数据类型的OID，A模式数据库返回A模式数据库内部的数据类型编号。
   - 参数include_string_constraints作为预留参数，本身的值不会发生变化，也不会影响其它参数的返回值。
   - 使用CREATE TYPE操作创建的数据类型，由于这些数据类型的OID是不确定的，所以请勿将这些OID用于固定判断等。

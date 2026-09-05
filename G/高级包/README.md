@@ -72,6 +72,7 @@ PKG_SERVICE、PKG_UTIL 等系统服务包。
 
 
 GaussDB数据库兼容的高级包如表1所示。
+
 | Oracle数据库 | GaussDB数据库 | 差异 |
 |---|---|---|
 | 表2 | DBE_LOB | GaussDB具体用法请参见DBE_LOB。 |
@@ -919,6 +920,7 @@ GaussDB数据库兼容的高级包如表1所示。
 | DBMS_OBFUSCATION_TOOLKIT.DES3ENCRYPT | DBE_OBFUSCATION_TOOLKIT.DES3ENCRYPT | - |
 | DBMS_OBFUSCATION_TOOLKIT.DES3DECRYPT | DBE_OBFUSCATION_TOOLKIT.DES3DECRYPT | - |
 | DBMS_OBFUSCATION_TOOLKIT.MD5 | DBE_OBFUSCATION_TOOLKIT.MD5 | - |
+
 父主题：
 Oracle兼容性说明
 版权所有 © 华为技术有限公司

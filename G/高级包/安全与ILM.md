@@ -9,6 +9,7 @@
 #### 接口介绍
 由于DES算法、DES3算法和MD5哈希算法存在算法安全风险，请谨慎使用DBE_OBFUSCATION_TOOLKIT进行加解密操作。
 DBE_OBFUSCATION_TOOLKIT高级功能包是GaussDB提供的兼容性功能包，主要用于支持DES、DES3、MD5哈希算法的接口，以保持与原有业务逻辑的兼容。DBE_OBFUSCATION_TOOLKIT支持的接口请参见表1。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_OBFUSCATION_TOOLKIT.DESGETKEY | 生成DES算法的密钥。 |
@@ -18,6 +19,7 @@ DBE_OBFUSCATION_TOOLKIT高级功能包是GaussDB提供的兼容性功能包，�
 | DBE_OBFUSCATION_TOOLKIT.DES3ENCRYPT | 使用DES3算法对数据进行加密。 |
 | DBE_OBFUSCATION_TOOLKIT.DES3DECRYPT | 使用DES3算法对数据进行解密。 |
 | DBE_OBFUSCATION_TOOLKIT.MD5 | 计算数据的MD5哈希值。 |
+
 ```
 --原型1：入参为VARCHAR2类型
 DBE_OBFUSCATION_TOOLKIT.DESGETKEY(
@@ -28,10 +30,12 @@ DBE_OBFUSCATION_TOOLKIT.DESGETKEY(
 seed IN RAW
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | seed_string | VARCHAR2 | 否 | 用于生成密钥的种子值，其长度至少为80字节。 |
 | seed | RAW | 否 |  |
+
 ```
 -- 创建ORA兼容模式的数据库
 gaussdb=# CREATE DATABASE ora_db dbcompatibility = 'ORA' encoding = 'utf8';
@@ -65,12 +69,14 @@ input IN RAW,
 key   IN RAW
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | input_string | VARCHAR2 | 否 | 待加密的数据，其长度必须为8字节的倍数。 |
 | input | RAW | 否 |  |
 | key_string | VARCHAR2 | 否 | 加密密钥，其长度至少为8字节，超过8字节的数据不影响加密结果。 |
 | key | RAW | 否 |  |
+
 ```
 ora_db=# SELECT rawtohex(dbe_raw.cast_from_varchar2_to_raw(dbe_obfuscation_toolkit.desencrypt(input_string => '12345678', key_string => '12345678')));
 WARNING:  The DES algorithm is an insecure algorithm, please use it with caution.
@@ -100,12 +106,14 @@ input IN RAW,
 key   IN RAW
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | input_string | VARCHAR2 | 否 | 待解密的数据，其长度必须为8字节的倍数。 |
 | input | RAW | 否 |  |
 | key_string | VARCHAR2 | 否 | 解密密钥，其长度至少为8字节，超过8字节的数据不影响解密结果。 |
 | key | RAW | 否 |  |
+
 ```
 ora_db=# SELECT rawtohex(dbe_raw.cast_from_varchar2_to_raw(dbe_obfuscation_toolkit.desdecrypt(input_string => '12345678', key_string => '12345678')));
 WARNING:  The DES algorithm is an insecure algorithm, please use it with caution.
@@ -135,11 +143,13 @@ which IN INTEGER DEFAULT 0,
 seed  IN RAW
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | which | INTEGER | 否 | 密钥模式。 取值范围：0或1 0：返回16字节的密钥（即两个密钥）。1：返回24字节的密钥（即三个密钥）。 默认值：0 |
 | seed_string | VARCHAR2 | 否 | 用于生成密钥的种子值，其长度至少为80字节。 |
 | seed | RAW | 否 |  |
+
 ```
 -- 生成随机密钥
 ora_db=# SELECT rawtohex(dbe_raw.cast_from_varchar2_to_raw(dbe_obfuscation_toolkit.des3getkey(seed_string => '00000000000000000000000000000000000000000000000000000000000000000000000000000000')));
@@ -174,6 +184,7 @@ which IN INTEGER DEFAIULT 0,
 iv    IN RAW DEFAULT NULL
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | input_string | VARCHAR2 | 否 | 待加密的数据，其长度必须为8字节的倍数。 |
@@ -183,6 +194,7 @@ iv    IN RAW DEFAULT NULL
 | which | INTEGER | 否 | 密钥模式。 取值范围：0或1 0：按照16字节的密钥模式（即两个密钥）进行加密。1：按照24字节的密钥模式（即三个密钥）进行加密。 默认值：0 |
 | iv_string | VARCHAR2 | 是 | 初始化向量，当该参数取值不为NULL时，其长度必须为8字节的倍数，超过8字节的数据不影响加密结果。 默认值：NULL |
 | iv | RAW | 是 |  |
+
 ```
 ora_db=# SELECT rawtohex(dbe_raw.cast_from_varchar2_to_raw(dbe_obfuscation_toolkit.des3encrypt(input_string => '12345678', key_string => '1234567823456789', iv_string => '12345678')));
 WARNING:  The DES3 algorithm is an insecure algorithm, please use it with caution.
@@ -216,6 +228,7 @@ which IN INTEGER DEFAIULT 0,
 iv    IN RAW DEFAULT NULL
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | input_string | VARCHAR2 | 否 | 待解密的数据，其长度必须为8字节的倍数。 |
@@ -225,6 +238,7 @@ iv    IN RAW DEFAULT NULL
 | which | INTEGER | 否 | 密钥模式。 取值范围：0或1 0：按照16字节的密钥模式（即两个密钥）进行解密。1：按照24字节的密钥模式（即三个密钥）进行解密。 默认值：0 |
 | iv_string | VARCHAR2 | 是 | 初始化向量，当该参数取值不为NULL时，其长度必须为8字节的倍数，超过8字节的数据不影响解密结果。 默认值：NULL |
 | iv | RAW | 是 |  |
+
 ```
 ora_db=# SELECT rawtohex(dbe_raw.cast_from_varchar2_to_raw(dbe_obfuscation_toolkit.des3decrypt(input_string => '12345678', key_string => '1234567823456789', iv_string => '12345678')));
 WARNING:  The DES3 algorithm is an insecure algorithm, please use it with caution.
@@ -252,10 +266,12 @@ DBE_OBFUSCATION_TOOLKIT.MD5(
 input IN RAW
 ) RETURN RAW;
 ```
+
 | 参数 | 类型 | 是否可以为空 | 描述 |
 |---|---|---|---|
 | input_string | VARCHAR2 | 否 | 待进行哈希操作的数据。 |
 | input | RAW | 否 |  |
+
 ```
 ora_db=# SELECT rawtohex(dbe_raw.cast_from_varchar2_to_raw(dbe_obfuscation_toolkit.md5(input_string => '1234567890')));
 WARNING:  The MD5 algorithm is an insecure algorithm, please use it with caution.
@@ -293,10 +309,12 @@ gaussdb=# DROP DATABASE ora_db;
 
 #### 接口介绍
 服务于ILM策略实施，实现ILM策略的评估以及压缩Job的停用接口。DBE_ILM支持的接口请参见表1。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_ILM.EXECUTE_ILM | 根据参数执行对指定的数据和ILM策略进行评估，评估通过则会生成对应的压缩Job。 |
 | DBE_ILM.STOP_ILM | 根据参数停止正在执行的压缩Job。 |
+
 ```
 DBE_ILM.EXECUTE_ILM(
 OWNER          IN VARCHAR2,
@@ -309,6 +327,7 @@ TURBO_FORCE    IN BOOLEAN DEFAULT FALSE,
 TURBO_BLKSTART IN INTEGER DEFAULT -1,
 TURBO_BLKEND   IN INTEGER DEFAULT -1)
 ```
+
 | 参数 | 描述 |
 |---|---|
 | OWNER | 对象所属Schema。 |
@@ -320,6 +339,7 @@ TURBO_BLKEND   IN INTEGER DEFAULT -1)
 | TURBO_FORCE | 是否开启忽略冷热管理的强制压缩，仅对跨页透明压缩生效。TRUE表示开启，FALSE表示关闭。 |
 | TURBO_BLKSTART | 强制压缩开始的block number，仅对跨页透明压缩生效。 |
 | TURBO_BLKEND | 强制压缩结束的block number，仅对跨页透明压缩生效。 |
+
   - DBE_ILM.EXECUTE_ILM依据当前数据库名及表名，生成类似“数据库名_表名_分区名_数字”格式的JOBNAME命名规则，然后通过DBE_SCHEDULER.Create_job创建对应名称的任务；当表名包含特殊字符时，调用该接口将报错：Invalid program name。
   - 当DBE_ILM.EXECUTE_ILM与DBE_ILM.STOP_ILM并发时，有较低概率会导致任务FAILED，gs_adm_ilmresults视图中comments字段内容显示“tuple concurrently updated”。
   - 业务进行压缩操作时（无论是自动调度还是手动调度），应尽可能避免对压缩中的相关表进行DDL操作。特别是在一段长事务中执行DDL，可能会引发死锁或锁等待问题。若确有必要进行DDL操作，建议使用DBE_ILM.STOP_ILM接口将相关表的压缩任务停止，确认停止后再进行DDL操作。
@@ -334,11 +354,13 @@ TASK_ID             IN NUMBER DEFAULT -1,
 P_DROP_RUNNING_JOBS IN BOOLEAN DEFAULT FALSE,
 P_JOBNAME           IN VARCHAR2 DEFAULT NULL)
 ```
+
 | 参数 | 描述 |
 |---|---|
 | TASK_ID | 指定待停止ADO task的描述符id。 |
 | P_DROP_RUNNING_JOBS | 是否停止正在执行中的任务，true为强制停止，false为不停止正在执行的任务。 |
 | P_JOBNAME | 标识待停止的特定JobName，通过GS_MY_ILMEVALUATIONDETAILS视图可以查询。 |
+
 - DBE_ILM.STOP_ILM根据参数停止正在执行的ILM策略。 DBE_ILM.STOP_ILM原型为： 当并发量较大时，执行DBE_ILM.STOP_ILM可能会提示资源繁忙，稍后重试即可。提示内容为“Resources are busy, please try again later”。
 #### 示例
 ```
@@ -438,6 +460,7 @@ gaussdb=# CALL DBE_ILM.STOP_ILM(-1, true, NULL);
 
 #### 接口介绍
 服务于ILM策略实施，实现ADO的后台调度以及各个限流参数的控制。DBE_ILM_ADMIN支持的接口请参见表1。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_ILM_ADMIN.CUSTOMIZE_ILM | 根据输入参数定制ILM策略属性。 |
@@ -445,12 +468,14 @@ gaussdb=# CALL DBE_ILM.STOP_ILM(-1, true, NULL);
 | DBE_ILM_ADMIN.ENABLE_ILM | 开启后台调度。 |
 | DBE_ILM_ADMIN.CREATE_ILM_DB_POLICY | 创建库级压缩策略。 |
 | DBE_ILM_ADMIN.DELETE_ILM_DB_POLICY | 删除库级压缩策略。 |
+
 当并发量较大时，执行DBE_ILM_ADMIN.DISABLE_ILM或DBE_ILM_ADMIN.ENABLE_ILM可能会提示资源繁忙，稍后重试即可。提示内容为“Resources are busy, please try again later.”。
 ```
 DBE_ILM_ADMIN.CUSTOMIZE_ILM(
 PARAM    IN    NUMBER,
 VAL      IN    NUMBER);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | PARAM | 参数序号。 |
@@ -477,6 +502,7 @@ VAL      IN    NUMBER);
 | 25 | ENABLE_LZ4_PARTIAL_DECOMPRESSION | 部分解压开关，默认值1。取值范围[0, 1]，0表示关闭，1表示开启，支持小数输入，小数会自动向下取整。跨页透明压缩不支持此参数。 |
 | 26 | INDEXJOB_SIZELIMIT | 控制索引压缩时单个ADO Job可以处理的最大字节数，单位兆，默认为1024。取值范围为大于等于0小于等于2147483647的整数或浮点数，作用时向下取整。当INDEXJOB_SIZELIMIT为0时，手动执行压缩任务会报warning且不做压缩处理，自动调度后台任务也不做压缩处理。 |
 | 27 | ENABLE_INDEX_COMPRESS | 索引压缩使能开关，0表示关闭，1表示打开，默认为0。 |
+
 ```
 gaussdb=# CALL DBE_ILM_ADMIN.CUSTOMIZE_ILM(1, 15);
  customize_ilm
@@ -524,10 +550,12 @@ DBE_ILM_ADMIN.CREATE_ILM_DB_POLICY(
 DAYS IN INT,
 COMPRESSION_LEVEL IN TEXT DEFAULT 'MEDIUM');
 ```
+
 | 参数 | 描述 |
 |---|---|
 | DAYS | 压缩策略天数。 |
 | COMPRESSION_LEVEL | 压缩策略级别。仅支持'HIGH' 和 'MEDIUM'，默认值为 'MEDIUM'。 |
+
 - DBE_ILM_ADMIN.DELETE_ILM_DB_POLICY删除库级压缩策略及所有表上继承于库级压缩策略的压缩策略。
  - 库级压缩策略仅支持高级压缩。
 - 库级策略不支持表达式功能。
@@ -572,6 +600,7 @@ gaussdb=# CALL DBE_ILM_ADMIN.CREATE_ILM_DB_POLICY(10, 'high');
 
 #### 接口介绍
 根据输入的参数，评估指定数据对象的采样压缩率或者获取指定行数据的压缩类型。DBE_COMPRESSION支持的接口请参见表1。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_COMPRESSION.GET_COMPRESSION_RATIO | 根据输入参数评估指定数据对象的采样压缩率。 |
@@ -580,6 +609,7 @@ gaussdb=# CALL DBE_ILM_ADMIN.CREATE_ILM_DB_POLICY(10, 'high');
 | DBE_COMPRESSION.GET_HOLE_RATIO | 根据输入参数评估指定跨页透明压缩数据对象的采样空洞率。 |
 | DBE_COMPRESSION.TURBO_COMPRESS_BUFFER_STATS | 输出turbo_compress_shared_buffers的使用情况。 |
 | DBE_COMPRESSION.GET_INDEX_COMPRESSION_TYPE | 根据输入参数获取指定索引页的压缩类型。 |
+
 GET_COMPRESSION_TYPE接口只支持分布式数据库中数据节点（DN），其他节点暂不支持。
 ```
 DBE_COMPRESSION.GET_COMPRESSION_RATIO(
@@ -599,6 +629,7 @@ OBJTYPE        IN INTEGER DEFAULT 1);
 ```
   - 对于跨页透明压缩表，一级分区表必须传入一级分区名称，二级分区表必须传入二级分区名称，否则会报错提示“no data found.”。对于高级压缩表，分区表必须传入分区名称（二级分区表也可传入一级分区名称），否则会报错提示“no data found.”。
   - 不支持在高级压缩表上评估跨页透明压缩的压缩率，直接使用会报错提示“The ilm turbo policy is not supported here.”。
+
 | 参数 | 描述 |
 |---|---|
 | SCRATCHTBSNAME | 数据对象所属表空间。 |
@@ -614,6 +645,7 @@ OBJTYPE        IN INTEGER DEFAULT 1);
 | COMPTYPE_STR | 描述压缩类型的字符串。 |
 | SAMPLE_RATIO | 采样比例，输入为0-100的整数或浮点数，对应为百分之N的采样比例。默认为20，即对20%的行数进行采样。 |
 | OBJTYPE | 对象类型，支持：1：表对象。 |
+
 ```
 DBE_COMPRESSION.GET_COMPRESSION_TYPE(
 OWNNAME    IN VARCHAR2,
@@ -622,6 +654,7 @@ CTID       IN TEXT,
 SUBOBJNAME IN VARCHAR2 DEFAULT NULL,
 BUCKETID   IN pg_catalog.int2 DEFAULT NULL))
 ```
+
 | 参数 | 描述 |
 |---|---|
 | OWNNAME | 数据对象所有者（所属模式）。 |
@@ -629,6 +662,7 @@ BUCKETID   IN pg_catalog.int2 DEFAULT NULL))
 | CTID | 目标行ctid。 |
 | SUBOBJNAME | 数据子对象名称。 |
 | BUCKETID | 目标行tablebucketid。 |
+
 - DBE_COMPRESSION.GET_COMPRESSION_TYPE根据输入参数获取指定行数据的压缩状态（返回1表示未压缩，2表示压缩），该接口属于运维类接口，不做可见性判断，即传入的ctid为已删除的行时，该接口依然会返回当前行在页面上最新的状态。跨页透明压缩不支持此高级包，默认返回1，无实际意义。 DBE_COMPRESSION.GET_COMPRESSION_TYPE原型为：
 ```
 DBE_COMPRESSION.GET_ACTUAL_COMPRESSION_RATIO(
@@ -641,6 +675,7 @@ LOGIC_SIZE       OUT BIGINT,
 PHYSIC_SIZE      OUT BIGINT,
 COMPRESS_RATIO   OUT VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | OWNER_NAME | 数据对象所有者（所属模式）。 |
@@ -651,6 +686,7 @@ COMPRESS_RATIO   OUT VARCHAR2);
 | LOGIC_SIZE | 逻辑大小。 |
 | PHYSIC_SIZE | 物理大小。 |
 | COMPRESS_RATIO | 压缩比。 小表场景下，压缩比可能出现小于1的现象，属于正常现象。 |
+
 ```
 gaussdb=# CREATE TABLE table_test(a int) ILM ADD POLICY ROW STORE COMPRESS TURBO HIGH UNIT AFTER 1 days OF NO MODIFICATION;
 gaussdb=# INSERT INTO table_test VALUES(1);
@@ -667,6 +703,7 @@ HOLE_SIZE        OUT BIGINT,
 HOLE_RATIO       OUT VARCHAR2,
 SAMPLE_RATIO     IN NUMBER DEFAULT 20);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | OWNER_NAME | 数据对象所有者（所属模式）。 |
@@ -676,6 +713,7 @@ SAMPLE_RATIO     IN NUMBER DEFAULT 20);
 | HOLE_SIZE | 空洞大小 |
 | HOLE_RATIO | 空洞率 |
 | SAMPLE_RATIO | 采样率。 |
+
 - DBE_COMPRESSION.GET_HOLE_RATIO根据输入参数评估指定跨页透明压缩数据对象的采样空洞率，仅支持跨页透明压缩表。 DBE_COMPRESSION.GET_HOLE_RATIO原型为：
 ```
 DBE_COMPRESSION.TURBO_COMPRESS_BUFFER_STATS(
@@ -690,6 +728,7 @@ RECYCLE_STEP    OUT BIGINT,
 RECYCLE_WAITS   OUT BIGINT,
 HIT_RATIO       OUT VARCHAR2);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | CAPACITY | turbo_compress_shared_buffers的容量。 |
@@ -702,6 +741,7 @@ HIT_RATIO       OUT VARCHAR2);
 | RECYCLE_STEP | 回收步长。 |
 | RECYCLE_WAITS | alloc buf ctrl时的等待次数。 |
 | HIT_RATIO | 在内存中的命中率。 |
+
 - DBE_COMPRESSION.TURBO_COMPRESS_BUFFER_STATS输出turbo_compress_shared_buffers的使用情况。 DBE_COMPRESSION.TURBO_COMPRESS_BUFFER_STATS原型为：
 ```
 DBE_COMPRESSION.GET_INDEX_COMPRESSION_TYPE(
@@ -710,12 +750,14 @@ IDXTYPE         IN TEXT,
 BUCKET_ID       IN INT2 DEFAULT NULL,
 BLOCK_ID        IN INT8);
 ```
+
 | 参数 | 描述 |
 |---|---|
 | IDXOID | 索引oid。 |
 | IDXTYPE | 索引类型，支持普通索引（'i'）、全局索引（'I'）、分区索引（'x'）。 |
 | BUCKET_ID | 如果索引的bucket存储，传入对应的bucket id，默认为NULL。 |
 | BLOCK_ID | 待查询的索引block id，如果输入是小数，会四舍五入取整。 |
+
 - DBE_COMPRESSION.GET_INDEX_COMPRESSION_TYPE查询索引页面是否已经被压缩。此高级包仅能查询到高级压缩的状态，查询不到跨页透明压缩的状态。 DBE_COMPRESSION.GET_INDEX_COMPRESSION_TYPE原型为：
 #### 示例
 ```
@@ -795,9 +837,11 @@ gaussdb=# SELECT DBE_COMPRESSION.GET_COMPRESSION_TYPE('user1', 'test_data', '(0,
 
 #### 接口介绍
 DBE_HEAT_MAP根据输入的参数，返回目标数据块中行的最后修改时间等信息，用于直观浏览每一行被判定为冷、热行的依据。该接口属于运维类接口，不做可见性判断，即传入的ctid为已删除的行时，该接口依然会返回当前行在页面上最新的状态。DBE_HEAT_MAP支持的接口请参见表1。跨页透明压缩不支持此高级包，跨页透明压缩表查询结果中行的最后修改时间为空。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_HEAT_MAP.ROW_HEAT_MAP | 根据对象所属Schema、数据对象名称、数据对象分区名及ctid获取行的最后修改时间等信息。 |
+
 ```
 BE_HEAT_MAP.ROW_HEAT_MAP(
 OWNER           IN VARCHAR2,
@@ -807,6 +851,7 @@ CTID            IN TEXT,
 V_DEBUG         IN BOOL         DEFAULT FALSE,
 BUCKETID        IN pg_catalog.int2 DEFAULT NULL))
 ```
+
 | 参数 | 描述 |
 |---|---|
 | OWNER | 数据对象所属schema。 |
@@ -825,6 +870,7 @@ BUCKETID        IN pg_catalog.int2 DEFAULT NULL))
 | RELATIVE_FNO | 行所属的相对文件id（GaussDB中无此逻辑，因此取值同上）。 |
 | CTID | 行的ctid，即block_id或row_id。 |
 | WRITETIME | 行的最后修改时间。 |
+
 ```
 gaussdb=# ALTER DATABASE set ilm = on;
 gaussdb=# CREATE SCHEMA HEAT_MAP_DATA;
@@ -861,6 +907,7 @@ gaussdb=# SELECT * FROM DBE_HEAT_MAP.ROW_HEAT_MAP(
 只有具有系统管理员或运维管理员权限的用户可以调用该高级包下的接口。
 #### 接口介绍
 高级功能包DBE_LICENSE主要用于激活、查看、注销License。主要支持的接口参见表 DBE_LICENSE。
+
 | 接口名称 | 描述 |
 |---|---|
 | DBE_LICENSE.ACTIVATE | 激活License。 |
@@ -868,6 +915,7 @@ gaussdb=# SELECT * FROM DBE_HEAT_MAP.ROW_HEAT_MAP(
 | DBE_LICENSE.GET_ESN | 查询节点ESN信息。 |
 | DBE_LICENSE.GET_LICENSE_INFO | 查询当前节点License状态信息。 |
 | DBE_LICENSE.GET_ALL_NODE_LICENSE_ACTIVATE | 查询数据库集群的License激活状态。 |
+
 ```
 DBE_LICENSE.ACTIVATE(
     license_type IN VARCHAR2,
@@ -879,12 +927,14 @@ DBE_LICENSE.ACTIVATE(
     key_file IN VARCHAR2)
 RETURN BOOLEAN;
 ```
+
 | 参数 | 描述 |
 |---|---|
 | license_type | 待激活License类型，可选值为OnCloud或OffCloud。 OnCloud：表示使用令牌文件激活License。OffCloud：表示使用ESDP License文件激活License。 |
 | token_file | 令牌文件名称。需遵循以下要求： 名称不能为license.json、license.xml；名称中不能包含'/'或'\\'字符。 |
 | license_file | ESDP格式License文件名称。 |
 | key_file | 公钥文件名称。 |
+
 - DBE_LICENSE.ACTIVATE函数ACTIVATE根据License类型和对应文件激活License。 当前支持令牌文件或ESDP License文件两种License进行激活。 DBE_LICENSE.ACTIVATE原型为：
   - 执行注销操作后，原先的License将失效，系统将重新为当前数据库节点生成新的ESN信息，且License处于未激活状态。为了保护您的权益不受影响，在执行该操作前，请务必谨慎考虑。
   - 使用ESDP License激活License时，注销节点的License会在数据目录下的gs_esn文件夹中生成撤销码文件RevoTicket.txt。您可用该文件去ESDP平台刷新License的ESN值用于再次激活节点License。
@@ -905,13 +955,16 @@ DBE_LICENSE.GET_LICENSE_INFO()
 ```
 gaussdb=# SELECT * FROM  dbe_license.get_license_info();
       create_time       |     activate_time      |      expire_time       |  type   | license_version | customer |   state   |       lsn       |                                      feature_list
+
                                   | dn_capacity | cn_capacity
+
 ------------------------+------------------------+------------------------+---------+-----------------+----------+-----------+-----------------+------------------------------------------------------
 ----------------------------------+-------------+-------------
  2024-10-20 14:30:45+08 | 2026-01-22 12:02:17+08 | 2026-01-22 12:03:45+08 | OnCloud |               1 | Test     | Activated | lsntesttesttest | enable_ilm,enable_tde,enable_ledger,enable
 _security_policy |           1 |           1
 (1 row)
 ```
+
 | 名称 | 类型 | 描述 |
 |---|---|---|
 | create_time | timestamptz(0) | License创建时间。 |
@@ -925,6 +978,7 @@ _security_policy |           1 |           1
 | feature_list | text | License包含的高阶特性列表，由逗号分割的特性GUC参数名称组成。如“ enable_tde,enable_ledger”。 |
 | dn_capacity | bigint | 预留字段，无实际含义。 |
 | cn_capacity | bigint | 预留字段，无实际含义。 |
+
 ```
 DBE_LICENSE.GET_ALL_NODE_LICENSE_ACTIVATE()
 RETURN BOOLEAN;
