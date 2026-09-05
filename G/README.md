@@ -17,9 +17,13 @@
 
 > 源 CHM zip（约 2GB）在仓库外。每页以 `## <标题>` 分隔，标题来自原 HTML 的 `DC.Title`。
 
-## 高级包参考（`高级包.md`）
+## 高级包参考（`高级包/`）
 
-[`高级包.md`](高级包.md)：从最全版本抽取的 29 个 `DBE_`/`PKG_` 高级包参考页 + Oracle↔GaussDB 兼容性对照表，去重整理（官方中文原文）。含 DBE_SCHEDULER、DBE_SQL、DBE_LOB、DBE_OUTPUT、DBE_FILE、DBE_UTILITY、PKG_UTIL 等，是 openGauss/GaussDB dbe_* 实现的直接参考。
+[`高级包/`](高级包/) 目录：29 个 DBE_/PKG_ 高级包按功能分类整理为「总览 + 分类别」。
+- [`高级包/README.md`](高级包/README.md) — 总览（含 Oracle↔GaussDB 兼容性对照表、分类目录）
+- [`高级包/定时任务.md`](高级包/定时任务.md) — **DBE_SCHEDULER + DBE_TASK**（对应 Oracle DBMS_SCHEDULER/DBMS_JOB），openGauss dbe_scheduler 直接参考
+- 其余按类别分文件：SQL与描述、输出与调试、LOB与文件、工具与杂项、统计、XML、安全与ILM、系统包
+
 
 ## 源 CHM 分片（`chm/`，本地，未推送）
 
