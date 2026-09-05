@@ -1,5 +1,5 @@
 # Oracle 高级包 · 总览
-> Oracle Database 19c 的高级包（DBMS_* / UTL_*），与 GaussDB `G/高级包/` 对应。本目录英文原文待精译，`定时任务.md`（DBMS_SCHEDULER）已精译。
+> Oracle Database 19c 的高级包。**中文概述与接口清单见 [`中文速览.md`](中文速览.md)**；各分类文件为英文详细语法。（DBMS_* / UTL_*），与 GaussDB `G/高级包/` 对应。本目录英文原文待精译，`定时任务.md`（DBMS_SCHEDULER）已精译。
 
 ## 目录（按类别，对应 GaussDB）
 

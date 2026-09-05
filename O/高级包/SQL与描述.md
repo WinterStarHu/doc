@@ -1,5 +1,8 @@
 # SQL与描述
 
+> 中文概述与接口清单见 [`中文速览.md`](中文速览.md)；下为英文详细语法（参考）。
+
+
 SQL 执行与描述相关（对应 GaussDB DBE_SQL、DBE_DESCRIBE）。
 （英文原文，待精译；与 GaussDB `G/高级包/SQL与描述.md` 对应。）
 

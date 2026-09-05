@@ -1,5 +1,8 @@
 # 安全与ILM
 
+> 中文概述与接口清单见 [`中文速览.md`](中文速览.md)；下为英文详细语法（参考）。
+
+
 安全/加密/ILM/压缩/热图（对应 GaussDB DBE_OBFUSCATION_TOOLKIT、DBE_ILM、DBE_COMPRESSION、DBE_HEAT_MAP）。
 （英文原文，待精译；与 GaussDB `G/高级包/安全与ILM.md` 对应。）
 

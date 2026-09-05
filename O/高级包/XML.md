@@ -1,5 +1,8 @@
 # XML
 
+> 中文概述与接口清单见 [`中文速览.md`](中文速览.md)；下为英文详细语法（参考）。
+
+
 XML 处理（对应 GaussDB DBE_XMLDOM、DBE_XMLPARSER、DBE_XMLGEN、DBE_XML）。
 （英文原文，待精译；与 GaussDB `G/高级包/XML.md` 对应。）
 
