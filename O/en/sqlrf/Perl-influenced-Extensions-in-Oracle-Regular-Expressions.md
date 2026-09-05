@@ -2,6 +2,7 @@
 
 Oracle Database regular expression functions and conditions accept a number of Perl-influenced operators that are in common use, although not part of the POSIX standard. Table D-3 lists those operators. For more complete descriptions with examples, refer to *Oracle Database Development Guide*.
 Table 3 Perl-influenced Operators in Oracle Regular Expressions
+
 | Operator | Description |
 |---|---|
 | \d | A digit character. |

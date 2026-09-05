@@ -46,6 +46,7 @@ Oracle Database does not accept all conditions in all parts of all SQL statement
 - Left to right evaluation is not guaranteed for multiple conditions connected using OR
 Table 6-1 lists the levels of precedence among SQL condition from high to low. Conditions listed on the same line have the same precedence. As the table indicates, Oracle evaluates operators before conditions.
 Table 1 SQL Condition Precedence
+
 | Type of Condition | Purpose |
 |---|---|
 | SQL operators are evaluated before SQL conditions | See Operator Precedence |

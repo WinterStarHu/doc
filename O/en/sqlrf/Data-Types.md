@@ -62,6 +62,7 @@ For descriptions of the spatial types, refer to Spatial Types.
 The **Built-In Data Type Summary** table lists the built-in data types available. Oracle Database uses a code to identify the data type internally. This is the number in the **Code** column of the **Built-In Data Type Summary** table. You can verify the codes in the table using the `DUMP` function.
 In addition to the built-in data types listed in the **Built-In Data Type Summary** table, Oracle Database uses many data types internally that are visible via the `DUMP` function.
 Table 1 Built-In Data Type Summary
+
 | Code | Data Type | Description |
 |---|---|---|
 | 1 | VARCHAR2(size [BYTE \| CHAR]) | Variable-length character string having maximum length size bytes or characters. You must specify size for VARCHAR2. Minimum size is 1 byte or 1 character. Maximum size is: 32767 bytes or characters if MAX_STRING_SIZE = EXTENDED4000 bytes or characters if MAX_STRING_SIZE = STANDARDRefer to Extended Data Types for more information on the MAX_STRING_SIZE initialization parameter.BYTE indicates that the column will have byte length semantics. CHAR indicates that the column will have character semantics. |
@@ -88,6 +89,7 @@ Table 1 Built-In Data Type Summary
 | 112 | NCLOB | A character large object containing Unicode characters. Both fixed-width and variable-width character sets are supported, both using the database national character set. Maximum size is (4 gigabytes - 1) * (database block size). Stores national character set data. |
 | 113 | BLOB | A binary large object. Maximum size is (4 gigabytes - 1) * (database block size). |
 | 114 | BFILE | Contains a locator to a large binary file stored outside the database. Enables byte stream I/O access to external LOBs residing on the database server. Maximum size is 4 gigabytes. |
+
 The sections that follow describe the Oracle data types as they are stored in Oracle Database. For information on specifying these data types as literals, refer to Literals.
 ### Character Data Types
 Character data types store character (alphanumeric) data, which are words and free-form text, in the database character set or national character set. They are less restrictive than other data types and consequently have fewer properties. For example, character columns can store all alphanumeric values, but `NUMBER` columns can store only numeric values.
@@ -179,6 +181,7 @@ The absence of precision and scale designators specifies the maximum range and p
 **See Also:**   Floating-Point Numbers
 Table 2-2 show how Oracle stores data using different precisions and scales.
 Table 2 Storage of Scale and Precision
+
 | Actual Data | Specified As | Stored As |
 |---|---|---|
 | 123.89 | NUMBER | 123.89 |
@@ -195,6 +198,7 @@ Table 2 Storage of Scale and Precision
 | .00000123 | NUMBER(2,7) | .0000012 |
 | 1.2e-4 | NUMBER(2,5) | 0.00012 |
 | 1.2e-5 | NUMBER(2,5) | 0.00001 |
+
 #### FLOAT Data Type
 The `FLOAT` data type is a subtype of `NUMBER`. It can be specified with or without precision, which has the same definition it has for `NUMBER` and can range from 1 to 126. Scale cannot be specified, but is interpreted from the data. Each `FLOAT` value requires from 1 to 22 bytes.
 To convert from binary to decimal precision, multiply *n* by 0.30103. To convert from decimal to binary precision, multiply the decimal precision by 3.32193. The maximum of 126 digits of binary precision is roughly equivalent to 38 digits of decimal precision.
@@ -226,10 +230,12 @@ Oracle Database provides two numeric data types exclusively for floating-point n
 In a `NUMBER` column, floating point numbers have decimal precision. In a `BINARY_FLOAT` or `BINARY_DOUBLE` column, floating-point numbers have binary precision. The binary floating-point numbers support the special values infinity and `NaN` (not a number).
 You can specify floating-point numbers within the limits listed in Table 2-3. The format for specifying floating-point numbers is defined in Numeric Literals.
 Table 3 Floating Point Number Limits
+
 | Value | BINARY_FLOAT | BINARY_DOUBLE |
 |---|---|---|
 | Maximum positive finite value | 3.40282E+38F | 1.79769313486231E+308 |
 | Minimum positive finite value | 1.17549E-38F | 2.22507485850720E-308 |
+
 ##### IEEE754 Conformance
 The Oracle implementation of floating-point data types conforms substantially with the Institute of Electrical and Electronics Engineers (IEEE) Standard for Binary Floating-Point Arithmetic, IEEE Standard 754-1985 (IEEE754). The floating-point data types conform to IEEE754 in the following areas:
 - The SQL function SQRT implements square root. See SQRT.
@@ -320,6 +326,7 @@ The datetime data types are `DATE`, `TIMESTAMP`, `TIMESTAMP` `WITH` `TIME` `ZONE
 Both datetimes and intervals are made up of fields. The values of these fields determine the value of the data type. Table 2-4 lists the datetime fields and their possible values for datetimes and intervals.
 To avoid unexpected results in your DML operations on datetime data, you can verify the database and session time zones by querying the built-in SQL functions `DBTIMEZONE` and `SESSIONTIMEZONE`. If the time zones have not been set manually, then Oracle Database uses the operating system time zone by default. If the operating system time zone is not a valid Oracle time zone, then Oracle uses UTC as the default value.
 Table 4 Datetime Fields and Values
+
 | Datetime Field | Valid Values for Datetime | Valid Values for INTERVAL |
 |---|---|---|
 | YEAR | -4712 to 9999 (excluding year 0) | Any positive or negative integer |
@@ -332,6 +339,7 @@ Table 4 Datetime Fields and Values
 | TIMEZONE_MINUTE(See note at end of table) | 00 to 59. Not applicable for DATE or TIMESTAMP. | Not applicable |
 | TIMEZONE_REGION | Query the TZNAME column of the V$TIMEZONE_NAMES data dictionary view. Not applicable for DATE or TIMESTAMP. For a complete listing of all time zone region names, refer to Oracle Database Globalization Support Guide. | Not applicable |
 | TIMEZONE_ABBR | Query the TZABBREV column of the V$TIMEZONE_NAMES data dictionary view. Not applicable for DATE or TIMESTAMP. | Not applicable |
+
 **Note:**   `TIMEZONE_HOUR` and `TIMEZONE_MINUTE` are specified together and interpreted as an entity in the format `+`|`-` *hh*`:`*mi*, with values ranging from -12:59 to +14:00. Refer to *Oracle Data Provider for .NET Developer’s Guide for Microsoft Windows* for information on specifying time zone values for that API.
 #### DATE Data Type
 The `DATE` data type stores date and time information. Although date and time information can be represented in both character and number data types, the `DATE` data type has special associated properties. For each `DATE` value, Oracle stores the following information: year, month, day, hour, minute, and second.
@@ -452,6 +460,7 @@ TO_DATE('
   ``````````````````- Oracle performs all timestamp arithmetic in UTC time. For TIMESTAMP WITH LOCAL TIME ZONE, Oracle converts the datetime value from the database time zone to UTC and converts back to the database time zone after performing the arithmetic. For TIMESTAMP WITH TIME ZONE, the datetime value is always in UTC, so no conversion is necessary.
 Table 2-5 is a matrix of datetime arithmetic operations. Dashes represent operations that are not supported.
 Table 5 Matrix of Datetime Arithmetic
+
 | Operand & Operator | DATE | TIMESTAMP | INTERVAL | Numeric |
 |---|---|---|---|---|
 | DATE |  |  |  |  |
@@ -474,6 +483,7 @@ Table 5 Matrix of Datetime Arithmetic
 | - | - | - | - | NA |
 | * | - | - | INTERVAL | NA |
 | / | - | - | - | NA |
+
 **Examples**
 You can add an interval value expression to a start time. Consider the sample table `oe.orders` with a column `order_date`. The following statement adds 30 days to the value of the `order_date` column:
 ```
@@ -508,9 +518,11 @@ The `duration_2` column is of type `INTERVAL` `YEAR` `TO` `MONTH`. The maximum n
 Interval data types do not have format models. Therefore, to adjust their presentation, you must combine character functions such as `EXTRACT` and concatenate the components. For example, the following examples query the `hr.employees` and `oe.orders` tables, respectively, and change interval output from the form “*yy*-*mm*” to “*yy* years *mm* months” and from “*dd*-*hh*” to “*dddd* days *hh* hours”:
 ```
 SELECT last_name, EXTRACT(YEAR FROM (SYSDATE - hire_date) YEAR TO MONTH)
+
        || ' years '
        || EXTRACT(MONTH FROM (SYSDATE - hire_date) YEAR TO MONTH)
        || ' months'  "Interval"
+
   FROM employees;
 LAST_NAME                 Interval
 ------------------------- --------------------
@@ -525,9 +537,11 @@ Higgins                   7 years 4 months
 Gietz                     7 years 4 months
 . . .
 SELECT order_id, EXTRACT(DAY FROM (SYSDATE - order_date) DAY TO SECOND)
+
        || ' days '
        || EXTRACT(HOUR FROM (SYSDATE - order_date) DAY TO SECOND)
        || ' hours' "Interval"
+
   FROM orders;
   ORDER_ID Interval
 ---------- --------------------
@@ -640,6 +654,7 @@ Oracle creates logical rowids based on the primary key of the table. The logical
 ## ANSI, DB2, and SQL/DS Data Types
 SQL statements that create tables and clusters can also use ANSI data types and data types from the IBM products SQL/DS and DB2. Oracle recognizes the ANSI or IBM data type name that differs from the Oracle Database data type name. It converts the data type to the equivalent Oracle data type, records the Oracle data type as the name of the column data type, and stores the column data in the Oracle data type based on the conversions shown in the tables that follow.
 Table 6 ANSI Data Types Converted to Oracle Data Types
+
 | ANSI SQL Data Type | Oracle Data Type |
 |---|---|
 | CHARACTER(n)CHAR(n) | CHAR(n) |
@@ -649,6 +664,7 @@ Table 6 ANSI Data Types Converted to Oracle Data Types
 | NUMERIC[(p,s)]DECIMAL[(p,s)] (Note 1) | NUMBER(p,s) |
 | INTEGERINTSMALLINT | NUMBER(38) |
 | FLOAT (Note 2)DOUBLE PRECISION (Note 3)REAL (Note 4) | FLOAT(126)FLOAT(126)FLOAT(63) |
+
 **Notes:**
 ``````
 - The NUMERIC and DECIMAL data types can specify only fixed-point numbers. For those data types, the scale (s) defaults to 0.
@@ -664,6 +680,7 @@ Do not define columns with the following SQL/DS and DB2 data types, because they
 Note that data of type `TIME` can also be expressed as Oracle datetime data.
 **See Also:**   Datetime and Interval Data Types
 Table 7 SQL/DS and DB2 Data Types Converted to Oracle Data Types
+
 | SQL/DS or DB2 Data Type | Oracle Data Type |
 |---|---|
 | CHARACTER(n) | CHAR(n) |
@@ -672,6 +689,7 @@ Table 7 SQL/DS and DB2 Data Types Converted to Oracle Data Types
 | DECIMAL(p,s) (Note 1) | NUMBER(p,s) |
 | INTEGERSMALLINT | NUMBER(p,0) |
 | FLOAT (Note 2) | NUMBER |
+
 **Notes:**
 **
 - The DECIMAL data type can specify only fixed-point numbers. For this data type, s defaults to 0.

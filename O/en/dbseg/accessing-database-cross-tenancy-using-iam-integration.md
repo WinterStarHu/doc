@@ -88,6 +88,7 @@ This example uses a dynamic group instead of `any-user`:
 ADMIT dynamic group db_principals of tenancy db_tenancy to {GROUP_MEMBERSHIP_INSPECT, AUTHENTICATION_INSPECT} in tenancy
 ```
 You can also add all resource principals in a compartment using `resource.compartment.id`. However, this might also allow other non-database resource principals to make the cross-tenancy group query. The following table provides a mapping of the various resource types with the DBaaS platform name:
+
 | DBaaS Platform Name | Resource Type Name |
 |---|---|
 | ADB-S | autonomousdatabase |
@@ -95,6 +96,7 @@ You can also add all resource principals in a compartment using `resource.compar
 | Base DBS | dbsystem |
 | ExaCS | cloudvmcluster |
 | ExaCC | vmcluster |
+
   - Older ADBD instances may still be using the autonomousexainfrastructure resource type.
 ## Mapping Database Schemas and Roles to Users and Groups in Another Tenancy
 When you perform this type of mapping, you must add the tenancy OCID to the mapping information so the database knows it is cross-tenancy access.

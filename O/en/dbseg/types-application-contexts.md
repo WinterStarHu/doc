@@ -15,6 +15,7 @@ Using Database Session-Based Application Contexts describes this type of applica
 ****
 - Client session-based application contexts. This type uses Oracle Call Interface functions on the client side to set the user session data, and then to perform the necessary security checks to restrict user access. Using Client Session-Based Application Contexts describes this type.
 The following table summarizes the different types of application contexts.
+
 | Application Context Type | Stored in UGA | Stored in SGA | Supports Connected User Database Links | Supports Centralized Storage of Users’ Application Context | Supports Sessionless Multitier Applications |
 |---|---|---|---|---|---|
 | Database session-based application context initialized locally | Yes | No | No | No | No |

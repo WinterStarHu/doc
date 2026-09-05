@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_INCOMPATS displays all Scheduler incompatibility resource objects in the database.
 
 - USER_SCHEDULER_INCOMPATS displays all Scheduler incompatibility resource objects owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the incompatibility resource object |
@@ -13,6 +14,7 @@ Related Views
 | ENABLED | VARCHAR2(5) |  | Indicates whether the incompatibility is enabled (TRUE) or not (FALSE) |
 | JOBS_RUNNING_COUNT | NUMBER |  | Current number of running jobs using the incompatibility resource object |
 | COMMENTS | VARCHAR2(256) |  | Comments for the resource incompatibility object |
+
 See Also:
 - "DBA_SCHEDULER_INCOMPATS"
 - "USER_SCHEDULER_INCOMPATS"

@@ -12,10 +12,12 @@ Oracle Database does not always evaluate the expressions in an *expression_list*
 **See Also:**   Expression Lists
 Table 6-12 lists the form of `IN` condition.
 Table 12 IN Condition
+
 | Type of Condition | Operation | Example |
 |---|---|---|
 | IN | Equal-to-any-member-of test. Equivalent to =ANY. | SELECT * FROM employees WHERE job_id IN ('PU_CLERK','SH_CLERK') ORDER BY employee_id; SELECT * FROM employees WHERE salary IN (SELECT salary FROM employees WHERE department_id =30) ORDER BY employee_id; |
 | NOT IN | Equivalent to !=ALL. Evaluates to FALSE if any member of the set is NULL. | SELECT * FROM employees WHERE salary NOT IN (SELECT salary FROM employees WHERE department_id = 30) ORDER BY employee_id; SELECT * FROM employees WHERE job_id NOT IN ('PU_CLERK', 'SH_CLERK') ORDER BY employee_id; |
+
 If any item in the list following a `NOT` `IN` operation evaluates to null, then all rows evaluate to `FALSE` or `UNKNOWN`, and no rows are returned. For example, the following statement returns the string ‘`True`’ for each row:
 ```
 SELECT 'True' FROM employees

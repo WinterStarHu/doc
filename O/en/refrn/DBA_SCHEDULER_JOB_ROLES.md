@@ -1,6 +1,7 @@
 # DBA_SCHEDULER_JOB_ROLES
 
 `DBA_SCHEDULER_JOB_ROLES` displays information about all Scheduler jobs in the database by database role.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the Scheduler job |

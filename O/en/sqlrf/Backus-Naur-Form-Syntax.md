@@ -1,6 +1,7 @@
 # Backus-Naur Form Syntax
 
 Each graphic syntax diagram in this reference is followed by a link to a text description of the graphic. The text descriptions consist of a simple variant of Backus-Naur Form (BNF) that includes the following symbols and conventions:
+
 | Symbol or Convention | Meaning |
 |---|---|
 | [ ] | Brackets enclose optional items. |

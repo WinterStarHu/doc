@@ -47,12 +47,14 @@ The `SYSTEM_PRIVILEGE_USED` column shows the type of administrative privilege th
 - All configuration changes that are made to Oracle Database Vault
 **Mandatorily Audited Access to Sensitive Columns in the Oracle Optimizer Dictionary Tables**
 Be aware that internal access to these table columns by the `DBMS_STATS` package does not generate mandatory audit records. The optimizer dictionary tables are as follows:
+
 | Optimizer Dictionary Table | Columns |
 |---|---|
 | SYS.HIST_HEAD$ | minimum, maximum, lowval, hival |
 | SYS.HISTGRM$ | endpoint, epvalue_raw |
 | SYS.WRI$_OPTSTAT_HISTHEAD_HISTORY | minimum, maximum, lowval, hival |
 | SYS.WRI$_OPSTAT_HISTGRM_HISTORY | endpoint, epvalue_raw |
+
 ## How Do Cursors Affect Auditing?
 For each execution of an auditable operation within a cursor, Oracle Database inserts one audit record into the audit trail.
 Events that cause cursors to be reused include the following:
@@ -75,6 +77,7 @@ Unlike traditional audit, only key fields of unified audit records in the `UNIFI
 You can configure this feature on both UNIX and Microsoft Windows systems. On Windows systems, you either enable it or disable it. If enabled, it writes the records to the Windows Event Viewer.
 On UNIX systems, you can fine-tune the capture of unified audit trail records for SYSLOG to specify the facility where the SYSLOG records are sent and the severity level of the records (for example, `DEBUG` if it is capturing debugging-related messages).
 The following table maps the names given to the unified audit records fields that are written to SYSLOG and the Windows Event Viewer to the corresponding column names in the `UNIFIED_AUDIT_TRAIL` view.
+
 | Field Name | Column Name in UNIFIED_AUDIT_TRAIL | Column Type | Column Description |
 |---|---|---|---|
 | TYPE | AUDIT_TYPE | NUMBER | Type of the audit record |
@@ -89,6 +92,7 @@ The following table maps the names given to the unified audit records fields tha
 | SCHEMA | OBJECT_SCHEMA | VARCHAR2 | Schema name of the object |
 | OBJNAME | OBJECT_NAME | VARCHAR2 | Name of the object |
 | PDB_GUID | NULL (there are no columns in UNIFIED_AUDIT_TRAIL for this field) | VARCHAR2 | GUID of the container in which the unified audit record is generated |
+
 ### Enabling SYSLOG and Windows Event Viewer Captures for the Unified Audit Trail
 You can write a subset of unified audit trail records to the UNIX SYSLOG or to the Windows Event Viewer.
 ````

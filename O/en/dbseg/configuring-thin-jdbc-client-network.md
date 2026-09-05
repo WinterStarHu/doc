@@ -64,6 +64,7 @@ All JDBC connection properties including the ones pertaining to Oracle Database 
 ### Client Encryption Level Parameter
 The `CONNECTION_PROPERTY_THIN_NET_ENCRYPTION_LEVEL` parameter defines the level of security that the client uses to negotiate with the server.
 The following table describes the attributes of this parameter.
+
 | Attribute | Description |
 |---|---|
 | Parameter Type | String |
@@ -72,9 +73,11 @@ The following table describes the attributes of this parameter.
 | Default Value | ACCEPTED |
 | Syntax | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_ENCRYPTION_LEVEL, level);, where prop is an object of the Properties class |
 | Example | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_ENCRYPTION_LEVEL,"REQUIRED");, where prop is an object of the Properties class |
+
 ### Client Encryption Selected List Parameter
 The `CONNECTION_PROPERTY_THIN_NET_ENCRYPTION_TYPES` parameter defines the encryption algorithm to be used.
 The following table describes attributes of this parameter.
+
 | Attribute | Description |
 |---|---|
 | Parameter Type | String |
@@ -82,9 +85,11 @@ The following table describes attributes of this parameter.
 | Permitted Values | AES256 (AES 256-bit key), AES192 (AES 192-bit key), AES128 (AES 128-bit key), |
 | Syntax | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_ENCRYPTION_TYPES, algorithm);, where prop is an object of the Properties class |
 | Example | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_ENCRYPTION_TYPES, "( AES256, AES192 )");, where prop is an object of the Properties class |
+
 ### Client Integrity Level Parameter
 The `CONNECTION_PROPERTY_THIN_NET_CHECKSUM_LEVEL` parameter defines the level of security to negotiate with the server for data integrity.
 The following table describes the attributes of this parameter.
+
 | Attribute | Description |
 |---|---|
 | Parameter Type | String |
@@ -93,9 +98,11 @@ The following table describes the attributes of this parameter.
 | Default Value | ACCEPTED |
 | Syntax | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CHECKSUM_LEVEL, level);, where prop is an object of the Properties class |
 | Example | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CHECKSUM_LEVEL,"REQUIRED");, where prop is an object of the Properties class |
+
 ### Client Integrity Selected List Parameter
 The `CONNECTION_PROPERTY_THIN_NET_CHECKSUM_TYPES` parameter defines the data integrity algorithm to be used.
 The following table describes this parameter’s attributes.
+
 | Attribute | Description |
 |---|---|
 | Parameter Type | String |
@@ -103,9 +110,11 @@ The following table describes this parameter’s attributes.
 | Permitted Values | SHA1 |
 | Syntax | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CHECKSUM_TYPES, algorithm);, where prop is an object of the Properties class |
 | Example | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CHECKSUM_TYPES,"( SHA1 )");, where prop is an object of the Properties class |
+
 ### Client Authentication Service Parameter
 The `CONNECTION_PROPERTY_THIN_NET_AUTHENTICATION_SERVICES` parameter determines the authentication service to be used.
 The following table describes this parameter’s attributes.
+
 | Attribute | Description |
 |---|---|
 | Parameter Type | String |
@@ -113,6 +122,7 @@ The following table describes this parameter’s attributes.
 | Permitted Values | RADIUS, KERBEROS, SSL |
 | Syntax | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_AUTHENTICATION_SERVICES, authentication);, where prop is an object of the Properties class |
 | Example | prop.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_AUTHENTICATION_SERVICES,"( RADIUS, KERBEROS, SSL)");, where prop is an object of the Properties class |
+
 ### AnoServices Constants
 The `oracle.net.ano.AnoServices` interface includes the names of the encryption, authentication, and checksum algorithms that the JDBC Thin driver supports.
 The following constants are in the `oracle.net.ano.AnoServices` interface:

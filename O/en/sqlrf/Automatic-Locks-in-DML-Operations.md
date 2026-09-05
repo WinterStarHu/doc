@@ -24,6 +24,7 @@ A table lock can be held in any of the following modes:
 Oracle Database automatically obtains row-level and table-level locks on behalf of DML operations. The type of operation determines the locking behavior. Table B-1 summarizes the information in this section.
 **Note:**   The implicit SX locks shown for the DML statements in Table B-1 can sometimes be exclusive (X) locks for a short time owing to side effects from constraints.
 Table 1 Summary of Locks Obtained by DML Statements
+
 | SQL Statement | Row Locks | Table Lock Mode | RS | RX | S | SRX | X |
 |---|---|---|---|---|---|---|---|
 | SELECT … FROM table... | - | none | Y | Y | Y | Y | Y |
@@ -38,6 +39,7 @@ Table 1 Summary of Locks Obtained by DML Statements
 | SHARE MODE |  | S | Y | N | Y | N | N |
 | SHARE ROW EXCLUSIVE MODE |  | SSX | Y | N | N | N | N |
 | EXCLUSIVE MODE |  | X | N | N | N | N | N |
+
 Footnote 1
 Yes, if no conflicting row locks are held by another transaction. Otherwise, waits occur.
 ## Locks When Rows Are Queried

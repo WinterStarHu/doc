@@ -20,6 +20,7 @@ There are two ways to configure a parameter for Transport Layer Security (TLS).
 ## Transport Layer Security Authentication Parameters for Clients and Servers
 Oracle provides both static and dynamic Transport Layer Security (TLS) authentication parameters.
 The following table describes the static and dynamic parameters for configuring TLS on the server.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name (static) | SQLNET.AUTHENTICATION_SERVICES |
@@ -34,9 +35,11 @@ The following table describes the static and dynamic parameters for configuring 
 | Example (static) | SQLNET.AUTHENTICATION_SERVICES = (TCPS, radius) |
 | Syntax (dynamic) | AUTHENTICATION = string |
 | Example (dynamic) | AUTHENTICATION = (TCPS) |
+
 ## Cipher Suite Parameters for Transport Layer Security
 You can configure cipher suite parameters for Transport Layer Security (TLS).
 The following table describes the static and dynamic parameters for configuring cipher suites.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name (static) | TLS_CIPHER_SUITES |
@@ -51,6 +54,7 @@ The following table describes the static and dynamic parameters for configuring 
 | Example (static) | TLS_CIPHER_SUITES=(TLS_AES_256_GCM_SHA384) |
 | Syntax (dynamic) | TLS_CIPHER_SUITES=(TLS_cipher_suite1[, TLS_cipher_suite2, ...TLS_cipher_suiteN]) |
 | Example (dynamic) | TLS_CIPHER_SUITES=(TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both `TLS_CIPHER_SUITES` and `SSL_CIPHER_SUITES` parameters are configured, then the `SSL_CIPHER_SUITES` parameter is ignored.
 ## Supported Transport Layer Security Cipher Suites
 Oracle Database supports a large number of cipher suites for Transport Layer Security (TLS).
@@ -76,6 +80,7 @@ The following TLS 1.2 cipher suites are supported. Oracle recommends using the G
 - TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
 ## Transport Layer Security Version Support by Cryptographic Provider
 The TLS protocol versions available to Oracle Database 19c depend on the active cryptographic provider.
+
 | TLS Version | Next-Generation Provider | Next-Generation Provider in FIPS 140-3 Mode | Legacy Provider | Legacy Provider in FIPS 140-2 Mode |
 |---|---|---|---|---|
 | SSLv3 | Not supported | Not supported | Supported but not recommended | Not supported |
@@ -83,10 +88,12 @@ The TLS protocol versions available to Oracle Database 19c depend on the active 
 | TLS 1.1 | Not supported | Not supported | Supported but not recommended | Not supported |
 | TLS 1.2 | Supported | Supported | Supported | Supported |
 | TLS 1.3 | Supported | Supported | Not supported | Not supported |
+
 Oracle recommends using TLS 1.2 or TLS 1.3 for all new deployments. TLS 1.3 is available only with the next-generation provider.
 ## Transport Layer Security Version Parameters
 You can set a range of Transport Layer Security (TLS) parameters to configure the version of TLS to use.
 The table below describes the `TLS_VERSION` static and dynamic parameters for configuring the version of TLS to be used.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name (static) | TLS_VERSION |
@@ -101,11 +108,13 @@ The table below describes the `TLS_VERSION` static and dynamic parameters for co
 | Example (static) | TLS_VERSION=(1.3) |
 | Syntax (dynamic) | TLS_VERSION=version |
 | Example (dynamic) | TLS_VERSION=(1.2 or 1.3) |
+
 **Note:** The `ADD_SSLv3_IMPLICITLY` initialization parameter has no effect on the `TLS_VERSION` parameter.
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both `TLS_VERSION` and `SSL_VERSION` parameters are configured, then the `SSL_VERSION` parameter is ignored.
 - TLS_DISABLE_VERSION Parameter You can exclude Transport Layer Security (TLS) versions by configuring the TLS_DISABLE_VERSION parameter.
 ### TLS_DISABLE_VERSION Parameter
 You can exclude Transport Layer Security (TLS) versions by configuring the `TLS_DISABLE_VERSION` parameter.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name (static) | TLS_DISABLE_VERSION |
@@ -120,9 +129,11 @@ You can exclude Transport Layer Security (TLS) versions by configuring the `TLS_
 | Example (static) | TLS_DISABLE_VERSION=(1.3) |
 | Syntax (dynamic) | TLS_DISABLE_VERSION=version |
 | Example (dynamic) | TLS_DISABLE_VERSION=(1.2 or 1.3) |
+
 ## Transport Layer Security Key Exchange Group Parameters
 You can configure the key exchange groups that are available for TLS 1.3 connections when the next-generation cryptographic provider is active.
 The `TLS_KEY_EXCHANGE_GROUPS` parameter applies to TLS 1.3 only. For TLS 1.2 connections, the key exchange algorithm is determined by the negotiated cipher suite.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name (static) | TLS_KEY_EXCHANGE_GROUPS |
@@ -137,11 +148,13 @@ The `TLS_KEY_EXCHANGE_GROUPS` parameter applies to TLS 1.3 only. For TLS 1.2 con
 | Example (static) | TLS_KEY_EXCHANGE_GROUPS=(hybrid,ec,ml-kem) |
 | Syntax (dynamic) | TLS_KEY_EXCHANGE_GROUPS=(group1[, group2, ...groupN]) |
 | Example (dynamic) | TLS_KEY_EXCHANGE_GROUPS=(hybrid,ec) |
+
 The `hybrid` value enables hybrid key exchange groups that combine elliptic curve cryptography with ML-KEM post-quantum key establishment. The `ec` value enables elliptic curve groups. The `ml-kem` value enables ML-KEM key exchange groups.
 **Note:** The `SSL_DISABLE_WEAK_EC_CURVES` parameter is deprecated. Use `TLS_KEY_EXCHANGE_GROUPS` to control key exchange groups for TLS 1.3 connections.
 ## Transport Layer Security Client Authentication Parameters
 You can configure static and dynamic parameters for Transport Layer Security (TLS) on the client.
 The following table describes the `TLS_CLIENT_AUTHENTICATION` parameters.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name (static) | TLS_CLIENT_AUTHENTICATION |
@@ -156,6 +169,7 @@ The following table describes the `TLS_CLIENT_AUTHENTICATION` parameters.
 | Example (static) | TLS_CLIENT_AUTHENTICATION=FALSE |
 | Syntax (dynamic) | TLS_CLIENT_AUTHENTICATION={TRUE \| FALSE} |
 | Example (dynamic) | TLS_CLIENT_AUTHENTICATION=FALSE |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both `TLS_CLIENT_AUTHENTICATION` and `SSL_CLIENT_AUTHENTICATION` parameters are configured, then the `SSL_CLIENT_AUTHENTICATION` parameter is ignored.
 ## Transport Layer Security X.509 Server Match Parameters
 The `TLS_SERVER_DN_MATCH` and `TLS_SERVER_CERT_DN` parameters validate the identity of the server to which a client connects.
@@ -164,6 +178,7 @@ The `TLS_SERVER_DN_MATCH` and `TLS_SERVER_CERT_DN` parameters validate the ident
 ### TLS_SERVER_DN_MATCH
 The `TLS_SERVER_DN_MATCH` parameter forces the server’s distinguished name (DN) to match the name of the service.
 The following table describes the `TLS_SERVER_DN_MATCH` parameter.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name | TLS_SERVER_DN_MATCH |
@@ -172,10 +187,12 @@ The following table describes the `TLS_SERVER_DN_MATCH` parameter.
 | Values | yes\|on\|true. Specify to enforce a match. If the DN matches the service name, the connection succeeds; otherwise, the connection fails. no\|off\|false. Specify to not enforce a match. If the DN does not match the service name, the connection is successful, but an error is logged to the sqlnet.log file. |
 | Default | Oracle8i, or later: false. TLS client (always) checks server DN. If it does not match the service name, the connection succeeds but an error is logged to sqlnet.log file. |
 | Usage Notes | Additionally configure the tnsnames.ora parameter TLS_SERVER_CERT_DN to enable server DN matching. |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both `TLS_SERVER_DN_MATCH` and `SSL_SERVER_DN_MATCH` parameters are configured, then the `SSL_SERVER_DN_MATCH` parameter is ignored.
 ### TLS_SERVER_CERT_DN
 The `TLS_SERVER_CERT_DN` specifies the distinguished name (DN) of a server.
 The following table describes the `TLS_SERVER_CERT_DN` parameter.
+
 | Attribute | Description |
 |---|---|
 | Parameter Name | TLS_SERVER_CERT_DN |
@@ -185,15 +202,18 @@ The following table describes the `TLS_SERVER_CERT_DN` parameter.
 | Default | N/A |
 | Usage Notes | Additionally configure the sqlnet.ora parameter TLS_SERVER_DN_MATCH to enable server DN matching. |
 | Example | dbalias=(description=address_list=(address=(protocol=tcps)(host=hostname)(port=portnum)))(connect_data=(sid=Finance))(security=(TLS_SERVER_CERT_DN="CN=Finance,CN=OracleContext,C=US,O=Acme")) |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both `TLS_SERVER_CERT_DN` and `SSL_SERVER_CERT_DN` parameters are configured, then the `SSL_SERVER_CERT_DN` parameter is ignored.
 ## Oracle Wallet Location
 You must specify wallet location parameters for applications that must access an Oracle wallet for loading the security credentials into the process space.
 The following table lists the configuration files in which you must specify the wallet locations.
 - sqlnet.ora
 - listener.ora
+
 | Static Configuration | Dynamic Configuration |
 |---|---|
 | WALLET_LOCATION = (SOURCE= (METHOD=File) (METHOD_DATA= (DIRECTORY=your_wallet_dir) )) | MY_WALLET_DIRECTORY = your_wallet_dir |
+
 The default wallet location is the `ORACLE_HOME` directory.
 ## Related Topics
   - TLS Cipher Suite Authentication, Encryption, Integrity, and TLS Versions

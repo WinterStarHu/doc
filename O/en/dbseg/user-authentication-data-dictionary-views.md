@@ -2,6 +2,7 @@
 
 Oracle Database provides data dictionary views that list information about user authentication, such as roles that users have or profiles they use.
 The following table lists the data dictionary views.
+
 | View | Description |
 |---|---|
 | DBA_PROFILES | Displays information about profiles, including their settings and limits |
@@ -12,5 +13,6 @@ The following table lists the data dictionary views.
 | V$DBLINK | Displays user accounts for existing database links (DB_LINK, OWNER_ID columns); applies to the current pluggable database (PDB) |
 | V$PWFILE | Lists the names and granted administrative privileges of the administrative users who are included in the password file |
 | V$SESSION | Querying the USERNAME column displays concurrently logged in users to the current PDB |
+
 ## Related Topics
   **- Oracle Database Reference

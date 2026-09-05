@@ -24,6 +24,7 @@ This feature works as follows:
 ## TDE Column Encryption ENCRYPT Clause Settings Used with TSDP Policies
 The `CREATE TABLE` and `ALTER TABLE` statement `ENCRYPT` clause settings can be used in the `POLICY_ENABLE_OPTIONS` parameter for the `DBMS_TSDP_PROTECT.ADD_POLICY` or `DBMS_TSDP_PROTECT.ALTER_POLICY` procedure.
 The following table describes these settings.
+
 | Parameter | Description | Default |
 |---|---|---|
 | encrypt_algorithm | Available values: 3DES168, AES128, AES192, AES256, ARIA128, ARIA192, ARIA256, SEED128, and GOST256. | AES192 |

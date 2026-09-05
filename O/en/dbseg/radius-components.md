@@ -2,6 +2,7 @@
 
 RADIUS has a set of authentication components that enable you to manage configuration settings.
 The following table lists the authentication components.
+
 | Component | Stored Information |
 |---|---|
 | Oracle client | Configuration setting for communicating through RADIUS. |

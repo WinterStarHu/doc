@@ -92,9 +92,11 @@ AUDIT POLICY dml_pol EXCEPT app_user;
 Option 2: Generate per-object policies excluding the application schema.
 ```
 SELECT 'begin execute immediate q''[create audit policy DML_'
+
  ||owner||'_'||table_name
  ||' actions insert,update,delete on '||owner||'.'||table_name||']''; '
  ||'execute immediate ''audit policy DML_'||owner||'_'||table_name||'''; end; /'
+
  FROM dba_tables
  WHERE owner <> 'APP_SCHEMA';
 ```
@@ -654,6 +656,7 @@ The following is a comprehensive technical discussion about how to enable and co
 - Pure Unified Audit Mode: Enabled by relinking Oracle binaries with the uniaud_on option. In this mode, the AUDIT_TRAIL parameter is ignored entirely.
 #### How do different parameter combinations affect audit behavior?
 The table below shows the resulting audit mode behavior based on the combination of the Unified Auditing and standard auditing.
+
 | Unified Auditing (v$option) = TRUE? | AUDIT_TRAIL Is Not NONE? | Unified Policies Enabled? | Standard Audit Mode | Mixed Audit Mode | Pure Unified Mode | Tables / Dictionary Views | KM Docs (Purging) |
 |---|---|---|---|---|---|---|---|
 | No | No | No | Disabled | Disabled | Disabled | None | - |
@@ -663,6 +666,7 @@ The table below shows the resulting audit mode behavior based on the combination
 | Yes | N/A | Yes/No | Disabled | Disabled | Enabled | Tables: AUDSYS.AUD$UNIFIED Views: UNIFIED_AUDIT_TRAIL | KB106078, KB82473 |
 | Note: Green = Enabled | Red = Disabled | N/A = Not Applicable to this mode. Status of AUDIT_TRAIL parameter is irrelevant when Unified Auditing (v$option) = TRUE. |
 |---|---|---|
+
 #### How do I check which audit mode is currently active?
 Run the following SQL query:
 ```

@@ -2,6 +2,7 @@
 
 Oracle Database provides data dictionary views that show information about analyzed privileges.
 The following table lists these data dictionary views.
+
 | View | Description |
 |---|---|
 | DBA_PRIV_CAPTURES | Lists information about existing privilege analysis policies |
@@ -21,5 +22,6 @@ The following table lists these data dictionary views.
 | DBA_UNUSED_USERPRIVS | Lists the user privileges and capture runs that have not been used for reported privilege analysis policies. It does not include the user privilege grant paths. |
 | DBA_USED_USERPRIVS_PATH | Lists the user privileges and capture runs that have been used for reported privilege analysis policies. It includes the user privilege grant paths. |
 | DBA_UNUSED_USERPRIVS_PATH | Lists the privileges and capture runs that have not been used for reported privilege analysis policies. It includes the user privilege grant paths. |
+
 ## Related Topics
   **- Oracle Database Reference

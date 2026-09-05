@@ -159,12 +159,14 @@ The syntax for the value of an implicit cursor attribute is SQL%attribute (for e
 The syntax for the value of a declared cursor attribute is cursor_name%attribute (for example, c1%FOUND).
 Table 1 lists the cursor attributes and the values that they can return. (Implicit cursors have additional attributes that are beyond the scope of this book.)
 **Table 1 Cursor Attribute Values**
+
 | Attribute | Values for Declared Cursor | Values for Implicit Cursor |
 |---|---|---|
 | %FOUND | If cursor is open (Footnote 1) but no fetch was attempted, NULL.If the most recent fetch returned a row, TRUE.If the most recent fetch did not return a row, FALSE. | If no DML or SELECT INTO statement has run, NULL.If the most recent DML or SELECT INTOstatement returned a row, TRUE.If the most recent DML or SELECT INTOstatement did not return a row, FALSE. |
 | %NOTFOUND | If cursor is open (Footnote 1) but no fetch was attempted, NULL.If the most recent fetch returned a row, FALSE.If the most recent fetch did not return a row, TRUE. | If no DML or SELECT INTO statement has run, NULL.If the most recent DML or SELECT INTOstatement returned a row, FALSE.If the most recent DML or SELECT INTO statement did not return a row, TRUE. |
 | %ROWCOUNT | If cursor is open (Footnote 1), a number greater than or equal to zero. | NULL if no DML or SELECT INTO statement has run; otherwise, a number greater than or equal to zero. |
 | %ISOPEN | If cursor is open, TRUE; if not, FALSE. | Always FALSE. |
+
 **Footnote 1:**   If the cursor is not open, the attribute raises the predefined exception INVALID_CURSOR.
 **See Also:**
 - “About Queries”

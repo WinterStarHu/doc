@@ -12,6 +12,7 @@ Description of the illustration physical_attributes_clause.gif
 Description of the illustration physical_attributes_clause.eps
 The following table shows parameters that appear in the syntax diagrams and provides examples of the values you might substitute for them in your statements:
 Table 1 Syntax Parameters
+
 | Parameter | Description | Examples |
 |---|---|---|
 | table | The substitution value must be the name of an object of the type specified by the parameter. For a list of all types of objects, see the section, “Schema Objects”. | employees |
@@ -27,6 +28,7 @@ Table 1 Syntax Parameters
 | subquery | The substitution value must be a SELECT statement that will be used in another SQL statement. See SELECT. | SELECT last_name FROM employees |
 | db_name | The substitution value must be the name of a nondefault database in an embedded SQL program. | sales_db |
 | db_string | The substitution value must be the database identification string for an Oracle Net database connection. For details, see the user’s guide for your specific Oracle Net protocol. | - |
+
 ## Required Keywords and Parameters
 Required keywords and parameters can appear singly or in a vertical list of alternatives. Single required keywords and parameters appear on the main path, which is the horizontal line you are currently traveling. In the following example, *library_name* is a required parameter:
 ***drop_library*::=**

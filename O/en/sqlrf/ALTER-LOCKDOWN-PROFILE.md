@@ -56,6 +56,7 @@ If you omit this clause, then the default is `ENABLE` `ALL`.
   </div>
 ```
 Table 1 PDB Lockdown Profile Features
+
 | Feature Bundle | Feature | Operations |
 |---|---|---|
 | AWR_ACCESS | AWR_ACCESS | The PDB taking manual and automatic Automatic Workload Repository (AWR) snapshots |
@@ -83,6 +84,7 @@ Table 1 PDB Lockdown Profile Features
 | OS_ACCESS | LOB_FILE_ACCESS | Using BFILE and CFILE data types |
 | OS_ACCESS | TRACE_VIEW_ACCESS | Using the following trace views: [G]V$DIAG_OPT_TRACE_RECORDS[G]V$DIAG_SQL_TRACE_RECORDS[G]V$DIAG_TRACE_FILE_CONTENTSV$DIAG_SESS_OPT_TRACE_RECORDSV$DIAG_SESS_SQL_TRACE_RECORDS |
 | OS_ACCESS | UTL_FILE | Using UTL_FILE. If this feature is disabled, then the database blocks use of the UTL_FILE.FOPEN function. |
+
 ## *lockdown_options*
 This clause lets you disable or enable user operations associate with certain database options.
 - Specify DISABLE to disable user operations for the specified options. Users will be restricted from performing these operations in any PDB to which the profile applies.

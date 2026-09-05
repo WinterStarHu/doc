@@ -6,6 +6,7 @@ When applied to multilingual data, Oracle’s implementation of the POSIX operat
 - The fourth column indicates whether Oracle’s implementation extends the operator’s semantics for handling multilingual data.
 Oracle lets you enter multibyte characters directly, if you have a direct input method, or you can use functions to compose the multibyte characters. You cannot use the Unicode hexadecimal encoding value of the form ‘`\xxxx`’. Oracle evaluates the characters based on the byte values used to encode the character, not the graphical representation of the character. All accented characters are considered word characters.
 Table 2 POSIX and Multilingual Operator Relationships
+
 | Operator | POSIX BRE syntax | POSIX ERE Syntax | Multilingual Enhancement |
 |---|---|---|---|
 | \ | Yes | Yes | - |

@@ -24,6 +24,7 @@ Oracle Database supports cultural conventions that are specific to geographical 
 ## About Date and Time Formats
 Different countries have different conventions for displaying the hour, day, month, and year.
 For example, this table shows the local date and time format for five countries and gives an example of each format:
+
 | Country | Date Format | Example | Time Format | Example |
 |---|---|---|---|---|
 | China | yyyy-mm-dd | 2005-02-28 | hh24:mi:ss | 13:50:23 |
@@ -31,6 +32,7 @@ For example, this table shows the local date and time format for five countries 
 | Germany | dd.mm.rr | 28.02.05 | hh24:mi:ss | 13:50:23 |
 | UK | dd/mm/yyyy | 28/02/2005 | hh24:mi:ss | 13:50:23 |
 | US | mm/dd/yyyy | 02/28/2005 | hh:mi:ssxff am | 1:50:23.555 PM |
+
 **See Also:**
 - “About the NLS_DATE_FORMAT Parameter”
 - “About the NLS_DATE_LANGUAGE Parameter”
@@ -64,6 +66,7 @@ The calendar system is specified by the NLS_CALENDAR parameter.
 ## About Numeric and Monetary Formats
 Different countries have different numeric and monetary conventions.
 This table shows the local numeric and monetary format for five countries and gives an example of each format:
+
 | Country | Numeric Format | Monetary Format |
 |---|---|---|
 | China | 1,234,567.89 | ©1,234.56 |
@@ -71,6 +74,7 @@ This table shows the local numeric and monetary format for five countries and gi
 | Germany | 1.234.567,89 | 1.234,56€ |
 | UK | 1,234,567.89 | £1,234.56 |
 | US | 1,234,567.89 | $1,234.56 |
+
 **See Also:**
 - “About the NLS_NUMERIC_CHARACTERS Parameter”
 - “About the NLS_CURRENCY Parameter”

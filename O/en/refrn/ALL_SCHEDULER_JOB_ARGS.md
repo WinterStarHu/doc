@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_JOB_ARGS displays information about the arguments of all Scheduler jobs in the database.
 
 - USER_SCHEDULER_JOB_ARGS displays information about the arguments of the Scheduler jobs owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) |  | Owner of the job to which the argument belongs |
@@ -15,6 +16,7 @@ Related Views
 | VALUE | VARCHAR2(4000) |  | Value of the argument (in string format) if the argument is a string |
 | ANYDATA_VALUE | ANYDATA |  | Value of the argument (in AnyData format) |
 | OUT_ARGUMENT | VARCHAR2(5) |  | Reserved for future use |
+
 See Also:
 - "DBA_SCHEDULER_JOB_ARGS"
 - "USER_SCHEDULER_JOB_ARGS"

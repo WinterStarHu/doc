@@ -69,6 +69,7 @@ Specify `NOFORCE` if you want Oracle ASM to return an error if the disk is alrea
 ## ATTRIBUTE Clause
 Use this clause to set attribute values for the disk group. You can view the current attribute values by querying the `V$ASM_ATTRIBUTE` view. Table 13-2 lists the attributes you can set with this clause. All attribute values are strings.
 Table 2 Disk Group Attributes
+
 | Attribute | Valid Values | Description |
 |---|---|---|
 | ACCESS_CONTROL.ENABLED | true or false | Specifies whether Oracle ASM File Access Control is enabled for a disk group. If set to true, accessing Oracle ASM files is subject to access control. If false, any user can access every file in the disk group. All other operations behave independently of this attribute. The default value is false.If both the compatible.rdbms and compatible.asm attributes are set to at least 11.2, you can set this attribute in an ALTER DISKGROUP ... SET ATTRIBUTE statement. You cannot set this attribute when creating a disk group.When you set up file access control on an existing disk group, the files previously created remain accessible by everyone, unless you run the ALTER DISKGROUP SET PERMISSION statement to restrict the permissions.Note: This attribute is used in conjunction with ACCESS_CONTROL.UMASK to manage Oracle ASM File Access Control. After setting the ACCESS_CONTROL.ENABLED disk attribute, you must set permissions with the ACCESS_CONTROL.UMASK attribute. |
@@ -86,6 +87,7 @@ Table 2 Disk Group Attributes
 | SECTOR_SIZE | 512, 4096, or 4K | Sets the physical sector size of a disk group. All disks in the disk group must have this physical sector size. The default value is obtained from the disks that join the disk group.To set this disk group attribute during the creation of a disk group, the COMPATIBLE.ASM and COMPATIBLE.RDBMS disk group attributes must be set to 11.2 or higher. To alter this disk group attribute after a disk group has been created, the COMPATIBLE.ASM disk group attribute must be set to 12.2 or higher. |
 | THIN_PROVISIONED | true or false | Enables (true) or disables (false) the functionality to discard unused storage space after a disk group rebalance is completed. The default value is false. |
 | CONTENT_HARDCHECK | true or false | CONTENT_HARDCHECK enables or disables Hardware Assisted Resilient Data (HARD) checking when performing data copy operations for rebalancing a disk group. This attribute can only be set when altering a disk group. |
+
 Footnote 1
 Specify at least the first two digits of a valid Oracle Database release number. Refer to *Oracle Database Administrator’s Guide* for information on specifying valid version numbers. For example, you can specify `compatibility` as ‘11.2’ or ‘12.1’.
 **See Also:**   *Oracle Automatic Storage Management Administrator’s Guide* for more information on managing these attribute settings

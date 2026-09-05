@@ -83,6 +83,7 @@ When you create a file in an Oracle ASM disk group, the file receives a system-g
 - filenumber and incarnation_number are system-generated identifiers to guarantee uniqueness.
 You can determine the fully qualified names of Oracle ASM files by querying the dynamic performance view appropriate for the file type (for example `V$DATAFILE` for data files, `V$CONTROLFILE` for control files, and so on). You can also obtain the *filenumber* and *incarnation_number* portions of the fully qualified names by querying the `V$ASM_FILE` view.
 Table 1 Oracle File Types and Oracle ASM File Type Tags
+
 | Oracle ASM file_type | Description | Oracle ASM file_type_tag | Comments |
 |---|---|---|---|
 | CONTROLFILE | Control files and backup control files | CurrentBackup | - |
@@ -98,6 +99,7 @@ Table 1 Oracle File Types and Oracle ASM File Type Tags
 | DUMPSET | Data Pump dumpset | user*obj#*file# | Dump set files encode the user name, the job number that created the dump set, and the file number as part of the tag. |
 | XTRANSPORT | Data file convert | tsname | - |
 | AUTOBACKUP | Automatic backup files | hasspfile_timestamp | hasspfile can take one of two values: s indicates that the backup set includes the spfile; n indicates that the backup set does not include the spfile. |
+
 ## *numeric_file_name*
 A numeric Oracle ASM filename is similar to a fully qualified filename except that it uses only the unique *filenumber.incarnation_number* string. You can use this form only to refer to an existing file. Therefore, if you are using this form during file creation, you must also specify `REUSE`.
 ## *incomplete_file_name*

@@ -14,6 +14,7 @@ You can use special queries to find information about various types of privilege
 ## Data Dictionary Views to Find Information about Privilege and Role Grants
 Oracle Database provides data dictionary views that describe privilege and role grants.
 The following table lists views that you can query to access information about grants of privileges and roles.
+
 | View | Description |
 |---|---|
 | ALL_COL_PRIVS | Describes all column object grants for which the current user or PUBLIC is the object owner, grantor, or grantee |
@@ -46,6 +47,7 @@ The following table lists views that you can query to access information about g
 | USER_TAB_PRIVS_MADE | Lists grants on all objects owned by the current user |
 | USER_TAB_PRIVS_RECD | Lists object grants for which the current user is the grantee |
 | V$PWFILE_USERS | Lists all users in the current PDB who have been granted administrative privileges |
+
 The following table lists views that you can query to access information about grants of privileges and roles.
 This section provides some examples of using these views. For these examples, assume the following statements were issued:
 ```

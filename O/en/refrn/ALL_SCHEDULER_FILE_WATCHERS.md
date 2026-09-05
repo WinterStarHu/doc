@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_FILE_WATCHERS displays information about all Scheduler file watch requests in the database.
 
 - USER_SCHEDULER_FILE_WATCHERS displays information about the Scheduler file watch requests owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the file watch request |
@@ -20,6 +21,7 @@ Related Views
 | STEADY_STATE_DURATION | INTERVAL DAY(3) TO SECOND(0) |  | Time to wait before concluding that the file has stopped growing |
 | LAST_MODIFIED_TIME | TIMESTAMP(6) WITH TIME ZONE |  | Time at which this file watcher was last modified |
 | COMMENTS | VARCHAR2(4000) |  | Comments on the file watch request |
+
 See Also:
 - "DBA_SCHEDULER_FILE_WATCHERS"
 - "USER_SCHEDULER_FILE_WATCHERS"

@@ -34,6 +34,7 @@ Roles have the following functionality:
 ## Properties of Roles and Why They Are Advantageous
 Roles have special properties that make their management very easy, such reduced privilege administration.
 The following table describes the properties of roles that enable easier privilege management within a database.
+
 | Property | Description |
 |---|---|
 | Reduced privilege administration | Rather than granting the same set of privileges explicitly to several users, you can grant the privileges for a group of related users to a role, and then only the role must be granted to each member of the group. |
@@ -41,6 +42,7 @@ The following table describes the properties of roles that enable easier privile
 | Selective availability of privileges | You can selectively enable or disable the roles granted to a user. This allows specific control of a user’s privileges in any given situation. |
 | Application awareness | The data dictionary records which roles exist, so you can design applications to query the dictionary and automatically enable (or disable) selective roles when a user attempts to execute the application by way of a given user name. |
 | Application-specific security | You can protect role use with a password. Applications can be created specifically to enable a role when supplied the correct password. Users cannot enable the role if they do not know the password. |
+
 Database administrators often create roles for a database application. You should grant a secure application role all privileges necessary to run the application. You then can grant the secure application role to other roles or users. An application can have several different roles, each granted a different set of privileges that allow for more or less data access while using the application.
 The DBA can create a role with a password to prevent unauthorized use of the privileges granted to the role. Typically, an application is designed so that when it starts, it enables the proper role. As a result, an application user does not need to know the password for an application role.
 ## Typical Uses of Roles

@@ -17,6 +17,7 @@ The Oracle Virtual Private Database policy associates the VPD function with a da
 This function defines the actions of the Oracle Virtual Private Database `WHERE` clause. You must then associate this function with the database table to which the Oracle Virtual Private Database (VPD) action applies.
 You can do this by configuring an Oracle Virtual Private Database policy. The policy itself is a mechanism for managing the Virtual Private Database function. The policy also enables you to add fine-grained access control, such as specifying the types of SQL statements or particular table columns the policy affects. When a user tries to access the data in this database object, the policy goes into effect automatically.
 The following table lists the procedures in the `DBMS_RLS` package.
+
 | Procedure | Description |
 |---|---|
 | For Handling Individual Policies | - |
@@ -37,6 +38,7 @@ The following table lists the procedures in the `DBMS_RLS` package.
 | For Handling Application Contexts | - |
 | DBMS_RLS.ADD_POLICY_CONTEXT | Adds the context for the active application |
 | DBMS_RLS.DROP_POLICY_CONTEXT | Drops the context for the application |
+
 ## Attaching a Policy to a Database Table, View, or Synonym
 The `DBMS_RLS` PL/SQL package can attach a policy to a table, view, or synonym.
   - To attach a policy to a database table, view, or synonym, use the DBMS_RLS.ADD_POLICY procedure.
@@ -483,6 +485,7 @@ For example, consider a `sales_history` table with a single policy. This policy 
 ### Summary of the Five Oracle Virtual Private Database Policy Types
 Oracle Virtual Private Database provides five policy types, based on user needs such as hosting environments.
 The following table summarizes the types of policy types available.
+
 | Policy Types | When the Policy Function Executes | Usage Example | Shared Across Multiple Objects? |
 |---|---|---|---|
 | DYNAMIC | Policy function re-executes every time a policy-protected database object is accessed. | Applications where policy predicates must be generated for each query, such as time-dependent policies where users are denied access to database objects at certain times during the day | No |
@@ -490,6 +493,7 @@ The following table summarizes the types of policy types available.
 | SHARED_STATIC | Same as STATIC | Hosting environments, such as data warehouses where the same predicate must be applied to multiple database objects | Yes |
 | CONTEXT_SENSITIVE | At statement parse time and at statement execution time when the local application context changed since the last use of the cursor | Three-tier, session pooling applications where policies enforce two or more predicates for different users or groups | No |
 | SHARED_CONTEXT_SENSITIVE | First time the object is reference in a database session. Predicates are cached in the private session memory UGA so policy functions can be shared among objects. | Same as CONTEXT_SENSITIVE, but multiple objects can share the policy function from the session UGA | Yes |
+
 ## Related Topics
   - Components of an Oracle Virtual Private Database Policy
   - Using Application Contexts to Retrieve User Information

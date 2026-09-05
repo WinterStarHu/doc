@@ -7,6 +7,7 @@ Related Views
 - DBA_SCHEDULER_CREDENTIALS displays information about all credentials in the database.
 
 - USER_SCHEDULER_CREDENTIALS displays information about the credentials owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the Scheduler credential |
@@ -15,6 +16,7 @@ Related Views
 | DATABASE_ROLE | VARCHAR2(9) |  | For a database target, the database role to use when logging in: SYSDBA SYSOPER |
 | WINDOWS_DOMAIN | VARCHAR2(30) |  | For a Windows target, the Windows domain to use when logging in |
 | COMMENTS | VARCHAR2(4000) |  | Comments on the credential |
+
 See Also:
 - "ALL_CREDENTIALS"
 - "DBA_SCHEDULER_CREDENTIALS"

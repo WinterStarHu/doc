@@ -2,6 +2,7 @@
 
 Oracle Database provides data dictionary views that provide information about application contexts.
 The following table lists these data dictionary views.
+
 | View | Description |
 |---|---|
 | ALL_CONTEXT | Describes all context namespaces in the current session for which attributes and values were specified using the DBMS_SESSION.SET_CONTEXT procedure. It lists the namespace and its associated schema and PL/SQL package. |
@@ -13,6 +14,7 @@ The following table lists these data dictionary views.
 | USER_POLICY_CONTEXTS | Describes the driving contexts defined for the synonyms, tables, and views owned by the current user. Its columns (except for OBJECT_OWNER) are the same as those in ALL_POLICY_CONTEXTS. |
 | V$CONTEXT | Lists set attributes in the current PDB session. Users do not have access to this view unless you grant the user the SELECT privilege on it. |
 | V$SESSION | Lists detailed information about each current PDB session. Users do not have access to this view unless you grant the user the SELECT privilege on it. |
+
 **Tip:** In addition to these views, check the database trace file if you find errors when running applications that use application contexts. The `USER_DUMP_DEST` initialization parameter sets the directory location of the trace files. You can find the value of this parameter by issuing `SHOW PARAMETER USER_DUMP_DEST` in SQL*Plus.
 ## Related Topics
   **- Oracle Database Reference

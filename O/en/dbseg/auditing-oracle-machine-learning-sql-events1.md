@@ -14,6 +14,7 @@ To access the audit trail, you can query the `UNIFIED_AUDIT_TRAIL` data dictiona
 ## Oracle Data Mining Unified Audit Trail Events
 The unified audit trail can capture Oracle Data Mining audit events..
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | AUDIT | Generates an audit record for a Data Mining model |
@@ -21,6 +22,7 @@ The following table describes these events.
 | GRANT | Gives permission to a user to access the Data Mining model |
 | RENAME | Changes the name of the Data Mining model |
 | SELECT | Applies the Data Mining model or view its signature |
+
 ## Configuring a Unified Audit Policy for Oracle Data Mining
 The `CREATE AUDIT POLICY` statement `ACTIONS` and `ON MINING MODEL` clauses can be used to create Oracle Data Mining event unified audit policies.
   - Use the following syntax to create a unified audit policy for Oracle Data Mining:

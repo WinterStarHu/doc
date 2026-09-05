@@ -74,12 +74,14 @@ The next time that these users log in, they will be forced to change their passw
   - Create a back up copy of the sqlnet.ora parameter file. By default, this file is located in the $ORACLE_HOME/network/admin directory on UNIX operating systems and the %ORACLE_HOME%\network\admin directory on Microsoft Windows operating systems. Be aware that in a Multitenant environment, the settings in the sqlnet.ora file apply to all PDBs.
   - Set the SQLNET.ALLOWED_LOGON_VERSION_SERVER parameter, using the following table for guidance.
 The following table shows the effect of the `SQLNET.ALLOWED_LOGON_VERSION_SERVER` setting on password version generation.
+
 | SQLNET.ALLOWED_LOGON_VERSION_SERVER Setting | 8 | 11 | 12 | 12a |
 |---|---|---|---|---|
 | Server runs in Exclusive Mode? | No | No | Yes | Yes |
 | Generate the 10G password version? | Yes | Yes | No | No |
 | Generate the 11G password version? | Yes | Yes | Yes | No |
 | Generate the 12C password version? | Yes | Yes | Yes | Yes |
+
 If you only use Oracle Database 12c release 12.1.0.2 or later clients, then set `SQLNET.ALLOWED_LOGON_VERSION_SERVER` to `12a`.
 The higher the setting, the more restrictive the use of password versions, as follows:
 ````

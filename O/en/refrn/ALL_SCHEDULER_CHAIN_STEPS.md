@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_CHAIN_STEPS displays information about the defined steps of all chains in the database.
 
 - USER_SCHEDULER_CHAIN_STEPS displays information about the defined steps of the chains owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the Scheduler chain the step is in |
@@ -28,6 +29,7 @@ Related Views
 | RESTART_ON_FAILURE | VARCHAR2(5) |  | Indicates whether the step should be restarted on application failure (TRUE) or not (FALSE) |
 | STEP_TYPE | VARCHAR2(21) |  | Type of the step: EVENT_SCHEDULE INLINE_EVENT SUBCHAIN PROGRAM |
 | TIMEOUT | INTERVAL DAY(3) TO SECOND(0) |  | Timeout for waiting on an event schedule |
+
 See Also:
 - "DBA_SCHEDULER_CHAIN_STEPS"
 - "USER_SCHEDULER_CHAIN_STEPS"

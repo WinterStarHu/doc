@@ -55,6 +55,7 @@ You can find information about security patches, certifications, and the support
 `https://support.oracle.com`
 ## Conventions
 The following text conventions are used in this document:
+
 | Convention | Meaning |
 |---|---|
 | boldface | Boldface type indicates graphical user interface elements associated with an action, or terms defined in text or the glossary. |

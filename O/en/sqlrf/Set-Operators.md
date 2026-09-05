@@ -2,6 +2,7 @@
 
 Set operators combine the results of two component queries into a single result. Queries containing set operators are called compound queries. Table 4-5 lists SQL set operators. They are fully described, including examples and restrictions on these operators, in The UNION [ALL], INTERSECT, MINUS Operators.
 Table 5 Set Operators
+
 | Operator | Returns |
 |---|---|
 | UNION | All distinct rows selected by either query |

@@ -278,12 +278,14 @@ This clause enables you to change the state, or open mode, of a PDB. Table 11-2 
 **
 - Specify the pdb_close clause to change the open mode to MOUNTED.
 Table 2 PDB Open Modes
+
 | Open Mode | Description |
 |---|---|
 | READ WRITE | A PDB in open read/write mode allows queries and user transactions to proceed and allows users to generate redo logs. |
 | READ ONLY | A PDB in open read-only mode allows queries but does not allow user changes. |
 | MIGRATE | When a PDB is in open migrate mode, you can run database upgrade scripts on the PDB. |
 | MOUNTED | When a PDB is in mounted mode, it behaves like a non-CDB in mounted mode. It does not allow changes to any objects, and it is accessible only to database administrators. It cannot read from or write to data files. Information about the PDB is removed from memory caches. Cold backups of the PDB are possible. |
+
 You can view the open mode of a PDB by querying the `OPEN_MODE` column of the `V$PDBS` view.
 **See Also:**   *Oracle Database Administrator’s Guide* for a complete description of PDB open modes
 ***pdb_name***

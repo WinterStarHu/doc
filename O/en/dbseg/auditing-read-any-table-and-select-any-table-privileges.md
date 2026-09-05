@@ -21,6 +21,7 @@ For any `SELECT` object operations, also create the policy on the `SELECT` state
 ## How the Unified Audit Trail Captures READ ANY TABLE and SELECT ANY TABLE
 The unified audit trail captures `SELECT` behavior based on whether a user has the `READ ANY TABLE` or the `SELECT ANY TABLE` privilege.
 The following table describes how the unified audit trail captures these actions.
+
 | Statement User Issues | Privilege Granted to User | System Privilege Being Audited | Expected UNIFIED_AUDIT_TRAIL Behavior |
 |---|---|---|---|
 | SELECT | SELECT ANY TABLE | SELECT ANY TABLE | Record inserted into SYSTEM_PRIVILEGE_USED: SELECT ANY TABLE |
@@ -55,5 +56,6 @@ The following table describes how the unified audit trail captures these actions
 | SELECT ... FOR UPDATE | Neither SELECT ANY TABLE nor READ ANY TABLE | READ ANY TABLE | No record |
 | SELECT ... FOR UPDATE | Neither SELECT ANY TABLE nor READ ANY TABLE | Both SELECT ANY TABLE and READ ANY TABLE | No record |
 | SELECT ... FOR UPDATE | Neither SELECT ANY TABLE nor READ ANY TABLE | Neither SELECT ANY TABLE or READ ANY TABLE | No record |
+
 ## Related Topics
   - Auditing Object Actions

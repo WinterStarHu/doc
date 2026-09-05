@@ -207,6 +207,7 @@ If you omit this clause, then `CONTAINER` `=` `CURRENT` is the default.
   **Note:**   If you specify the `CONTAINER` clause when granting a privilege or role, then the current container must be the same container and you must specify the same `CONTAINER` clause when you revoke the privilege or role. Refer to the CONTAINER Clause of the `REVOKE` statement for more information.
 ## Listings of System and Object Privileges
 Table 1 System Privileges (Organized by the Database Object Operated Upon)
+
 | System Privilege Name | Operations Authorized |
  | — | — |
  | **Advisor Framework Privileges:** All of the advisor framework privileges are part of the DBA role. | - |
@@ -214,16 +215,22 @@ Table 1 System Privileges (Organized by the Database Object Operated Upon)
  | `ADMINISTER SQL TUNING SET` | Create, drop, select (read), load (write), and delete SQL tuning sets owned by the grantee through the `DBMS_SQLTUNE` package. |
  | `ADMINISTER ANY SQL TUNING SET` | Create, drop, select (read), load (write), and delete SQL tuning sets owned by any user through the `DBMS_SQLTUNE` package. |
  | `CREATE ANY SQL PROFILE` |
+
 Accept a SQL Profile recommended by the SQL Tuning Advisor, which is accessed through Enterprise Manager or by the `DBMS_SQLTUNE` package.
 Note: This privilege has been deprecated in favor of `ADMINISTER` `SQL` `MANAGEMENT` `OBJECT`.
+
   |
  | `ALTER ANY SQL PROFILE` |
+
 Alter the attributes of an existing SQL Profile.
 Note: This privilege has been deprecated in favor of `ADMINISTER` `SQL` `MANAGEMENT` `OBJECT`.
+
   |
  | `DROP ANY SQL PROFILE` |
+
 Drop existing SQL Profiles.
 Note: This privilege has been deprecated in favor of `ADMINISTER` `SQL` `MANAGEMENT` `OBJECT`.
+
   |
  | `ADMINISTER SQL MANAGEMENT OBJECT` | Create, alter, and drop SQL Profiles owned by any user through the `DBMS_SQLTUNE` package. |
  | **ANALYTIC VIEWS** | - |
@@ -259,8 +266,10 @@ Note: This privilege has been deprecated in favor of `ADMINISTER` `SQL` `MANAGEM
  | **DEBUGGING:** | - |
  | `DEBUG` `CONNECT` `SESSION` | Connect the current session to a debugger. |
  | `DEBUG` `ANY` `PROCEDURE` |
+
 Debug all PL/SQL and Java code in any database object. Display information on all SQL statements executed by the application.
 Note: Granting this privilege is equivalent to granting the `DEBUG` object privilege on all applicable objects in the database.
+
   |
  | **DICTIONARIES:** | - |
  | `ANALYZE` `ANY` `DICTIONARY` | Analyze any data dictionary object. |
@@ -295,8 +304,10 @@ Note: Granting this privilege is equivalent to granting the `DEBUG` object privi
  | **JOB SCHEDULER OBJECTS:** | The following privileges are needed to execute procedures in the `DBMS_SCHEDULER` package. This privileges do not apply to lightweight jobs, which are not database objects. Refer to Oracle Database Administrator’s Guide for more information about lightweight jobs. |
  | `CREATE JOB` | Create, alter, or drop jobs, chains, schedules, programs, credentials, resource objects, or incompatibility resource objects in the grantee’s schema. |
  | `CREATE ANY JOB` |
+
 Create, alter, or drop jobs, chains, schedules, programs, credentials, resource objects, or incompatibility resource objects in any schema except `SYS,`AUDSYS.
 Note: This extremely powerful privilege allows the grantee to execute code as any other user. It should be granted with caution.
+
   |
  | `CREATE EXTERNAL JOB` | Create in the grantee’s schema an executable scheduler job that runs on the operating system. |
  | `EXECUTE ANY CLASS` | Specify any job class in a job in the grantee’s schema. |
@@ -321,8 +332,10 @@ Note: This extremely powerful privilege allows the grantee to execute code as an
  | `QUERY REWRITE` | This privilege has been deprecated. No privileges are needed for a user to enable rewrite for a materialized view that references tables or views in the user’s own schema. |
  | `GLOBAL QUERY REWRITE` | Enable rewrite using a materialized view when that materialized view references tables or views in any schema except `SYS`. |
  | `ON COMMIT REFRESH` |
+
 Create a refresh-on-commit materialized view on any table in the database.
 Alter a refresh-on-demand materialized view on any table in the database to refresh-on-commit.
+
   |
  | `FLASHBACK ANY TABLE` | Issue a SQL Flashback Query on any table, view, or materialized view in any schema except `SYS`. This privilege is not needed to execute the `DBMS_FLASHBACK` procedures. |
  | **MINING MODELS:** | - |
@@ -490,13 +503,17 @@ Alter a refresh-on-demand materialized view on any table in the database to refr
  | `SYSDG` | {::nomarkdown}<p>Perform the following Oracle Data Guard operations:</p><p><code class="codeph">STARTUP</code> and <code class="codeph">SHUTDOWN</code>.</p><p><code class="codeph">FLASHBACK</code> <code class="codeph">DATABASE</code>.</p><p>Create, use, view, and drop restore points (including guaranteed restore points).</p><p><code class="codeph">SELECT</code> on <code class="codeph">X$</code> tables, <code class="codeph">V$</code> views, and <code class="codeph">GV$</code> views.</p><p>Includes the <code class="codeph">ALTER</code> <code class="codeph">DATABASE</code>, <code class="codeph">ALTER</code> <code class="codeph">SESSION</code>, <code class="codeph">ALTER</code> <code class="codeph">SYSTEM</code>, <code class="codeph">CREATE</code> <code class="codeph">SESSION</code>, and <code class="codeph">SELECT</code> <code class="codeph">ANY</code> <code class="codeph">DICTIONARY</code> privileges. </p> {:/} |
  | `SYSKM` | {::nomarkdown}<p>Perform the following encryption key management operations:</p><p>Connect to the database even if the database is not open.</p><p><code class="codeph">SELECT</code> on the following views when the database is open: <code class="codeph">V$CLIENT_SECRETS</code>, <code class="codeph">V$ENCRYPTED_TABLESPACES</code>, <code class="codeph">V$ENCRYPTION_KEYS</code>, <code class="codeph">V$ENCRYPTION_WALLET</code> and <code class="codeph">V$WALLET</code>.</p><p>Includes the <code class="codeph">ADMINISTER</code> <code class="codeph">KEY</code> <code class="codeph">MANAGEMENT</code> and <code class="codeph">CREATE</code> <code class="codeph">SESSION</code> privileges. </p> {:/} |
  | `SYSOPER` |
+
 `STARTUP` and `SHUTDOWN` operations.
 `ALTER` `DATABASE`: open, mount, or back up.
 `ARCHIVELOG` and `RECOVERY`.
 `CREATE` `SPFILE`.
 Includes the `RESTRICTED` `SESSION` privilege.
+
   |
+
 Table 2 Object Privileges (Organized by the Database Object Operated Upon)
+
 | Object Privilege Name | Operations Authorized |
 |---|---|
 | ANALYTIC VIEW PRIVILEGES | The following analytic view privileges authorize operations on analytic views. |
@@ -580,6 +597,7 @@ Table 2 Object Privileges (Organized by the Database Object Operated Upon)
 | SELECT | Query the view with the SELECT statement, including SELECT ... FOR UPDATE.See Also: object_privilege for additional information on granting this object privilege on a view |
 | UNDER | Create a subview under this view. You can grant this object privilege only if you have the UNDER ANY VIEW privilege WITH GRANT OPTION on the immediate superview of this view. |
 | UPDATE | Change data in the view with the UPDATE statement. |
+
 ## Examples
 **Granting a System Privilege to a User: Example**
 To grant the `CREATE` `SESSION` system privilege to the sample user `hr`, allowing `hr` to log on to Oracle Database, issue the following statement:

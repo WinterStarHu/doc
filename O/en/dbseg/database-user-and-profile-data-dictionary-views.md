@@ -9,6 +9,7 @@ Oracle Database provides a set of data dictionary views that provide information
 ## Data Dictionary Views That List Information About Users and Profiles
 Oracle Database provides a set of data dictionary views that contain information about database users and profiles.
 The following table lists these data dictionary views.
+
 | View | Description |
 |---|---|
 | ALL_OBJECTS | Describes all objects accessible to the current user |
@@ -28,6 +29,7 @@ The following table lists these data dictionary views.
 | V$SESSION | Lists session information for the current database session |
 | V$SESSTAT | Displays user session statistics |
 | V$STATNAME | Displays decoded statistic names for the statistics shown in the V$SESSTAT view |
+
 The following sections present examples of using these views. These examples assume that the following statements have been run. The users are all local users.
 ```
 CREATE PROFILE clerk LIMIT

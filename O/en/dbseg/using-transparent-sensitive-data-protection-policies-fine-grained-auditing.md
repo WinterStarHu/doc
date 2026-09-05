@@ -18,6 +18,7 @@ This feature works as follows:
 ## Fine-Grained Auditing Parameters That Are Used with TSDP Policies
 `DBMS_FGA.ADD_POLICY` settings can be used in the `POLICY_ENABLE_OPTIONS` parameter for the `DBMS_TSDP_PROTECT.ADD_POLICY` or `DBMS_TSDP_PROTECT.ALTER_POLICY` procedure.
 The following table describes these settings.
+
 | Parameter | Description | Default |
 |---|---|---|
 | audit_condition | Specifies a Boolean value to indicate a monitoring condition, using the following syntax: operator value. For example: < 1000. | NULL |

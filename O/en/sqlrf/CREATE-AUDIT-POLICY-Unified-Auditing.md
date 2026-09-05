@@ -48,6 +48,7 @@ Use this clause to audit all actions on the specified object. All of the actions
 **ON Clause**
 Use the `ON` clause to specify the object to be audited. Directories and data mining models are identified separately because they reside in separate namespaces. To audit actions on a directory, specify `ON` `DIRECTORY` *directory_name*. To audit actions on a data mining model, specify `ON` `MINING` `MODEL` *object_name*. To audit actions on the other types of objects listed in Table 13-1, specify `ON` *object_name*. If you do not qualify *object_name* with *schema*, then the database assumes the object is in your own schema.
 Table 1 Unified Auditing Objects and Actions
+
 | Type of Object | Actions |
 |---|---|
 | Directory | AUDIT, GRANT, READ |
@@ -62,6 +63,7 @@ Table 1 Unified Auditing Objects and Actions
 | Sequence | ALTER, AUDIT, GRANT, SELECT |
 | Table | ALTER, AUDIT, COMMENT, DELETE, FLASHBACK, GRANT, INDEX, INSERT, LOCK, RENAME, SELECT, UPDATE |
 | View | AUDIT, DELETE, FLASHBACK, GRANT, INSERT, LOCK, RENAME, SELECT, UPDATE |
+
 **Note 1:** When you audit the `EXECUTE` operation on a PL/SQL stored procedure or a stored function, the database considers only its ability to find the procedure or function and authorize its execution when determining the success or failure of the operation for the purposes of auditing. Therefore, if you specify the `WHENEVER` `NOT` `SUCCESSFUL` clause, then only invalid object errors, non-existent object errors, and authorization failures are audited; errors encountered during the execution of the procedure or function are not audited. If you specify the `WHENEVER` `SUCCESSFUL` clause, then all executions that are not blocked by invalid object errors, non-existent object errors, or authorization failures are audited, regardless of whether errors are encountered during execution.
 **Note 2:** To audit the failure of a recursive SQL operation inside a PL/SQL stored procedure or stored function, configure auditing for the SQL operation.
 **Note 3:** The auditing of `EXECUTE` on a PL/SQL stored procedure, function, or package in the database happens during the instantiation phase of the procedure, function, or package.

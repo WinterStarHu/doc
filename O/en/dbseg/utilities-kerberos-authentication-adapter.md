@@ -10,6 +10,7 @@ The Oracle Kerberos authentication adapter utilities are designed for an Oracle 
 The `okinit` utility obtains and caches Kerberos tickets.
 This utility is typically used to obtain the ticket-granting ticket, using a password entered by the user to decrypt the credential from the key distribution center (KDC). The ticket-granting ticket is then stored in the user’s credential cache.
 The following table lists the options available with `okinit`. To use the functionality that is described in this table, you must set the `sqlnet.ora` `SQLNET.KERBEROS5_CONF_MIT` parameter to `TRUE`. (Note that `SQLNET.KERBEROS5_CONF_MIT` is deprecated, but is retained for backward compatibility for `okinit`.)
+
 | Option | Description |
 |---|---|
 | -f \| -F | Requests forwardable or non-forwardable tickets. This option is necessary to follow database links. |
@@ -30,9 +31,11 @@ The following table lists the options available with `okinit`. To use the functi
 | -T armor_cache | If supported by the KDC, this cache is used to armor the request, preventing offline dictionary attacks and enabling the use of additional pre-authentication mechanisms. |
 | -X attribute[=value | Specifies a pre-authentication attribute and value. Specifies one of the following values: X509_user_identity=value specifies where to find the user’s X509 identity information, X509_anchors=value specifies where to find trusted X509 anchor information, and flag_RSA_PROTOCOL[=yes] specifies the use of RSA rather than the default Diffie-Hellman protocol. |
 | -? | List command line options. |
+
 ## oklist Utility Options for Displaying Credentials
 The `oklist` utility displays the list of tickets held.
 The following table lists the available `oklist` options. To use the functionality that is described in this table, you must set the `sqlnet.ora` `SQLNET.KERBEROS5_CONF_MIT` parameter to `TRUE`. (Note that `SQLNET.KERBEROS5_CONF_MIT` is deprecated, but is retained for backward compatibility for `oklist`.)
+
 | Option | Description |
 |---|---|
 | -f | Show flags with credentials. Relevant flags are: I, credential is a ticket-granting ticket; F, credential is forwardable; f, credential is forwarded. |
@@ -48,6 +51,7 @@ The following table lists the available `oklist` options. To use the functionali
 | -t | Displays the time entry timestamps for each keytab entry in the keytab file |
 | -K | Displays the value of the encryption key in each keytab entry in the keytab file |
 | -V | Displays the Kerberos version number and exit. |
+
 The show flag option (`-f`) displays additional information, as shown in the following example:
 ```
 % oklist -f
@@ -58,14 +62,17 @@ Flags: FI
 ## okdstry Utility Options for Removing Credentials from the Cache File
 The `okdstry` (`okdestroy`) utility removes credentials from the cache file.
 The following table lists the available `okdstry` options. To use the functionality that is described in this table, you must set the `sqlnet.ora` `SQLNET.KERBEROS5_CONF_MIT` parameter to `TRUE`. (Note that `SQLNET.KERBEROS5_CONF_MIT` is deprecated, but is retained for backward compatibility for `okdstry`.)
+
 | Option | Description |
 |---|---|
 | -A | Destroys all caches in the collection, if a cache collection is available |
 | -q | Runs quietly. Normally okdstry beeps if it fails to destroy the user’s tickets. This flag suppresses this behavior. |
 | -c cache_name | Uses cache_name as the credentials (ticket) cache name and location. For UNIX, the default is /tmp/krb5cc_uid. You can also specify the alternate credential cache by using the SQLNET.KERBEROS5_CC_NAME parameter in the sqlnet.ora file. |
+
 ## okcreate Utility Options for Automatic Keytab Creation
 The `okcreate` utility automates the creation of keytabs from either the KDC or a service endpoint.
 The following table lists the available `okcreate` options.
+
 | Option | Description |
 |---|---|
 | -name service_name | Specifies the service name of the kerberized service for which to get a keytab.The default is oracle. |

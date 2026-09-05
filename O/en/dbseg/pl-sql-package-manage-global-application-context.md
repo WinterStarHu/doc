@@ -29,12 +29,14 @@ For PL/SQL packages that set a global application context, use a single getter f
 ## DBMS_SESSION.SET_CONTEXT username and client_id Parameters
 The `DBMS_SESSION.SYS_CONTEXT` procedure provides the `client_id` and `username` parameters, to be used for global application contexts.
 The following table explains how the combination of these settings controls the type of global application context you can create.
+
 | Combination Settings | Result |
 |---|---|
 | username set to a value and client_id set to NULL | This combination enables an application context to be accessed by multiple sessions, as long as the username setting is the same throughout. Ensure that the user name specified is a valid database user. See Global Contexts for Database Users Who Move Between Applications for more information. |
 | username set to a value and client_id set to NULL | This combination enables an application context to be accessed by multiple sessions, as long as the username setting is the same throughout. Ensure that the user name specified is a valid database user. See Global Contexts for Database Users Who Move Between Applications for more information. |
 | username set to NULL and client_id set to a value | This combination enables an application to be accessed by multiple user sessions, as long as the client_id parameter is set to the same value throughout. This enables sessions of all users to see the application context values. |
 | username set to a value and client_id set to a value | This combination enables the following two scenarios: Lightweight users. If the user does not have a database account, the username specified is a connection pool owner. The client_id setting is then associated with the nondatabase user who is logging in. Database users. If the user is a database user, this combination can be used for stateless Web sessions. Setting the username parameter in the SET_CONTEXT procedure to USER calls the Oracle Database-supplied USER function. The USER function specifies the session owner from the application context retrieval process and ensures that only the user who set the application context can access the context. See Oracle Database SQL Language Reference for more information about the USER function. See Global Application Context for Nondatabase Users for more information. |
+
 ## Sharing Global Application Context Values for All Database Users
 You can share global application values for all database users to give them access to data in the database.
   ````````- To share global application values for all database users, set the namespace, attribute, and value parameters in the SET_CONTEXT procedure.

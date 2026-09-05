@@ -16,6 +16,7 @@ These functions takes as arguments any numeric data type or any nonnumeric data 
 - in Oracle Database Globalization Support Guide for the collation determination rules, which define the collation CORR_K and CORR_S use to compare characters from expr1 with characters from expr2
 *expr1* and *expr2* are the two variables being analyzed. The third argument is a return value of type `VARCHAR2`. If you omit the third argument, then the default is `COEFFICIENT`. The meaning of the return values is shown in the table that follows:
 Table 2 CORR_* Return Values
+
 | Return Value | Meaning |
 |---|---|
 | COEFFICIENT | Coefficient of correlation |
@@ -23,6 +24,7 @@ Table 2 CORR_* Return Values
 | ONE_SIDED_SIG_POS | Same as ONE_SIDED_SIG |
 | ONE_SIDED_SIG_NEG | Negative one-tailed significance of the correlation |
 | TWO_SIDED_SIG | Two-tailed significance of the correlation |
+
 ## CORR_S
 `CORR_S` calculates the Spearman’s rho correlation coefficient. The input expressions should be a set of (xi, yi) pairs of observations. The function first replaces each value with a rank. Each value of xi is replaced with its rank among all the other xis in the sample, and each value of yi is replaced with its rank among all the other yis. Thus, each xi and yi take on a value from 1 to *n*, where *n* is the total number of pairs of values. Ties are assigned the average of the ranks they would have had if their values had been slightly different. Then the function calculates the linear correlation coefficient of the ranks.
 **CORR_S Example**

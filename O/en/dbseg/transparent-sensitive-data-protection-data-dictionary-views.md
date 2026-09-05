@@ -2,6 +2,7 @@
 
 Oracle Database provides data dictionary views that list information about transparent sensitive data protection policies.
 The following table describes these views. Before you can use these views, you must be granted the `SELECT_CATALOG_ROLE` role.
+
 | View | Description |
 |---|---|
 | DBA_DISCOVERY_SOURCE | Describes discovery import information with regard to transparent sensitive data protection policies |
@@ -13,5 +14,6 @@ The following table describes these views. Before you can use these views, you m
 | DBA_TSDP_POLICY_PARAMETER | Describes the parameters of transparent sensitive data protection policies |
 | DBA_TSDP_POLICY_PROTECTION | Shows the list of columns that have been protected through transparent sensitive data protection |
 | DBA_TSDP_POLICY_TYPE | Shows the policy to sensitive column type mapping |
+
 ## Related Topics
   **- Oracle Database Reference

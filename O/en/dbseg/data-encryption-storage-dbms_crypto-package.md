@@ -20,6 +20,7 @@ As a consequence of this deprecation, Oracle recommends that you review your net
 - Usage of SHA-2 is more secure than SHA-1.
 - Keyed MD5 is not vulnerable.
 The following table summarizes the `DBMS_CRYPTO` package features.
+
 | Feature | DBMS_CRYPTO Supported Functionality |
 |---|---|
 | Block cipher chaining modes | CBC, CFB, ECB, OFB |
@@ -29,7 +30,9 @@ The following table summarizes the `DBMS_CRYPTO` package features.
 | Database types | RAW, CLOB, BLOB |
 | Keyed hash (MAC) algorithms | HMAC_MD5, HMAC_SH1, HMAC_SH256, HMAC_SH384, HMAC_SH512 |
 | Padding forms | PKCS5, zeroes |
+
 The following table shows supported SHA hash functions, many of which can be used with RSA environments.
+
 | Hash Algorithm | Description |
 |---|---|
 | SIGN_RSA_PKCS1_OAEP_SHA256 | RSA with Public Key Cryptographic Standards, SHA 256 bit hash function and OAEP padding |
@@ -47,16 +50,21 @@ The following table shows supported SHA hash functions, many of which can be use
 | SIGN_SHA512_ECDSA | SHA 512bit hash function with Elliptic Curve Digital Signature Algorithm |
 | SIGN_SHA512_RSA | SHA 384 bit hash function with RSA |
 | SIGN_SHA512_RSA_X931 | SHA 384 bit hash function with RSA and X931 padding |
+
 The following table shows supported encryption and decryption algorithms.
+
 | Algorithm | Description |
 |---|---|
 | PKENCRYPT_ECDH | Elliptic Curve Diffie Hellman |
 | PKENCRYPT_RSA_PKCS1_OAEP | RSA Public Key Cryptosystem with PKCS1 and OAEP padding |
+
 The following table shows other supported algorithms.
+
 | Algorithm | Description |
 |---|---|
 | KEY_TYPE_RSA | RSA key type |
 | SIGN_ECDSA | Elliptic Curve Digital Signature Algorithm |
+
 `DBMS_CRYPTO` supports a range of algorithms that accommodate both new and existing systems. Although 3DES_2KEY and MD4 are provided for backward compatibility, you achieve better security using 3DES, AES, or SHA-1. Therefore, 3DES_2KEY is not recommended.
 The `DBMS_CRYPTO` package includes cryptographic checksum capabilities (MD5), which are useful for comparisons, and the ability to generate a secure random number (the `RANDOMBYTES` function). Secure random number generation is an important part of cryptography; predictable keys are easily guessed keys; and easily guessed keys may lead to easy decryption of data. Most cryptanalysis is done by finding weak keys or poorly stored keys, rather than through brute force analysis (cycling through all possible keys).
  **Note:**   Do not use `DBMS_RANDOM`, because it is unsuitable for cryptographic key generation.

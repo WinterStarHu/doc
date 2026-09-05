@@ -31,6 +31,7 @@ The default value for each of the parameters is `ACCEPTED.`
 Oracle Database servers and clients are set to `ACCEPT` encrypted connections out of the box. This means that you can enable the desired encryption and integrity settings for a connection pair by configuring just one side of the connection, server-side or client-side.
 So, for example, if there are many Oracle clients connecting to an Oracle database, you can configure the required encryption and integrity settings for all these connections by making the appropriate sqlnet.ora changes at the server end. You do not need to implement configuration changes for each client separately.
 The following table shows whether the security service is enabled, based on a combination of client and server configuration parameters. If either the server or client has specified `REQUIRED`, the lack of a common algorithm *causes the connection to fail.*Otherwise, if the service is enabled, lack of a common service algorithm results in the service being *disabled*.
+
 | Client Setting | Server Setting | Encryption and Data Negotiation |
 |---|---|---|
 | REJECTED | REJECTED | OFF |
@@ -49,6 +50,7 @@ The following table shows whether the security service is enabled, based on a co
 | ACCEPTED | REQUIRED | ON |
 | REQUESTED | REQUIRED | ON |
 | REQUIRED | REQUIRED | ON |
+
 ### REJECTED Configuration Parameter
 The `REJECTED` value disables the security service, even if the other side requires this service.
 In this scenario, this side of the connection specifies that the security service is not permitted. If the other side is set to `REQUIRED`, the connection *terminates* with error message `ORA-12650`. If the other side is set to `REQUESTED`, `ACCEPTED`, or `REJECTED`, the connection continues without error and without the security service enabled.
@@ -114,11 +116,13 @@ SQLNET.ENCRYPTION_CLIENT = [accepted | rejected | requested | required]
 SQLNET.ENCRYPTION_TYPES_CLIENT = (valid_encryption_algorithm [,valid_encryption_algorithm])
 ```
 The following table lists valid encryption algorithms and their associated legal values.
+
 | Algorithm Name | Legal Value |
 |---|---|
 | AES 256-bit key | AES256 |
 | AES 192-bit key | AES192 |
 | AES 128-bit key | AES128 |
+
 ### Configuring Integrity on the Client and the Server
 You can use Oracle Net Manager to configure network integrity on both the client and the server.
 **

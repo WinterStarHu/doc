@@ -2,6 +2,7 @@
 
 Oracle complied fully with last Federal Information Processing Standard (FIPS), which was FIPS PUB 127-2. That standard is no longer published. However, for users whose applications depend on information about the sizes of some database constructs that were defined in FIPS 127-2, the details of our compliance are listed in Table C-4.
 Table 4 Sizing for Database Constructs
+
 | Database Constructs | FIPS | Oracle Database |
 |---|---|---|
 | Length of an identifier (in bytes) | 18 | 128 |
@@ -28,6 +29,7 @@ Table 4 Sizing for Database Constructs
 | Tables referenced in a SQL statement | 15 | No limit |
 | Cursors simultaneously open | 10 | (Note 6) |
 | Items in a SELECT list | 100 | 1,000 |
+
 **Note 1:** The number of `SET` clauses in an `UPDATE` statement refers to the number items separated by commas following the `SET` keyword.
 **Note 2:** The FIPS PUB defines the length of a collection of columns to be the sum of: twice the number of columns, the length of each character column in bytes, decimal precision plus 1 of each exact numeric column, binary precision divided by 4 plus 1 of each approximate numeric column.
 **Note 3:** The Oracle limit for the maximum row length is based on the maximum length of a row containing a `LONG` value of length 2 gigabytes and 999 `VARCHAR2` values, each of length 4000 bytes: 2(254) + 231 + (999(4000)).

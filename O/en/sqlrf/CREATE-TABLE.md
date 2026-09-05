@@ -790,7 +790,9 @@ You can specify this clause in two ways:
 ## *blockchain_row_retention_clause*
 ```
 NO DELETE [ LOCKED ]
+
   | NO DELETE UNTIL integer DAYS AFTER INSERT [LOCKED]
+
 ```
 - integer specifies the idle retention period for inserted rows before they can be deleted. The minimum idle retention period is 0 days, but a recommended idle retention period is 16 days.
 ````

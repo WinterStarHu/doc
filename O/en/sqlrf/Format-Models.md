@@ -42,6 +42,7 @@ All number format models cause the number to be rounded to the specified number 
 A number format model is composed of one or more number format elements. The tables that follow list the elements of a number format model and provide some examples.
 Negative return values automatically contain a leading negative sign and positive values automatically contain a leading space unless the format model contains the `MI`, `S`, or `PR` format element.
 Table 15 Number Format Elements
+
 | Element | Example | Description |
 |---|---|---|
 | , (comma) | 9,999 | Returns a comma in the specified position. You can specify multiple commas in a number format model.Restrictions: A comma element cannot begin a number format model.A comma cannot appear to the right of a decimal character or period in a number format model. |
@@ -63,12 +64,14 @@ Table 15 Number Format Elements
 | U | U9999 | Returns in the specified position the Euro (or other) dual currency symbol, determined by the current value of the NLS_DUAL_CURRENCY parameter. |
 | V | 999V99 | Returns a value multiplied by 10n (and if necessary, round it up), where n is the number of 9’s after the V. |
 | X | XXXXxxxx | Returns the hexadecimal value of the specified number of digits. If the specified number is not an integer, then Oracle Database rounds it to an integer.Restrictions: This element accepts only positive values or 0. Negative values return an error.You can precede this element only with 0 (which returns leading zeroes) or FM. Any other elements return an error. If you specify neither 0 nor FM with X, then the return always has one leading blank. Refer to the format model modifier FM for more information. |
+
 Table 2-16 shows the results of the following query for different values of *number* and *‘fmt’*:
 ```
 SELECT TO_CHAR(number, 'fmt')
   FROM DUAL;
 ```
 Table 16 Results of Number Conversions
+
 | number | ‘fmt’ | Result |
 |---|---|---|
 | -1234567890 | 9999999999S | '1234567890-' |
@@ -94,6 +97,7 @@ Table 16 Results of Number Conversions
 | +123.45 | L999.99 | ' $123.45' |
 | +123.45 | FML999.99 | '$123.45' |
 | +1234567890 | 9999999999S | '1234567890+' |
+
 ## Datetime Format Models
 You can use datetime format models in the following functions:
 ``````````
@@ -122,6 +126,7 @@ You can include these characters in a date format model:
 - Character literals, enclosed in double quotation marks
 These characters appear in the return value in the same location as they appear in the format model.
 Table 17 Datetime Format Elements
+
 | Element | TO_* datetime functions? | Description |
 |---|---|---|
 | - / , . ; : "text" | Yes | Punctuation and quoted text is reproduced in the result. |
@@ -170,6 +175,7 @@ Table 17 Datetime Format Elements
 | YEAR SYEAR |  | Year, spelled out; S prefixes BC dates with a minus sign (-). |
 | YYYY SYYYY | Yes | 4-digit year; S prefixes BC dates with a minus sign. |
 | YYY YY Y | Yes | Last 3, 2, or 1 digit(s) of year. |
+
 Oracle Database converts strings to dates with some flexibility. For example, when the `TO_DATE` function is used, a format model containing punctuation characters matches an input string lacking some or all of these characters, provided each numerical element in the input string contains the maximum allowed number of digits-for example, two digits ‘05’ for ‘MM’ or four digits ‘2007’ for ‘YYYY’. The following statement does not return an error:
 ```
 SELECT TO_CHAR(TO_DATE('0207','MM/YY'), 'MM/YY') FROM DUAL;
@@ -242,11 +248,13 @@ Note that the queries return the same values regardless of whether they are issu
 ### Datetime Format Element Suffixes
 Table 2-18 lists suffixes that can be added to datetime format elements:
 Table 18 Date Format Element Suffixes
+
 | Suffix | Meaning | Example Element | Example Value |
 |---|---|---|---|
 | TH | Ordinal Number | DDTH | 4TH |
 | SP | Spelled Number | DDSP | FOUR |
 | SPTH or THSP | Spelled, ordinal number | DDSPTH | FOURTH |
+
 **Notes on date format element suffixes:**
 - When you add one of these suffixes to a datetime format element, the return value is always in English.
 - Datetime suffixes are valid only to format output. You cannot use them to insert a date into the database.
@@ -306,6 +314,7 @@ UPDATE table
   SET date_column = TO_DATE(char, 'fmt');
 ```
 Table 19 Matching Character Data and Format Models with the FX Format Model Modifier
+
 | char | ‘fmt’ | Match or Error? |
 |---|---|---|
 | '15/ JAN /1998' | 'DD-MON-YYYY' | Match |
@@ -315,6 +324,7 @@ Table 19 Matching Character Data and Format Models with the FX Format Model Modi
 | '1-JAN-1998' | 'FXDD-MON-YYYY' | Error |
 | '01-JAN-1998' | 'FXDD-MON-YYYY' | Match |
 | '1-JAN-1998' | 'FXFMDD-MON-YYYY' | Match |
+
 **Format of Return Values: Examples**
 You can use a format model to specify the format for Oracle to use to return values from the database to you.
 The following statement selects the salaries of the employees in Department 80 and uses the `TO_CHAR` function to convert these salaries into character values with the format specified by the number format model ‘`$99,990.99`’:
@@ -348,6 +358,7 @@ The following additional formatting rules apply when converting string values to
 - You can use any non-alphanumeric character in the date string to match the punctuation symbol in the format string.
 - If a match fails between a datetime format element and the corresponding characters in the date string, then Oracle attempts alternative format elements, as shown inTable 2-20.
 Table 20 Oracle Format Matching
+
 | Original Format Element | Additional Format Elements to Try in Place of the Original |
 |---|---|
 | 'MM' | 'MON' and 'MONTH' |
@@ -355,6 +366,7 @@ Table 20 Oracle Format Matching
 | 'MONTH' | 'MON' |
 | 'YY' | 'YYYY' |
 | 'RR' | 'RRRR' |
+
 ## XML Format Model
 The `SYS_XMLAgg` and `SYS_XMLGen` (deprecated) functions return an instance of type `XMLType` containing an XML document. Oracle provides the `XMLFormat` object, which lets you format the output of these functions.
 Table 2-21 lists and describes the attributes of the `XMLFormat` object. The function that implements this type follows the table.
@@ -364,6 +376,7 @@ Table 2-21 lists and describes the attributes of the `XMLFormat` object. The fun
 **
 - Oracle XML DB Developer’s Guide for more information on the implementation of the XMLFormat object and its use
 Table 21 Attributes of the XMLFormat Object
+
 | Attribute | Data Type | Purpose |
 |---|---|---|
 | enclTag | VARCHAR2(4000) or VARCHAR2(32767)Foot 1 | The name of the enclosing tag for the result of the SYS_XMLAgg or SYS_XMLGen (deprecated) function.SYS_XMLAgg: The default is ROWSET.SYS_XMLGen: If the input to the function is a column name, then the default is the column name. Otherwise the default is ROW. When schemaType is set to USE_GIVEN_SCHEMA, this attribute also gives the name of the XMLSchema element. |
@@ -372,6 +385,7 @@ Table 21 Attributes of the XMLFormat Object
 | targetNameSpace | VARCHAR2(4000) or VARCHAR2(32767)Foot 1 | The target namespace if the schema is specified (that is, schemaType is GEN_SCHEMA_*, or USE_GIVEN_SCHEMA) |
 | dburlPrefix | VARCHAR2(4000) or VARCHAR2(32767)Foot 1 | The URL to the database to use if WITH_SCHEMA is specified. If this attribute is not specified, then Oracle declares the URL to the types as a relative URL reference. |
 | processingIns | VARCHAR2(4000) or VARCHAR2(32767)Foot 1 | User-provided processing instructions, which are appended to the top of the function output before the element. |
+
 Footnote 1
 The data type for this attribute is `VARCHAR2(4000)` if the initialization parameter `MAX_STRING_SIZE` `=` `STANDARD`, and `VARCHAR2(32767)` if `MAX_STRING_SIZE` `=` `EXTENDED`. See Extended Data Types for more information.
 The function that implements the `XMLFormat` object follows:

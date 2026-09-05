@@ -57,6 +57,7 @@ SELECT SYS_CONTEXT ('hr_apps', 'group_no') "User Group"
    FROM DUAL;
 ```
 Table 11 Predefined Parameters of Namespace USERENV
+
 | Parameter | Return Value |
 |---|---|
 | ACTION | Identifies the position in the module (application name) and is set through the DBMS_APPLICATION_INFO package or OCI. |

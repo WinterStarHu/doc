@@ -21,6 +21,7 @@ For more information, see these Oracle resources:
 Many of the examples in this book use the sample schemas, which are installed by default when you select the Basic Installation option with an Oracle Database installation. Refer to *Oracle Database Sample Schemas* for information on how these schemas were created and how you can use them yourself.
 ## Conventions
 The following text conventions are used in this document:
+
 | Convention | Meaning |
 |---|---|
 | boldface | Boldface type indicates graphical user interface elements associated with an action, or terms defined in text or the glossary. |

@@ -52,6 +52,7 @@ Follow the guidelines in [Minimum Requirements for Passwords](minimum-requiremen
 A profile is a collection of parameters that sets limits on database resources.
 If you assign the profile to a user, then that user cannot exceed these limits. You can use profiles to configure database settings such as sessions per user, logging and tracing features, and so on. Profiles can also control user passwords. To find information about the current password settings in the profile, you can query the `DBA_PROFILES` data dictionary view.
 The following table lists the password-specific parameter settings in the default profile.
+
 | Parameter | Default Setting | Description |
 |---|---|---|
 | INACTIVE_ACCOUNT_TIME | UNLIMITED | Locks the account of a database user who has not logged in to the database instance in a specified number of days. |
@@ -62,6 +63,7 @@ The following table lists the password-specific parameter settings in the defaul
 | PASSWORD_REUSE_MAX | UNLIMITED | Sets the number of password changes required before the current password can be reused. |
 | PASSWORD_REUSE_TIME | UNLIMITED | Sets the number of days before which a password cannot be reused. |
 | PASSWORD_ROLLOVER_TIME | 0 | Enables the gradual database password rollover time. |
+
 ## Using the ALTER PROFILE Statement to Set Profile Limits
 You can modify profile limits such as failed login attempts, password lock times, password reuse, and several other settings.
 These settings are described in the preceding table. For greater security, use the default settings that are described in that table, based on your needs.
@@ -146,10 +148,12 @@ ALTER USER susan ACCOUNT LOCK;
 You can ensure that users do not reuse previous passwords for an amount of time or for a number of password changes.
   ``````- To ensure that users cannot reuse their passwords for a specified period of time, configure the rules for password reuse with the CREATE PROFILE or ALTER PROFILE statements.
 The following table lists the `CREATE PROFILE` and `ALTER PROFILE` parameters that control ability of a user to reuse a previous password.
+
 | Parameter Name | Description and Use |
 |---|---|
 | PASSWORD_REUSE_TIME | Requires either a number specifying how many days (or a fraction of a day) between the earlier use of a password and its next use, or the word UNLIMITED. |
 | PASSWORD_REUSE_MAX | Requires either an integer to specify the number of password changes required before a password can be reused, or the word UNLIMITED. |
+
 If you do not specify a parameter, then the user can reuse passwords at any time, which is not a good security practice.
 If neither parameter is `UNLIMITED`, then password reuse is allowed, but only after meeting both conditions. The user must have changed the password the specified number of times, and the specified number of days must have passed since the previous password was last used.
 For example, suppose that the profile of user A had `PASSWORD_REUSE_MAX` set to `10` and `PASSWORD_REUSE_TIME` set to `30`. User A cannot reuse a password until he or she has reset the password 10 times, and until 30 days had passed since the password was last used.

@@ -2,6 +2,7 @@
 
 Table D-1 lists the full set of operators defined in the POSIX standard Extended Regular Expression (ERE) syntax. Oracle follows the exact syntax and matching semantics for these operators as defined in the POSIX standard for matching ASCII (English language) data. For more complete descriptions of the operators, examples of their use, and Oracle multilingual enhancements of the operators, refer to *Oracle Database Development Guide*. Notes following the table provide more complete descriptions of the operators and their functions, as well as Oracle multilingual enhancements of the operators. Table D-2 summarizes Oracle support for and multilingual enhancement of the POSIX operators.
 Table 1 Regular Expression Operators and Metasymbols
+
 | Operator | Description |
 |---|---|
 | \ | The backslash character can have four different meanings depending on the context. It can: Stand for itselfQuote the next characterIntroduce an operatorDo nothing |

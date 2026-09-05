@@ -20,6 +20,7 @@ This feature works as follows:
 ## DBMS_RLS.ADD_POLICY Parameters That Are Used for TSDP Policies
 Oracle Database provides a set of parameters for fine-tuning the behavior of TSDP policies.
 The following table describes the `DBMS_RLS.ADD_POLICY` parameters that are permissible in the `FEATURE_OPTIONS` parameter when you use the `DBMS_TSDP_PROTECT.ADD_POLICY` or `DBMS_TSDP_PROTECT.ALTER_POLICY` procedure.
+
 | Parameter | Description | Default |
 |---|---|---|
 | function_schema | Schema of the policy function (current default schema, if NULL). If no function_schema is specified, then the current user’s schema is assumed. | NULL |
@@ -30,6 +31,7 @@ The following table describes the `DBMS_RLS.ADD_POLICY` parameters that are perm
 | policy_type | Default is NULL, which means policy_type is decided by the value of the static_policy parameter. Specifying any of these policy types overrides the value of static_policy. | NULL |
 | long_predicate | Default is FALSE, which means the policy function can return a predicate with a length of up to 4000 bytes. TRUE means the predicate text string length can be up to 32K bytes. Policies existing before the availability of the long_predicate parameter retain a 32K limit. | FALSE |
 | sec_relevant_cols_opt | If you specify this parameter, then transparent sensitive data protection inputs the sensitive column on which the protection is enabled to the sec_relevant_cols parameter of the DBMS_RLS.ADD_POLICY procedure. Allowed values are for sec_relevant_cols_opt are as follows: NULL enables the filtering defined with sec_relevant_cols to take effect or DBMS_RLS.ALL_ROWS displays all rows, but with sensitive column values, which are filtered by the sec_relevant_cols parameter, they display as NULL. | NULL |
+
 ## Tutorial: Creating a TSDP Policy That Uses Virtual Private Database Protection
 This tutorial demonstrates how to incorporate Oracle Virtual Private Database protection with a transparent sensitive data protection policy.
 - Step 1: Create the hr_appuser User Account First, you must create a sample user account and then grant this user the appropriate privileges.

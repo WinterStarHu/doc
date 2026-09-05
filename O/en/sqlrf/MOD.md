@@ -21,10 +21,12 @@ This function behaves differently from the classical mathematical modulus functi
 n2 - n1 * FLOOR(n2/n1)
 ```
 The following table illustrates the difference between the `MOD` function and the classical modulus:
+
 | n2 | n1 | MOD(n2,n1) | Classical Modulus |
 |---|---|---|---|
 | 11 | 4 | 3 | 3 |
 | 11 | -4 | 3 | -1 |
 | -11 | 4 | -3 | 1 |
 | -11 | -4 | -3 | -3 |
+
 **See Also:**   FLOOR and REMAINDER, which is similar to `MOD`, but uses `ROUND` in its formula instead of `FLOOR`

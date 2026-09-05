@@ -17,12 +17,14 @@ Description of the illustration stats_t_test.eps
 The *t*-test measures the significance of a difference of means. You can use it to compare the means of two groups or the means of one group with a constant. Each *t*-test function takes two expression arguments, although the second expression is optional for the one-sample function (`STATS_T_TEST_ONE`). Each *t*-test function takes an optional third argument, which lets you specify the meaning of the `NUMBER` value returned by the function, as shown in Table 7-9. For this argument, you can specify a text literal, or a bind variable or expression that evaluates to a constant character value. If you omit the third argument, then the default is `'TWO_SIDED_SIG'`.
 **See Also:**   in *Oracle Database Globalization Support Guide* for the collation determination rules for the `STATS_T_TEST_*` functions
 Table 9 STATS_T_TEST_* Return Values
+
 | Argument | Return Value Meaning |
 |---|---|
 | 'STATISTIC' | The observed value of t |
 | 'DF' | Degree of freedom |
 | 'ONE_SIDED_SIG' | One-tailed significance of t |
 | 'TWO_SIDED_SIG' | Two-tailed significance of t |
+
 The two independent `STATS_T_TEST_`* functions can take a fourth argument (*expr3*) if the third argument is specified as `'STATISTIC'` or `'ONE_SIDED_SIG'`. In this case, *expr3* indicates which value of *expr1* is the high value, or the value whose rejection region is the upper tail.
 The significance of the observed value of *t* is the probability that the value of *t* would have been obtained by chance-a number between 0 and 1. The smaller the value, the more significant the difference between the means. One-sided significance is always respect to the upper tail. For one-sample and paired *t*-test, the high value is the first expression. For independent *t*-test, the high value is the one specified by *expr3*.
 The degree of freedom depends on the type of *t*-test that resulted in the observed value of *t*. For example, for a one-sample *t*-test (`STATS_T_TEST_ONE`), the degree of freedom is the number of observations in the sample minus 1.

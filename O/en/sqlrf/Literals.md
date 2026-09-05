@@ -126,12 +126,14 @@ Here are some valid floating-point number literals:
 ```
 You can also use the following supplied floating-point literals in situations where a value cannot be expressed as a numeric literal:
 Table 11 Floating-Point Literals
+
 | Literal | Meaning | Example |
 |---|---|---|
 | binary_float_nan | A value of type BINARY_FLOAT for which the condition IS NAN is true | SELECT COUNT(*) FROM employees WHERE TO_BINARY_FLOAT(commission_pct) != BINARY_FLOAT_NAN; |
 | binary_float_infinity | Single-precision positive infinity | SELECT COUNT(*) FROM employees WHERE salary < BINARY_FLOAT_INFINITY; |
 | binary_double_nan | A value of type BINARY_DOUBLE for which the condition IS NAN is true | SELECT COUNT(*) FROM employees WHERE TO_BINARY_FLOAT(commission_pct) != BINARY_FLOAT_NAN; |
 | binary_double_infinity | Double-precision positive infinity | SELECT COUNT(*) FROM employees WHERE salary < BINARY_DOUBLE_INFINITY; |
+
 ## Datetime Literals
 Oracle Database supports four datetime data types: `DATE`, `TIMESTAMP`, `TIMESTAMP` `WITH` `TIME` `ZONE`, and `TIMESTAMP` `WITH` `LOCAL` `TIME` `ZONE`.
 **Date Literals**
@@ -245,6 +247,7 @@ If you do not add the `TZD` format element, and the datetime value is ambiguous,
 **TIMESTAMP WITH LOCAL TIME ZONE Literals**
 The `TIMESTAMP` `WITH` `LOCAL` `TIME` `ZONE` data type differs from `TIMESTAMP` `WITH` `TIME` `ZONE` in that data stored in the database is normalized to the database time zone. The time zone offset is not stored as part of the column data. There is no literal for `TIMESTAMP` `WITH` `LOCAL` `TIME` `ZONE`. Rather, you represent values of this data type using any of the other valid datetime literals. The table that follows shows some of the formats you can use to insert a value into a `TIMESTAMP` `WITH` `LOCAL` `TIME` `ZONE` column, along with the corresponding value returned by a query.
 Table 12 TIMESTAMP WITH LOCAL TIME ZONE Literals
+
 | Value Specified in INSERT Statement | Value Returned by Query |
 |---|---|
 | '19-FEB-2004' | 19-FEB-2004.00.00.000000 AM |
@@ -253,6 +256,7 @@ Table 12 TIMESTAMP WITH LOCAL TIME ZONE Literals
 | SYSDATE | 19-FEB-04 02.55.29.000000 PM |
 | TO_DATE('19-FEB-2004', 'DD-MON-YYYY') | 19-FEB-04 12.00.00.000000 AM |
 | TIMESTAMP'2004-02-19 8:00:00 US/Pacific' | 19-FEB-04 08.00.00.000000 AM |
+
 Notice that if the value specified does not include a time component (either explicitly or implicitly), then the value returned defaults to midnight.
 ## Interval Literals
 An interval literal specifies a period of time. You can specify these differences in terms of years and months, or in terms of days, hours, minutes, and seconds. Oracle Database supports two types of interval literals, `YEAR` `TO` `MONTH` and `DAY` `TO` `SECOND`. Each type contains a leading field and may contain a trailing field. The leading field defines the basic unit of date or time being measured. The trailing field defines the smallest increment of the basic unit being considered. For example, a `YEAR` `TO` `MONTH` interval considers an interval of years to the nearest month. A `DAY` `TO` `MINUTE` interval considers an interval of days to the nearest minute.
@@ -277,6 +281,7 @@ INTERVAL '123-2' YEAR(3) TO MONTH
 ```
 Examples of the other forms of the literal follow, including some abbreviated versions:
 Table 13 Forms of INTERVAL YEAR TO MONTH Literals
+
 | Form of Interval Literal | Interpretation |
 |---|---|
 | INTERVAL '123-2' YEAR(3) TO MONTH | An interval of 123 years, 2 months. You must specify the leading field precision if it is greater than the default of 2 digits. |
@@ -285,6 +290,7 @@ Table 13 Forms of INTERVAL YEAR TO MONTH Literals
 | INTERVAL '4' YEAR | Maps to INTERVAL '4-0' YEAR TO MONTH and indicates 4 years. |
 | INTERVAL '50' MONTH | Maps to INTERVAL '4-2' YEAR TO MONTH and indicates 50 months or 4 years 2 months. |
 | INTERVAL '123' YEAR | Returns an error, because the default precision is 2, and ‘123’ has 3 digits. |
+
 You can add or subtract one `INTERVAL` `YEAR` `TO` `MONTH` literal to or from another to yield another `INTERVAL` `YEAR` `TO` `MONTH` literal. For example:
 ```
 INTERVAL '5-3' YEAR TO MONTH + INTERVAL'20' MONTH =
@@ -312,6 +318,7 @@ The valid range of values for the trailing field are as follows:
 - SECOND: 0 to 59.999999999
 Examples of the various forms of `INTERVAL` `DAY` `TO` `SECOND` literals follow, including some abbreviated versions:
 Table 14 Forms of INTERVAL DAY TO SECOND Literals
+
 | Form of Interval Literal | Interpretation |
 |---|---|
 | INTERVAL '4 5:12:10.222' DAY TO SECOND(3) | 4 days, 5 hours, 12 minutes, 10 seconds, and 222 thousandths of a second. |
@@ -328,6 +335,7 @@ Table 14 Forms of INTERVAL DAY TO SECOND Literals
 | INTERVAL '40' MINUTE | 40 minutes. |
 | INTERVAL '120' HOUR(3) | 120 hours. |
 | INTERVAL '30.12345' SECOND(2,4) | 30.1235 seconds. The fractional second ‘12345’ is rounded to ‘1235’ because the precision is 4. |
+
 You can add or subtract one `DAY` `TO` `SECOND` interval literal from another `DAY` `TO` `SECOND` literal. For example.
 ```
 INTERVAL'20' DAY - INTERVAL'240' HOUR = INTERVAL'10-0' DAY TO SECOND

@@ -10,6 +10,7 @@ The following features are introduced with Release 19.28.
 `IF [NOT] EXISTS` when used with `CREATE` statements ensures that the command does not error out, if the object already exists.
 The following table shows the `CREATE` statements that support `IF [NOT] EXISTS`:
 Table -1 CREATE Statements that Support IF [NOT] EXISTS
+
 | CREATE STATEMENTS |
 |---|
 | ANALYTICAL VIEW |
@@ -40,10 +41,12 @@ Table -1 CREATE Statements that Support IF [NOT] EXISTS
 | TYPE BODY |
 | USER |
 | VIEW |
+
 **IF EXISTS**
 `IF EXISTS` when used with `ALTER` and `DROP` statements ensures that the command does not error out, if the object does not exist.
 The following table shows the `DROP` and `ALTER` statements that support `IF EXISTS`:
 Table -2 ALTER and DROP Statements that Support IF EXISTS
+
 | DROP STATEMENTS | ALTER STATEMENTS |
 |---|---|
 | ANALYTICAL VIEW | ANALYTICAL VIEW |
@@ -73,6 +76,7 @@ Table -2 ALTER and DROP Statements that Support IF EXISTS
 | No | TYPE BODY |
 | USER | USER |
 | VIEW | VIEW |
+
 **Schema Annotations**
 Annotations provide a mechanism to store application metadata centrally in the database, so that they can be shared across applications, modules and microservices.
 To create annotations you must specify the *annotations_clause* in the `CREATE` statement.

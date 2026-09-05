@@ -88,18 +88,21 @@ The following table lists the predefined non-administrative user accounts that O
 Non-administrative user accounts only have the minimum privileges needed to perform their jobs. Their default tablespace is `USERS`. In a multitenant environment, the predefined non-administrative accounts reside in the root database
 To protect these accounts from unauthorized access, the installation process locks and expires these accounts immediately after installation, except where noted in the following table. As the database administrator, you are responsible for unlocking and resetting these accounts.
 To find the status of an account, such as whether it is open, locked, or expired, query the `ACCOUNT_STATUS` column of the `DBA_USERS` data dictionary view. If the account is schema only, then the status is `NONE`.
+
 | User Account | Description |
 |---|---|
 | DIP | The Oracle Directory Integration and Provisioning (DIP) account that is installed with Oracle Label Security. This profile is created automatically as part of the installation process for Oracle Internet Directory-enabled Oracle Label Security. See Oracle Label Security Administrator’s Guide. |
 | MDDATA | The schema used by Oracle Spatial for storing Geocoder and router data. Oracle Spatial provides a SQL schema and functions that enable you to store, retrieve, update, and query collections of spatial features in an Oracle database. See Oracle Spatial and Graph Developer’s Guide. |
 | ORACLE_OCM | The account used with Oracle Configuration Manager. This feature enables you to associate the configuration information for the current Oracle Database instance with My Oracle Support. Then when you log a service request, it is associated with the database instance configuration information. See Oracle Database Installation Guide for your platform. |
 | XS$NULL | An internal account that represents the absence of database user in a session and the actual session user is an application user supported by Oracle Real Application Security. XS$NULL has no privileges and does not own any database object. No one can authenticate as XS$NULL, nor can authentication credentials ever be assigned to XS$NULL. |
+
 ## Predefined Sample Schema User Accounts
 Oracle Database creates a set of sample user accounts if you install the sample schemas.
 The sample schema user accounts are all non-administrative accounts, and their tablespace is `USERS`.
 To protect these accounts from unauthorized access, the installation process locks and expires these accounts immediately after installation. As the database administrator, you are responsible for unlocking and resetting these accounts.
 The following table lists the sample schema user accounts, which represent different divisions of a fictional company that manufactures various products. You can find the status of these accounts by querying the `DBA_USERS` data dictionary view. Because the `ORACLE_MAINTAINED` column output for these accounts is `N`, you can modify these accounts without re-running the scripts that were used to create them.
 To find the status of an account, such as whether it is open, locked, or expired, query the `ACCOUNT_STATUS` column of the `DBA_USERS` data dictionary view. If the account is schema only, then the status is `NONE`.
+
 | User Account | Description |
 |---|---|
 | HR | The account used to manage the HR (Human Resources) schema. This schema stores information about the employees and the facilities of the company. |
@@ -107,6 +110,7 @@ To find the status of an account, such as whether it is open, locked, or expired
 | PM | The account used to manage the PM (Product Media) schema. This schema contains descriptions and detailed information about each product sold by the company. |
 | IX | The account used to manage the IX (Information Exchange) schema. This schema manages shipping through business-to-business (B2B) applications. |
 | SH | The account used to manage the SH (Sales) schema. This schema stores business statistics to facilitate business decisions. |
+
 In addition to the sample schema accounts, Oracle Database provides another sample schema account, `SCOTT`. The `SCOTT` schema contains the tables `EMP`, `DEPT`, `SALGRADE`, and `BONUS`. The `SCOTT` account is used in examples throughout the Oracle Database documentation set. When you install Oracle Database, the `SCOTT` account is locked and expired.
 ## Related Topics
   **- Oracle Database Sample Schemas

@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_JOBS displays information about all Scheduler jobs in the database.
 
 - USER_SCHEDULER_JOBS displays information about the Scheduler jobs owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) |  | Owner of the Scheduler job |
@@ -75,6 +76,7 @@ Related Views
 | CONNECT_CREDENTIAL_OWNER | VARCHAR2(128) |  | Owner of connect credential |
 | CONNECT_CREDENTIAL_NAME | VARCHAR2(128) |  | Name of connect credential |
 | FAIL_ON_SCRIPT_ERROR | VARCHAR2(5) |  | Indicates whether this job fails on script error (TRUE) or not (FALSE) |
+
 See Also:
 - "DBA_SCHEDULER_JOBS"
 - "USER_SCHEDULER_JOBS"

@@ -90,8 +90,10 @@ In this specification:
 role_list ::=  code-based_role_name[, role_list]
 code_list ::=  {
       {FUNCTION  [schema.]function_name}
+
    |  {PROCEDURE [schema.]procedure_name}
    |  {PACKAGE   [schema.]package_name}
+
                  }[, code_list]
 ```
 For example:

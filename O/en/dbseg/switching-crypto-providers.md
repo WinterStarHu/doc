@@ -3,6 +3,7 @@
 This section explains how to switch an existing Oracle Database 19c environment from the default legacy cryptographic provider to the next-generation cryptographic provider.
 ## Understanding the Impacts of Switching the Cryptographic Provider
 The following table shows how various capabilities, encryption algorithms, and parameters in Oracle Database 19c differ between the next-generation cryptographic provider and the legacy cryptographic provider.
+
 | Capability | Next-Generation Cryptographic Provider | Legacy Cryptographic Provider (Default) |
 |---|---|---|
 | Supported TLS versions | TLS 1.2, TLS 1.3 | TLS 1.0, TLS 1.1, TLS 1.2 |
@@ -24,6 +25,7 @@ The following table shows how various capabilities, encryption algorithms, and p
 | Recommended RSA key length | 2048 bits or greater; NIST recommends 3072 bits after 2030 | 2048 or 4096 bits |
 | Certificate CN maximum length | 64 characters | No specific limit |
 | Local Single Sign-On (LSSO) wallets | Limited | Limited |
+
 ### TLS Protocol Versions and Cipher Suites
 The TLS protocol versions available to Oracle Database 19c depend on the active cryptographic provider.
 When using the next-generation cryptographic provider, Oracle Database supports only TLS 1.2 and TLS 1.3. SSLv3, TLS 1.0, and TLS 1.1 are not available with the next-generation provider, regardless of FIPS configuration.
@@ -31,6 +33,7 @@ When using the legacy cryptographic provider, Oracle Database supports TLS 1.0, 
 Oracle recommends using TLS 1.2 or TLS 1.3 for all new deployments. TLS 1.3 is available only with the next-generation cryptographic provider.
 **Tip:** You can use `TLS_DISABLE_VERSION` to disable protocol versions that you do not want clients or servers to negotiate.
 The following table summarizes the available TLS versions depending on the cryptographic provider in Oracle Database 19c.
+
 | TLS Version | Next-Generation Cryptographic Provider | Next-Generation Cryptographic Provider in FIPS 140-3 Mode | Legacy Cryptographic Provider (Default) | Legacy Cryptographic Provider in FIPS 140-2 mode |
 |---|---|---|---|---|
 | SSLv3 | Not supported | Not supported | Supported (not recommended) | Not supported |
@@ -38,6 +41,7 @@ The following table summarizes the available TLS versions depending on the crypt
 | TLS 1.1 | Not supported | Not supported | Supported (not recommended) | Supported (not recommended) |
 | TLS 1.2 | Supported | Supported | Supported | Supported |
 | TLS 1.3 | Supported | Supported | Not supported | Not supported |
+
 #### TLS 1.3 Cipher Suites
 The following cipher suites are available when TLS 1.3 is enabled. TLS 1.3 can only be enabled when the next-generation cryptographic provider is enabled.
   - TLS_AES_256_GCM_SHA384 (recommended)

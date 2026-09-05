@@ -202,6 +202,7 @@ The data mining functions are:
 - Oracle Data Mining User’s Guide for information about scoring
 ## XML Functions
 The XML functions operate on or return XML documents or fragments. These functions use arguments that are not defined as part of the ANSI/ISO/IEC SQL Standard but are defined as part of the World Wide Web Consortium (W3C) standards. The processing and operations that the functions perform are defined by the relevant W3C standards. The table below provides a link to the appropriate section of the W3C standard for the rules and guidelines that apply to each of these XML-related arguments. A SQL statement that uses one of these XML functions, where any of the arguments does not conform to the relevant W3C syntax, will result in an error. Of special note is the fact that not every character that is allowed in the value of a database column is considered legal in XML.
+
 | Syntax Element | W3C Standard URL |
 |---|---|
 | value_expr | http://www.w3.org/TR/2006/REC-xml-20060816 |
@@ -209,6 +210,7 @@ The XML functions operate on or return XML documents or fragments. These functio
 | XQuery_string | http://www.w3.org/TR/2007/REC-xquery-semantics-20070123/http://www.w3.org/TR/xquery-update-10/ |
 | namespace_string | http://www.w3.org/TR/2006/REC-xml-names-20060816/ |
 | identifier | http://www.w3.org/TR/2006/REC-xml-20060816/#NT-Nmtoken |
+
 For more information about selecting and querying XML data using these functions, including information on formatting output, refer to *Oracle XML DB Developer’s Guide*
 The SQL XML functions are:
 - DEPTH

@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_PROGRAM_ARGS displays information about the arguments of all Scheduler programs in the database.
 
 - USER_SCHEDULER_PROGRAM_ARGS displays information about the arguments of the Scheduler programs owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the program to which the argument belongs |
@@ -16,6 +17,7 @@ Related Views
 | DEFAULT_VALUE | VARCHAR2(4000) |  | Default value taken by the argument (in string format) if the argument is a string |
 | DEFAULT_ANYDATA_VALUE | ANYDATA |  | Default value taken by the argument (in AnyData format) |
 | OUT_ARGUMENT | VARCHAR2(5) |  | Reserved for future use |
+
 See Also:
 - "DBA_SCHEDULER_PROGRAM_ARGS"
 - "USER_SCHEDULER_PROGRAM_ARGS"

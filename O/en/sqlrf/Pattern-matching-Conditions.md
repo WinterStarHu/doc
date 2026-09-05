@@ -35,9 +35,11 @@ You can include the actual characters `%` or `_` in the pattern by using the `ES
   **Note:**   Only ASCII-equivalent underscore (_) and percent (%) characters are recognized as pattern-matching characters. Their full-width variants, present in East Asian character sets and in Unicode, are treated as normal characters.
 Table 6-8 describes the `LIKE` conditions.
 Table 8 LIKE Condition
+
 | Type of Condition | Operation | Example |
 |---|---|---|
 | x [NOT] LIKE y [ESCAPE 'z'] | TRUE if x does [not] match the pattern y. Within y, the character % matches any string of zero or more characters except null. The character _ matches any single character. Any character can follow ESCAPE except percent (%) and underbar (_). A wildcard character is treated as a literal if preceded by the escape character. | SELECT last_name FROM employees WHERE last_name LIKE '%A\_B%' ESCAPE '\' ORDER BY last_name; |
+
 To process the `LIKE` conditions, Oracle divides the pattern into subpatterns consisting of one or two characters each. The two-character subpatterns begin with the escape character and the other character is %, or _, or the escape character.
 Let P1, P2, …, Pn be these subpatterns. The like condition is true if there is a way to partition the search value into substrings S1, S2, …, Sn so that for all *i* between 1 and *n*:
 - If Pi is _, then Si is a single character.

@@ -153,10 +153,14 @@ amount_median FROM customers c, sales s WHERE c.cust_id = s.cust_id
 GROUP BY c.country_id
 Plan hash value: 2232676046
 -------------------------------------------------------------
+
 | Id  | Operation                     | Name                |
+
 -------------------------------------------------------------
+
 |   0 | SELECT STATEMENT              |                     |
 |   1 |  HASH GROUP BY APPROX         |                     |
 |   2 |   MAT_VIEW REWRITE ACCESS FULL| AMT_SOLD_BY_CITY_MV |
+
 -------------------------------------------------------------
 ```

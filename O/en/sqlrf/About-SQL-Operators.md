@@ -17,12 +17,14 @@ Other operators with special formats accept more than two operands. If an operat
 **Precedence** is the order in which Oracle Database evaluates different operators in the same expression. When evaluating an expression containing multiple operators, Oracle evaluates operators with higher precedence before evaluating those with lower precedence. Oracle evaluates operators with equal precedence from left to right within an expression.
 Table 4-1 lists the levels of precedence among SQL operators from high to low. Operators listed on the same line have the same precedence.
 Table 1 SQL Operator Precedence
+
 | Operator | Operation |
 |---|---|
 | +, -(as unary operators), PRIOR, CONNECT_BY_ROOT, COLLATE | Identity, negation, location in hierarchy |
 | *, / | Multiplication, division |
 | +, -(as binary operators), \|\| | Addition, subtraction, concatenation |
 | SQL conditions are evaluated after SQL operators | See “Condition Precedence” |
+
 **Precedence Example**
 In the following expression, multiplication has a higher precedence than addition, so Oracle first multiplies 2 by 3 and then adds the result to 1.
 ```

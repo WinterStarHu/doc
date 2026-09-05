@@ -3,6 +3,7 @@
 The XML data type in the standard is `XML`. The Oracle equivalent data type is `XMLType`. A feature of the standard is considered to be fully supported if the only difference between Oracle and the standard is the spelling of the data type name.
 Table C-3 describes Oracle’s support for the features of SQL/XML.
 Table 3 Oracle Support for Features of SQL/XML
+
 | Feature ID, Feature | Support |
 |---|---|
 | X010, XML type | Oracle fully supports this feature. |

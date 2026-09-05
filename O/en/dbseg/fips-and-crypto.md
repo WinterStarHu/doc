@@ -5,10 +5,12 @@ Configure FIPS mode with the next-generation cryptographic provider, or use the 
 Enable the applicable FIPS mode when required by organizational policy, procurement, or regulation. Confirm the Oracle Database 19c release update, platform, cryptographic provider, allowed algorithms, and module validation status with the compliance owner.
 ## FIPS Support by Cryptographic Provider
 Oracle Database 19c supports FIPS 140-2 and FIPS 140-3 with the next-generation cryptographic provider, and FIPS 140-2 with the legacy provider. Only one provider can be active in a database instance.
+
 | Cryptographic provider | FIPS standard | Configuration |
 |---|---|---|
 | Next-generation cryptographic provider | FIPS 140-2 and FIPS 140-3 | Set FIPS_140=TRUE in fips.ora for FIPS 140-2. Set both FIPS_140=TRUE and FIPS_140_3=TRUE in fips.ora for FIPS 140-3. |
 | Legacy provider | FIPS 140-2 | Use the legacy parameters for TDE and DBMS_CRYPTO, TLS, and native network encryption. |
+
 FIPS and post-quantum cryptography (PQC) address different requirements. FIPS concerns use of a validated cryptographic provider. PQC concerns resilience against future quantum attacks.
 ## Configure FIPS 140-3 with the Next-Generation Cryptographic Provider
 For new FIPS deployments, use the next-generation cryptographic provider. To configure FIPS 140-3, set the required parameters in `fips.ora`. Before changing the parameters, switch the database to the next-generation provider.

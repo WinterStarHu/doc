@@ -46,6 +46,7 @@ You can audit the following kinds of Oracle Database Vault events:
 ## Oracle Database Vault Realm Audit Events
 The unified audit trail captures Oracle Database Vault realm events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE_REALM | Creates a realm through the DVSYS.DBMS_MACADM.CREATE_REALM procedure |
@@ -58,9 +59,11 @@ The following table describes these events.
 | UPDATE_REALM_AUTH | Updates a realm authorization through the DVSYS.DBMS_MACADM.UPDATE_REALM_AUTHORIZATION procedure |
 | ADD_OBJECT_TO_REALM | Adds an object to a realm authorization through the DVSYS.DBMS_MACADM.ADD_AUTH_TO_REALM procedure |
 | DELETE_OBJECT_FROM_REALM | Removes an object from a realm authorization through the DVSYS.DBMS_MACADM.DELETE_OBJECT_FROM_REALM procedure |
+
 ## Oracle Database Vault Rule Set and Rule Audit Events
 The unified audit trail can capture Oracle Database Vault rule set and rule audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE_RULE_SET | Creates a rule set through the DVSYS.DBMS_MACADM.CREATE_RULE_SET procedure |
@@ -74,17 +77,21 @@ The following table describes these events.
 | RENAME_RULE | Renames a rule through the DVSYS.DBMS_MACADM.RENAME_RULE procedure |
 | DELETE_RULE | Deletes a rule through the DVSYS.DBMS_MACADM.DELETE_RULE procedure |
 | SYNC_RULES | Synchronizes the rules in Oracle Database Vault and Advanced Queuing Rules engine through the DVSYS.DBMS_MACADM.SYNC_RULES procedure |
+
 ## Oracle Database Vault Command Rule Audit Events
 The unified audit trail can capture Oracle Database Vault command rule audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE_COMMAND_RULE | Creates a command rule through the DVSYS.DBMS_MACADM.CREATE_COMMAND_RULE procedure |
 | DELETE_COMMAND_RULE | Deletes a command rule through the DVSYS.DBMS_MACADM.DELETE_COMMAND_RULE procedure |
 | UPDATE_COMMAND_RULE | Updates a command rule through the DVSYS.DBMS_MACADM.UPDATE_COMMAND_RULE procedure |
+
 ## Oracle Database Vault Factor Audit Events
 The unified audit trail can capture Oracle Database Vault factor events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE_FACTOR_TYPE | Creates a factor type through the DVSYS.DBMS_MACADM.CREATE_FACTOR_TYPE procedure |
@@ -108,18 +115,22 @@ The following table describes these events.
 | DELETE_IDENTITY_MAP | Deletes a factor identity map through the DVSYS.DBMS_MACADM.DELETE_IDENTITY_MAP procedure |
 | CREATE_DOMAIN_IDENTITY | Adds an Oracle Database Real Application Clusters database node to the domain factor identities and labels it according to the Oracle Label Security policy, through the DVSYS.DBMS_MACADM.CREATE_DOMAIN_IDENTITY procedure |
 | DROP_DOMAIN_IDENTITY | Drops an Oracle RAC node from the domain factor identities through the DVSYS.DBMS_MACADM.DROP_DOMAIN_IDENTITY procedure |
+
 ## Oracle Database Vault Secure Application Role Audit Events
 The unified audit trail can capture Oracle Database Vault secure application role audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE_ROLE | Creates an Oracle Database Vault secure application role through the DVSYS.DBMS_MACADM.CREATE_ROLE procedure |
 | DELETE_ROLE | Deletes an Oracle Database Vault secure application role through the DVSYS.DBMS_MACADM.DELETE_ROLE procedure |
 | UPDATE_ROLE | Updates an Oracle Database Vault secure application role through the DVSYS.DBMS_MACADM.UPDATE_ROLE procedure |
 | RENAME_ROLE | Renames an Oracle Database Vault secure application role through the DVSYS.DBMS_MACADM.RENAME_ROLE procedure |
+
 ## Oracle Database Vault Oracle Label Security Audit Events
 The unified audit trail can capture Oracle Database Vault Oracle Label Security audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE_POLICY_LABEL | Creates an Oracle Label Security policy label through the DVSYS.DBMS_MACADM.CREATE_POLICY_LABEL procedure |
@@ -127,20 +138,25 @@ The following table describes these events.
 | CREATE_MAC_POLICY | Specifies the algorithm that is used to merge labels when computing the label for a factor, or the Oracle Label Security Session label, through the DVSYS.DBMS_MACADM.CREATE_MAC_POLICY procedure |
 | UPDATE_MAC_POLICY | Changes the Oracle Label Security merge label algorithm through the DVSYS.DBMS_MACADM.UPDATE_MAC_POLICY procedure |
 | DELETE_MAC_POLICY_CASCADE | Deletes all Oracle Database Vault objects related to an Oracle Label Security policy, through the DVSYS.DBMS_MACADM.DELETE_MAC_POLICY_CASCADE procedure |
+
 ## Oracle Database Vault Oracle Data Pump Audit Events
 The unified audit trail can capture Oracle Database Vault Oracle Data Pump audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | AUTHORIZE_DATAPUMP_USER | Authorizes an Oracle Data Pump user through the DVSYS.DBMS_MACADM.AUTHORIZE_DATAPUMP_USER procedure |
 | UNAUTHORIZE_DATAPUMP_USER | Removes from authorization an Oracle Data Pump user through the DVSYS.DBMS_MACADM.UNAUTHORIZE_DATAPUMP_USER procedure |
+
 ## Oracle Database Vault Enable and Disable Audit Events
 The unified audit trail can capture Oracle Database Vault enable and disable audit events.
 The following table describes these events.
+
 | Event | Description |
 |---|---|
 | ENABLE_EVENT | DBMS_MACADM.ENABLE_EVENT |
 | DISABLE_EVENT | DBMS_MACADM.DISABLE_EVENT |
+
 ## Configuring a Unified Audit Policy for Oracle Database Vault
 The `ACTIONS` and `ACTIONS COMPONENT` clauses in the `CREATE AUDIT POLICY` statement can create unified audit policies for Oracle Database Vault events.
   - Use the following syntax to create an Oracle Database Vault unified audit policy:

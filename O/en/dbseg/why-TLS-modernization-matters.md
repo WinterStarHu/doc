@@ -13,6 +13,7 @@ Legacy protocols and configurations increase risk in several ways:
 TLS 1.2 remains suitable when compatibility requires it and it is configured with Oracle-approved cipher suites, certificates that use currently accepted signature algorithms, and ephemeral key exchange. Prefer TLS 1.3 for compatible clients, and manage TLS 1.2 as an explicit compatibility requirement with an owner and upgrade plan.
 In Oracle Database 19c, TLS modernization also matters because TLS 1.3, ML-KEM or hybrid post-quantum key exchange, and FIPS 140-3 depend on the next-generation cryptographic provider. Enabling that module in 19c lets teams move toward the same cryptographic direction used in later database releases while retaining a controlled transition path for existing 19c estates.
 ## TLS 1.2 and TLS 1.3 Comparison
+
 | Area | TLS 1.2 | TLS 1.3 |
 |---|---|---|
 | Protocol choices | Supports a broad range of cipher and key-exchange combinations, including older choices that require careful policy control. | Removes obsolete protocol features and limits negotiation to modern authenticated-encryption choices. |
@@ -22,6 +23,7 @@ In Oracle Database 19c, TLS modernization also matters because TLS 1.3, ML-KEM o
 | Downgrade protection | Relies more heavily on correct version and cipher configuration. | Provides stronger protection against negotiating an older protocol than the endpoints intend. |
 | Policy management | Cipher suites combine encryption, integrity, and key-exchange decisions. | Separates cipher-suite selection from certificate and key-exchange policy, reducing the number of combinations to manage. |
 | Post-quantum key exchange in Oracle Database 19c | Does not provide ML-KEM key exchange. | Provides ML-KEM and hybrid post-quantum key-exchange options when supported by both endpoints. |
+
 ## Benefits of TLS 1.3 in Oracle Database 19c
 TLS 1.3 provides a stronger and simpler baseline. It restricts negotiation to modern authenticated-encryption cipher suites, removes static RSA and static Diffie-Hellman key exchange, and reduces the number of protocol combinations that administrators must configure and audit. When explicit restrictions are absent, each TLS connection selects the strongest protocol version and cipher suite supported by its two endpoints. When both the database server and client are 19c and no protocol version is pinned, TLS 1.3 is enabled by default.
 TLS 1.3 connections that use Elliptic Curve Diffie-Hellman Ephemeral (ECDHE) or a supported hybrid exchange provide forward secrecy. These exchanges use ephemeral key material, so if a certificate private key is compromised later, that key alone is not sufficient to decrypt previously recorded sessions that used ECDHE or a supported hybrid exchange.

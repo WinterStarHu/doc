@@ -25,6 +25,7 @@ expr2 <= expr1 AND expr1 <= expr3
 If *expr3* < *expr2*, then the interval is empty. If *expr1* is `NULL`, then the result is `NULL`. If *expr1* is not `NULL`, then the value is `FALSE` in the ordinary case and `TRUE` when the keyword `NOT` is used.
 The boolean operator `AND` may produce unexpected results. Specifically, in the expression `x AND y`, the condition `x IS NULL` is not sufficient to determine the value of the expression. The second operand still must be evaluated. The result is `FALSE` if the second operand has the value `FALSE` and `NULL` otherwise. See Logical Conditions for more information on `AND`.
 Table 10 BETWEEN Condition
+
 | Type of Condition | Operation | Example |
 |---|---|---|
 | [NOT] BETWEEN x AND y | [NOT] (expr2 less than or equal to expr1 AND expr1 less than or equal to expr3) | SELECT * FROM employees WHERE salary BETWEEN 2000 AND 3000 ORDER BY employee_id; |

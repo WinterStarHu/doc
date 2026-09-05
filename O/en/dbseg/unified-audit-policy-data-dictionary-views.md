@@ -3,6 +3,7 @@
 Data dictionary and dynamic views can be used to find detailed auditing information.
 The following table lists these views.
 **Tip:** To find error information about audit policies, check the trace files. The `USER_DUMP_DEST` initialization parameter sets the location of the trace files.
+
 | View | Description |
 |---|---|
 | ALL_AUDIT_POLICIES | Displays information about all fine-grained audit policies |
@@ -23,5 +24,6 @@ The following table lists these views.
 | UNIFIED_AUDIT_TRAIL | Displays all audit records |
 | V$OPTION | You can query the PARAMETER column for Unified Auditing to find if unified auditing is enabled |
 | V$XML_AUDIT_TRAIL | Displays standard, fine-grained, SYS, and mandatory audit records written in XML format files. |
+
 ## Related Topics
   **- Oracle Database Reference

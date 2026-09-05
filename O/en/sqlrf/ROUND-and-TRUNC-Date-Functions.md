@@ -2,6 +2,7 @@
 
 Table 7-13 lists the format models you can use with the `ROUND` and `TRUNC` date functions and the units to which they round and truncate dates. The default model, ‘DD’, returns the date rounded or truncated to the day with a time of midnight.
 Table 13 Date Format Models for the ROUND and TRUNC Date Functions
+
 | Format Model | Rounding or Truncating Unit |
 |---|---|
 | CC SCC | One greater than the first two digits of a four-digit year |
@@ -16,5 +17,6 @@ Table 13 Date Format Models for the ROUND and TRUNC Date Functions
 | DAY DY D | Starting day of the week |
 | HH HH12 HH24 | Hour |
 | MI | Minute |
+
 The starting day of the week used by the format models DAY, DY, and D is specified implicitly by the initialization parameter `NLS_TERRITORY`.
 **See Also:**   *Oracle Database Reference* and *Oracle Database Globalization Support Guide* for information on this parameter

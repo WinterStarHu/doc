@@ -45,6 +45,7 @@ Comparison conditions, `ORDER` `BY`, `GROUP` `BY` and `MATCH_RECOGNIZE` query cl
 With blank-padded semantics, if the two values have different lengths, then Oracle first adds blanks to the end of the shorter one so their lengths are equal. Oracle then compares the values character by character up to the first character that differs. The value with the greater character in the first differing position is considered greater. If two values have no differing characters, then they are considered equal. This rule means that two values are equal if they differ only in the number of trailing blanks. Oracle uses blank-padded comparison semantics only when both values in the comparison are either expressions of data type `CHAR`, `NCHAR`, text literals, or values returned by the `USER` function.
 With nonpadded semantics, Oracle compares two values character by character up to the first character that differs. The value with the greater character in that position is considered greater. If two values of different length are identical up to the end of the shorter one, then the longer value is considered greater. If two values of equal length have no differing characters, then the values are considered equal. Oracle uses nonpadded comparison semantics whenever one or both values in the comparison have the data type `VARCHAR2` or `NVARCHAR2`.
 The results of comparing two character values using different comparison semantics may vary. The table that follows shows the results of comparing five pairs of character values using each comparison semantic. Usually, the results of blank-padded and nonpadded comparisons are the same. The last comparison in the table illustrates the differences between the blank-padded and nonpadded comparison semantics.
+
 | Blank-Padded | Nonpadded |
 |---|---|
 | 'ac' > 'ab' | 'ac' > 'ab' |
@@ -52,6 +53,7 @@ The results of comparing two character values using different comparison semanti
 | 'ab' > 'a' | 'ab' > 'a' |
 | 'ab' = 'ab' | 'ab' = 'ab' |
 | 'a ' = 'a' | 'a ' > 'a' |
+
 **Data-Bound Collation**
 Starting with Oracle Database 12*c* Release 2 (12.2), the collation to use when comparing or matching a given character value is associated with the value itself. It is called the **data-bound collation**. The data-bound collation can be viewed as an attribute of the data type of the value.
 In previous Oracle Database releases, the session parameters `NLS_COMP` and `NLS_SORT` coarsely determined the collation for all collation-sensitive SQL operations in a database session. The data-bound collation architecture enables applications to consistently apply language-specific comparison rules to exactly the data that needs these rules.
@@ -100,6 +102,7 @@ Oracle Database automatically converts a value from one data type to another whe
 Table 2-8 is a matrix of Oracle implicit conversions. The table shows all possible conversions, without regard to the direction of the conversion or the context in which it is made.
 An ‘X’ in a cell indicates implicit conversion of the data types named in the first column and header row.
 Table 8 Implicit Type Conversion Matrix
+
 | DataType | CHAR | VARCHAR2 | NCHAR | NVARCHAR2 | DATE | DATETIME/INTERVAL | NUMBER | BINARY_FLOAT | BINARY_DOUBLE | LONG | RAW | ROWID | CLOB | BLOB | NCLOB |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | CHAR | – | X | X | X | X | X | X | X | X | X | X | X | X | X | X |
@@ -117,6 +120,7 @@ Table 8 Implicit Type Conversion Matrix
 | CLOB | X | X | X | X | – | – | – | – | – | X | – | – | – | – | X |
 | BLOB | – | – | – | – | – | – | – | – | – | – | X | – | – | – | – |
 | NCLOB | X | X | X | X | – | – | – | – | – | X | – | – | X | – | – |
+
 Footnote 1
 You cannot convert `LONG` to `INTERVAL` directly, but you can convert `LONG` to `VARCHAR2` using `TO_CHAR`(*interval*), and then convert the resulting `VARCHAR2` value to `INTERVAL`.
 **Implicit Data Type Conversion Rules**
@@ -150,12 +154,14 @@ You cannot convert `LONG` to `INTERVAL` directly, but you can convert `LONG` to 
 ````````
 - Comparisons between CHAR and VARCHAR2 and between NCHAR and NVARCHAR2 types may entail different character sets. The default direction of conversion in such cases is from the database character set to the national character set. Table 2-9 shows the direction of implicit conversions between different character types.
 Table 9 Conversion Direction of Different Character Types
+
 | SourceData Type | to CHAR | to VARCHAR2 | to NCHAR | to NVARCHAR2 |
 |---|---|---|---|---|
 | from CHAR | – | VARCHAR2 | NCHAR | NVARCHAR2 |
 | from VARCHAR2 | VARCHAR2 | – | NVARCHAR2 | NVARCHAR2 |
 | from NCHAR | NCHAR | NCHAR | – | NVARCHAR2 |
 | from NVARCHAR2 | NVARCHAR2 | NVARCHAR2 | NVARCHAR2 | – |
+
 User-defined types such as collections cannot be implicitly converted, but must be explicitly converted using `CAST` … `MULTISET`.
 ### Implicit Data Conversion Examples
 **Text Literal Example**
@@ -182,6 +188,7 @@ SELECT last_name
 You can explicitly specify data type conversions using SQL conversion functions. Table 2-10 shows SQL functions that explicitly convert a value from one data type to another.
 You cannot specify `LONG` and `LONG` `RAW` values in cases in which Oracle can perform implicit data type conversion. For example, `LONG` and `LONG` `RAW` values cannot appear in expressions with functions or operators. Refer to LONG Data Type for information on the limitations on `LONG` and `LONG` `RAW` data types.
 Table 10 Explicit Type Conversions
+
 | SourceData Type | to CHAR,VARCHAR2,NCHAR,NVARCHAR2 | to NUMBER | to Datetime/Interval | to RAW | to ROWID | to LONG,LONG RAW | to CLOB, NCLOB,BLOB | to BINARY_FLOAT | to BINARY_DOUBLE |
 |---|---|---|---|---|---|---|---|---|---|
 | from CHAR, VARCHAR2, NCHAR, NVARCHAR2 | TO_CHAR (char.)TO_NCHAR (char.) | TO_NUMBER | TO_DATETO_TIMESTAMPTO_TIMESTAMP_TZTO_YMINTERVALTO_DSINTERVAL | HEXTORAW | CHARTO­=ROWID | -- | TO_CLOBTO_NCLOB | TO_BINARY_FLOAT | TO_BINARY_DOUBLE |
@@ -194,6 +201,7 @@ Table 10 Explicit Type Conversions
 | from CLOB, NCLOB, BLOB | TO_CHARTO_NCHAR | -- | -- | -- | -- | -- | TO_CLOBTO_NCLOB | -- | -- |
 | from BINARY_FLOAT | TO_CHAR (char.)TO_NCHAR (char.) | TO_NUMBER | -- | -- | -- | -- | -- | TO_BINARY_FLOAT | TO_BINARY_DOUBLE |
 | from BINARY_DOUBLE | TO_CHAR (char.)TO_NCHAR (char.) | TO_NUMBER | -- | -- | -- | -- | -- | TO_BINARY_FLOAT | TO_BINARY_DOUBLE |
+
 **See Also:**   Conversion Functions for details on all of the explicit conversion functions
 ## Security Considerations for Data Conversion
 When a datetime value is converted to text, either by implicit conversion or by explicit conversion that does not specify a format model, the format model is defined by one of the globalization session parameters. Depending on the source data type, the parameter name is `NLS_DATE_FORMAT`, `NLS_TIMESTAMP_FORMAT`, or `NLS_TIMESTAMP_TZ_FORMAT`. The values of these parameters can be specified in the client environment or in an `ALTER` `SESSION` statement.

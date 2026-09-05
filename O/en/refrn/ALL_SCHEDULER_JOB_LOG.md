@@ -4,6 +4,7 @@
 Related Views
 - DBA_SCHEDULER_JOB_LOG displays log information for all Scheduler jobs in the database.
 - USER_SCHEDULER_JOB_LOG displays log information for the Scheduler jobs owned by the current user.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | LOG_ID | NUMBER | NOT NULL | Unique identifier that identifies a row |
@@ -22,6 +23,7 @@ Related Views
 | DESTINATION_OWNER | VARCHAR2(261) |  | Owner of the destination object used in this remote job run; NULL if no object used |
 | DESTINATION | VARCHAR2(261) |  | Destination for a remote job operation |
 | ADDITIONAL_INFO | CLOB |  | Additional information on the entry, if applicable |
+
 See Also:
 - "DBA_SCHEDULER_JOB_LOG"
 - "USER_SCHEDULER_JOB_LOG"

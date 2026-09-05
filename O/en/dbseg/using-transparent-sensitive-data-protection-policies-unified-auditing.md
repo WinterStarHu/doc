@@ -19,6 +19,7 @@ This feature works as follows:
 Audit policy settings can be used in the `POLICY_ENABLE_OPTIONS` parameter for the `DBMS_TSDP_PROTECT.ADD_POLICY` or `DBMS_TSDP_PROTECT.ALTER_POLICY` procedure.
 These audit policy settings are from the `AUDIT`, `CREATE AUDIT POLICY`, and `ALTER AUDIT POLICY` statements.
 The following table describes these settings.
+
 | Parameter | Description | Default |
 |---|---|---|
 | ACTION_AUDIT_OPTIONS | A string containing a comma-separated list of SQL actions. Valid actions are: ALTER, AUDIT, COMMENT, DELETE, FLASHBACK, GRANT, INDEX, INSERT, LOCK, RENAME, SELECT, UPDATE. To configure the policy to audit all of these actions, specify the keyword ALL. | ALL |

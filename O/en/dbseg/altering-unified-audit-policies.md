@@ -35,13 +35,17 @@ ADD action_audit_clause := {standard_actions | component_actions}
                                          [, component_actions ]
 standard_actions :=
      ACTIONS action1 [ ON {schema.obj_name
+
                                           | DIRECTORY directory_name
                                           | MINING MODEL schema.obj_name
+
                                            }
                 ]
            [, action2 [ ON {schema.obj_name
+
                                           | DIRECTORY directory_name
                                           | MINING MODEL schema.obj_name
+
                    }
                 ]
 ```

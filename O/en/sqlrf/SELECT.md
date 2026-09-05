@@ -1108,6 +1108,7 @@ This clause lets you specify a row pattern factor. A row pattern factor consists
 ***row_pattern_primary***
 Use this clause to specify the row pattern element. Table 19-1 lists the valid row pattern elements and their descriptions.
 Table 1 Row Pattern Elements
+
 | Row Pattern Element | Description |
 |---|---|
 | variable_name | Specify a primary pattern variable name that is defined in the row_pattern_definition clause. You cannot specify a union pattern variable that is defined in the row_pattern_subset_item clause. |
@@ -1116,6 +1117,7 @@ Table 1 Row Pattern Elements
 | ( [row_pattern] ) | Use row_pattern to specify the row pattern to be matched. An empty pattern () matches an empty set of rows. |
 | {- row_pattern -} | Exclusion syntax. Use row_pattern to specify parts of the pattern to be excluded from the output of ALL ROWS PER MATCH. |
 | row_pattern_permute | Use row_pattern_permute to specify a pattern that is a permutation of row pattern elements. Refer to row_pattern_permute for the full semantics of this clause. |
+
 ***row_pattern_permute***
 Use the `PERMUTE` clause to express a pattern that is a permutation of the specified row pattern elements. For example, `PATTERN` `(PERMUTE` `(A,` `B,` `C))` is equivalent to an alternation of all permutations of the three row pattern elements `A`, `B`, and `C`, similar to the following:
 ```
@@ -1128,6 +1130,7 @@ Use this clause to specify the row pattern quantifier, which is a postfix operat
 Row pattern quantifiers are referred to as greedy; they will attempt to match as many instances of the regular expression on which they are applied as possible. The exception is row pattern quantifiers that have a question mark (`?`) as a suffix, which are referred to as reluctant. They will attempt to match as few instances as possible of the regular expression on which they are applied.
 Table 19-2 lists the valid row pattern quantifiers and the number of iterations they accept for a match. In this table, *n* and *m* represent unsigned integers.
 Table 2 Row Pattern Quantifiers
+
 | Row Pattern Quantifier | Number of Iterations Accepted for a Match |
 |---|---|
 | * | 0 or more iterations (greedy) |
@@ -1143,6 +1146,7 @@ Table 2 Row Pattern Quantifiers
 | {,m} | Between 0 and m iterations, inclusive (m > 0) (greedy) |
 | {,m}? | Between 0 and m iterations, inclusive (m > 0) (reluctant) |
 | {n}? | n iterations, (n > 0) |
+
 **See Also:**   *Oracle Database Data Warehousing Guide* for more information on row pattern quantifiers
 ## *row_pattern_subset_clause*
 The `SUBSET` clause lets you specify one or more union row pattern variables. Use the *row_pattern_subset_item* clause to declare each union row pattern variable.

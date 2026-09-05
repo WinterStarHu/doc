@@ -3,6 +3,7 @@
 The three most common TLS configurations are described in detail in this topic.
 The first decision is to use a self-signed certificate root of trust or a public CA root of trust. Once you make that decision, Oracle recommends using TLS without a wallet if your environment supports this and is allowed by your security policies. This greatly simplifies managing database clients. Start your configurations with the minimum set of mandatory parameters. And then once you are successful, add the recommended parameters and any optional parameters one by one.
 The following parameters are used in the following configurations in this topic.
+
 | Parameter | Description | Server (Defined in sqlnet.ora) | Listener (Defined in listener.ora) | Static Client (Defined in sqlnet.ora) | Dynamic Client (Defined in the connect string) |
 |---|---|---|---|---|---|
 | WALLET_ROOT | Database server system parameter (replaces WALLET_LOCATION) | Required | No | No | No |
@@ -11,6 +12,7 @@ The following parameters are used in the following configurations in this topic.
 | TLS_CLIENT_AUTHENTICATION | Set to FALSE for one-way TLS only, or to OPTIONAL to permit one-way TLS or mTLS | Required | Required | Optional | Optional |
 | TLS_SERVER_DN_MATCH | Enables partial or full DN matching | No | No | Recommended | Recommended |
 | TLS_SERVER_CERT_DN | Use if full DN matching is required | No | No | No | Optional |
+
 ## `WALLET_ROOT` and `WALLET_LOCATION` Parameters
 For Oracle Database server, Oracle recommends that you use the `WALLET_ROOT` system parameter instead of using `WALLET_LOCATION`.
 The TLS wallet location for a PDB is `WALLET_ROOT/<PDB GUID>/tls`.

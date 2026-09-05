@@ -37,10 +37,12 @@ The next-generation cryptographic provider uses the following parameters in `fip
 Only one cryptographic provider can be active at a time. You cannot run FIPS 140-2 and FIPS 140-3 simultaneously in the same database instance.
 ## FIPS 140 Support by Cryptographic Provider
 FIPS support depends on the active cryptographic provider.
+
 | Cryptographic Provider | FIPS Standard | Configuration |
 |---|---|---|
 | Legacy cryptographic provider | FIPS 140-2 | Use the existing FIPS 140-2 parameters. |
 | Next-generation cryptographic provider | FIPS 140-2 and FIPS 140-3 | Set FIPS_140=TRUE; also set FIPS_140_3=TRUE for FIPS 140-3 mode. |
+
 To enable FIPS mode in Oracle Database 19c, follow the configuration steps appropriate for the active cryptographic provider.
 **Configuring FIPS with the Legacy provider (Default):**
 The legacy provider requires three separate settings:

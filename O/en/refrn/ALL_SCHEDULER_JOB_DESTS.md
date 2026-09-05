@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_JOB_DESTS displays information about the state of all jobs in the database at each of their destinations.
 
 - USER_SCHEDULER_JOB_DESTS displays information about the state of the jobs owned by the current user at each of their destinations. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) |  | Owner of the Scheduler job |
@@ -24,6 +25,7 @@ Related Views
 | FAILURE_COUNT | NUMBER |  | Number of times this job has failed at this destination |
 | LAST_START_DATE | TIMESTAMP(6) WITH TIME ZONE |  | Last time this job started at this destination |
 | LAST_END_DATE | TIMESTAMP(6) WITH TIME ZONE |  | Last time this job ended at this destination |
+
 See Also:
 - "DBA_SCHEDULER_JOB_DESTS"
 - "USER_SCHEDULER_JOB_DESTS"

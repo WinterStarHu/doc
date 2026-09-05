@@ -24,6 +24,7 @@ You can issue all `ALTER` `DISKGROUP` clauses if you have the `SYSASM` system pr
   - SHOW PARAMETER
 Table 10-1 shows additional privileges granted to users connected as `SYSDBA` under the conditions shown:
 Table 1 Conditional Diskgroup Privileges for SYSDBA
+
 | ALTER DISKGROUP Operation | Condition |
 |---|---|
 | DROP FILE | User must have read-write permission on the file. |
@@ -38,6 +39,7 @@ Table 1 Conditional Diskgroup Privileges for SYSDBA
 | MODIFY USERGROUP DROP MEMBER | User must be the owner of the user group. |
 | SET PERMISSION | User must be the owner of the file. |
 | SET OWNER GROUP | User must be the owner of the file and a member of the user group. |
+
 ## Syntax
 ## *alter_diskgroup*::=
 Description of the illustration alter_diskgroup.eps
@@ -282,6 +284,7 @@ In earlier releases, you could specify `CHECK` for `ALL`, `DISK`, `DISKS` `IN` `
 A template is a named collection of attributes. When you create a disk group, Oracle ASM associates a set of initial system default templates with that disk group. The attributes defined by the template are applied to all files in the disk group. Table 10-2 lists the system default templates and the attributes they apply to the various file types. The *diskgroup_template_clauses* described following the table let you change the template attributes and create new templates.
 You cannot use this clause to change the attributes of a disk group file after it has been created. Instead, you must use Recovery Manager (RMAN) to copy the file into a new file with the new attributes.
 Table 2 Oracle Automatic Storage Management System Default File Group Templates
+
 | Template Name | File Type | Mirroring Level in External Redundancy Disk Groups | Mirroring Level in Normal Redundancy Disk Groups | Mirroring Level in High Redundancy Disk Groups | Striped | Region |
 |---|---|---|---|---|---|---|
 | CONTROLFILE | Control files | Unprotected | 3-way mirror | 3-way mirror | FINE | COLD |
@@ -299,6 +302,7 @@ Table 2 Oracle Automatic Storage Management System Default File Group Templates
 | AUTOBACKUP | Automatic backup files | Unprotected | 2-way mirror | 3-way mirror | COARSE | COLD |
 | ASMPARAMETERFILE | SPFILE | Unprotected | 2-way mirror | 3-way mirror | COARSE | COLD |
 | OCRFILE | Oracle Cluster Registry file | Unprotected | 2-way mirror | 3-way mirror | COARSE | COLD |
+
 **ADD TEMPLATE**
 Use this clause to add one or more named templates to a disk group. To determine the names of existing templates, query the `V$ASM_TEMPLATE` dynamic performance view.
 **MODIFY TEMPLATE**

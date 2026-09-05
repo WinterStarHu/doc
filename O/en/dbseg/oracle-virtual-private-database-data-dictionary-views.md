@@ -2,6 +2,7 @@
 
 Oracle Database provides data dictionary views that list information about Oracle Virtual Private Database policies.
 The following table lists Virtual Private Database-specific views.
+
 | View | Description |
 |---|---|
 | ALL_POLICIES | Describes all Oracle Virtual Private Database security policies for objects accessible to the current user. |
@@ -21,6 +22,7 @@ The following table lists Virtual Private Database-specific views.
 | USER_SEC_RELEVANT_COLS | Describes the security relevant columns of the security policies for the tables and views owned by the current user. Its columns (except for OBJECT_OWNER) are the same as those in ALL_SEC_RELEVANT_COLS. |
 | USER_POLICY_GROUPS | Describes the policy groups defined for the synonyms, tables, and views owned by the current user. This view does not display the OBJECT_OWNER column. |
 | V$VPD_POLICY | For the current PDB, displays all the fine-grained security policies and predicates associated with the cursors currently in the library cache. This view is useful for finding the policies that were applied to a SQL statement. |
+
 **Tip:** In addition to these views, check the database trace file if you find errors in application that use Virtual Private Database policies. The `USER_DUMP_DEST` initialization parameter specifies the current location of the trace files. You can find the value of this parameter by issuing `SHOW PARAMETER USER_DUMP_DEST` in SQL*Plus.
 ## Related Topics
   **- Oracle Database Reference

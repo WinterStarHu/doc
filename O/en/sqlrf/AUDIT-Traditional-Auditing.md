@@ -137,6 +137,7 @@ The `CONTAINER` clause applies only when you are connected to a CDB. You can use
 - If you issue the AUDIT statement when the current container is the root, then you can optionally specify CONTAINER = ALL, which is the default.
 ## Tables of Auditing Options
 Table 1 SQL Statement Shortcuts for Auditing
+
 | SQL Statement Shortcut | SQL Statements and Operations Audited |
 |---|---|
 | ALTER SYSTEM | ALTER SYSTEM |
@@ -167,8 +168,10 @@ Table 1 SQL Statement Shortcuts for Auditing
 | TYPE | CREATE TYPECREATE TYPE BODYALTER TYPEDROP TYPEDROP TYPE BODY |
 | USER | CREATE USERALTER USERDROP USERNotes: AUDIT USER audits these three SQL statements. Use AUDIT ALTER USER to audit statements that require the ALTER USER system privilege. An AUDIT ALTER USER statement does not audit a user changing his or her own password, as this activity does not require the ALTER USER system privilege. |
 | VIEW | CREATE VIEWDROP VIEW |
+
 **Note:**   Java schema objects (sources, classes, and resources) are considered the same as procedures for purposes of auditing SQL statements.
 Table 2 Additional SQL Statement Shortcuts for Auditing
+
 | SQL Statement Shortcut | SQL Statements and Operations Audited |
 |---|---|
 | ALTER SEQUENCE | ALTER SEQUENCE |
@@ -189,7 +192,9 @@ Table 2 Additional SQL Statement Shortcuts for Auditing
 | SELECT TABLE | SELECT FROM table, view, materialized view |
 | UPDATE TABLE | UPDATE table, view |
 | WRITE DIRECTORY | Write operations on a directory |
+
 Table 3 Schema Object Auditing Options
+
 | Object | SQL Operations |
 |---|---|
 | Table | ALTERAUDITCOMMENTDELETEFLASHBACK (Note 1)GRANTINDEXINSERTLOCKRENAMESELECTUPDATE |
@@ -201,6 +206,7 @@ Table 3 Schema Object Auditing Options
 | Directory | AUDITGRANTREAD |
 | Library | EXECUTEGRANT |
 | Object Type | ALTERAUDITGRANT |
+
 Note 1: The `FLASHBACK` audit object option applies only to flashback queries.
 Note 2: Java schema objects (sources, classes, and resources) are considered the same as procedures, functions, and packages for purposes of auditing options.
 Note 3: When you audit the `EXECUTE` operation on a PL/SQL stored procedure or stored function, the database considers only its ability to find the procedure or function and authorize its execution when determining the success or failure of the operation for the purposes of auditing. Therefore, if you specify the `WHENEVER` `NOT` `SUCCESSFUL` clause, then only invalid object errors, non-existent object errors, and authorization failures are audited; errors encountered during the execution of the procedure or function are not audited. If you specify the `WHENEVER` `SUCCESSFUL` clause, then all executions that are not blocked by invalid object errors, non-existent object errors, or authorization failures are audited, regardless of whether errors are encountered during execution.

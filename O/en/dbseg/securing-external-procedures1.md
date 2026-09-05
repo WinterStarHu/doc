@@ -24,6 +24,7 @@ The general process is as follows:
 The extproc process has a set of behaviors for authentication and impersonation.
 The below table describes the expected behaviors of an `extproc` process based on possible authentication and impersonation scenarios.
 In this table, `GLOBAL_EXTPROC_CREDENTIAL` is a reserved credential name for the default credential if the credential is not explicitly specified and if the `ENFORCE_CREDENTIAL` environment variable is set to `TRUE`. Therefore, Oracle strongly recommends that you create a credential by the that name if `ENFORCE_CREDENTIAL` is set to `TRUE`.
+
 | ENFORCE_CREDENTIAL Environment Variable Setting | PL/SQL Library with Credential? | GLOBAL_EXTPROC_CREDENTIAL Credential Existence | Expected Behavior |
 |---|---|---|---|
 | FALSE | No | No | Uses the pre-release 12c authentication, which authenticates by operating system privilege of the owners of the Oracle listener or Oracle server process. |
@@ -34,6 +35,7 @@ In this table, `GLOBAL_EXTPROC_CREDENTIAL` is a reserved credential name for the
 | TRUE | No | Yes | Authenticates and impersonates with the Oracle system-wide supplied GLOBAL_EXTPROC_CREDENTIAL (footnote 1) |
 | TRUE | Yes | No | Authenticates and impersonates with the credential defined in the PL/SQL library |
 | TRUE | Yes | Yes | Authenticates and impersonates (footnote 2) |
+
 ## Configuring Authentication for External Procedures
 To configure a credential for `extproc` processes, you can use the `DBMS_CREDENTIAL` PL/SQL package.
   ````- Log in to SQL*Plus as a user who has been granted the CREATE CREDENTIAL or CREATE ANY CREDENTIAL privilege.

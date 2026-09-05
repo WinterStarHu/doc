@@ -3,6 +3,7 @@
 The script content on this page is for navigation purposes only and does not alter the content in any way.
 Most of the pre-Oracle Database 12*c* release 1 (12.1) auditing features can be used before a unified auditing migration.
 The following table describes how the pre-Oracle Database 12*c* audit features change in the migration.
+
 | Feature | Availability in Pre-Migrated Environment | Availability in Post-Migrated Environment |
 |---|---|---|
 | General Auditing Features | - | - |
@@ -66,5 +67,6 @@ The following table describes how the pre-Oracle Database 12*c* audit features c
 | DVSYS.AUDIT_TRAIL$ system table | Yes | Is renamed to DVSYS.OLD_AUDIT_TRAIL$ and retains the old audit records. The previous DVSYS.AUDIT_TRAIL$ table is made into a view named DVSYS.AUDIT_TRAIL$. No new audit records are added. |
 | Oracle Label Security Features | - | - |
 | SA_AUDIT_ADMIN PL/SQL package | Yes | No |
+
 ``````````
 - These data dictionary views will continue to show audit data from audit records that are still in the SYS.AUD$ and SYS.FGA_LOG$ system tables. Unified audit trail records are shown only in the unified audit trail-specific views. You must be granted the AUDIT_ADMIN or AUDIT_VIEWER role to query any views that are not prefaced with USER_. ↩

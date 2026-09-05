@@ -9,6 +9,7 @@ For the operand, *expr* can be either a built-in data type, a collection type, o
 `CAST` does not directly support any of the LOB data types. When you use `CAST` to convert a `CLOB` value into a character data type or a `BLOB` value into the `RAW` data type, the database implicitly converts the LOB value to character or raw data and then explicitly casts the resulting value into the target data type. If the resulting value is larger than the target type, then the database returns an error.
 When you use `CAST` … `MULTISET` to get a collection value, each select list item in the query passed to the `CAST` function is converted to the corresponding attribute type of the target collection element type.
 Table 1 Casting Built-In Data Types
+
 | Destination Data Type | from BINARY_FLOAT, BINARY_DOUBLE | from CHAR, VARCHAR2 | from NUMBER/INTEGER | from DATETIME / INTERVAL (Note 1) | from RAW | from ROWID, UROWID (Note 2) | from NCHAR, NVARCHAR2 |
 |---|---|---|---|---|---|---|---|
 | to BINARY_FLOAT, BINARY_DOUBLE | X (Note 3) | X (Note 3) | X (Note 3) | -- | -- | -- | X (Note 3) |
@@ -18,6 +19,7 @@ Table 1 Casting Built-In Data Types
 | to RAW | -- | X | -- | -- | X | -- | X |
 | to ROWID, UROWID | -- | X | -- | -- | -- | X | -- |
 | to NCHAR, NVARCHAR2 | X | -- | X | X | X | X | X |
+
 **Note 1:** Datetime/interval includes `DATE`, `TIMESTAMP`, `TIMESTAMP` `WITH` `TIMEZONE`, `TIMESTAMP` `WITH` `LOCAL` `TIME` `ZONE`, `INTERVAL` `DAY` `TO` `SECOND`, and `INTERVAL` `YEAR` `TO` `MONTH`.
 **Note 2:** You cannot cast a `UROWID` to a `ROWID` if the `UROWID` contains the value of a `ROWID` of an index-organized table.
 **Note 3:** You can specify the `DEFAULT` *return_value* `ON` `CONVERSION` `ERROR` clause for this type of conversion. You can specify the *fmt* and *nlsparam* clauses for this type of conversion with the following exceptions: you cannot specify fmt when converting to `INTERVAL` `DAY` `TO` `SECOND`, and you cannot specify *fmt* or *nlsparam* when converting to `INTERVAL` `YEAR` `TO` `MONTH`.

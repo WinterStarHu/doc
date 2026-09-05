@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_RUNNING_CHAINS displays information about the chain steps of all running chains in the database.
 
 - USER_SCHEDULER_RUNNING_CHAINS displays information about the chain steps of the running chains owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the job which is running the chain |
@@ -26,6 +27,7 @@ Related Views
 | RESTART_ON_FAILURE | VARCHAR2(5) |  | Indicates whether the chain step will be restarted on application failure (TRUE) or not (FALSE) |
 | STEP_JOB_SUBNAME | VARCHAR2(128) |  | Subname of the job running the step |
 | STEP_JOB_LOG_ID | NUMBER |  | Log ID of the job running the step |
+
 See Also:
 - "DBA_SCHEDULER_RUNNING_CHAINS"
 - "USER_SCHEDULER_RUNNING_CHAINS"

@@ -184,6 +184,7 @@ You can prioritize the cipher suites. When the client negotiates with servers to
 #### Strong TLS Cipher Suites
 Oracle provides strong Transport Layer Security (TLS) cipher suites by default. The default ciphers supported by Oracle are shown in the table below.
 Table 6 Approved TLS Cipher Suites
+
 | Cipher Suite | Authentication | Encryption | Data Integrity | TLS Compatibility |
 |---|---|---|---|---|
 | TLS_AES_128_CCM_SHA256 | ECDHE_RSA, DHE_RSA, ECDHE_ECDSA | AES 128 CCM | SHA256 (SHA 2) | TLS 1.3 |
@@ -196,9 +197,11 @@ Table 6 Approved TLS Cipher Suites
 | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 | ECDHE_ECDSA | AES 256 GCM | SHA384 (SHA-2) | TLS 1.2 |
 | TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 | ECDHE_RSA | AES 128 GCM | SHA256 (SHA-2) | TLS 1.2 |
 | TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 | ECDHE_RSA | AES 256 GCM | SHA384 (SHA-2) | TLS 1.2 |
+
 #### Deprecated TLS Cipher Suites
 To accommodate legacy products, Oracle provides TLS cipher suites which are considered less secure. Those ciphers are deprecated and disabled by default. The deprecated ciphers supported by Oracle are shown in the table below.
 Table 7 Deprecated TLS Cipher Suites
+
 | Cipher Suite | Authentication | Encryption | Data Integrity | TLS Compatibility |
 |---|---|---|---|---|
 | TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 | DHE_RSA | AES 128 CBC | SHA256 (SHA-2) | TLS 1.2 |
@@ -219,6 +222,7 @@ Table 7 Deprecated TLS Cipher Suites
 | TLS_RSA_WITH_AES_256_CBC_SHA | RSA | AES 256 CBC | SHA (SHA-1) | TLS 1.2 |
 | TLS_RSA_WITH_AES_256_CBC_SHA256 | RSA | AES 256 CBC | SHA256 (SHA-2) | TLS 1.2 |
 | TLS_RSA_WITH_AES_256_GCM_SHA384 | RSA | AES 256 GCM | SHA384 (SHA-2) | TLS 1.2 |
+
 #### Enabling Weak Cipher Suites
 You can enable deprecated cipher suites by setting the `TLS_ENABLE_WEAK_CIPHERS` parameter. For the connections to be successful with the weak cipher suites, all three components (client, listener, and server) need to have the weak cipher suites enabled.
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both `TLS_ENABLE_WEAK_CIPHERS` and `SSL_ENABLE_WEAK_CIPHERS` parameters are configured, then the `SSL_ENABLE_WEAK_CIPHERS` parameter is ignored.
@@ -497,35 +501,43 @@ The client-side TLS configuration can be connection-specific or applied to all c
 - Static: these are parameters specified in the configuration file sqlnet.ora and uniformly applied to all connections made by the client.
 ****
 - Dynamic: If desired, certain TLS parameters may be specified directly in the TNS connect string to override the same or similar parameter in sqlnet.ora.
+
 | Parameter | Description | Server | Listener | Static Client | Dynamic Client |
 |---|---|---|---|---|---|
 | HTTPS_CLIENT_AUTHENTICATION | Specifies whether a client is authenticated using TLS for HTTPS connections | Yes | Yes | Yes | Yes |
 | TLS_CLIENT_AUTHENTICATION | Specifies whether a client is authenticated using TLS or mTLS | Yes | Yes | Yes | Yes |
 | WALLET_LOCATION | Specify the TLS wallet location. | Yes | Yes | Yes | Yes |
+
 For Oracle Database server, Oracle recommends that you use the `WALLET_ROOT` system parameter instead of using `WALLET_LOCATION`.
 Table 3 TLS Parameters For Selecting User
+
 | Parameter | Description | Server | Listener | Static Client | Dynamic Client |
 |---|---|---|---|---|---|
 | TLS_CERTIFICATE_ALIAS | Specifies the certificate based on its alias. | Yes | Yes | Yes | Yes |
 | TLS_EXTENDED_KEY_USAGE | Specifies the certificate based on its key usage value. | Yes | Yes | Yes | Yes |
 | TLS_CERTIFICATE_THUMBPRINT | Specifies the certificate based on its thumbprint. | Yes | Yes | Yes | Yes |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both the `TLS_` and `SSL_` versions of parameters are configured, then the `SSL_` parameter is ignored.
 **Note:**  Selecting a client-side user certificate is only applicable when working with user certificates in Windows MCS and in Oracle wallets.
 Table 4 TLS Certificate DN Matching Parameters
+
 | Parameter | Description | Server | Listener | Static Client | Dynamic Client |
 |---|---|---|---|---|---|
 | TLS_ALLOW_WEAK_DN_MATCH | Allows the earlier weaker distinguished name (DN) matching behavior during server-side certificate validation | No | No | Yes | Yes |
 | TLS_SERVER_CERT_DN | Specifies the distinguished name (DN) of the database server | No | No | No | Yes |
 | TLS_SERVER_DN_MATCH | Enforces client-side validation of server through distinguished name (DN) matching | No | No | Yes | Yes |
 | TLS_CERT_VALIDATION_MODE | Specifies if stricter checks as per RFC 5280 are enforced. | No | No | Yes | No |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both the `TLS_` and `SSL_` versions of parameters are configured, then the `SSL_` parameter is ignored.
 Table 5 TLS Protocol and Cipher Suite
+
 | Parameter | Description | Server | Listener | Static Client | Dynamic Client |
 |---|---|---|---|---|---|
 | TLS_CIPHER_SUITES | Specifies the TLS cipher suites allowed for TLS connections | Yes | Yes | Yes | Yes |
 | TLS_ENABLE_WEAK_CIPHERS | Enables deprecated TLS cipher suites | Yes | Yes | Yes | Yes |
 | TLS_VERSION | Specifies the TLS protocol to use in a connection | Yes | Yes | Yes | Yes |
 | TLS_DISABLE_VERSION | Specifies what, if any, TLS protocols are disallowed in a connection. | Yes | Yes | Yes | Yes |
+
 **Note:** To bring Oracle parameters in accord with the actual encryption and authentication methods for network connections, Oracle is deprecating all connect parameters prefixed with `SSL_` in favor of parameters prefixed with `TLS_`. During this deprecation period, if both the `TLS_` and `SSL_` versions of parameters are configured, then the `SSL_` parameter is ignored.
 ## Oracle Wallet Location
 Certificates used for TLS are stored in the Oracle wallet. There are several default locations where the wallet can be placed. The location of the wallet can also be configured with the wallet location parameters on the client and listener. The `WALLET_ROOT` system parameter should be used for the database server wallet location.

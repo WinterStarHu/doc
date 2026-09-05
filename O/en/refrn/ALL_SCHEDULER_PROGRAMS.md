@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_PROGRAMS displays information about all Scheduler programs in the database.
 
 - USER_SCHEDULER_PROGRAMS displays information about the Scheduler programs owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the Scheduler program |
@@ -23,6 +24,7 @@ Related Views
 | HAS_CONSTRAINTS | VARCHAR2(5) |  | Indicates whether the job (not including the program of the job) is part of a resource constraint or incompatibility (TRUE) or not (FALSE) |
 | NLS_ENV | VARCHAR2(4000) |  | NLS environment in which the program was created |
 | COMMENTS | VARCHAR2(4000) |  | Comments on the program |
+
 See Also:
 - "DBA_SCHEDULER_PROGRAMS"
 - "USER_SCHEDULER_PROGRAMS"

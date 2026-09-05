@@ -9,6 +9,7 @@ You can create unified audit policies to capture the actions of administrative u
 ## Administrative User Accounts That Can Be Audited
 Oracle Database provides administrative user accounts that are associated with administrative privileges.
 The following table lists default administrative user accounts and the administrative privileges with which they are typically associated.
+
 | Administrative User Account | Administrative Privilege |
 |---|---|
 | SYS | SYSDBA |
@@ -17,6 +18,7 @@ The following table lists default administrative user accounts and the administr
 | SYSBACKUP | SYSBACKUP |
 | SYSDG | SYSDG |
 | SYSKM | SYSKM |
+
 ## Configuring a Unified Audit Policy to Capture Administrator Activities
 The `CREATE AUDIT POLICY` statement can audit administrative users.
   - To audit administrative users, create a unified audit policy and then apply this policy to the user, the same as you would for non-administrative users. Note that top-level statements by administrative users are mandatorily audited until the database opens.

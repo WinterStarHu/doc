@@ -98,6 +98,7 @@ These user models are as follows:
 ****
 - Web-based applications. Web-based applications typically have hundreds of users. Even when there are persistent connections to the database, supporting data retrieval for many user requests, these connections are not specific to particular Web-based users. Instead, Web-based applications typically set up and reuse connections, to provide scalability, rather than having different sessions for each user. For example, when Web users Jane and Ajit connect to a middle tier application, it may establish a single database session that it uses on behalf of both users. Typically, neither Jane nor Ajit is known to the database. The application is responsible for switching the user name on the connection, so that, at any given time, it is either Jane or Ajit using the session. Oracle Virtual Private Database helps with connection pooling by allowing multiple connections to access more than one global application context. This ability makes it unnecessary to establish a separate application context for each distinct user session.
 The following table summarizes how Oracle Virtual Private Database applies to user models.
+
 | User Model Scenario | Individual Database Connection | Separate Application Context per User | Single Database Connection | Application Must Switch User Name |
 |---|---|---|---|---|
 | Application users are also database users | Yes | Yes | No | No |
@@ -105,6 +106,7 @@ The following table summarizes how Oracle Virtual Private Database applies to us
 | Proxy authentication integrated with Enterprise User Security1 | No | No | Yes | Yes |
 | One Big Application User | No | No2 | No | Yes2 |
 | Web-based applications | No | No | Yes | Yes |
+
 ## Related Topics
   **- Oracle Database Development Guide for detailed information about editions
   **````- Oracle Database SQL Language Reference for more information about the restrictions of the FOR UPDATE clause in the SELECT statement

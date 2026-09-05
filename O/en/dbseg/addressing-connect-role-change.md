@@ -133,11 +133,13 @@ APPS                           CREATE TABLE
 ### Data Dictionary View to Show CONNECT Grantees
 The `DBA_CONNECT_ROLE_GRANTEES` data dictionary view enables administrators who continue using the old `CONNECT` role to see which users have that role.
 The following table shows the columns in the `DBA_CONNECT_ROLE_GRANTEES` view.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | GRANTEE | VARCHAR2(128) | NULL | User granted the CONNECT role |
 | PATH_OF_CONNECT_ROLE_GRANT | VARCHAR2(4000 | NULL | Role (or nested roles) by which the user is granted CONNECT |
 | ADMIN_OPT | VARCHAR2(3) | NULL | YES if user has the ADMIN option on CONNECT; otherwise, NO |
+
 ### Least Privilege Analysis Studies
 Oracle partners and application providers should conduct a least privilege analysis so that they can deliver more secure products to their Oracle customers.
 The principle of least privilege mitigates risk by limiting privileges to the minimum set required to perform a given function.

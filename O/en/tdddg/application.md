@@ -55,6 +55,7 @@ GRANT INSERT, SELECT ON AUDIT_TRAIL TO app_admin;
 - “Recommended Security Practices”
 ## Naming Conventions in the Application
 The application uses these naming conventions.
+
 | Item | Name |
 |---|---|
 | Table | table# |
@@ -69,5 +70,6 @@ The application uses these naming conventions.
 | Sequence for table# | table_sequence |
 | Parameter name | p_name |
 | Local variable name | l_name |
+
 **Footnote 1:** *table*, *table1*, and *table2* are abbreviated to emp for employees, dept for departments, and job_hist for job_history.
 **Footnote 2:** *col1* and *col2* are abbreviations of column names *column1* and *column2*. A constraint name cannot have more than 30 characters.

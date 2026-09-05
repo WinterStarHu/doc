@@ -22,10 +22,12 @@ For example, users are prevented from exercising `ANY` system privileges such as
 ### User Access to Objects in the SYS Schema
 Users with explicit object privileges or those who connect with administrative privileges (`SYSDBA`) can access objects in the `SYS` schema.
 The following table lists roles that you can grant to users who need access to objects in the `SYS` schema.
+
 | Role | Description |
 |---|---|
 | SELECT_CATALOG_ROLE | Grant this role to allow users SELECT privileges on data dictionary views. |
 | EXECUTE_CATALOG_ROLE | Grant this role to allow users EXECUTE privileges for packages and procedures in the data dictionary. |
+
 Additionally, you can grant the `SELECT ANY DICTIONARY` system privilege to users who require access to tables created in the `SYS` schema. This system privilege allows query access to any object in the `SYS` schema, including tables created in that schema. It must be granted individually to each user requiring the privilege. It is not included in `GRANT ALL PRIVILEGES`, but it can be granted through a role.
 In earlier releases, the `DBA_TAB_STAT_PREFS` view could be queried by any user with the `PUBLIC` role. Starting with Oracle Database 19c, Release Update 19.28, this view adheres to the convention for `DBA_` views, that is, it can be queried only by users with the `SYSDBA` system privilege or `SELECT ANY DICTIONARY` privilege, or `SELECT_CATALOG_ROLE` role, or by users with direct privileges granted to them. This change improves access control for optimizer and statistics metadata and reduces information disclosure.
   **Note:**   You should grant these roles and the `SELECT ANY DICTIONARY` system privilege with extreme care, because the integrity of your system can be compromised by their misuse.

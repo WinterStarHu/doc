@@ -29,6 +29,7 @@ For tables that contain sensitive information, Oracle recommends that you includ
 ## Object Actions That Can Be Audited
 Auditing object actions can be broad or focused (for example, auditing all user actions or only a select list of user actions).
 The following table lists the object-level standard database action options. Audit policies for the `SELECT` SQL statement will capture `READ` actions as well as `SELECT` actions.
+
 | Object | SQL Action That Can Be Audited |
 |---|---|
 | Table | ALTER, AUDIT, COMMENT, DELETE, FLASHBACK, GRANT, INDEX, INSERT, LOCK, RENAME, SELECT, UPDATE |
@@ -43,6 +44,7 @@ The following table lists the object-level standard database action options. Aud
 | Library | EXECUTE, GRANT |
 | Object type | ALTER, AUDIT, GRANT |
 | Java schema objects (source, class, resource) | AUDIT, EXECUTE, GRANT |
+
 ## Configuring an Object Action Unified Audit Policy
 The `ACTIONS` clause in the `CREATE AUDIT POLICY` statement creates a policy that captures object actions.
   - Use the following syntax to create a unified audit policy that audits object actions:

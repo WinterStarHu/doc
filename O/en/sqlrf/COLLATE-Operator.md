@@ -6,9 +6,11 @@ You can apply this operator to expressions of type `VARCHAR2`, `CHAR`, `LONG`, `
 The `COLLATE` operator takes one argument, *collation_name*, for which you can specify a named collation or pseudo-collation. If the collation name contains a space, then you must enclose the name in double quotation marks.
 Table 4-3 describes the `COLLATE` operator.
 Table 3 COLLATE Operator
+
 | Operator | Purpose | Example |
 |---|---|---|
 | COLLATE collation_name | Determines the collation for an expression | SELECT last_name FROM employees ORDER BY last_name COLLATE GENERIC_M; |
+
 **See Also:**
 - Compound Expressions for information on using the COLLATE operator in a compound expression
 **

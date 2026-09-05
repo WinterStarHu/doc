@@ -157,6 +157,7 @@ SELECT id, LPAD(' ',2*(LEVEL-1))||operation operation, options,
 **Hints by Functional Category**
 Table 2-23 lists the hints by functional category and contains cross-references to the syntax and semantics for each hint. An alphabetical reference of the hints follows the table.
 Table 23 Hints by Functional Category
+
 | Hint | Link to Syntax and Semantics |
 |---|---|
 | Optimization Goals and Approaches | ALL_ROWS HintFIRST_ROWS Hint |
@@ -221,6 +222,7 @@ Table 23 Hints by Functional Category
 | – | PUSH_SUBQ HintNO_PUSH_SUBQ Hint |
 | – | PX_JOIN_FILTER HintNO_PX_JOIN_FILTER Hint |
 | – | QB_NAME Hint |
+
 ## Alphabetical Listing of Hints
 This section provides syntax and semantics for all hints in alphabetical order.
 ### ALL_ROWS Hint
@@ -813,8 +815,10 @@ The `NO_USE_BAND` hint instructs the optimizer to exclude band joins when joinin
 ```
 SELECT /*+ NO_USE_BAND(e1 e2) */
   e1.last_name
+
   || ' has salary between 100 less and 100 more than '
   || e2.last_name AS "SALARY COMPARISON"
+
 FROM employees e1, employees e2
 WHERE e1.salary BETWEEN e2.salary - 100 AND e2.salary + 100;
 ```
@@ -1007,12 +1011,14 @@ The `PQ_DISTRIBUTE` hint instructs the optimizer how to distribute rows among pr
 **Control of Distribution for Load**
 You can control the distribution of rows for parallel `INSERT` … `SELECT` and parallel `CREATE` `TABLE` … `AS` `SELECT` statements to direct how rows should be distributed between the producer (query) and the consumer (load) servers. Use the upper branch of the syntax by specifying a single distribution method. The values of the distribution methods and their semantics are described in Table 2-24.
 Table 24 Distribution Values for Load
+
 | Distribution | Description |
 |---|---|
 | NONE | No distribution. That is the query and load operation are combined into each query server. All servers will load all partitions. This lack of distribution is useful to avoid the overhead of distributing rows where there is no skew. Skew can occur due to empty segments or to a predicate in the statement that filters out all rows evaluated by the query. If skew occurs due to using this method, then use either RANDOM or RANDOM_LOCAL distribution instead.Note: Use this distribution with care. Each partition loaded requires a minimum of 512 KB per process of PGA memory. If you also use compression, then approximately 1.5 MB of PGA memory is consumer per server. |
 | PARTITION | This method uses the partitioning information of tablespec to distribute the rows from the query servers to the load servers. Use this distribution method when it is not possible or desirable to combine the query and load operations, when the number of partitions being loaded is greater than or equal to the number of load servers, and the input data will be evenly distributed across the partitions being loaded-that is, there is no skew. |
 | RANDOM | This method distributes the rows from the producers in a round-robin fashion to the consumers. Use this distribution method when the input data is highly skewed. |
 | RANDOM_LOCAL | This method distributes the rows from the producers to a set of servers that are responsible for maintaining a given set of partitions. Two or more servers can be loading the same partition, but no servers are loading all partitions. Use this distribution method when the input data is skewed and combining query and load operations is not possible due to memory constraints. |
+
 For example, in the following direct-path insert operation, the query and load portions of the operation are combined into each query server:
 ```
 INSERT /*+ APPEND PARALLEL(target_table, 16) PQ_DISTRIBUTE(target_table, NONE) */
@@ -1034,6 +1040,7 @@ You control the distribution method for joins by specifying two distribution met
 - inner_distribution is the distribution for the inner table.
 The values of the distributions are `HASH`, `BROADCAST`, `PARTITION`, and `NONE`. Only six combinations table distributions are valid, as described in Table 2-25:
 Table 25 Distribution Values for Joins
+
 | Distribution | Description |
 |---|---|
 | HASH, HASH | The rows of each table are mapped to consumer query servers, using a hash function on the join keys. When mapping is complete, each query server performs the join between a pair of resulting partitions. This distribution is recommended when the tables are comparable in size and the join operation is implemented by hash-join or sort merge join. |
@@ -1042,6 +1049,7 @@ Table 25 Distribution Values for Joins
 | PARTITION, NONE | The rows of the outer table are mapped using the partitioning of the inner table. The inner table must be partitioned on the join keys. This distribution is recommended when the number of partitions of the outer table is equal to or nearly equal to a multiple of the number of query servers; for example, 14 partitions and 15 query servers.Note: The optimizer ignores this hint if the inner table is not partitioned or not equijoined on the partitioning key. |
 | NONE, PARTITION | The rows of the inner table are mapped using the partitioning of the outer table. The outer table must be partitioned on the join keys. This distribution is recommended when the number of partitions of the outer table is equal to or nearly equal to a multiple of the number of query servers; for example, 14 partitions and 15 query servers.Note: The optimizer ignores this hint if the outer table is not partitioned or not equijoined on the partitioning key. |
 | NONE, NONE | Each query server performs the join operation between a pair of matching partitions, one from each table. Both tables must be equipartitioned on the join keys. |
+
 For example, given two tables `r` and `s` that are joined using a hash join, the following query contains a hint to use hash distribution:
 ```
 SELECT /*+ORDERED PQ_DISTRIBUTE(s HASH, HASH) USE_HASH (s)*/ column_list
@@ -1199,8 +1207,10 @@ The `USE_BAND` hint instructs the optimizer to join each specified table with an
 ```
 SELECT /*+ USE_BAND(e1 e2) */
   e1.last_name
+
   || ' has salary between 100 less and 100 more than '
   || e2.last_name AS "SALARY COMPARISON"
+
 FROM employees e1, employees e2
 WHERE e1.salary BETWEEN e2.salary - 100 AND e2.salary + 100;
 ```

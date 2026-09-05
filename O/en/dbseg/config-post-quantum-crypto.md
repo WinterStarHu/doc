@@ -24,6 +24,7 @@ TLS_KEY_EXCHANGE_GROUPS=(hybrid,ml-kem)
 ### Client Driver Support Matrix for TLS 1.3 and ML-KEM
 Client support for TLS 1.3 and ML-KEM in Oracle Database 19c depends on both the driver implementation and the underlying runtime or cryptographic library. OCI-based clients currently provide the clearest path for ML-KEM support. Thin drivers and managed runtimes can vary by platform, operating system, JDK, .NET, or OpenSSL level, so verify the exact client stack before requiring ML-KEM or hybrid key exchange in production.
 The following table summarizes which clients support TLS 1.3 and post-quantum cryptography.
+
 | Client driver | Variant or platform | TLS 1.3 support | ML-KEM / PQC support | Notes |
 |---|---|---|---|---|
 | OCI / C client | OCI-based client stack | Yes | Yes | Supports TLS_KEY_EXCHANGE_GROUPS in client sqlnet.ora |
@@ -37,6 +38,7 @@ The following table summarizes which clients support TLS 1.3 and post-quantum cr
 | ODP.NET Core | Linux | Yes | Yes | - |
 | ODP.NET Core | Windows | Yes | No | TLS works, but PQC over TLS is not available |
 | ODP.NET managed | Windows | Yes | No | TLS works, but PQC over TLS is not available |
+
 ## Configuring Post-Quantum Cryptography with ML-DSA Signed Certificates
 Public certificate authorities do not yet broadly issue ML-DSA certificates for production TLS deployments. The current Oracle guidance is therefore to use self-signed ML-DSA certificates for development, interoperability testing, and controlled internal environments until the broader CA and trust ecosystem adds support for PQC certificate issuance and validation.
 For Oracle Database TLS, ML-DSA certificates are relevant to authentication and certificate validation, while ML-KEM is the key encapsulation mechanism. These are separate functions. A TLS connection can use ML-KEM for TLS 1.3 key exchange and use an ML-DSA certificate for server or client authentication, but both peers must support PQC certificate handling. ML-DSA certificates are not usable with TLS 1.2. Use TLS 1.3 only.

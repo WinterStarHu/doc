@@ -47,11 +47,13 @@ kservice/kinstance@REALM
 ```
 ```
 Each of the fields in the service principal specify the following values:
+
  | Service Principal Field | Description |
  | --- | --- |
  | `kservice` | A case-sensitive string that represents the Oracle service. This can be the same as the database service name. |
  | `kinstance` | Typically the fully qualified DNS name of the system on which Oracle Database is running. |
  | `REALM` | The name of the Kerberos realm with which the service principal is registered. `REALM` must always be uppercase and is typically the DNS domain name. |
+
   {: summary="This table lists and describes each field in the Kerberos service principal." }
 The utility names in this section are executable programs. However, the Kerberos user name `krbuser` and the realm `EXAMPLE.COM` are examples only.
 For example, suppose `kservice` is `oracle`, the fully qualified name of the system on which Oracle Database is running is `dbserver.example.com` and the realm is `EXAMPLE.COM`. The principal name then is:

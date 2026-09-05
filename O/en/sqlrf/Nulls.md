@@ -13,6 +13,7 @@ Oracle also considers two nulls to be equal if they appear in compound keys. Tha
 A condition that evaluates to `UNKNOWN` acts almost like `FALSE`. For example, a `SELECT` statement with a condition in the `WHERE` clause that evaluates to `UNKNOWN` returns no rows. However, a condition evaluating to `UNKNOWN` differs from `FALSE` in that further operations on an `UNKNOWN` condition evaluation will evaluate to `UNKNOWN`. Thus, `NOT` `FALSE` evaluates to `TRUE`, but `NOT` `UNKNOWN` evaluates to `UNKNOWN`.
 Table 2-22 shows examples of various evaluations involving nulls in conditions. If the conditions evaluating to `UNKNOWN` were used in a `WHERE` clause of a `SELECT` statement, then no rows would be returned for that query.
 Table 22 Conditions Containing Nulls
+
 | Condition | Value of A | Evaluation |
 |---|---|---|
 | a IS NULL | 10 | FALSE |
@@ -25,4 +26,5 @@ Table 22 Conditions Containing Nulls
 | a != NULL | NULL | UNKNOWN |
 | a = 10 | NULL | UNKNOWN |
 | a != 10 | NULL | UNKNOWN |
+
 For the truth tables showing the results of logical conditions containing nulls, see Table 6-5, Table 6-6, and Table 6-7.

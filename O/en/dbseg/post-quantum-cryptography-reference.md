@@ -27,26 +27,32 @@ As ML-KEM is a relatively new algorithm, Oracle recommends using hybrid mode to 
 ### Named Groups Reference:
 The following named groups are available for negotiation. When using the `hybrid` or `ml-kem` modes, the specific group is negotiated automatically during the TLS handshake based on mutual support between client and server.
 The following hybrid key exchange groups are available:
+
 | Named Group | Description |
 |---|---|
 | X25519MLKEM768 | Combines X25519 (classical) with MLKEM768 (post-quantum) |
 | SecP256r1MLKEM768 | Combines ECDH P-256 (classical) with MLKEM768 (post-quantum) |
 | SecP384r1MLKEM1024 | Combines ECDH P-384 (classical) with MLKEM1024 (post-quantum) |
+
 The following pure ML-KEM groups are available:
+
 | Named Group | NIST Security Level | Approximate Classical Equivalent |
 |---|---|---|
 | MLKEM512 | Level 1 | AES-128 |
 | MLKEM768 | Level 3 | AES-192 |
 | MLKEM1024 | Level 5 | AES-256 |
+
 Configure key exchange groups by using the `TLS_KEY_EXCHANGE_GROUPS` parameter. See TLS Key Exchange for parameter details.
 ## ML-DSA for TLS Digital Signatures
 ML-DSA (Module-Lattice Digital Signature Algorithm), standardized in NIST FIPS 204, is a digital signature algorithm for authentication and data integrity. ML-DSA is lattice-based and intended to replace RSA and ECDSA. Certificate validation is supported only in TLS 1.3.
 Oracle Database supports the following ML-DSA parameter sets:
+
 | Parameter Set | Approximate Classical Equivalent | NIST Security Level |
 |---|---|---|
 | ML-DSA-87 | RSA 4096-bit key | Level 5 |
 | ML-DSA-65 | RSA 3072-bit key | Level 3 |
 | ML-DSA-44 | RSA 2048-bit key | Level 2 |
+
 ML-DSA can be used for:
 - TLS server and client certificate authentication (TLS 1.3 only)
 - Certificate signing (issuing certificates with ML-DSA keys)
@@ -60,12 +66,14 @@ SLH-DSA is considered a conservative PQC choice because its security relies on t
 **Note:** For TLS digital signatures, use ML-DSA. SLH-DSA is intended for non-TLS use cases only.
 ## Post-Quantum Cryptography and FIPS Mode
 The availability of post-quantum cryptography algorithms depends on the active cryptographic provider and FIPS mode setting.
+
 | Configuration | ML-KEM | ML-DSA | SLH-DSA | Hybrid KEMs |
 |---|---|---|---|---|
 | Legacy provider, non-FIPS | Not available | Not available | Not available | Not available |
 | Legacy provider, FIPS 140-2 | Not available | Not available | Not available | Not available |
 | Next-generation cryptographic provider, non-FIPS | Available | Available | Available | Available |
 | Next-generation cryptographic provider, FIPS 140-3 mode | Available | Available | Available | Available |
+
 PQC algorithms require the next-generation cryptographic provider. They are not available with the legacy cryptographic provider regardless of FIPS mode.
 When the next-generation cryptographic provider is active, PQC algorithms are available in both FIPS 140-3 mode and non-FIPS mode. There is no difference in PQC algorithm availability between these two configurations.
 **Note:** To use PQC algorithms with FIPS compliance, enable FIPS 140-3 mode with the next-generation cryptographic provider (`FIPS_140=TRUE`, `FIPS_140_3=TRUE`).

@@ -3,6 +3,7 @@
 `ALL_SCHEDULER_WINDOWS` displays information about the Scheduler windows accessible to the current user.
 Related View
 `DBA_SCHEDULER_WINDOWS` displays information about all Scheduler windows in the database.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the Scheduler window |
@@ -23,5 +24,6 @@ Related View
 | MANUAL_OPEN_TIME | TIMESTAMP(6) WITH TIME ZONE |  | Open time of the window if it was manually opened, else NULL |
 | MANUAL_DURATION | INTERVAL DAY(3) TO SECOND(0) |  | Duration of the window if it was manually opened, else NULL |
 | COMMENTS | VARCHAR2(4000) |  | Comments on the window |
+
 See Also:
 "DBA_SCHEDULER_WINDOWS"

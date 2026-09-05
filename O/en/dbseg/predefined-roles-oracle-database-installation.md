@@ -2,6 +2,7 @@
 
 Oracle Database provides a set of predefined roles to help in database administration.
 These predefined role are automatically defined for Oracle databases when you run the standard scripts (such as `catalog.sql` and `catproc.sql`) that are part of database creation, and they are considered common roles. If you install other options or products, then other predefined roles may be created. You can find roles that are created and maintained by Oracle by querying the `ROLE` and `ORACLE_MAINTAINED` columns of the `DBA_ROLES` data dictionary view. If the output for `ORACLE_MAINTAINED` is `Y`, then you must not modify the role except by running the script that was used to create it.
+
 | Predefined Role | Description |
 |---|---|
 | ACCHK_READ | Provides privileges to use Application Continuity Protection Check (ACCHK), which includes the ability to query the following data dictionary views: DBA_ACCHK_EVENTS, DBA_ACCHK_EVENTS_SUMMARY, DBA_ACCHK_STATISTICS, and DBA_ACCHK_STATISTICS_SUMMARY. Database administrators and PDB administrators grant this role to developers to read their results from ACCHK. |
@@ -63,4 +64,5 @@ These predefined role are automatically defined for Oracle databases when you ru
 | XS_NSATTR_ADMIN | In Oracle Database Real Application Security, enables the grantee to manage and manipulate the namespace and attribute for a session. Grant this role to the Real Application Security session user. |
 | XS_RESOURCE | In Oracle Database Real Application Security, enables the grantee to manage objects in the attached schema, through the XS_ACL PL/SQL package. This package creates procedures to create and manage access control lists (ACLs). It contains the ADMIN SEC POLICY privilege. It is similar to the Oracle Database RESOURCE role. |
 | XS_SESSION_ADMIN | In Oracle Database Real Application Security, enables the grantee to manage the life cycle of a session, including the ability to create, attach, detach, and destroy the session. Grant this role to the application connection user or Real Application Security dispatcher. |
+
 **Note:**  Each installation should create its own roles and assign only those privileges that are needed, thus retaining detailed control of the privileges in use. This process also removes any need to adjust existing roles, privileges, or procedures whenever Oracle Database changes or removes roles that Oracle Database defines. For example, the `CONNECT` role now has only one privilege: `CREATE SESSION`.

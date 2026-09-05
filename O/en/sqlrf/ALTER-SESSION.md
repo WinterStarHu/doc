@@ -213,9 +213,11 @@ If `STANDBY_MAX_DATA_DELAY` is set to `0`, a query issued to a physical standby 
 **Syntax:**
 ```
 TIME_ZONE =  '[+ | -] hh:mi'
+
              | LOCAL
              | DBTIMEZONE
              | 'time_zone_region'
+
 ```
 The `TIME_ZONE` parameter specifies the default local time zone offset or region name for the current SQL session. `TIME_ZONE` is a session parameter only, not an initialization parameter. To determine the time zone of the current session, query the built-in function `SESSIONTIMEZONE` (see SESSIONTIMEZONE).
 ******

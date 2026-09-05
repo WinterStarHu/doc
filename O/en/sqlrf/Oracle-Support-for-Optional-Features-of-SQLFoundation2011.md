@@ -2,6 +2,7 @@
 
 Oracle’s support for optional features of SQL/Foundation is listed in Table C-2:
 Table 2 Oracle Support for Optional Features of SQL/Foundation
+
 | T326, Table functions | Oracle provides equivalents for the following elements of this feature: is supported using CAST (MULTISET (<query expression>) AS <nested table type>) is supported using the TABLE operator in the FROM clause with a varray or nested table as the argument is equivalent to an Oracle expression resulting in a varray or nested table is equivalent to a PL/SQL function that returns a nested table |
 |---|---|
 | T331, Basic roles | Oracle supports this feature, except for REVOKE ADMIN OPTION FOR . |

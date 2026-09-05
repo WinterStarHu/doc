@@ -183,11 +183,13 @@ orapki wallet add -wallet wallet_location -dn "CN=example" \
   -keyAlg ML-DSA-65 -validity 365
 ```
 Supported post-quantum key algorithms for `orapki`:
+
 | Algorithm | Approximate Classical Equivalent |
 |---|---|
 | ML-DSA-44 | Approximately equivalent to RSA 2048-bit key |
 | ML-DSA-65 | Approximately equivalent to RSA 3072-bit key |
 | ML-DSA-87 | Approximately equivalent to RSA 4096-bit key |
+
 **Recommended Classic Certificate Algorithms:**
 For classic (non-PQC) certificates, the following are recommended in order of strength:
   - ECC: ecdsa_secp521r1_sha512, equivalent to an RSA 15360-bit key

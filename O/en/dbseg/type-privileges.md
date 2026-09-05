@@ -12,6 +12,7 @@ You can control system and object privileges for types, methods, and objects.
 ## System Privileges for Named Types
 System privileges for named types can enable users to perform actions such as creating named types in their own schemas.
 The following table lists system privileges for named types (object types, `VARRAY`s, and nested tables).
+
 | Privilege | Enables you to … |
 |---|---|
 | CREATE TYPE | Create named types in your own schemas |
@@ -19,6 +20,7 @@ The following table lists system privileges for named types (object types, `VARR
 | ALTER ANY TYPE | Alter a named type in any schema |
 | DROP ANY TYPE | Drop a named type in any schema |
 | EXECUTE ANY TYPE | Use and reference a named type in any schema |
+
 The `RESOURCE` role includes the `CREATE` `TYPE` system privilege. The `DBA` role includes all of these privileges.
 ## Object Privileges for Named Types
 The only object privilege that applies to named types is `EXECUTE`.
@@ -87,12 +89,14 @@ CREATE TABLE tab3 OF type4;
 ## Privileges on Type Access and Object Access
 Existing column-level and table-level privileges for DML statements apply to both column objects and row objects.
 The following table lists the privileges for object tables.
+
 | Privilege | Enables you to… |
 |---|---|
 | SELECT | Access an object and its attributes from the table |
 | UPDATE | Modify the attributes of the objects that make up the rows in the table |
 | INSERT | Create new objects in the table |
 | DELETE | Delete rows |
+
 Similar table privileges and column privileges apply to column objects. Retrieving instances does not in itself reveal type information. However, clients must access named type information to interpret the type instance images. When a client requests type information, Oracle Database checks for the `EXECUTE` privilege on the type.
 Consider the following schema:
 ```

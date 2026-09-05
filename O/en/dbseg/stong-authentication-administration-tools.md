@@ -22,12 +22,14 @@ Although you can use Oracle Net Manager, a graphical user interface tool, to con
 ### Kerberos Adapter Command-Line Utilities
 The Kerberos adapter provides command-line utilities that obtain, cache, display, and remove Kerberos credentials.
 The following table briefly describes these utilities.
+
 | Utility Name | Description |
 |---|---|
 | okinit | Obtains Kerberos tickets from the Key Distribution Center (KDC) and caches them in the user’s credential cache |
 | oklist | Displays a list of Kerberos tickets in the specified credential cache |
 | okdstry | Removes Kerberos credentials from the specified credential cache |
 | okcreate | Automates the creation of keytabs from either the KDC or a service endpoint |
+
 **Note:**   The Cybersafe adapter is not supported beginning with this release. You should use Oracle’s Kerberos adapter in its place. Kerberos authentication with the Cybersafe KDC (Trust Broker) continues to be supported when using the Kerberos adapter.
 ## Public Key Infrastructure Credentials Management Tools
 The security provided by a public key infrastructure (PKI) depends on how effectively you store, manage, and validate your PKI credentials.
@@ -58,6 +60,7 @@ orapki crl list -ldap machine1.us.example.com:389
 ## Duties of Strong Authentication Administrators
 Most of the tasks of a security administrator involve ensuring that the connections to and from Oracle databases are secure.
 The following table describes the primary tasks of security administrators who are responsible for strong authentication, the tools used to perform the tasks, and links to where the tasks are documented.
+
 | Task | Tools Used | See Also |
 |---|---|---|
 | Configure encrypted Oracle Net connections between database servers and clients | Oracle Net Manager | Configuring Encryption on the Client and the Server |
@@ -74,6 +77,7 @@ The following table describes the primary tasks of security administrators who a
 | Configuring TLS connections for a database client | Oracle Net Manager | Step 2: Configure Transport Layer Security on the Client |
 | Configuring TLS connections for a database server | Oracle Net Manager | Step 1: Configure Transport Layer Security on the Server |
 | Enabling certificate validation with a certificate revocation list (CRL) | Oracle Net Manager | Configuring Certificate Validation with Certificate Revocation Lists |
+
 ## Related Topics
   - Utilities for the Kerberos Authentication Adapter
   **- Oracle Database Advanced Security Guide

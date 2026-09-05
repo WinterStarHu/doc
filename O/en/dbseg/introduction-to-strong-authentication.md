@@ -65,11 +65,13 @@ Description of the illustration dbseg_vm_009.png
 ## System Requirements for Strong Authentication
 Kerberos, RADIUS, and Transport Layer Security (TLS) have a set of system requirements for strong authentication.
 The following table lists the TLS system requirements for strong authentication.
+
 | Authentication Method | System Requirements |
 |---|---|
 | Kerberos | MIT Kerberos Version 5, release 1.8 or above. The Kerberos authentication server must be installed on a physically secure system. |
 | RADIUS | A RADIUS server that is compliant with the standards in the Internet Engineering Task Force (IETF) RFC #2138, Remote Authentication Dial In User Service (RADIUS), and RFC #2139, RADIUS Accounting. To enable challenge-response authentication, you must run RADIUS on an operating system that supports the Java Native Interface as specified in release 1.1 of the Java Development Kit from JavaSoft. |
 | TLS | A wallet that is compatible with Oracle Database 10g. |
+
 ## Oracle Database Native Network Encryption and Strong Authentication Restrictions
 Oracle applications support Oracle Database native network encryption and strong authentication.
 However, because Oracle Database native network encryption and strong authentication requires Oracle Net Services to transmit data securely, these external authentication features are not supported by some parts of Oracle Financial, Human Resource, and Manufacturing Applications when they are running on Microsoft Windows.

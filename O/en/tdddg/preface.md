@@ -26,6 +26,7 @@ For more information, see:
 - Oracle Database PL/SQL Language Reference
 ## Conventions
 *Oracle Database 2 Day Developer’s Guide* uses these text conventions.
+
 | Convention | Meaning |
 |---|---|
 | boldface | Boldface type indicates graphical user interface elements associated with an action, or terms defined in text or the glossary. |

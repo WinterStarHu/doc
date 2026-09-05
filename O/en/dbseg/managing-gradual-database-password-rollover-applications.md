@@ -76,11 +76,13 @@ CREATE PROFILE prof LIMIT
 ``````
   - You specify the rollover time period in days, but you can specify hours if you want. For example, enter 1/24 to specify 1 hour, or 6/24 (or 1/4) to specify 6 hours.
 ``````````
+
 | Profile Name | PASSWORD_LIFE_TIME | PASSWORD_GRACE_TIME | PASSWORD_ROLLOVER_TIME |
 |---|---|---|---|
 | Default | 180 | 7 | Minimum: 1/24 (1 hour); Maximum: 7 days |
 | ORA_STIG_PROFILE | 60 | 5 | Minimum: 1/24 (1 hour); Maximum: 5 days |
 | User Custom Profile | 365 | 90 | Minimum: 1/24 (1 hour); Maximum: 60 days |
+
   - The minimum value for an active rollover time is 1 hour. The maximum value is 60 days or the lower value of the PASSWORD_LIFE_TIME or PASSWORD_GRACE_TIME parameter. If PASSWORD_GRACE_TIME is set to 0 (zero), then it will be ignored with respect to any limits with PASSWORD_ROLLOVER_TIME. The following table describes these limits:
 ``````
   - The default setting for PASSWORD_ROLLOVER_TIME is 0 or NULL, which disables it.

@@ -30,6 +30,7 @@ DROP POLICY
 ...
 ```
 The following table describes the Oracle Label Security audit events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE POLICY | Creates an Oracle Label Security policy through the SA_SYSDBA.CREATE_POLICY procedure |
@@ -50,6 +51,7 @@ The following table describes the Oracle Label Security audit events.
 | ALTER LABEL COMPONENTS | Alters an Oracle Label Security component through the following procedures: levels - SA_COMPONENTS.ALTER_LEVEL, compartments - SA_COMPONENTS.ALTER_COMPARTMENT, and groups - SA_COMPONENTS.ALTER_GROUP and SA_COMPONENTS.ALTER_GROUP_PARENT. |
 | DROP LABEL COMPONENTS | Drops an Oracle Label Security component through the following procedures: levels - SA_COMPONENTS.DROP_LEVEL, compartments - SA_COMPONENTS.DROP_COMPARTMENT, and groups -SA_COMPONENTS.DROP_GROUP. |
 | ALL | Enables auditing of all Oracle Label Security actions |
+
 ## Oracle Label Security Auditable User Session Labels
 The `ORA_OLS_SESSION_LABELS` application context can capture user session label usage for each Oracle Database event.
 The attributes used by this application context refer to Oracle Label Security policies. .

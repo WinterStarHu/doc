@@ -21,11 +21,13 @@ This applies to both unified audit policies and policies that are created using 
 - Application common audit policy. Similar to CDB common audit policies, this type of policy is available to all PDBs in the multitenant environment. You can create common audit policies for application common objects and application common roles, as well as system action options and system privilege options. You can only create this type of policy in the application root container, but you can enable it on both application common users and CDB common users. If you want to audit objects, then ensure that these objects are application common objects. You can determine whether an object is an application common object by querying the SHARING column of the DBA_OBJECTS data dictionary view.
 By default, audit policies are local to the current PDB, for both CDB and application scenarios.
 The following table explains how audit policies apply in different multitenant environments.
+
 | Audit Option Type | CDB Root | Application Root | Individual PDB |
 |---|---|---|---|
 | Common audit statement or audit policy | Applies to CDB common users | Applies to CDB common users | Applies to CDB common users |
 | Application container common audit statement or audit policy | Not applicable | Applies to CDB common users and are valid for the current application container only and to application container common users | Applies to CDB common users and are valid for this application container only and to application common users |
 | Local audit statement or audit policy | Local configurations not allowed | Local configurations not allowed | Applies to CDB common users and to application common users |
+
 ## Traditional Auditing in a Multitenant Environment
 In traditional auditing (not unified auditing), the `AUDIT` and `NOAUDIT` statements can audit statements and privileges in a multitenant environment.
 To configure the audit policy to be either a local audit policy or a common audit policy, you must include the `CONTAINER` clause, as you normally do for other SQL creation or modification statements. If you want to audit an application container, then you can audit SQL statement and system privileges performed by local and common users and roles. The audit record will be created in the container in which the action was performed.

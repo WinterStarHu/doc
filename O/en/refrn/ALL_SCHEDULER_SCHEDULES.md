@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_SCHEDULES displays information about all Scheduler schedules in the database.
 
 - USER_SCHEDULER_SCHEDULES displays information about the Scheduler schedules owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) | NOT NULL | Owner of the schedule |
@@ -20,6 +21,7 @@ Related Views
 | FILE_WATCHER_NAME | VARCHAR2(261) |  | Name of the file watcher on which this schedule is based |
 | END_DATE | TIMESTAMP(6) WITH TIME ZONE |  | Cutoff date after which the schedule will not specify any dates |
 | COMMENTS | VARCHAR2(4000) |  | Comments on the schedule |
+
 See Also:
 - "DBA_SCHEDULER_SCHEDULES"
 - "USER_SCHEDULER_SCHEDULES"

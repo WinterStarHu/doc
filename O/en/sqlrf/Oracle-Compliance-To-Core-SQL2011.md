@@ -13,6 +13,7 @@ The SQL standards conformance features can be used either as a guide to portabil
 - Similar Support: Neither the standard’s syntax nor semantics are supported precisely, but similar functionality is provided.
 Oracle’s support for the features of Core SQL is listed in Table C-1:
 Table 1 Oracle Support of Core SQL Features
+
 | Feature ID, Feature | Support |
 |---|---|
 | E011, Numeric data types | Oracle fully supports this feature. |

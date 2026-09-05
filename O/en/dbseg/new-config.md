@@ -187,10 +187,12 @@ Next, you must configure the Oracle client where users log in.
   - Set the RADIUS challenge-response mode to ON for the client if you have not already done so.
 ### Step 3C: Configure the RADIUS Server
 To configure the RADIUS server, you must modify the RADIUS server attribute configuration file.
+
 | ATTRIBUTE NAME | CODE | TYPE |
 |---|---|---|
 | VENDOR_SPECIFIC | 26 | Integer |
 | ORACLE_ROLE | 1 | String |
+
 - Add the following attributes to the RADIUS server attribute configuration file:
 ```
 VALUE     VENDOR_SPECIFIC     ORACLE     111

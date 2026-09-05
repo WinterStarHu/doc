@@ -179,12 +179,14 @@ ALTER PLUGGABLE DATABASE APPLICATION APP$CDB$SYSTEM SYNC;
 ## Data Dictionary Views for Encrypted Data Dictionary Credentials
 Oracle Database provides a set of data dictionary views that provide information about the encryption of sensitive credential data in the data dictionary.
 The following table lists the data dictionary views.
+
 | View | Description |
 |---|---|
 | ALL_DB_LINKS | Describes database links that are accessible to the current user. A value of YES in the VALID column indicates that the database link is usable. |
 | DBA_DB_LINKS | Describes describes all database links in the database. A value of YES in the VALID column indicates that the database link is usable. (This view is available to administrative users only, such as SYS or users who have been granted the DBA role.) |
 | DICTIONARY_CREDENTIALS_ENCRYPT | Describes the status of dictionary credentials. The ENFORCEMENT column lists ENABLED if the credentials are encrypted and DISABLED if the credentials are not encrypted. |
 | USER_DB_LINKS | Describes the database links hat are owned by the current user. A value of YES in the VALID column indicates that the database link is usable. |
+
 ## Related Topics
   - Restoring the Functioning of Database Links After a Lost Keystore
   **- Oracle Database Reference

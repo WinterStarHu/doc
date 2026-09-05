@@ -5,6 +5,7 @@ Related Views
 - DBA_SCHEDULER_RUNNING_JOBS displays information about all running Scheduler jobs in the database.
 
 - USER_SCHEDULER_RUNNING_JOBS displays information about the running Scheduler jobs owned by the current user. This view does not display the OWNER column.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | OWNER | VARCHAR2(128) |  | Owner of the running Scheduler job |
@@ -24,6 +25,7 @@ Related Views
 | CREDENTIAL_OWNER | VARCHAR2(128) |  | Owner of the login credential used for this running job, if any |
 | CREDENTIAL_NAME | VARCHAR2(128) |  | Name of the login credential used for this running job, if any |
 | LOG_ID | NUMBER |  | Log ID used for this running job. This column maps to the LOG_ID column of the *_SCHEDULER_JOB_LOG and *_SCHEDULER_JOB_RUN_DETAILS views. |
+
 See Also:
 - "DBA_SCHEDULER_RUNNING_JOBS"
 - "USER_SCHEDULER_RUNNING_JOBS"

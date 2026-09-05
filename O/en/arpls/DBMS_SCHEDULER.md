@@ -111,6 +111,7 @@ minus = "-"
 combined_schedule = schedule_list
 
 Table 159-1 Values for repeat_interval
+
 | Name | Description |
 |---|---|
 | FREQ | This specifies the type of recurrence. It must be specified. The possible predefined frequency values are YEARLY, MONTHLY, WEEKLY, DAILY, HOURLY, MINUTELY, and SECONDLY. Alternatively, specifies an existing schedule to use as a user-defined frequency. |
@@ -130,6 +131,7 @@ Table 159-1 Values for repeat_interval
 | INTERSECT | This specifies an intersection between the calendaring expression results and the set of timestamps defined by one or more named schedules. Only the timestamps that appear both in the calendaring expression and in one of the named schedules are included in the resulting set of timestamps. For example, assume that the named schedule last_sat indicates the last Saturday in every month, and that for the year 2005, the only months where the last day of the month is also a Saturday are April and December. Assume also that the named schedule end_qtr indicates the last day of each quarter in 2005: 3/31/2005, 6/30/2005, 9/30/2005, 12/31/2005 These calendaring expressions result in the dates that follow:3/31/2005, 4/30/2005, 6/30/2005, 9/30/2005, 12/31/2005 FREQ=MONTHLY; BYMONTHDAY=-1; INTERSECT=last_sat,end_qtrIn this example, the terms FREQ=MONTHLY; BYMONTHDAY=-1 indicate the last day of each month. This clause only works on a full day and therefore cannot be used with BYHOUR, BYMIN, and BYSECOND. |
 | PERIODS | This identifies the number of periods that together form one cycle of a user-defined frequency. It is used in the repeat_interval expression of the schedule that defines the user-defined frequency. It is mandatory when the repeat_interval expression in the main schedule contains a BYPERIOD clause. The following example defines the quarters of a fiscal year. FREQ=YEARLY;BYDATE=0301,0601,0901,1201;PERIODS=4 |
 | BYPERIOD | This selects periods from a user-defined frequency. For example, if a main schedule names a user-defined frequency schedule that defines the fiscal quarters shown in the previous example, the clause BYPERIOD=2,4 in the main schedule selects the 2nd and 4th fiscal quarters. |
+
 Combining Schedules
 There are two ways to combine schedules:
 - Using a combined schedule expression, which is a list of individual schedules For example, to create a schedule for all company holidays, you provide a list of individual schedules, where each schedule in the list defines a single holiday. The Scheduler evaluates each individual schedule, and then returns a union of the timestamps returned by each individual schedule.
@@ -300,12 +302,14 @@ TYPE jobarg IS OBJECT (
 
 Attributes
 Table 159-2 JOBARG Object Type Attributes
+
 | Attribute | Description |
 |---|---|
 | arg_position | Position of the argument |
 | arg_text_value | Value of the argument if the type is VARCHAR2 |
 | arg_anydata_value | Value of the argument if the type is AnyData |
 | arg_operation | Type of the operation: SET RESET |
+
 JOBARG Constructor Function
 This constructor function constructs a job argument. It is overloaded to construct job arguments with different types of values.
 Syntax
@@ -332,11 +336,13 @@ constructor function jobarg (
 
 Parameters
 Table 159-3 JOBARG Constructor Function Parameters
+
 | Parameter | Description |
 |---|---|
 | arg_position | Position of the argument |
 | arg_value | Value of the argument |
 | arg_reset | If arg_reset is TRUE, then the argument at that position is reset. Setting arg_reset to FALSE (which is the default) will create an argument with a NULL value. |
+
 JOBARG_ARRAY Table Type
 Syntax
 
@@ -394,6 +400,7 @@ TYPE job_definition IS OBJECT (
 Object Attributes
 Table 159-4 provides brief descriptions of the attributes of the `JOB_DEFINITION` object type. For more complete information about these attributes, see the "CREATE_JOB Procedure" and the "SET_ATTRIBUTE Procedure".
 Table 159-4 JOB_DEFINITION Object Types
+
 | Attribute | Description |
 |---|---|
 | job_name | Name of the job |
@@ -433,6 +440,7 @@ Table 159-4 JOB_DEFINITION Object Types
 | allow_runs_in_restricted_mode | If TRUE, the job is permitted to run when the database is in restricted mode, provided that the job owner is permitted to log in during this mode |
 | restart_on_recovery | If set to TRUE for a job and the job is stopped by a database shutdown, then the job is restarted when the database is recovered. If set to FALSE, and the job is stopped by a database shutdown, then the job is marked as stopped when the database is recovered. |
 | restart_on_failure | If set to TRUE for a job and the job fails due to an application error, then the job is retried using the normal Scheduler retry mechanism (after 1 second, after 10 seconds, after 100 seconds, and so on, up to a maximum of 6 times). If all 6 retries fail (after about 30 hours), then the job is marked FAILED. If set to FALSE (the default), a failed job is immediately marked FAILED. |
+
 JOB_DEFINITION Constructor Function
 This constructor function constructs a `job_definition` object.
 Syntax
@@ -502,6 +510,7 @@ TYPE jobattr IS OBJECT (
 
 Attributes
 Table 159-5 JOBATTR Object Type Attributes
+
 | Attribute | Description |
 |---|---|
 | job_name | Name of the job |
@@ -512,6 +521,7 @@ Table 159-5 JOBATTR Object Type Attributes
 | num_value | Value of the argument if the type is NUMBER |
 | timestamp_value | Value of the argument if the type is TIMESTAMP WITH TIME ZONE |
 | interval_value | Value of the argument if the type is INTERVAL DAY TO SECOND |
+
 JOBATTR Constructor Function
 This constructor function constructs a job attribute. It is overloaded to create attribute values of the following types: `VARCHAR2`, `NUMBER`, `TIMESTAMP WITH TIME ZONE`, `INTERVAL DAY TO SECOND`, and an array of `JOBARG` types.
 Syntax
@@ -538,12 +548,14 @@ constructor function jobattr (
 
 Parameters
 Table 159-6 JOBATTR Constructor Function Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | Name of the job |
 | attr_name | Name of the argument |
 | attr_value | Value of the argument |
 | attr_value2 | Most attributes have only one value associated with them, but some can have two. The attr_value2 argument is for this optional second value. |
+
 JOBATTR Table Type
 Syntax
 
@@ -565,10 +577,12 @@ TYPE scheduler$_step_type IS OBJECT (
 
 Attributes
 Table 159-7 SCHEDULER$_STEP_TYPE Object Type Attributes
+
 | Attribute | Description |
 |---|---|
 | step_name | Name of the step |
 | step_type | State of the step |
+
 #### SCHEDULER$_STEP_TYPE_LIST Table Type
 This type is a table of `scheduler$_step_type`.
 Syntax
@@ -603,6 +617,7 @@ TYPE SCHEDULER$_EVENT_INFO IS OBJECT (
 
 Attributes
 Table 159-8 SCHEDULER_EVENT_INFO Object Type Attributes
+
 | Attribute | Description |
 |---|---|
 | event_type | One of "JOB_STARTED", "JOB_SUCCEEDED", "JOB_FAILED", "JOB_BROKEN", "JOB_COMPLETED", "JOB_STOPPED", "JOB_SCH_LIM_REACHED", "JOB_DISABLED", "JOB_CHAIN_STALLED", "JOB_OVER_MAX_DUR". For descriptions of these event types, see Table 159-84. |
@@ -617,6 +632,7 @@ Table 159-8 SCHEDULER_EVENT_INFO Object Type Attributes
 | failure_count | Failure count for the job when the event was raised. |
 | retry_count | Retry count for the job when the event was raised. |
 | spare1 – spare8 | Not currently in use. |
+
 #### SCHEDULER_FILEWATCHER_RESULT Object Type
 This is the datatype of a file arrival event message.
 You access the event message as a parameter of an event-based job (or a parameter of a program referenced by an event-based job). The message contains information needed to locate and process a file that arrived on a local or remote system.
@@ -633,6 +649,7 @@ TYPE scheduler_filewatcher_result IS OBJECT (
 
 Attributes
 Table 159-9 SCHEDULER_FILEWATCHER_RESULT Object Type Attributes
+
 | Attribute | Description |
 |---|---|
 | destination | Destination at which the file was found, expressed as a host name or IP address. |
@@ -642,6 +659,7 @@ Table 159-9 SCHEDULER_FILEWATCHER_RESULT Object Type Attributes
 | file_timestamp | Timestamp assigned to the file when the file watcher considered the file found, based on the minimum file size and steady state duration attributes. |
 | ts_ms_from_epoch | For internal use only. |
 | matching_requests | List of matching requests. This is a TABLE of type objects SCHEDULER_FILEWATCHER_REQUEST. Each matching request corresponds to a file watcher whose destination, directory_path, and file_name attributes matched the arrived file. See "SCHEDULER_FILEWATCHER_REQUEST Object Type". |
+
 #### SCHEDULER_FILEWATCHER_REQUEST Object Type
 This type is returned in the `matching_requests` attribute of the SCHEDULER_FILEWATCHER_RESULT Object Type. Its attributes are similar to the attributes of a file watcher.
 Syntax
@@ -658,6 +676,7 @@ TYPE scheduler_filewatcher_request IS OBJECT (
 
 Attributes
 Table 159-10 SCHEDULER_FILEWATCHER_REQUEST Object Type Attributes
+
 | Attribute | Description |
 |---|---|
 | owner | Owner of the matched file watcher. |
@@ -668,11 +687,13 @@ Table 159-10 SCHEDULER_FILEWATCHER_REQUEST Object Type Attributes
 | credential_name | Name of the credential referenced by the matched file watcher. |
 | min_file_size | Value of the min_file_size attribute of the matched file watcher. |
 | steady_state_dur | Value of the steady_state_duration attribute of the matched file watcher. |
+
 **Related Topics**
                            - SCHEDULER_FILEWATCHER_RESULT Object Type
 ### Summary of DBMS_SCHEDULER Subprograms
 This table lists the `DBMS_SCHEDULER` subprograms and briefly describes them.
 Table 159-11 DBMS_SCHEDULER Package Subprograms
+
 | Subprogram | Description |
 |---|---|
 | ADD_EVENT_QUEUE_SUBSCRIBER Procedure | Adds a user as a subscriber to the Scheduler event queue SYS.SCHEDULER$_EVENT_QUEUE |
@@ -748,6 +769,7 @@ Table 159-11 DBMS_SCHEDULER Package Subprograms
 | SET_RESOURCE_CONSTRAINT Procedure | Specifies the resources used by jobs |
 | SET_SCHEDULER_ATTRIBUTE Procedure | Sets the value of a Scheduler attribute |
 | STOP_JOB Procedure | Stops a currently running job or all jobs in a job class |
+
 #### ADD_EVENT_QUEUE_SUBSCRIBER Procedure
 This procedure adds a user as a subscriber to the Scheduler event queue `SYS.SCHEDULER$_EVENT_QUEUE`, and grants the user permission to dequeue from this queue using the designated agent.
 Syntax
@@ -757,9 +779,11 @@ DBMS_SCHEDULER.ADD_EVENT_QUEUE_SUBSCRIBER (
 
 Parameters
 Table 159-12 ADD_EVENT_QUEUE_SUBSCRIBER Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | subscriber_name | Name of the Oracle Advanced Queuing (AQ) agent to be used to subscribe to the Scheduler event queue. If NULL, an agent is created and assigned the user name of the calling user. |
+
 Usage Notes
 The subscription is rule-based. The rule permits the user to see only events raised by jobs that the user owns, and filters out all other messages. If an AQ agent with the same name already exists, an error is raised.
 #### ADD_GROUP_MEMBER Procedure
@@ -772,10 +796,12 @@ DBMS_SCHEDULER.ADD_GROUP_MEMBER (
 
 Parameters
 Table 159-13 ADD_GROUP_MEMBER Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | group_name | The name of the group. |
 | member | A comma-separated list of members to add to the group. Members must match the group type. A group of the same type can be a member. The Scheduler immediately expands the included group name into its list of members. An error is returned if any of the members do not exist. A member that is already in the group is skipped, and no error is generated. The keyword LOCAL can be included as a member for database destination or external destination groups. See the "CREATE_GROUP Procedure" for information about this keyword. |
+
 Usage Notes
 The following users may add members to a group:
 - The group owner
@@ -800,6 +826,7 @@ DBMS_SCHEDULER.ADD_JOB_EMAIL_NOTIFICATION (
 
 Parameters
 Table 159-14 ADD_JOB_EMAIL_NOTIFICATION Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | Name of the job that e-mail notifications are added for. Cannot be NULL. |
@@ -809,8 +836,10 @@ Table 159-14 ADD_JOB_EMAIL_NOTIFICATION Procedure Parameters
 | body | The body of the e-mail message. Table 159-15 describes the variables that you can include within this parameter. The Scheduler assigns values to these variables before sending the notification. If body is omitted, the default body is used. The default body is the following text, where text enclosed in the '%' character represents a variable: 'Job: %job_owner%.%job_name%.%job_subname% Event: %event_type% Date: %event_timestamp% Log id: %log_id% Job class: %job_class_name% Run count: %run_count% Failure count: %failure_count% Retry count: %retry_count% Error code: %error_code% Error message: %error_message%' |
 | events | Comma-separate list of job state events to send e-mail notifications for. Cannot be NULL. A notification is sent to all recipients if any of the listed events is raised. Table 159-84 lists the valid events for this parameter. If events is omitted, notifications are sent for the following default events: JOB_FAILED,JOB_BROKEN,JOB_SCH_LIM_REACHED,JOB_CHAIN_STALLED,JOB_OVER_MAX_DUR |
 | filter_condition | Used to filter events to send e-mail notifications for. If NULL, all occurrences of the specified events cause e-mail notifications to be sent. filter_condition must be a boolean SQL WHERE clause that may refer to the :event bind variable. This bind variable is automatically bound to an object of type SCHEDULER$_EVENT_INFO that represents the raised event. For example, to send an e-mail notification only when the error number in an event is 600 or 700, use the following filter_condition: :event.error_code=600 or :event.error_code=700See "SCHEDULER$_EVENT_INFO Object Type". |
+
 Table 159-15 lists the variables that you can use in the subject and body arguments.
 Table 159-15 Variables Used in the SUBJECT and BODY Parameters
+
 | Variable | Comment |
 |---|---|
 | %job_owner% | Schema in which job was created |
@@ -824,6 +853,7 @@ Table 159-15 Variables Used in the SUBJECT and BODY Parameters
 | %run_count% | Run count for the job when the event was raised |
 | %failure_count% | Failure count for the job when the event was raised |
 | %retry_count% | Retry count for the job when the event was raised |
+
 Usage Notes
 You can call `ADD_JOB_EMAIL_NOTIFICATION` once for each different set of notifications that you want to configure for a particular job. For example, you may want to send notifications for the `JOB_FAILED`, `JOB_BROKEN`, `JOB_SCH_LIM_REACHED`, and `JOB_CHAIN_STALLED` events to the principle DBA and all senior DBAs, but send a notification for the `JOB_OVER_MAX_DUR` event only to the principle DBA.
 This procedure succeeds only if the Scheduler attribute `email_server` is set to a valid SMTP server. See Oracle Database Administrator's Guide for more information.
@@ -838,10 +868,12 @@ DBMS_SCHEDULER.ADD_TO_INCOMPATIBILITY (
 
 Parameters
 Table 159-16 ADD_TO_INCOMPATIBILITY Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | incompatibility_name | The name of the incompatibility definition. |
 | object_name | One or more (comma-separated) programs or jobs |
+
 Usage Notes
 This procedure does not raise an error if any specified objects already exist in the incompatibility definition.
 See Also:
@@ -867,6 +899,7 @@ DBMS_SCHEDULER.ALTER_CHAIN (
 
 Parameters
 Table 159-17 ALTER_CHAIN Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to alter |
@@ -874,6 +907,7 @@ Table 159-17 ALTER_CHAIN Procedure Parameters
 | attribute | The attribute of the steps to change. Must be one of the following: 'PAUSE' If set to TRUE for a step, after the step has run, its state changes to PAUSED (and the completed attribute remains FALSE). If PAUSE is reset to FALSE for a paused chain step (using ALTER_RUNNING_CHAIN), the state is set to its completion state (SUCCEEDED, FAILED, or STOPPED) and the completed attribute is set to TRUE. Setting PAUSE has no effect on steps that have already run. This allows execution of a chain to be suspended after the execution of certain steps. 'PAUSED_BEFORE' If set to TRUE for a step and if any of the rule conditions that start the step are true, then its state changes to PAUSED and the step does not run. If PAUSE_BEFORE is reset to FALSE for a chain step that has paused before starting (using ALTER_RUNNING_CHAIN), then the step starts running if any of the rule conditions that start the step are true. Setting PAUSE_BEFORE has no effect on steps that are running or have already run. This allows execution of a chain to be suspended before the execution of certain steps. 'SKIP' If set to TRUE for a step, when the step condition is met, instead of being run, the step is treated as if it has immediately succeeded. Setting SKIP to TRUE has no effect for a step that is running, scheduled to run after a delay, or has already run. If SKIP is set TRUE for a step that PAUSE is also set for, when the step condition is met, the step immediately changes to state PAUSED. 'RESTART_ON_FAILURE' If set to TRUE for a step and the step fails due to an application error, then the step is retried using the normal Scheduler retry mechanism (after 1 second, after 10 seconds, after 100 seconds, and so on, up to a maximum of 6 times). If all 6 retries fail (after about 30 hours), then the chain step is marked FAILED. If set to FALSE (the default), a failed chain step is immediately marked FAILED. 'RESTART_ON_RECOVERY' If set to TRUE for a step and the step is stopped by a database shutdown, then the step is restarted when the database is recovered. If set to FALSE, and the step is stopped by a database shutdown, then the step is marked as stopped when the database is recovered and the chain continues. 'DESTINATION_NAME' The name of an existing database destination or external destination. You can view external destination names in the view ALL_SCHEDULER_EXTERNAL_DESTS, and database destination names in the views *_SCHEDULER_DB_DESTS. You cannot specify a destination group for this attribute. This parameter is NULL by default. 'CREDENTIAL_NAME' The credential to use when running this step. NULL by default. |
 | value | The value to set for the attribute (for a boolean attribute). |
 | char_value | The value to set for the attribute (for a character attribute). |
+
 Usage Notes
 Altering a chain requires `ALTER` privileges on the chain either by being the owner of the chain, or by having the `ALTER` object privilege on the chain or by having the `CREATE` `ANY` `JOB` system privilege.
 #### ALTER_RUNNING_CHAIN Procedure
@@ -888,6 +922,7 @@ DBMS_SCHEDULER.ALTER_RUNNING_CHAIN (
 
 Parameters
 Table 159-18 ALTER_RUNNING_CHAIN Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of the job that is running the chain |
@@ -895,6 +930,7 @@ Table 159-18 ALTER_RUNNING_CHAIN Procedure Parameters
 | attribute | The attribute of the steps to change. Valid values are: 'PAUSE' If the PAUSE attribute is set TRUE for a step, then after the step runs, its state changes to PAUSED (and the completed attribute remains false). If PAUSE is reset to FALSE for a paused chain step (using ALTER_RUNNING_CHAIN), the state is set to completion (SUCCEEDED, FAILED, or STOPPED) and the completed attribute is set to TRUE. Setting PAUSE has no effect on steps that have already run. This allows execution of a chain to be suspended after the execution of certain steps. If step_name is set to NULL, PAUSE is set to TRUE for all steps of this running chain. 'PAUSE_BEFORE' If set to TRUE for a step that has not yet run and if any of the rule conditions that start the step are true, then its state changes to PAUSED and the step does not run. If PAUSE_BEFORE is reset to FALSE for a chain step that has paused before starting, then the step starts running if any of the rule conditions that start the step are true. Setting PAUSE_BEFORE has no effect on steps that are running or have already run. This allows execution of a chain to be suspended before the execution of certain steps. If step_name is set to NULL, then PAUSE_BEFORE is set to the specified value for all steps of this running chain. |
 | attribute CONTINUED | 'SKIP' If the SKIP attribute is set to TRUE for a step, when the step condition is met, instead of being run, the step is treated as if it has immediately succeeded. Setting SKIP to TRUE has no effect for a step that is running, scheduled to run after a delay, or has already run. If step_name is set to NULL, SKIP is set TRUE for all steps of this running chain. If SKIP is set TRUE for a step that PAUSE is also set for, when the step condition is met the step immediately changes to state PAUSED. 'RESTART_ON_FAILURE' If set to TRUE for a step and the step fails due to an application error, then the step is retried using the normal Scheduler retry mechanism (after 1 second, after 10 seconds, after 100 seconds, and so on, up to a maximum of 6 times). If all 6 retries fail (after about 30 hours), then the chain step is marked FAILED. If set to FALSE (the default), a failed chain step is immediately marked FAILED. 'RESTART_ON_RECOVERY' If the RESTART_ON_RECOVERY attribute is set to TRUE for a step, then if the step is stopped by a database shutdown, it is restarted when the database is recovered. If set to FALSE, then if the step is stopped by a database shutdown, the step is marked as stopped when the database is recovered and the chain continues. 'STATE' This changes the state of the steps. The state can only be changed if the step is not running. The state can only be changed to one of the following:'NOT_STARTED', 'SUCCEEDED', 'FAILED error_code'If the state is being changed to FAILED, an error code must be included (this must be a positive integer). |
 | value | The value to set for the attribute. Valid values are: TRUE, FALSE, 'NOT_STARTED', 'SUCCEEDED', or 'FAILED error_code' |
+
 Usage Notes
 Altering a running chain requires you to have alter privileges on the job that is running (either as the owner, or as a user with `ALTER` privileges on the job or the `CREATE` `ANY` `JOB` system privilege).
 When trying to update a step defined with a nested chain, it is necessary to specify the `job_name` as `<SCHEMA>.<JOB_NAME>.<STEP_NAME_IN_TOP_LEVEL_CHAIN>` to be able to make reference to the steps inside the subchain.
@@ -907,9 +943,11 @@ DBMS_SCHEDULER.CLOSE_WINDOW (
 
 Parameters
 Table 159-19 CLOSE_WINDOW Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | window_name | The name of the window |
+
 Usage Notes
 If you try to close a window that does not exist or is not open, an error is generated.
 A job that is running does not stop when the window it is running in closes, unless the attribute `stop_on_window_close` is set to `TRUE` for the job. However, the resources allocated to the job can change if the resource plan changes.
@@ -925,10 +963,12 @@ DBMS_SCHEDULER.COPY_JOB (
 
 Parameters
 Table 159-20 COPY_JOB Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | old_job | The name of the existing job |
 | new_job | The name of the new job |
+
 Usage Notes
 To copy a job, you must have privileges to create a job in the schema of the new job (the `CREATE` `JOB` system privilege if it is in your own schema, otherwise, the `CREATE` `ANY` `JOB` system privilege). If the old job is not in the your own schema, then you must also have `ALTER` privileges on the old job or the `CREATE` `ANY` `JOB` system privilege.
 #### CREATE_CHAIN Procedure
@@ -944,12 +984,14 @@ DBMS_SCHEDULER.CREATE_CHAIN (
 
 Parameters
 Table 159-21 CREATE_CHAIN Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name to assign to the new chain, which can optionally be qualified with a schema. This must be unique in the SQL namespace, therefore, there cannot already be a table or other object with this name and schema. |
 | rule_set_name | In the normal case, no rule set should be passed in. The Scheduler automatically creates a rule set and associated empty evaluation context. You then use DEFINE_CHAIN_RULE to add rules and DROP_CHAIN_RULE to remove them. Advanced users can create a rule set that describes their chain dependencies and pass it in here. This allows greater flexibility in defining rules. For example, conditions can refer to external variables, and tables can be exposed through the evaluation context. If you pass in a rule set, you must ensure that it is in the format of a chain rule set. (For example, all steps must be listed as variables in the evaluation context). If no rule set is passed in, the rule set created is of the form SCHED_RULESET${N} and the evaluation context created is of the form SCHED_EVCTX${N} |
 | evaluation_interval | If this is NULL, reevaluation of the rules of a running chain are performed only when the job starts and when a step completes. A non-NULL value causes rule evaluations to also occur periodically at the specified interval. Because evaluation may be CPU-intensive, this should be conservatively set to the highest possible value or left at NULL if possible. evaluation_interval cannot be less than a minute or greater than a day. |
 | comments | An optional comment describing the purpose of the chain |
+
 Usage Notes
 To create a chain in your own schema, you must have the `CREATE` `JOB` system privilege. To create a chain in a different schema you must have the `CREATE` `ANY` `JOB` system privilege. If you do not provide a `rule_set_name`, a rule set and evaluation context is created in the schema that the chain is being created in, so you must have the privileges required to create these objects. See the `DBMS_RULE_ADM.CREATE_RULE_SET` and `DBMS_RULE_ADM.CREATE_EVALUATION_CONTEXT` procedures for more information.
 #### CREATE_CREDENTIAL Procedure
@@ -968,6 +1010,7 @@ DBMS_SCHEDULER.CREATE_CREDENTIAL (
 
 Parameters
 Table 159-22 CREATE_CREDENTIAL Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | credential_name | The name to assign to the credential. It can optionally be prefixed with a schema name. It cannot be set to NULL. It is converted to uppercase unless enclosed in double quotation marks. |
@@ -976,6 +1019,7 @@ Table 159-22 CREATE_CREDENTIAL Procedure Parameters
 | database_role | The value of the database_role attribute is used as the system privilege for logging into a remote database to run a remote database job. Valid values are: SYSDBA and SYSOPER |
 | windows_domain | For a Windows remote executable target, this is the domain that the specified user belongs to. The domain is converted to uppercase automatically. Maximum length is 64. |
 | comments | A text string that can be used to describe the credential. Scheduler does not use this parameter. Maximum length is 240. |
+
 Usage Notes
 Credentials reside in a particular schema and can be created by any user with the `CREATE JOB` system privilege. To create a credential in a schema other than your own, you must have the `CREATE ANY JOB` privilege.
 #### CREATE_DATABASE_DESTINATION Procedure
@@ -991,12 +1035,14 @@ DBMS_SCHEDULER.CREATE_DATABASE_DESTINATION (
 
 Parameters
 Table 159-23 CREATE_DATABASE_DESTINATION Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | destination_name | The name to assign to the database destination. It can optionally be prefixed with a schema name. Cannot be NULL. It is converted to uppercase unless enclosed in double quotation marks. |
 | agent | The external destination name of the Scheduler agent to connect. Equivalent to an agent name. The external destination must already exist. The external destination representing an agent is created automatically on a database instance when the agent registers with that instance. An agent's name is specified in its agent configuration file. If it is not specified, it defaults to the first part (before the first period) of the name of the host it resides on. |
 | tns_name | An Oracle Net connect identifier that is resolved to the Oracle database instance being connected to. The exact syntax depends on the Oracle Net configuration.The connect identifier can be a complete Oracle Net connect descriptor (network address and database service name) or a net service name, which is an alias for a connect descriptor. The alias must be resolved in the tnsnames.ora file on the local computer. The maximum size for tns_name is 2000 characters. If tns_name is NULL, the agent connects to the default Oracle database on its host. You specify the default database by assigning values to the ORACLE_HOME and ORACLE_SID parameters in the agent configuration file, schagent.conf, located in the agent home directory. See Oracle Database Net Services Administrator's Guide for more information on connect identifiers. |
 | comments | A text string that describes the database destination. Scheduler does not use this argument. |
+
 Usage Notes
 Database destinations reside in a particular schema and can be created by any user with the `CREATE JOB` system privilege. To create a database destination in a schema other than your own, you must have the `CREATE ANY JOB` privilege.
 #### CREATE_EVENT_SCHEDULE Procedure
@@ -1013,6 +1059,7 @@ DBMS_SCHEDULER.CREATE_EVENT_SCHEDULE (
 
 Parameters
 Table 159-24 CREATE_EVENT_SCHEDULE Parameters
+
 | Parameter | Description |
 |---|---|
 | schedule_name | The name to assign to the schedule. The name must be unique in the SQL namespace. For example, a schedule cannot have the same name as a table in a schema. If no name is specified, then an error occurs. |
@@ -1021,6 +1068,7 @@ Table 159-24 CREATE_EVENT_SCHEDULE Parameters
 | queue_spec | This argument specifies either a file watcher name or the queue into which events that start this particular job are enqueued (the source queue). If the source queue is a secure queue, the queue_spec argument is a string containing a pair of values of the form queue_name, agent name. For non-secure queues, only the queue name need be provided. If a fully qualified queue name is not provided, the queue is assumed to be in the job owner's schema. In the case of secure queues, the agent name provided should belong to a valid agent that is currently subscribed to the queue. |
 | end_date | The date and time after which jobs do not run and windows do not open. An event schedule that has no end_date is valid forever. end_date must be after the start_date. If it is not, then an error is generated when the schedule is created. |
 | comments | This attribute specifies an optional comment about the schedule. By default, this attribute is NULL. |
+
 Usage Notes
 You must have the `CREATE` `JOB` privilege to create a schedule in your own schema or the `CREATE` `ANY` `JOB` privilege to create a schedule in someone else's schema by specifying `schema.schedule_name`. Once a schedule has been created, it can be used by other users. The schedule is created with access to `PUBLIC`. Therefore, there is no need to explicitly grant access to the schedule.
 See Also:
@@ -1042,6 +1090,7 @@ DBMS_SCHEDULER.CREATE_FILE_WATCHER (
 
 Parameters
 Table 159-25 CREATE_FILE_WATCHER Parameters
+
 | Parameter | Description |
 |---|---|
 | file_watcher_name | The name to assign to the file watcher. The name must be unique in the SQL namespace. For example, a file watcher cannot have the same name as a table in a schema. This can optionally be prefixed with a schema name. Cannot be NULL. |
@@ -1053,6 +1102,7 @@ Table 159-25 CREATE_FILE_WATCHER Parameters
 | steady_state_duration | Minimum time interval that the file must remain unchanged before the file watcher considers the file found. Cannot exceed one hour. If NULL, an internal value is used. The minimum value is 10 seconds. Oracle recommends similar steady_state_duration values for all file watchers for efficient file watcher job operation. Also, the repeat interval of the file watcher schedule must be equal or greater than the steady_state_duration value. |
 | comments | Optional comment. |
 | enabled | If TRUE (the default), the file watcher is enabled. |
+
 Usage Notes
 You must have the `CREATE` `JOB` system privilege to create a file watcher in your own schema. You require the `CREATE` `ANY` `JOB` system privilege to create a file watcher in a schema different from your own (except the `SYS` schema, which is disallowed).
 #### CREATE_GROUP Procedure
@@ -1068,12 +1118,14 @@ DBMS_SCHEDULER.CREATE_GROUP (
 
 Parameters
 Table 159-26 CREATE_GROUP Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | group_name | The name to assign to the group. It can optionally be prefixed with a schema name. It cannot be NULL. It is converted to uppercase unless enclosed in double quotation marks. |
 | group_type | The type of members in the group. All members must be of the same type. Possible types are: 'DB_DEST' Database destination: Members are database destinations, for running remote database jobs. 'EXTERNAL_DEST External destination: Members are external destinations, for running remote external jobs. 'WINDOW' Members are Scheduler windows. You must have the MANAGE SCHEDULER privilege to create a group of this type. Members in database destination and external destination groups have the following format:[[schema.]credential@][schema.]destinationwhere: credential is the name of an existing credential. destination is the name of an existing database destination or external destination. The credential portion of a destination member is optional. If omitted, the job using this destination member uses its default credential. Members in window groups are window names. Because all Scheduler windows reside in the SYS schema, you do not specify a schema name for windows. |
 | member | Optional comma-separated list of group members. The default is NULL. If NULL, use the ADD_GROUP_MEMBER procedure to add members. You can also use ADD_GROUP_MEMBER to add additional members at a later time. The keyword LOCAL can be used as a member in database destination groups and external destination groups. In database destination groups, LOCAL represents the source database on which the job is created. It cannot be preceded with a credential. In external destination groups, LOCAL represents the host on which the source database resides. It can be optionally preceded with a credential name. If no credential is provided, jobs that use this group as their destination must have a default credential. |
 | comments | A text string that describes the group. Scheduler does not use this argument. |
+
 Usage Notes
 Groups reside in a particular schema and can be created by any user with the `CREATE JOB` system privilege. To create a group in a schema other than your own, you must have the `CREATE ANY JOB` privilege. The group name must be unique among all Scheduler objects.
 You can grant the `SELECT` or `READ` privilege on a group so that other users can reference the group when creating jobs or schedules. To enable other users to modify a group, you can grant the `ALTER` privilege on the group.
@@ -1104,6 +1156,7 @@ DBMS_SCHEDULER.CREATE_INCOMPATIBILITY (
 
 Parameters
 Table 159-27 CREATE_INCOMPATIBILITY Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | incompatibility_name | The name of the incompatibility definition. |
@@ -1111,6 +1164,7 @@ Table 159-27 CREATE_INCOMPATIBILITY Procedure Parameters
 | constraint_level | One or more (comma-separated) programs or jobs. |
 | enabled | Specifies whether the constraint is initially enabled (true) or not enabled (false). |
 | comments | Optional descriptive comment. |
+
 Usage Notes
 If `object_name` contains multiple (comma-separated) values, they must be either all programs or all jobs that are incompatible with each other (that is, they cannot be run at the same time). For jobs, the list must consist of two or more jobs, and `constraint_level` must be ‘JOB_LEVEL’. For programs, `constraint_level` can be either `'JOB_LEVEL'` or '`PROGRAM_LEVEL'`. When set to the default value `'JOB_LEVEL’`, only a single job that is based on the program (or programs) mentioned in `object_name` can run at the same time. When `constraint_level` is set to `'PROGRAM_LEVEL'`, the programs are incompatible, but the jobs based on the same program are not incompatible.
 For example, if the value of `object_name` is `'P1,P2,P3'` and `constraint_level` is `'PROGRAM_LEVEL’`, many jobs based on P1 can be running at the same time, but if any P1 based job is running, none based on P2 or P3 can be running. Or, similarly, many jobs based on P3 can be running at the same time, but none based on P1 or P2. If `constraint_level` is set to `'JOB_LEVEL'`, then only a single job out of all the jobs based on programs P1, P2 and P3 can be running at a time.
@@ -1220,6 +1274,7 @@ DBMS_SCHEDULER.CREATE_JOB (
 
 Parameters
 Table 159-28 CREATE_JOB Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name to assign to the job. The name must be unique in the SQL namespace. For example, a job cannot have the same name as a table in a schema. If the job being created will reside in another schema, it must be qualified with the schema name. If job_name is not specified, an error is generated. If you want to have a name generated by the Scheduler, you can use the GENERATE_JOB_NAME procedure to generate a name and then use the output in the CREATE_JOB procedure. The GENERATE_JOB_NAME procedure generates a number from a sequence, which is the job name. You can prefix the number with a string. The job name will then be the string with the number from the sequence appended to it. See "GENERATE_JOB_NAME Function" for more information. |
@@ -1240,6 +1295,7 @@ Table 159-28 CREATE_JOB Procedure Parameters
 | destination_name | The database destination or external destination for the job. Use for remote database jobs and remote external jobs only. Must be NULL for jobs running on the local database or for local external jobs (executables). This attribute can be a single destination name or the name of a group of type 'EXTERNAL_DEST' or 'DB_DEST'. The single destination or group must already exist. The following applies to this attribute: If it is a database destination, it must have been created by the CREATE_DATABASE_DESTINATION Procedure. If it is an external destination, it must have been implicitly created by registering a remote Scheduler agent with the local database. If it is a group, each member of the group must exist, and the job must run on all destinations named in the group. See "CREATE_GROUP Procedure". destination_name cannot reference a destination group when: The job type is 'CHAIN' The job style is 'LIGHTWEIGHT', 'IN_MEMORY_RUNTIME', or 'IN_MEMORY_FULL', If the credential_name argument of CREATE_JOB is NULL, each destination must be preceded by a credential, in the following format: credential.destinationThe credential must already exist. If the credential_name argument is provided, then it serves as the default credential for every destination that is not preceded by a credential. You can query the views *_SCHEDULER_DB_DESTS and ALL_SCHEDULER_EXTERNAL DESTS for existing destinations and *_SCHEDULER_GROUP_MEMBERS for existing groups and their members. *** destination job attribute is deprecated in Oracle Database 11gR2 and superseded by destination_name. |
 | enabled | This attribute specifies whether the job is created enabled or not. The possible settings are TRUE or FALSE. By default, this attribute is set to FALSE and, therefore, the job is created as disabled. A disabled job means that the metadata about the job has been captured, and the job exists as a database object. However, the Scheduler ignores the job and the job coordinator does not pick it for processing. In order for the job coordinator to process the job, the job must be enabled. You can enable a job by setting this argument to TRUE or by using the ENABLE procedure. |
 | auto_drop | This flag, if TRUE, causes a job to be automatically dropped after it has completed or has been automatically disabled. A job is considered completed if: Its end date (or the end date of the job schedule) has passed. Note that a job with a Window schedule will not be auto-dropped when the window closes, because this is not considered to be the end of the Window. It has run max_runs number of times. max_runs must be set with SET_ATTRIBUTE. It is not a repeating job and has run once. A job is disabled when it has failed max_failures times. max_failures is also set with SET_ATTRIBUTE. If this flag is set to FALSE, the jobs are not dropped and their metadata is kept until the job is explicitly dropped with the DROP_JOB procedure. By default, jobs are created with auto_drop set to TRUE. |
+
 Usage Notes
 Jobs are created as disabled by default. You must explicitly enable them so that they will become active and scheduled. Before enabling a job, ensure that all program arguments, if any, are defined, either by defining default values in the program object or by supplying values with the job.
 The `JOB_QUEUE_PROCESSES` initialization parameter specifies the maximum number of processes that can be created for the execution of jobs. Beginning with Oracle Database 11g Release 2, `JOB_QUEUE_PROCESSES` applies to `DBMS_SCHEDULER` jobs. Setting this parameter to 0 disables `DBMS_SCHEDULER` jobs.
@@ -1264,6 +1320,7 @@ DBMS_SCHEDULER.CREATE_JOB_CLASS (
 
 Parameters
 Table 159-29 CREATE_JOB_CLASS Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_class_name | The name to assign to the job class. Job classes can only be created in the SYS schema. This attribute specifies the name of the job class and uniquely identifies the job class. The name must be unique in the SQL namespace. For example, a job class cannot have the same name as a table in a schema. |
@@ -1272,6 +1329,7 @@ Table 159-29 CREATE_JOB_CLASS Procedure Parameters
 | logging_level | This attribute specifies how much information is logged. The possible options are: DBMS_SCHEDULER.LOGGING_OFF No logging is performed for any jobs in this class. DBMS_SCHEDULER.LOGGING_RUNS The Scheduler writes detailed information to the job log for all runs of each job in this class. This is the default. DBMS_SCHEDULER.LOGGING_FAILED_RUNS The Scheduler logs only jobs that failed in this class. DBMS_SCHEDULER.LOGGING_FULL In addition to recording every run of a job, the Scheduler records all operations performed on all jobs in this class. Every time a job is created, enabled, disabled, altered (with SET_ATTRIBUTE), stopped, and so, an entry is recorded in the log. |
 | log_history | This attribute controls the number of days that job log entries for jobs in this class are retained. It helps prevent the job log from growing indiscriminately. The range of valid values is 0 through1000000. If set to 0, no history is kept. If NULL (the default), retention days are set by the log_history Scheduler attribute (set with SET_SCHEDULER_ATTRIBUTE). |
 | comments | This attribute is for an optional comment about the job class. By default, this attribute is NULL. |
+
 Usage Notes
 For users to create jobs that belong to a job class, the job owner must have `EXECUTE` privileges on the job class. Therefore, after the job class has been created, `EXECUTE` privileges must be granted on the job class so that users create jobs belonging to that class. You can also grant the `EXECUTE` privilege to a role.
 Creating a job class requires the `MANAGE` `SCHEDULER` system privilege.
@@ -1285,10 +1343,12 @@ DBMS_SCHEDULER.CREATE_JOBS (
 
 Parameters
 Table 159-30 CREATE_JOBS Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | jobdef_array | The array of job definitions. See "Data Structures" for a description of the JOB_DEFINITION_ARRAY and JOB_DEFINITION datatypes. |
 | commit_semantics | The commit semantics. The following types are supported: STOP_ON_FIRST_ERROR returns on the first error. Previous successfully created jobs are committed to disk. This is the default. TRANSACTIONAL returns on the first error and everything that happened before that error is rolled back. ABSORB_ERRORS tries to absorb any errors and attempts to create the rest of the jobs on the list. It commits all successfully created jobs. If errors occur, you can query the view SCHEDULER_BATCH_ERRORS for details. |
+
 Usage Notes
 This procedure creates many jobs in the context of a single transaction. To realize the desired performance gains, the jobs being created must be grouped in batches of sufficient size. Calling `CREATE_JOBS` with a small array size may not be much faster than calling `CREATE_JOB` once for each job.
 You cannot use this procedure to create multiple-destination jobs. That is, the `destination` attribute of the `job_definition` object cannot reference a destination group.
@@ -1308,6 +1368,7 @@ DBMS_SCHEDULER.CREATE_PROGRAM (
 
 Parameters
 Table 159-31 CREATE_PROGRAM Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | program_name | The name to assign to the program. The name must be unique in the SQL namespace. For example, a program cannot have the same name as a table in a schema. If no name is specified, then an error occurs. |
@@ -1316,6 +1377,7 @@ Table 159-31 CREATE_PROGRAM Procedure Parameters
 | number_of_arguments | This attribute specifies the number of arguments the program takes. If this parameter is not specified, then the default is 0. A program can have a maximum of 255 arguments. If the program_type is PLSQL_BLOCK, then this parameter is ignored. |
 | enabled | This flag specifies whether the program should be created as enabled or not. If the flag is set to TRUE, then validity checks are made and the program is created as ENABLED if all the checks be successful. By default, this flag is set to FALSE, meaning not created enabled. You can also call the ENABLE procedure to enable the program before it can be used. |
 | comments | A comment about the program. By default, this attribute is NULL. |
+
 Usage Notes
 To create a program in their own schema, users need the `CREATE` `JOB` privilege. A user with the `CREATE` `ANY` `JOB` privilege can create a program in any schema. A program is created in a disabled state by default (unless the enabled parameter is set to `TRUE`). It cannot be executed by a job until it is enabled.
 To use your programs, other users must have `EXECUTE` privileges, therefore once a program has been created, you have to grant `EXECUTE` privileges on it.
@@ -1334,6 +1396,7 @@ DBMS_SCHEDULER.CREATE_RESOURCE (
 
 Parameters
 Table 159-32 CREATE_RESOURCE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | resource_name | The name of the resource. |
@@ -1341,6 +1404,7 @@ Table 159-32 CREATE_RESOURCE Procedure Parameters
 | status | The status of the resource. ‘ENFORCE_CONSTRAINTS’. This is the default value, and when set, will force the scheduler to enforce resource limits. When the maximum number of units of this resource has been reached no additional jobs using this resource will get started. ‘IGNORE_CONSTRAINTS’. When set, the scheduler will ignore any constraints on this resource. ‘BLOCKED_ALL_JOBS’. No jobs having a constraint on this resource will be allowed to run. The resource is considered to be permanently blocking until switched to one of the other two states. |
 | constraint_level | Level of the constraint: JOB_LEVEL or PROGRAM_LEVEL. For incompatibilities, for JOB_LEVEL, the incompatibility members must be jobs; for PROGRAM_LEVEL the incompatibility members must be programs. |
 | comments | Descriptive comment about the resource. |
+
 Usage Notes
 The following example creates a new resource.
 
@@ -1370,6 +1434,7 @@ DBMS_SCHEDULER.CREATE_SCHEDULE (
 
 Parameters
 Table 159-33 CREATE_SCHEDULE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | schedule_name | The name to assign to the schedule. The name must be unique in the SQL namespace. For example, a schedule cannot have the same name as a table in a schema. If no name is specified, then an error occurs. |
@@ -1377,6 +1442,7 @@ Table 159-33 CREATE_SCHEDULE Procedure Parameters
 | repeat_interval | This attribute specifies how often the schedule repeats. It is expressed using calendaring syntax. See "Calendaring Syntax" for further information. PL/SQL expressions are not allowed as repeat intervals for named schedules. |
 | end_date | The date and time after which jobs will not run and windows will not open. A non-repeating schedule that has no end_date is valid forever. end_date has to be after the start_date. If this is not the case, then an error is generated when the schedule is created. |
 | comments | This attribute specifies an optional comment about the schedule. By default, this attribute is NULL. |
+
 Usage Notes
 This procedure requires the `CREATE` `JOB` privilege to create a schedule in your own schema or the `CREATE` `ANY` `JOB` privilege to create a schedule in someone else's schema by specifying `schema.schedule_name`. Once a schedule has been created, it can be used by other users. The schedule is created with access to `PUBLIC`. Therefore, there is no need to explicitly grant access to the schedule.
 #### CREATE_WINDOW Procedure
@@ -1407,6 +1473,7 @@ DBMS_SCHEDULER.CREATE_WINDOW (
 
 Parameters
 Table 159-34 CREATE_WINDOW Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | window_name | The name to assign to the window. The name must be unique in the SQL namespace. All windows are in the SYS schema, so the preface 'SYS' is optional. |
@@ -1418,6 +1485,7 @@ Table 159-34 CREATE_WINDOW Procedure Parameters
 | end_date | This attribute specifies the date and time after which the window no longer opens. When the value for end_date is reached, the window is disabled. In the *_SCHEDULER_WINDOWS views, the enabled flag of the window is set to FALSE. A non-repeating window that has no value for end_date opens only once for the duration of the window. For a repeating window, if no end_date is specified, then the window keeps repeating forever. The end_date must be after the start_date. If it is not, then an error is generated when the window is created. |
 | window_priority | This attribute is only relevant when two windows overlap. Because only one window can be in effect at one time, the window priority determines which window opens. The two possible values for this attribute are 'HIGH' and 'LOW'. A high priority window has precedence over a low priority window, therefore, the low priority window does not open if it overlaps a high priority window. By default, windows are created with priority 'LOW'. |
 | comments | This attribute specifies an optional comment about the window. By default, this attribute is NULL. |
+
 Usage Notes
 Creating a window requires the `MANAGE` `SCHEDULER` privilege.
 Scheduler windows are the principal mechanism used to automatically switch resource plans according to a schedule. You can also manually activate a resource plan by using the `ALTER SYSTEM SET RESOURCE_MANAGER_PLAN` statement or the `DBMS_RESOURCE_MANAGER.SWITCH_PLAN` package procedure. Note that either of these manual methods can also disable resource plan switching by Scheduler windows. For more information, see Oracle Database Administrator's Guide and "SWITCH_PLAN Procedure".
@@ -1435,6 +1503,7 @@ DBMS_SCHEDULER.DEFINE_ANYDATA_ARGUMENT (
 
 Parameters
 Table 159-35 DEFINE_ANYDATA_ARGUMENT Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | program_name | The name of the program to be altered. A program with this name must exist. |
@@ -1443,6 +1512,7 @@ Table 159-35 DEFINE_ANYDATA_ARGUMENT Procedure Parameters
 | argument_type | The datatype of the argument being defined. This is not verified or used by the Scheduler. It is only used by the user of the program when deciding what value to assign to the argument. |
 | default_value | The default value to be assigned to the argument encapsulated within an AnyData object. This is optional. |
 | out_argument | This parameter is reserved for future use. It must be set to FALSE. |
+
 Usage Notes
 All program arguments from one to the `number_of_arguments` value must be defined before a program can be enabled. If a default value for an argument is not defined with this procedure, a value must be defined in the job.
 Defining a program argument requires that you be the owner of the program or have `ALTER` privileges on that program. You can also define a program argument if you have the `CREATE` `ANY` `JOB` privilege.
@@ -1468,6 +1538,7 @@ DBMS_SCHEDULER.DEFINE_CHAIN_EVENT_STEP (
 
 Parameters
 Table 159-36 DEFINE_CHAIN_EVENT_STEP Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain that the step is in |
@@ -1476,6 +1547,7 @@ Table 159-36 DEFINE_CHAIN_EVENT_STEP Procedure Parameters
 | timeout | This parameter is reserved for future use |
 | event_condition | See the CREATE_EVENT_SCHEDULE Procedure |
 | queue_spec | See the CREATE_EVENT_SCHEDULE Procedure |
+
 Usage Notes
 Defining a chain step requires `ALTER` privileges on the chain either as the owner of the chain, or as a user with the `ALTER` object privilege on the chain or the `CREATE` `ANY` `JOB` system privilege.
 You can base a chain step on a file watcher as well. To do this, provide the file watcher name directly in the `queue_spec` parameter, or use a file watcher schedule for the `event_schedule_name` parameter.
@@ -1495,6 +1567,7 @@ DBMS_SCHEDULER.DEFINE_CHAIN_RULE (
 
 Parameters
 Table 159-37 DEFINE_CHAIN_RULE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to alter |
@@ -1502,6 +1575,7 @@ Table 159-37 DEFINE_CHAIN_RULE Procedure Parameters
 | action | The action to be performed when the rule evaluates to TRUE. The action must consist of at least one keyword with an optional value and an optional delay clause. Possible actions include: [AFTER delay_interval] START step_1[,step_2 ...] STOP step_1[,step_2 ...] END [{end_value\|step_name.error_code}] At the beginning of the START action, a delay clause can specify a delay interval before performing the action. delay_interval is a formatted datetime interval of the form HH:MM:SS. The END action ends the chain with an error code equal to either the supplied end_value or the error code that step_name completes with. The default error code is 0, indicating a successful chain run. |
 | rule_name | The name of the rule being created. If no rule_name is given, one is generated in the form SCHED_RULE$_{N}. |
 | comments | An optional comment describing the rule. This is stored in the rule object created. |
+
 Scheduler Chain Condition Syntax
 The Scheduler chain condition syntax provides an easy way to construct a condition using the states and error codes of steps in the current chain.
 Chain Condition Syntax
@@ -1581,11 +1655,13 @@ DBMS_SCHEDULER.DEFINE_CHAIN_STEP (
 
 Parameters
 Table 159-38 DEFINE_CHAIN_STEP Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to alter. |
 | step_name | The name of the step being defined. If a step already exists with this name, the new step replaces the old one. |
 | program_name | The name of a program or chain to run during this step. The chain owner must have EXECUTE privileges on this program or chain. |
+
 Usage Notes
 Defining a chain step requires `ALTER` privileges on the chain (either as the owner, or a user with `ALTER` privileges on the chain or the `CREATE` `ANY` `JOB` system privilege).
 See Also:
@@ -1603,13 +1679,16 @@ DBMS_SCHEDULER.DEFINE_METADATA_ARGUMENT (
 
 Parameters
 Table 159-39 DEFINE_METADATA_ARGUMENT Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | program_name | The name of the program to be altered |
 | metadata_attribute | The metadata to be passed. Valid metadata attributes are: 'job_name', 'job_subname', 'job_owner', 'job_start', 'window_start', 'window_end', and 'event_message'. Table 159-40 describes these attributes in detail. |
 | argument_position | The position of the argument as it is passed to the executable. The position cannot be greater than the number_of_arguments specified for the program. It must be unique, so it replaces any argument already defined at this position. |
 | argument_name | The name to assign to the argument. It is optional, but must be unique for the program if it is specified. If you assign a name, the name can then be used by other package procedures. |
+
 Table 159-40 Metadata Attributes
+
 | Metadata Attribute | Datatype | Description |
 |---|---|---|
 | job_name | VARCHAR2 | Name of the currently running job |
@@ -1620,6 +1699,7 @@ Table 159-40 Metadata Attributes
 | window_start | TIMESTAMP WITH TIME ZONE | If the job was started by a window, the time that the window opened |
 | window_end | TIMESTAMP WITH TIME ZONE | If the job was started by a window, the time that the window is scheduled to close |
 | event_message | (See Description) | For an event-based job, the message content of the event that started the job. The datatype of this attribute depends on the queue used for the event. It has the same type as the USER_DATA column of the queue table. In the case of a file arrival event, event_message is of type SYS.SCHEDULER_FILEWATCHER_RESULT. See "SCHEDULER_FILEWATCHER_RESULT Object Type". |
+
 Usage Notes
 Defining a program argument requires that you be the owner of the program or have `ALTER` privileges on that program. You can also define a program argument if you have the `CREATE` `ANY` `JOB` privilege.
 All metadata attributes except `event_message` can be used in PL/SQL blocks that you enter into the `job_action` or `program_action` attributes of jobs or programs, respectively. You use the attribute name as you use any other PL/SQL identifier, and the Scheduler assigns it a value.
@@ -1648,6 +1728,7 @@ PROCEDURE define_program_argument(
 
 Parameters
 Table 159-41 DEFINE_PROGRAM_ARGUMENT Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | program_name | The name of the program to be altered. A program with this name must exist. |
@@ -1656,6 +1737,7 @@ Table 159-41 DEFINE_PROGRAM_ARGUMENT Procedure Parameters
 | argument_type | The datatype of the argument being defined. This is not verified or used by the Scheduler. The program user uses argument_type when deciding what value to assign to the argument. Any valid SQL datatype is allowed. |
 | default_value | The default value to be assigned to the argument if none is specified by the job. |
 | out_argument | This parameter is reserved for future use. It must be set to FALSE. |
+
 Usage Notes
 All program arguments from 1 to the `number_of_arguments` value must be defined before a program can be enabled. If a default value for an argument is not defined with this procedure, a value must be defined in the job.
 Defining a program argument requires that you be the owner of the program or have `ALTER` privileges on that program. You can also define a program argument if you have the `CREATE` `ANY` `JOB` privilege.
@@ -1674,11 +1756,13 @@ DBMS_SCHEDULER.DISABLE (
 
 Parameters
 Table 159-42 DISABLE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | name | The name of the object being disabled. Can be a comma-delimited list. If a job class name is specified, then all the jobs in the job class are disabled. The job class is not disabled. If a group name is specified, then the group is disabled, but the enabled state of the group members is unaffected. |
 | force | If TRUE, objects are disabled even if other objects depend on them. See the usage notes for more information. |
 | commit_semantics | The commit semantics. The following types are supported: STOP_ON_FIRST_ERROR: The procedure returns on the first error and the previous disable operations that were successful are committed to disk. This is the default. TRANSACTIONAL: The procedure returns on the first error and everything that happened before that error is rolled back. This type is only supported when disabling a job or a list of jobs. In addition, this type is not supported when force is set to TRUE. ABSORB_ERRORS: The procedure tries to absorb any errors and disable the rest of the jobs and commits all the disable operations that were successful. If errors occur, you can query the view SCHEDULER_BATCH_ERRORS for details. This type is only supported when disabling a job or a list of jobs. |
+
 Usage Notes
 Windows must be preceded by `SYS`.
 Disabling an object that is already disabled does not generate an error.
@@ -1737,9 +1821,11 @@ DBMS_SCHEDULER.DROP_AGENT_DESTINATION (
 
 Parameters
 Table 159-43 DROP_AGENT_DESTINATION Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | destination_name | A comma-separated list of external destinations to drop. Because user SYS owns all external destinations, do not prefix them with a schema name. The procedure stops processing if it encounters an external destination that does not exist. All external destinations processed before the error are dropped. Cannot be NULL. |
+
 Usage Notes
 When an external destination is dropped:
 
@@ -1757,10 +1843,12 @@ DBMS_SCHEDULER.DROP_CHAIN (
 
 Parameters
 Table 159-44 DROP_CHAIN Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to drop. Can also be a comma-delimited list of chains. |
 | force | If force is set to FALSE, the chain must not be referenced by any job, otherwise an error will occur. If force is set to TRUE, all jobs pointing to the chain are disabled before the chain is dropped.Running jobs that point to this chain are stopped before the chain is dropped. |
+
 Usage Notes
 Dropping a chain requires alter privileges on the chain (either as the owner, or a user with `ALTER` privileges on the chain or the `CREATE` `ANY` `JOB` system privilege).
 All steps associated with the chain are dropped. If no rule set was specified when the chain was created, then the automatically created rule set and evaluation context associated with the chain are also dropped, so the user must have the privileges required to do this. See the `DBMS_RULE_ADM.DROP_RULE_SET` and `DBMS_RULE_ADM.DROP_EVALUATION_CONTEXT` procedures for more information.
@@ -1776,11 +1864,13 @@ DBMS_SCHEDULER.DROP_CHAIN_RULE (
 
 Parameters
 Table 159-45 DROP_CHAIN_RULE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to alter |
 | rule_name | The name of the rule to drop |
 | force | If force is set to TRUE, the drop operation proceeds even if the chain is currently running. The running chain is not stopped or interrupted. If force is set to FALSE and the chain is running, an error is generated. |
+
 Usage Notes
 Dropping a chain rule requires alter privileges on the chain (either as the owner or as a user with `ALTER` privileges on the chain or the `CREATE` `ANY` `JOB` system privilege).
 Dropping a chain rule also drops the underlying rule database object so you must have the privileges to drop this rule object. See the `DBMS_RULE_ADM.DROP_RULE` procedure for more information.
@@ -1795,11 +1885,13 @@ DBMS_SCHEDULER.DROP_CHAIN_STEP (
 
 Parameters
 Table 159-46 DROP_CHAIN_STEP Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to alter |
 | step_name | The name of the step being dropped. Can be a comma-separated list. |
 | force | If force is set to TRUE, this succeeds even if this chain is currently running. The running chain will not be stopped or interrupted.If force is set to FALSE and this chain is currently running, an error is thrown. |
+
 Usage Notes
 Dropping a chain step requires `ALTER` privileges on the chain (either as the owner or as a user with `ALTER` privileges on the chain or the `CREATE` `ANY` `JOB` system privilege).
 #### DROP_CREDENTIAL Procedure
@@ -1814,10 +1906,12 @@ DBMS_SCHEDULER.DROP_CREDENTIAL (
 
 Parameters
 Table 159-47 DROP_CREDENTIAL Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | credential_name | The name of the credential being dropped. This can optionally be prefixed with a schema name. This cannot be set to NULL. |
 | force | If set to FALSE, the credential must not be referenced by any job, or an error will occur. If set to TRUE, the credential is dropped whether or not there are jobs referencing it. Jobs that reference the credential will continue to point to a nonexistent credential and throw an error at runtime. |
+
 Usage Notes
 Only the owner of a credential or a user with the `CREATE ANY JOB` system privilege may drop the credential.
 Running jobs that point to the credential are not affected by this procedure and are allowed to continue.
@@ -1830,9 +1924,11 @@ DBMS_SCHEDULER.DROP_DATABASE_DESTINATION (
 
 Parameters
 Table 159-48 DROP_DATABASE_DESTINATION Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | destination_name | The name of the destination to drop. Can be a comma-separated list of database destinations to drop. Each database destination can optionally be prefixed with a schema name. The procedure stops processing if it encounters a database destination that does not exist. All database destinations processed before the error are dropped. Cannot be NULL. |
+
 Usage Notes
 Only the owner or a user with the `CREATE ANY JOB` system privilege may drop the database destination.
 When a database destination is dropped:
@@ -1851,10 +1947,12 @@ DBMS_SCHEDULER.DROP_FILE_WATCHER (
 
 Parameters
 Table 159-49 DROP_FILE_WATCHER Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | file_watcher_name | The file watcher to drop. Can be a comma-separated list of file watchers. Each file watcher name can optionally be prefixed with a schema name. Cannot be NULL. |
 | force | If set to FALSE, the file watcher must not be referenced by any job, or an error occurs. If set to TRUE, the file watcher is dropped whether or not there are jobs referencing it. In this case, jobs that reference the dropped file watcher are disabled. |
+
 Usage Notes
 Only the owner of a file watcher or a user with the `CREATE ANY JOB` system privilege may drop the file watcher.
 Running jobs that point to the file watcher are not affected by this procedure and are allowed to continue.
@@ -1870,10 +1968,12 @@ DBMS_SCHEDULER.DROP_GROUP (
 
 Parameters
 Table 159-50 DROP_GROUP Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | group_name | A group to drop. Can be a comma-separated list of group names. Each group name can optionally be prefixed with a schema name. The procedure stops processing if it encounters a group that does not exist. All groups processed before the error are dropped. Cannot be NULL. |
 | force | If FALSE, the group must not be referenced by any job, otherwise an error occurs. If TRUE, the group is dropped whether or not there are jobs referencing it. In this case, all jobs referencing the group are disabled and all job instances that reference the group are removed from the *_SCHEDULER_JOB_DESTS views. |
+
 Usage Notes
 Only the owner or a user with the `CREATE ANY JOB` system privilege may drop a group. You must have the `MANAGE` `SCHEDULER` privilege to drop a group of type `WINDOW`.
 See Also:
@@ -1887,9 +1987,11 @@ DBMS_SCHEDULER.DROP_INCOMPATIBILITY (
 
 Parameters
 Table 159-51 DROP_INCOMPATIBILITY Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | incompatibility_name | The name of the incompatibility definition. |
+
 Usage Notes
 See Also:
 Using Incompatibility Definitions in Oracle Database Administrator’s Guide
@@ -1905,12 +2007,14 @@ DBMS_SCHEDULER.DROP_JOB (
 
 Parameters
 Table 159-52 DROP_JOB Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of a job or job class. Can be a comma-delimited list. For a job class, the SYS schema should be specified. If the name of a job class is specified, the jobs that belong to that job class are dropped, but the job class itself is not dropped. |
 | force | If force is set to TRUE, the Scheduler first attempts to stop the running job instances (by issuing the STOP_JOB call with the force flag set to false), and then drops the jobs. |
 | defer | If defer is set to TRUE, the Scheduler allows the running jobs to complete and then drops the jobs. |
 | commit_semantics | The commit semantics. The following types are supported: STOP_ON_FIRST_ERROR returns on the first error and previous successful drop operations are committed to disk. This is the default. TRANSACTIONAL returns on the first error. Everything that happened before that error is rolled back. This type is not supported when force is set to TRUE. ABSORB_ERRORS tries to absorb any errors and drop the rest of the jobs, and commits all the successful drops. If errors occur, you can query the view SCHEDULER_BATCH_ERRORS for details. Only STOP_ON_FIRST_ERROR is permitted when job classes are included in the job_name list. |
+
 Usage Notes
 If both `force` and `defer` are set to `FALSE` and a job is running at the time of the call, the attempt to drop that job fails. The entire call to `DROP_JOB` may then fail, depending on the setting of `commit_semantics`.
 Setting both `force` and `defer` to `TRUE` results in an error.
@@ -1925,10 +2029,12 @@ DBMS_SCHEDULER.DROP_JOB_CLASS (
 
 Parameters
 Table 159-53 DROP_JOB_CLASS Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_class_name | The name of the job class. Can be a comma-delimited list. |
 | force | If force is set to FALSE, a class being dropped must not be referenced by any jobs, otherwise an error occurs. If force is set to TRUE, jobs belonging to the class are disabled and their class is set to the default class. Only if this is successful is the class dropped. Running jobs that belong to the job class are not affected. |
+
 Usage Notes
 Dropping a job class requires the `MANAGE` `SCHEDULER` system privilege.
 #### DROP_PROGRAM Procedure
@@ -1941,10 +2047,12 @@ DBMS_SCHEDULER.DROP_PROGRAM (
 
 Parameters
 Table 159-54 DROP_PROGRAM Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | program_name | The name of the program to be dropped. Can be a comma-delimited list. |
 | force | If force is set to FALSE, the program must not be referenced by any job, otherwise an error occurs. If force is set to TRUE, all jobs referencing the program are disabled before the program is dropped. Running jobs that point to the program are not affected by the DROP_PROGRAM call and are allowed to continue. |
+
 Usage Notes
 Dropping a program requires that you be the owner of the program or have `ALTER` privileges on that program. You can also drop a program if you have the `CREATE` `ANY` `JOB` privilege.
 #### DROP_PROGRAM_ARGUMENT Procedure
@@ -1965,11 +2073,13 @@ DBMS_SCHEDULER.DROP_PROGRAM_ARGUMENT (
 
 Parameters
 Table 159-55 DROP_PROGRAM_ARGUMENT Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | program_name | The name of the program to be altered. A program with this name must exist. |
 | argument_name | The name of the argument being dropped |
 | argument_position | The position of the argument to be dropped |
+
 Usage Notes
 Dropping a program argument requires that you be the owner of the program or have `ALTER` privileges on that program. You can also drop a program argument if you have the `CREATE` `ANY` `JOB` privilege.
 #### DROP_RESOURCE Procedure
@@ -1982,10 +2092,12 @@ DBMS_SCHEDULER.DROP_RESOURCE (
 
 Parameters
 Table 159-56 DROP_RESOURCE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | resource_name | The name of the resource to be dropped. Can be a comma-delimited list. |
 | force | If force is set to FALSE, the resource must not have any existing constraints, otherwise an error occurs. If force is set to TRUE, the resource will be dropped and any constraints defined on this resource will also be dropped. |
+
 Usage Notes
 Only the owner or a user with the CREATE ANY JOB system privilege may drop the resource.
 See Also:
@@ -2000,10 +2112,12 @@ DBMS_SCHEDULER.DROP_SCHEDULE (
 
 Parameters
 Table 159-57 DROP_SCHEDULE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | schedule_name | The name of the schedule. Can be a comma-delimited list. |
 | force | If force is set to FALSE, the schedule must not be referenced by any job or window, otherwise an error will occur. If force is set to TRUE, any jobs or windows that use this schedule are disabled before the schedule is dropped Running jobs and open windows that point to the schedule are not affected. |
+
 Usage Notes
 You must be the owner of the schedule being dropped or have `ALTER` privileges for the schedule or the `CREATE` `ANY` `JOB` privilege.
 #### DROP_WINDOW Procedure
@@ -2016,10 +2130,12 @@ DBMS_SCHEDULER.DROP_WINDOW (
 
 Parameters
 Table 159-58 DROP_WINDOW Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | window_name | The name of the window. Can be a comma-delimited list. |
 | force | If force is set to FALSE, the window must be not be open or referenced by any job, otherwise an error occurs. If force is set to TRUE, the window is dropped and those jobs that have the window as their schedule are disabled. However, jobs that have a window group, of which the dropped window is a member, as their schedule, are not disabled. If the window is open then, the Scheduler attempts to first close the window and then drop it. When the window is closed, normal close window rules apply. Running jobs that have the window as their schedule is allowed to continue, unless the stop_on_window_close flag is set to TRUE for the job. If this is the case, the job is stopped when the window is dropped. |
+
 Usage Notes
 Dropping a window requires the `MANAGE` `SCHEDULER` privilege.
 #### ENABLE Procedure
@@ -2035,10 +2151,12 @@ DBMS_SCHEDULER.ENABLE (
 
 Parameters
 Table 159-59 ENABLE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | name | The name of the Scheduler object being enabled. Can be a comma-delimited list of names. If a job class name is specified, then all the jobs in the job class are enabled. If a group name is specified, then the group is enabled, but the enabled state of the group members is unaffected. |
 | commit_semantics | The commit semantics. The following types are supported: STOP_ON_FIRST_ERROR - The procedure returns on the first error and previous successful enable operations are committed to disk. This is the default. TRANSACTIONAL - The procedure returns on the first error and everything that happened before that error is rolled back. This type is only supported when enabling a job or a list of jobs. ABSORB_ERRORS - The procedure tries to absorb any errors and enable the rest of the jobs. It commits all the enable operations that were successful. If errors occur, you can query the view SCHEDULER_BATCH_ERRORS for details. This type is only supported when enabling a job or a list of jobs. |
+
 Usage Notes
 Window names must be preceded by `SYS`.
 To run `ENABLE` for a window or group of type `WINDOW`, you must have the `MANAGE` `SCHEDULER` privilege. For a job of type `EXECUTABLE` (or for a job that points to a program of type `EXECUTABLE`), the job owner must have the `CREATE EXTERNAL JOB` system privilege before the job can be enabled or run.
@@ -2056,11 +2174,13 @@ DBMS_SCHEDULER.END_DETACHED_JOB_RUN (
 
 Parameters
 Table 159-60 END_DETACHED_JOB_RUN Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of the job to end. Must be a detached job that is running. |
 | error_number | If zero, then the job run is logged as succeeded. If -1013, then the job run is logged as stopped. If any other number, then the job run is logged as failed with that error number. |
 | additional_info | This text is stored in the additional_info column of the *_scheduler_job_run_details views for this job run. |
+
 Usage Notes
 This procedure requires that you either own the job or have `ALTER` privileges on it. You can also end any detached job run if you have the `CREATE` `ANY` `JOB` privilege.
 See Also:
@@ -2079,12 +2199,14 @@ DBMS_SCHEDULER.EVALUATE_CALENDAR_STRING (
 
 Parameters
 Table 159-61 EVALUATE_CALENDAR_STRING Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | calendar_string | The calendar expression to be evaluated. The string must be in the calendaring syntax described in "Operational Notes". |
 | start_date | The date and time after which the repeat interval becomes valid. It can also be used to fill in specific items that are missing from the calendar string. Can optionally be NULL. |
 | return_date_after | The return_date_after argument helps the Scheduler determine which one of all possible matches (all valid execution dates) to return from those determined by the start_date and the calendar string. When a NULL value is passed for this argument, the Scheduler automatically fills in systimestamp as its value. |
 | next_run_date | The first timestamp that matches the calendar string and start date that occur after the value passed in for the return_date_after argument. |
+
 Examples
 The following code fragment can be used to determine the next five dates a job will run given a specific calendar string.
 
@@ -2127,9 +2249,11 @@ DBMS_SCHEDULER.EVALUATE_RUNNING_CHAIN (
 
 Parameters
 Table 159-62 EVALUATE_RUNNING_CHAIN Procedure Parameter
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of the running job (pointing to a chain) to reevaluate the rules for |
+
 Usage Notes
 Running `EVALUATE_RUNNING_CHAIN` on a job requires alter privileges on the job (either as the owner, or as a user with `ALTER` privileges on the job or the `CREATE` `ANY` `JOB` system privilege).
 Note:
@@ -2151,9 +2275,11 @@ DBMS_SCHEDULER.GENERATE_JOB_NAME (
 
 Parameters
 Table 159-63 GENERATE_JOB_NAME Function Parameter
+
 | Parameter | Description |
 |---|---|
 | prefix | The prefix to use when generating the job name |
+
 Usage Notes
 If the prefix is explicitly set to `NULL`, the name is just the sequence number. In order to successfully use such numeric names, they must be surrounded by double quotes throughout the `DBMS_SCHEDULER` calls. A prefix cannot be longer than 18 characters and cannot end with a digit.
 Note that, even though the `GENERATE_JOB_NAME` function never returns the same job name twice, there is a small chance that the returned name matches an already existing database object.
@@ -2168,10 +2294,12 @@ DBMS_SCHEDULER.GET_AGENT_INFO (
 
 Parameters
 Table 159-64 GET_AGENT_INFO Function Parameter
+
 | Parameter | Description |
 |---|---|
 | agent_name | The name of an external destination where the agent is running |
 | attribute | Possible Attributes values VERSION:. Returns the agent version number. Requires the CREATE JOB system privilege. UPTIME: Returns the time the agent has been up and running. Requires the CREATE JOB system privilege. NUMBER_OF_RUNNING_JOBS: Returns the number of jobs that the agent is currently running. Requires the CREATE JOB system privilege. TOTAL_JOBS_RUN: Returns the number of jobs run by the agent since it was started. Requires the CREATE JOB system privilege. RUNNING_JOBS: Returns a comma-separated list of the names of the jobs running currently. Requires the MANAGE SCHEDULER system privilege. ALL: Returns all the information the previous options return. It requires the MANAGE SCHEDULER system privilege. |
+
 Usage Notes
 This function returns the same information as the `schagent` utility status option. See Oracle Database Administrator's Guide.
 #### GET_AGENT_VERSION Function
@@ -2183,9 +2311,11 @@ DBMS_SCHEDULER.GET_AGENT_VERSION (
 
 Parameters
 Table 159-65 GET_AGENT_VERSION Function Parameter
+
 | Parameter | Description |
 |---|---|
 | agent_host | Either the hostname and port on which the agent is running in the form hostname:port or the name of the agent as shown in the destination_name column of the ALL_SCHEDULER_EXTERNAL_DESTS view which lists all Scheduler agents registered with the database. |
+
 Usage Notes
 This function requires the `CREATE` `EXTERNAL` `JOB` system privilege.
 #### GET_ATTRIBUTE Procedure
@@ -2206,12 +2336,14 @@ DBMS_SCHEDULER.GET_ATTRIBUTE (
 
 Parameters
 Table 159-66 GET_ATTRIBUTE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | name | The name of the object |
 | attribute | The attribute being retrieved. See the SET_ATTRIBUTE Procedure for tables of attribute values. |
 | value | The existing value of the attribute |
 | value2 | The value2 argument is for an optional second value. Most attributes have only one value associated with them, but some can have two. |
+
 Usage Notes
 To run `GET_ATTRIBUTE` for a job class, you must have the `MANAGE` `SCHEDULER` privilege or have `EXECUTE` privileges on the class. For a schedule, window, or group, no privileges are necessary. Otherwise, you must be the owner of the object or have `ALTER` or `EXECUTE` privileges on that object or have the `CREATE ANY JOB` privilege.
 See the SET_ATTRIBUTE Procedure for tables of attribute values that you can retrieve for the various Scheduler object types.
@@ -2237,6 +2369,7 @@ DBMS_SCHEDULER.GET_FILE (
 
 Parameters
 Table 159-67 GET_FILE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | source_file | Fully qualified path name of the file to retrieve from the operating system. The file name is case-sensitive and is not converted to uppercase. If the file name starts with a question mark ('?'), the question mark is replaced by the path to the Oracle home if getting a file from the local host, or to the Scheduler agent home if getting a file from a remote host. If the format of this parameter is external_log_id_stdout, then the stdout from the designated external job run is returned. If the format of this parameter is external_log_id_stderr, the error text from the designated external job run is returned. You obtain the value of external_log_id from the ADDITIONAL_INFO column of the *_SCHEDULER_JOB_RUN_DETAILS views. This column contains a set of name/value pairs in an indeterminate order, so you must parse this column for the external_log_id name/value pair, and then append either "_stdout" or "_stderr" to its value. The external job must have an associated credential. The credential_name parameter of GET_FILE must name the same credential that is used by the job, and the source_host parameter must be the same as the destination attribute of the job. |
@@ -2246,6 +2379,7 @@ Table 159-67 GET_FILE Procedure Parameters
 | destination_file_name | The file to which the file contents is written. |
 | destination_directory_object | The directory object that specifies the path to the destination file, when destination_file_name is used. The caller must have the necessary privileges on the directory object. |
 | destination_permissions | Reserved for future use |
+
 Usage Notes
 The caller must have the `CREATE EXTERNAL JOB` system privilege and have `EXECUTE` privileges on the credential.
 #### GET_SCHEDULER_ATTRIBUTE Procedure
@@ -2258,14 +2392,17 @@ DBMS_SCHEDULER.GET_SCHEDULER_ATTRIBUTE (
 
 Parameters
 Table 159-68 GET_SCHEDULER_ATTRIBUTE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | attribute | The name of the attribute |
 | value | The existing value of the attribute |
+
 Usage Notes
 To run `GET_SCHEDULER_ATTRIBUTE`, you must have the `MANAGE` `SCHEDULER` privilege.
 Table 159-69 lists the Scheduler attributes that you can retrieve. For more detail on these attributes, see Table 159-101 and the section "Configuring the Scheduler" in Oracle Database Administrator's Guide.
 Table 159-69 Scheduler Attributes Retrievable with GET_SCHEDULER_ATTRIBUTE
+
 | Scheduler Attribute | Description |
 |---|---|
 | current_open_window | Name of the currently open window |
@@ -2275,6 +2412,7 @@ Table 159-69 Scheduler Attributes Retrievable with GET_SCHEDULER_ATTRIBUTE
 | event_expiry_time | Time in seconds before an event generated by the Scheduler and enqueued onto the Scheduler event queue expires. May be NULL. |
 | log_history | Retention period in days for job and window logs. The range of valid values is 0 through 1000000. |
 | max_job_slave_processes | This Scheduler attribute is not used. |
+
 #### OPEN_WINDOW Procedure
 This procedure manually opens a window, unrelated to its schedule.
 The window opens and the resource plan associated with it takes effect immediately, for the duration specified or for the normal duration of the window, if no duration is given. Only an enabled window can be manually opened.
@@ -2287,11 +2425,13 @@ DBMS_SCHEDULER.OPEN_WINDOW (
 
 Parameters
 Table 159-70 OPEN_WINDOW Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | window_name | The name of the window |
 | duration | The duration of the window. It is of type interval day to second. If it is NULL, then the window opens for the regular duration as specified in the window metadata. |
 | force | If force is set to FALSE, then opening an already open window generates an error. If force is set to TRUE: You can open a window that is already open. The window stays open for the duration specified in the call, from the time the OPEN_WINDOW command was issued. For example: window1 was created with a duration of four hours. It has how been open for two hours. If, at this point, you reopen window1 using the OPEN_WINDOW call and do not specify a duration, then window1 stays open for four hours because it was created with that duration. If you specified a duration of 30 minutes, the window will close in 30 minutes. The Scheduler automatically closes any window that is open at that time, even if it has a higher priority. For the duration of this manually opened window, the Scheduler does not open any other scheduled windows even if they have a higher priority. |
+
 Usage Notes
 Opening a window manually has no impact on regular scheduled runs of the window. The next open time of the window is not updated and is determined by the regular scheduled opening.
 When a window that was manually opened closes, the rules about overlapping windows are applied to determine which other window should be opened at that time if any at all.
@@ -2311,11 +2451,13 @@ DBMS_SCHEDULER.PURGE_LOG (
 
 Parameters
 Table 159-71 PURGE_LOG Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | log_history | This specifies how much history (in days) to keep. The valid range is 0 - 1000000. If set to 0, no history is kept. |
 | which_log | This specifies the log type. Valid values are: job_log, window_log, and job_and_window_log. |
 | job_name | This specifies which job-specific entries must be purged from the jog log. This can be a comma-delimited list of job names and job classes. Whenever job_name has a value other than NULL, the which_log argument implicitly includes the job log. |
+
 Usage Notes
 This procedure requires the `MANAGE` `SCHEDULER` privilege.
 Examples
@@ -2353,6 +2495,7 @@ DBMS_SCHEDULER.PUT_FILE (
 
 Parameters
 Table 159-72 PUT_FILE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | destination_file | Fully qualified path name of the file to save to the operating system file system. The file name is case-sensitive. If the file name starts with a question mark ('?'), the question mark is replaced by the path to the Oracle home if saving to the local host, or to the Scheduler agent home if saving to a remote host. |
@@ -2362,6 +2505,7 @@ Table 159-72 PUT_FILE Procedure Parameters
 | source_file_name | The file from which the file contents is written |
 | source_directory_object | The directory object that specifies the path to the source file, when source_file_name is used. The caller must have the necessary privileges on the directory object. |
 | destination_permissions | Reserved for future use |
+
 Usage Notes
 The caller must have the `CREATE EXTERNAL JOB` system privilege and have `EXECUTE` privileges on the credential.
 #### REMOVE_EVENT_QUEUE_SUBSCRIBER Procedure
@@ -2373,9 +2517,11 @@ DBMS_SCHEDULER.REMOVE_EVENT_QUEUE_SUBSCRIBER (
 
 Parameters
 Table 159-73 REMOVE_EVENT_QUEUE_SUBSCRIBER Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | subscriber_name | Name of the Oracle Advanced Queuing (AQ) agent to remove the subscription from. If NULL, the user name of the calling user is used. |
+
 Usage Notes
 After the agent is unsubscribed, it is deleted. If the agent does not exist or is not currently subscribed to the Scheduler event queue, an error is raised.
 #### REMOVE_FROM_INCOMPATIBILITY Procedure
@@ -2388,10 +2534,12 @@ DBMS_SCHEDULER.REMOVE_FROM_INCOMPATIBILITY (
 
 Parameters
 Table 159-74 REMOVE_FROM_INCOMPATIBILITY Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | incompatibility_name | The name of the incompatibility definition. |
 | object_name | One or more (comma-separated) programs or jobs |
+
 Usage Notes
 This procedure does not raise an error if any specified objects do not already exist in the incompatibility definition.
 See Also:
@@ -2406,10 +2554,12 @@ DBMS_SCHEDULER.REMOVE_GROUP_MEMBER (
 
 Parameters
 Table 159-75 REMOVE_GROUP_MEMBER Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | group_name | The name of the group. |
 | member_name | The name of the member to remove from group. Comma-separated list of members to remove. An error is returned if any of the members is not part of the group. A group of the same type can be named as a member. The Scheduler immediately expands the included group name into its list of members. If the member is a destination, any job instances that run on this destination are removed from the *_SCHEDULER_JOB_DESTS views. |
+
 Usage Notes
 The following users may remove members from a group:
 - The group owner
@@ -2429,11 +2579,13 @@ DBMS_SCHEDULER.REMOVE_JOB_EMAIL_NOTIFICATION (
 
 Parameters
 Table 159-76 ADD_JOB_EMAIL_NOTIFICATION Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | Name of the job to remove e-mail notifications for. Cannot be NULL. |
 | recipients | E-mail address to remove e-mail notification for. Comma-separated list of e-mail addresses. |
 | events | Job state event to remove e-mail notification for. Comma-separate list of job state events. |
+
 Usage Notes
 When you specify multiple recipients and multiple events, the notification for each specified event is removed for each specified recipient. The procedure ignores any recipients or events that are specified but that were not previously added.
 If `recipients` is `NULL`, e-mail notifications for the specified events are removed for all existing recipients. If `events` is `NULL`, notifications for all events are removed for the specified recipients. If both `recipients` and `events` are `NULL`, all e-mail notifications are removed for the job.
@@ -2459,11 +2611,13 @@ DBMS_SCHEDULER.RESET_JOB_ARGUMENT_VALUE (
 
 Parameters
 Table 159-77 RESET_JOB_ARGUMENT_VALUE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of the job being altered |
 | argument_position | The position of the program argument being reset |
 | argument_name | The name of the program argument being reset |
+
 Usage Notes
 If the corresponding program argument has no default value, the job is disabled. Resetting a program argument of a job belonging to another user requires `ALTER` privileges on that job. Arguments can be specified by position or by name.
 `RESET_JOB_ARGUMENT_VALUE` requires that you be the owner of the job or have `ALTER` privileges on that job. You can also reset a job argument value if you have the `CREATE` `ANY` `JOB` privilege.
@@ -2491,12 +2645,14 @@ DBMS_SCHEDULER.RUN_CHAIN (
 
 Parameters
 Table 159-78 RUN_CHAIN Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | chain_name | The name of the chain to run |
 | job_name | The name of the job to create to run the chain |
 | start_steps | Comma-separated list of the steps to start when the chain starts running |
 | step_state_list | List of chain steps with an initial state (SUCCEEDED or FAILED) to set for each. Set the attributes of sys.scheduler$_step_type as follows: step_name The name of the stepstep_type 'SUCCEEDED' or 'FAILED error_number' where error_number is a positive or negative integer. |
+
 Usage Notes
 Running a chain requires `CREATE` `JOB` if the job is being created in the user's schema, or `CREATE` `ANY` `JOB` otherwise. In addition, the owner of the job being created needs execute privileges on the chain (as the owner of the chain, or as a user with the `EXECUTE` privilege on the chain or the `EXECUTE` `ANY` `PROGRAM` system privilege).
 Examples
@@ -2525,10 +2681,12 @@ DBMS_SCHEDULER.RUN_JOB (
 
 Parameters
 Table 159-79 RUN_JOB Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | A job name or a comma-separate list of entries, where each is the name of an existing job, optionally preceded by a schema name and dot separator. If you specify a multiple-destination job, the job runs on all destinations. In this case, the use_current_session argument must be FALSE. |
 | use_current_session | This specifies whether or not the job run should occur in the same session that the procedure was invoked from.The job always runs as the job owner, in the job owner's schema, unless it has credential specified, then the job runs using the user named in the credential. When use_current_session is set to TRUE: You can test a job and see any possible errors on the command line. state, run_count, last_start_date, last_run_duration, and failure_count of *_scheduler_jobs are not updated. RUN_JOB can be run in parallel with a regularly scheduled job run. When use_current_session is set to FALSE: You need to check the job log to find error information. All relevant fields in *_scheduler_jobs are updated. RUN_JOB fails if a regularly scheduled job is running. For jobs that have a specified destination or destination group, or point to chains or programs with the detached attribute set to TRUE, use_current_session must be FALSE. |
+
 Usage Notes
 Jobs do not have to be enabled. If a job is disabled, the following validity checks are performed before running it:
 - The job points to a valid job class.
@@ -2568,11 +2726,13 @@ DBMS_SCHEDULER.SET_AGENT_REGISTRATION_PASS (
 
 Parameters
 Table 159-80 SET_AGENT_REGISTRATION_PASS Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | registration_password | This is the password that remote agents must specify in order to successfully register with the database. If this is NULL, then no agents will be able to register with the database. |
 | expiration_date | If this is set to a non-NULL value, then the registration_password is not valid after this date. After this date, no agents can register with the database. This cannot be set to a date in the past. |
 | max_uses | This is the maximum number of successful registrations that can be performed with this password. After the number of successful registrations has been performed with this password, then no agents can register with the database. This cannot be set to 0 or a negative value. If this is set to NULL, then there will be no limit on the number of successful registrations. |
+
 Usage Notes
 To prevent abuse, this password can be set to expire after a given date or a maximum number of successful registrations. This procedure will overwrite any password already set. This requires the `MANAGE SCHEDULER` system privilege.
 By default, `max_uses` is set to `NULL`, which means that there is no limit to the number of successful registrations.
@@ -2596,15 +2756,18 @@ DBMS_SCHEDULER.SET_ATTRIBUTE (
 
 Parameters
 Table 159-81 SET_ATTRIBUTE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | name | The name of the object. |
 | attribute | See Table 159-83 through Table 159-93. |
 | value | The new value being set for the attribute. This cannot be NULL. To set an attribute value to NULL, use the SET_ATTRIBUTE_NULL procedure. |
 | value2 | The value2 argument is for an optional second value. Most attributes have only one value associated with them, but some can have two. |
+
 Table 159-82 is a directory of Scheduler object types and tables of attributes for the object types.
 These object types can be viewed with Scheduler Data Dictionary Views, listed in Oracle Database Administrator's Guide.
 Table 159-82 Attribute Tables for Scheduler Object Types
+
 | Scheduler Object Type | Table of Attributes |
 |---|---|
 | Job | Table 159-83 |
@@ -2619,6 +2782,7 @@ Table 159-82 Attribute Tables for Scheduler Object Types
 | Group | Table 159-93 |
 | Credential | Table 159-94 |
 | Resource | Table 159-95 |
+
 Usage Notes
 If an object is altered and it was in the enabled state, the Scheduler first disables it, then makes the change and reenables it. If any errors are encountered during the enable process, the object is not reenabled and an error is generated.
 If an object is altered and it was in the disabled state, it remains disabled after it is altered.
@@ -2647,6 +2811,7 @@ Table 159-83 lists attribute values for jobs.
 Note:
 See the `CREATE_JOB` procedure and the `CREATE_JOBS` procedure for more complete descriptions of the attributes in this table.
 Table 159-83 Job Attribute Values
+
 | Name | Description |
 |---|---|
 | allow_runs_in_restricted_mode | If TRUE, the job is permitted to run when the database is in restricted mode, provided that the job owner is permitted to log in during this mode. FALSE by default. |
@@ -2682,8 +2847,10 @@ Table 159-83 Job Attribute Values
 | start_date | The original date and time on which this job started or is scheduled to start. If this is set, schedule_name should be NULL. |
 | stop_on_window_close | This attribute only applies if the schedule of a job is a window or a window group. Setting this attribute to TRUE implies that the job should stop once the associated window is closed. The job is stopped using the stop_job procedure with force set to FALSE. By default, stop_on_window_close is set to FALSE. Therefore, if you do not set this attribute, the job continues after the window closes. Note that, although the job is allowed to continue, its resource allocation will probably change because closing a window generally also implies a change in resource plans. |
 | store_output | This is a boolean attribute. If set to TRUE, then for job runs that are logged, all job output and error messages are stored in the *_JOB_RUN_DETAILS views. If set to FALSE, then the output and messages are not stored. For new jobs, this is set, by default, to TRUE. |
+
 The following event types are valid values for the `raise_events` attribute in Table 159-83.
 Table 159-84 Event Types Raised by the Scheduler
+
 | Event Type | Description |
 |---|---|
 | job_all_events | Not an event, but a constant that provides an easy way for you to enable all events |
@@ -2698,11 +2865,13 @@ Table 159-84 Event Types Raised by the Scheduler
 | job_started | The job started |
 | job_stopped | The job was stopped by a call to STOP_JOB |
 | job_succeeded | The job completed successfully |
+
 Program Attribute Values
 Table 159-85 lists program attribute values.
 Note:
 See the "CREATE_PROGRAM Procedure" for more complete descriptions of the attributes in this table.
 Table 159-85 Program Attribute Values
+
 | Name | Description |
 |---|---|
 | comments | An optional comment. This can describe what the program does or give usage details. |
@@ -2710,11 +2879,13 @@ Table 159-85 Program Attribute Values
 | number_of_arguments | The number of arguments required by the stored procedure or other executable that the program invokes |
 | program_action | The action that the program performs, indicated by the program_type attribute. For example, if program_type is 'STORED_PROCEDURE', program_action contains the name of the stored procedure. |
 | program_type | The type of program. This must be one of these supported program types: 'PLSQL_BLOCK', 'STORED_PROCEDURE', and 'EXECUTABLE'. |
+
 Schedule Attribute Values
 Table 159-86 lists schedule attribute values.
 Note:
 See `"CREATE_SCHEDULE Procedure"` for more complete descriptions of the attributes in this table.
 Table 159-86 Schedule Attribute Values
+
 | Name | Description |
 |---|---|
 | comments | An optional comment. |
@@ -2722,9 +2893,11 @@ Table 159-86 Schedule Attribute Values
 | event_spec | This attribute takes two values: the value argument should contain the event condition and the value2 argument should contain the queue specification. For more details, see the descriptions for the event_condition and queue_spec arguments to the "CREATE_JOB Procedure". |
 | repeat_interval | An attribute specifying how often the schedule should repeat, using the calendaring syntax. See "Calendaring Syntax" for more information. |
 | start_date | The start or reference date and time used by the calendaring syntax. |
+
 File Watcher Attribute Values
 Table 159-87 lists file watcher attribute values.
 Table 159-87 File Watcher Attribute Values
+
 | Parameter | Description |
 |---|---|
 | destination | Remote host name or IP address where the file is expected to arrive. If NULL, destination is the local host. |
@@ -2734,11 +2907,13 @@ Table 159-87 File Watcher Attribute Values
 | min_file_size | Minimum file size in bytes before the file watcher considers the file found. Default is 0. |
 | steady_state_duration | Minimum time interval that the file must remain unchanged before the file watcher considers the file found. If NULL, an internal value is used. The lower limit for this attribute is 10 seconds. |
 | comments | Optional comment. |
+
 Job Class Attribute Values
 Table 159-88 lists job class attribute values.
 Note:
 See the "CREATE_JOB_CLASS Procedure" for more complete descriptions of the attributes in this table.
 Table 159-88 Job Class Attribute Values
+
 | Name | Description |
 |---|---|
 | comments | An optional comment about the class. |
@@ -2746,11 +2921,13 @@ Table 159-88 Job Class Attribute Values
 | logging_level | This attribute specifies how much information is logged. The valid values are: DBMS_SCHEDULER.LOGGING_OFF No logging is performed for any jobs in this class. DBMS_SCHEDULER.LOGGING_FAILED_RUNS The Scheduler logs only jobs in the class that failed, with the reason for failure. DBMS_SCHEDULER.LOGGING_RUNS The Scheduler writes detailed information to the job log for all runs of each job in this class. This is the default. DBMS_SCHEDULER.LOGGING_FULL The Scheduler records all operations performed on all jobs in this class, in addition to recording every run of a job. Every time a job is created, enabled, disabled, altered (with SET_ATTRIBUTE), stopped, and so on, an entry is recorded in the log. |
 | resource_consumer_group | The resource consumer group that a class is associated with. All jobs in the class run under this resource consumer group. See Oracle Database Administrator's Guide for a description of resource consumer groups and the Database Resource Manager. |
 | service | The database service that the jobs in the job class have affinity to. If both the resource_consumer_group and service attributes are set for a job class, and if the service is mapped to a resource consumer group, the resource_consumer_group attribute takes precedence. |
+
 Window Attribute Values
 Table 159-89 lists window attribute values.
 Note:
 See the "CREATE_WINDOW Procedure" for more complete descriptions of the attributes in this table.
 Table 159-89 Window Attribute Values
+
 | Name | Description |
 |---|---|
 | comments | An optional comment about the window. |
@@ -2761,32 +2938,38 @@ Table 159-89 Window Attribute Values
 | schedule_name | The name of a schedule to use with this window. If this is set, start_date, end_date, and repeat_interval must all be NULL. |
 | start_date | The next date and time on which this window is scheduled to open. If this is set, schedule_name must be NULL. |
 | window_priority | The priority of the window. Must be either 'LOW' (default) or 'HIGH'. |
+
 Chain Attribute Values
 Table 159-90 lists chain attribute values.
 Note:
 See the "CREATE_CHAIN Procedure" for more complete descriptions of the attributes in this table.
 Table 159-90 Chain Attribute Values
+
 | Name | Description |
 |---|---|
 | comments | An optional comment describing the purpose of the chain. |
 | evaluation_interval | If not NULL, provides an additional evaluation of the chain at this interval, as well as at normal evaluation times (when the job starts, when a step completes, or when an event that is associated with an event step arrives) This attribute should only to be used when chain rules use SQL syntax and the rule conditions contain elements that are not under the control of the Scheduler, because the extra interval is CPU intensive. For most chains, the normal evaluation times are sufficient. |
 | rule_set_name | In the normal case, no rule set should be passed in. The Scheduler automatically creates a rule set and associated empty evaluation context. You then use DEFINE_CHAIN_RULE to add rules and DROP_CHAIN_RULE to remove them. Advanced users can create a rule set that describes their chain dependencies and pass it in here. This allows greater flexibility in defining rules. For example, conditions can refer to external variables, and tables can be exposed through the evaluation context. If you pass in a rule set, you must ensure that it is in the format of a chain rule set. (For example, all steps must be listed as variables in the evaluation context). If no rule set is passed in, the rule set created is of the form SCHED_RULESET${N} and the evaluation context created is of the form SCHED_EVCTX${N} |
+
 Database Destination Attribute Values
 Table 159-91 lists database destination attribute values.
 Note:
 See the "CREATE_DATABASE_DESTINATION Procedure" for more complete descriptions of the attributes in this table.
 Table 159-91 Database Destination Attribute Values
+
 | Name | Description |
 |---|---|
 | agent | The name of the external destination (also known as agent destination) that is used to connect to the remote database. You can obtain valid external destination names from the view ALL_SCHEDULER_EXTERNAL_DESTS. |
 | connect_info | The TNS connect descriptor that identifies the remote database to connect to, or the net service name (alias) in tnsnames.ora that resolves to the connect descriptor. Note: This corresponds to the tns_name argument of CREATE_DATABASE_DESTINATION. |
 | enabled | If TRUE, the database destination is enabled. |
 | comments | An optional comment about the database destination. |
+
 External Destination Attribute Values
 Table 159-92 lists external destination attribute values.
 Note:
 External destinations are created only implicitly by registering a remote Scheduler agent with the local database.
 Table 159-92 External Destination Attribute Values
+
 | Name | Description |
 |---|---|
 | hostname | (GET_ATTRIBUTE only) The fully qualified host name (including domain) or IP address of the computer on which the Scheduler agent resides. |
@@ -2794,11 +2977,13 @@ Table 159-92 External Destination Attribute Values
 | ip_address | (GET_ATTRIBUTE only) The IP address of the host on which the agent resides. |
 | enabled | If TRUE, the external destination is enabled. |
 | comments | An optional comment about the external destination. |
+
 Group Attribute Values
 Table 159-93 lists group attribute values.
 Note:
 See the "CREATE_GROUP Procedure" for more complete descriptions of the attributes in this table.
 Table 159-93 Group Attribute Values
+
 | Name | Description |
 |---|---|
 | group_type | (GET_ATTRIBUTE only) The group type (either WINDOW, DB_DEST, or EXTERNAL_DEST). |
@@ -2806,11 +2991,13 @@ Table 159-93 Group Attribute Values
 | enabled | If TRUE, the group is enabled. |
 | comments | An optional comment about the group. |
 | number_of_members | (GET_ATTRIBUTE only) The number of members in the group. |
+
 Credential Attribute Values
 Table 159-94 lists credential attribute values.
 Note:
 Credential attribute values for the `SET_ATTRIBUTE` and `GET_ATTRIBUTE` procedures are deprecated with Oracle Database Release 12c Release 1 (12.1). While these attribute values remain available in this package, for reasons of backward compatibility, Oracle recommends using the alternative enhanced functionality provided in the  DBMS_CREDENTIAL  package, specifically the attribute parameter in the UPDATE_CREDENTIAL Procedure.
 Table 159-94 Credential Attribute Values
+
 | Name | Description |
 |---|---|
 | username | The user name for logging into to the host operating system or remote Oracle database. Maximum length is 64. |
@@ -2818,9 +3005,11 @@ Table 159-94 Credential Attribute Values
 | comments | A description of the credential. Maximum length is 240. |
 | windows_domain | For a Windows remote executable target, this is the domain that the specified user belongs to. Maximum length is 64. |
 | database_role | The value of the database_role attribute is used as the system privilege for logging into a remote database to run a remote database job. Valid values are: SYSDBA and SYSOPER. |
+
 Resource Attribute Values
 Table 159-95 lists resource attribute values.
 Table 159-95 Resource Attribute Values
+
 | Name | Description |
 |---|---|
 | resource_name | The name of the resource |
@@ -2828,6 +3017,7 @@ Table 159-95 Resource Attribute Values
 | status | The status of the resource. ENFORCE_CONSTRAINTS. This is the default value, and when set, will force the scheduler to enforce resource limits. When the maximum number of units of this resource has been reached, no additional jobs using this resource will get started. IGNORE_CONSTRAINTS. When set, the scheduler will ignore any constraints on this resource. BLOCKED_ALL_JOBS. No jobs having a constraint on this resource will be allowed to run. The resource is considered to be permanently blocking until switched to one of the other two states. |
 | constraint_level | Level of the constraint: JOB_LEVEL or PROGRAM_LEVEL For incompatibilities, for JOB_LEVEL, the incompatibility members must be jobs; for PROGRAM_LEVEL the incompatibility members must be programs. |
 | comments | Descriptive comment about the resource. |
+
 #### SET_ATTRIBUTE_NULL Procedure
 This procedure sets an attribute of an object to `NULL`.
 The attributes that can be set depend on the object being altered. If the object is enabled, it is disabled before being altered and reenabled afterward. If the object cannot be reenabled, an error is generated and the object is left in a disabled state.
@@ -2839,10 +3029,12 @@ DBMS_SCHEDULER.SET_ATTRIBUTE_NULL (
 
 Parameters
 Table 159-96 SET_ATTRIBUTE_NULL Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | name | The name of the object |
 | attribute | The attribute being changed |
+
 Usage Notes
 To run `SET_ATTRIBUTE_NULL` for a window, group of type `WINDOW`, or job class, you must have the `MANAGE` `SCHEDULER` privilege. Otherwise, you must be the owner of the object being altered or have `ALTER` privileges on that object or have the `CREATE` `ANY` `JOB` privilege.
 #### SET_JOB_ANYDATA_VALUE Procedure
@@ -2870,12 +3062,14 @@ DBMS_SCHEDULER.SET_JOB_ANYDATA_VALUE (
 
 Parameters
 Table 159-97 SET_JOB_ANYDATA_VALUE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of the job to be altered |
 | argument_name | The name of the program argument being set |
 | argument_position | The position of the program argument being set |
 | argument_value | The new value to be assigned to the program argument, encapsulated in an AnyData object |
+
 Usage Notes
 `SET_JOB_ANYDATA_VALUE` requires that you own the job or have `ALTER` privileges on that job. You can also set a job argument value if you have the `CREATE` `ANY` `JOB` privilege.
 `SET_JOB_ANYDATA_VALUE` does not apply to lightweight jobs because lightweight jobs cannot take `AnyData` arguments.
@@ -2906,12 +3100,14 @@ DBMS_SCHEDULER.SET_JOB_ARGUMENT_VALUE (
 
 Parameters
 Table 159-98 SET_JOB_ARGUMENT_VALUE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | The name of the job to be altered |
 | argument_name | The name of the program argument being set |
 | argument_position | The position of the program argument being set |
 | argument_value | The new value to be set for the program argument. To set a non-VARCHAR value, use the SET_JOB_ANYDATA_VALUE procedure. |
+
 Usage Notes
 `SET_JOB_ARGUMENT_VALUE` requires that you be the owner of the job or have `ALTER` privileges on that job. You can also set a job argument value if you have the `CREATE` `ANY` `JOB` privilege.
 `SET_JOB_ARGUMENT_VALUE` only supports arguments of SQL type. Therefore, argument values that are not of SQL type, such as booleans, are not supported as program or job arguments.
@@ -2929,10 +3125,12 @@ DBMS_SCHEDULER.SET_JOB_ATTRIBUTES (
 
 Parameters
 Table 159-99 SET_JOB_ATTRIBUTES Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | jobattr_array | The array of job attribute changes. |
 | commit_semantics | The commit semantics. The following types are supported: STOP_ON_FIRST_ERROR returns on the first error and commits previous successful attribute changes to disk. This is the default. TRANSACTIONAL returns on the first error and rolls back everything that happened before that error. ABSORB_ERRORS tries to absorb any errors and complete the rest of the job attribute changes on the list. It commits all the successful changes. If errors occur, you can query the view SCHEDULER_BATCH_ERRORS for details. |
+
 Usage Notes
 Calling `SET_ATTRIBUTE` on an enabled job disables the job, changes the attribute value, and reenables the job. `SET_JOB_ATTRIBUTES` changes the attribute values in the context of a single transaction.
 #### SET_RESOURCE_CONSTRAINT Procedure
@@ -2946,11 +3144,13 @@ DBMS_SCHEDULER.SET_RESOURCE_CONSTRAINT (
 
 Parameters
 Table 159-100 SET_RESOURCE_CONSTRAINT Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | object_name | The name of a program or a job, or a comma separated list of these objects. |
 | resource_name | The name of the resource. |
 | units | The number of units of this resource that the job or program uses. |
+
 Usages Notes
 `object_name` can be the name or comma-separated list of names of either programs or jobs. This creates a constraint on the named resource for these programs or jobs.
 `units` specifies the number of units of the resource that the program or job can use. If `units` is set to `0,`then the program or job does not use this resource anymore, and the resulting constraint is deleted. Setting `units` to `0` on a resource with no previous constraint results in an error.
@@ -2966,10 +3166,12 @@ DBMS_SCHEDULER.SET_SCHEDULER_ATTRIBUTE (
 
 Parameters
 Table 159-101 SET_SCHEDULER_ATTRIBUTE Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | attribute | The name of the Scheduler attribute. Possible values are: 'default_timezone': Repeating jobs and windows that use the calendaring syntax retrieve the time zone from this attribute when start_date is not specified. See "Calendaring Syntax" for more information. 'email_server': The SMTP server address that the Scheduler uses to send e-mail notifications for job state events. E-mail notifications cannot be sent if this attribute is NULL. 'email_sender': The default e-mail address of the sender of job state e-mail notifications. 'email_server_credential': The schema and name of an existing credential object that SYS has execute object privileges on. Default is NULL. The username and password stored in this credential are used to authenticate with the e-mail server when sending e-mail notifications. 'email_server_encryption': This attribute indicates whether or not encryption is enabled for this email server connection, and if so, at what point encryption starts, and with which protocol. Values are: NONE: the default, indicating no encryption used SSL_TLS: indicating that either SSL or TLS are used, from the beginning of the connection STARTTLS:indicating that the connection starts unencrypted, but the command STARTTLS is sent to the e-mail server and starts encryption 'event_expiry_time': The time, in seconds, before a job state event generated by the Scheduler expires from the Scheduler event queue. If NULL, job state events expire after 24 hours. 'log_history': The number of days that log entries for both the job log and the window log are retained. Default is 30 and the range of valid values is 0 through 1000000. 'max_job_slave_processes': This Scheduler attribute is not used. |
 | value | The new value of the attribute |
+
 Usage Notes
 To run `SET_SCHEDULER_ATTRIBUTE`, you must have the `MANAGE` `SCHEDULER` privilege.
 See Also:
@@ -2990,11 +3192,13 @@ DBMS_SCHEDULER.STOP_JOB (
 
 Parameters
 Table 159-102 STOP_JOB Procedure Parameters
+
 | Parameter | Description |
 |---|---|
 | job_name | Name of a job to stop. Can be a comma-separate list of jobs, where each entry can be one of the following: Job name: the name of an existing job, optionally preceded by a schema name and dot separator. Job destination ID: a number, obtained from the JOB_DEST_ID column of the *_SCHEDULER_JOB_DESTS views, that represents the unique combination of a job, a credential, and a destination. Job class: the name of a job class. Must be preceded by the SYS schema name and a dot separator. If you specify a job class, all jobs that belong to that job class are stopped. If you specify a job that was created with a destination group as its destination_name attribute, all job instances on all destinations are stopped. |
 | force | If force is set to FALSE, the Scheduler tries to gracefully stop the job using an interrupt mechanism. This method gives control back to the slave process, which can update the status of the job in the job queue to stopped. If this fails, an error is returned. If force is set to TRUE, the Scheduler immediately terminates the job slave. Oracle recommends that STOP_JOB with force set to TRUE be used only after a STOP_JOB with force set to FALSE has failed. Use of the force option requires the MANAGE SCHEDULER system privilege. |
 | commit_semantics | The commit semantics. The following two types are supported: STOP_ON_FIRST_ERROR: The procedure returns on the first error and commits previous successful stop operations to disk. This is the default. ABSORB_ERRORS: The procedure tries to absorb any errors, stops the rest of the jobs, and commits all the successful stop operations. This type is available only if no job classes are specified in the job_name list. If errors occur, you can query the view SCHEDULER_BATCH_ERRORS for details. |
+
 Usage Notes
 `STOP_JOB` without the `force` option requires that you be the owner of the job or have `ALTER` privileges on that job. You can also stop a job if you have the `CREATE` `ANY` `JOB` or `MANAGE` `SCHEDULER` privilege.
 `STOP_JOB` with the `force` option requires that you have the `MANAGE` `SCHEDULER` privilege.

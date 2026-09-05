@@ -3,6 +3,7 @@
 `ALL_SCHEDULER_WINDOW_LOG` displays log information for the Scheduler windows accessible to the current user.
 Related View
 `DBA_SCHEDULER_WINDOW_LOG` displays log information for all Scheduler windows in the database.
+
 | Column | Datatype | NULL | Description |
 |---|---|---|---|
 | LOG_ID | NUMBER | NOT NULL | Unique identifier of the log entry |
@@ -15,5 +16,6 @@ Related View
 | CLIENT_ID | VARCHAR2(64) |  | Client identifier of the user who performed the operation, if applicable |
 | GLOBAL_UID | VARCHAR2(32) |  | Global user identifier of the user who performed the operation, if applicable |
 | ADDITIONAL_INFO | CLOB |  | Additional information on the entry, if applicable |
+
 See Also:
 "DBA_SCHEDULER_WINDOW_LOG"

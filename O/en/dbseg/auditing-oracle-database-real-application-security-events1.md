@@ -38,6 +38,7 @@ The unified audit trail can capture Oracle Database Real Application Security ev
                 ROLE`, `ALTER ROLE`, `DROP ROLE`, and `CHANGE PASSWORD` will also audit the respective RAS action(s). Oracle has added the equivalent RAS component action(s), such as `GRANT
                 PRIVILEGE` and `GRANT ROLE`, to the audit policy definition if the policy contained any of the previously stated standard actions, such as `GRANT`. The XS component actions added to the audit policy definition are visible in `AUDIT_UNIFIED_POLICIES`.
                 {: .infoboxnote}
+
 | Audit Event | Description |
 |---|---|
 | CREATE USER | Creates an Oracle Database Real Application Security user account through the XS_PRINCIPAL.CREATE_USER procedure |
@@ -54,9 +55,11 @@ The unified audit trail can capture Oracle Database Real Application Security ev
 | REMOVE PROXY | Removes an Oracle Database Real Application Security proxy user account through the XS_PRINCIPAL.REMOVE_PROXY_USER, XS_PRINCIPAL.REMOVE_ALL_PROXY_USERS, and XS_PRINCIPAL.REMOVE_PROXY_FROM_SCHEMA PROCEDURES |
 | SET USER PASSWORD | Sets the Oracle Database Real Application Security user account password through the XS_PRINCIPAL.SET_PASSWORD procedure |
 | SET USER VERIFIER | Sets the Oracle Database Real Application Security proxy user account verifier through the XS_PRINCIPAL.SET_VERIFIER procedure |
+
 ## Oracle Database Real Application Security Security Class and ACL Audit Events
 The unified audit trail can capture Oracle Database Real Application Security security class and ACL audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE SECURITY CLASS | Creates a security class through the XS_SECURITY_CLASS.CREATE_SECURITY_CLASS procedure |
@@ -70,9 +73,11 @@ The following table describes these events.
 | DELETE DATA SECURITY | Deletes a data security policy through the XS_DATA_SECURITY.DELETE_DATA_SECURITY procedure |
 | ENABLE DATA SECURITY | Enables extensible data security for a database table or view through the XS_DATA_SECURITY.ENABLE_OBJECT_POLICY procedure |
 | DISABLE DATA SECURITY | Disables extensible data security for a database table or view through the XS_DATA_SECURITY.DISABLE_XDS procedure |
+
 ## Oracle Database Real Application Security Session Audit Events
 The unified audit trail can capture Oracle Database Real Application Security session audit events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | CREATE SESSION | Creates a session through the DBMS_XS_SESSIONS.CREATE_SESSION procedure |
@@ -95,12 +100,15 @@ The following table describes these events.
 | ASSIGN USER | Assigns or removes one or more dynamic roles for the specified user through the DBMS_XS_SESSIONS.ASSIGN_USER procedure |
 | ENABLE ROLE | Enable a role for a lightweight user session through the DBMS_XS_SESSIONS.ENABLE_ROLE procedure |
 | DISABLE ROLE | Disables a role for a lightweight user session through the DBMS_XS_SESSIONS.DISABLE_ROLE procedure |
+
 ## Oracle Database Real Application Security ALL Events
 The unified audit trail can capture Oracle Database Real Application Security `ALL` events.
 The following table describes these events.
+
 | Audit Event | Description |
 |---|---|
 | ALL | Captures all Real Application Security actions |
+
 ## Configuring a Unified Audit Policy for Oracle Database Real Application Security
 The `CREATE AUDIT POLICY` statement can create a unified audit policy for Oracle Real Application Security.
   - Use the following syntax to create a unified audit policy for Oracle Database Real Application Security:

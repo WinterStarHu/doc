@@ -8,6 +8,7 @@ Oracle provides a set of RADIUS-specific parameters.
 ## RADIUS Parameters for Clients and Servers
 Oracle Database provides client and server parameters for using RADIUS authentication.
 The following table lists parameters to insert into the configuration files for clients and servers using RADIUS.
+
 | Parameter | Description |
 |---|---|
 | SQLNET.AUTHENTICATION_SERVICES | Enables one or more authentication services |
@@ -25,6 +26,7 @@ The following table lists parameters to insert into the configuration files for 
 | SQLNET.RADIUS_CLASSPATH | Sets the path for Java classes and the JDK Java libraries |
 | SQLNET.RADIUS_SECRET | Specifies the location of a RADIUS secret key |
 | SQLNET.RADIUS_SEND_ACCOUNTING | Enable and disables accounting |
+
 ## Minimum RADIUS Parameters
 At minimum, you should use the `SQLNET.AUTHENTICATION_SERVICES` and `SQLNET.RADIUS_AUTHENTICATION` parameters.
 Use the following settings:

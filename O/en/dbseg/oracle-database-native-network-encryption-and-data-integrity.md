@@ -12,6 +12,7 @@ The purpose of a secure cryptosystem is to convert plaintext data into unintelli
 In a symmetric cryptosystem, the same key is used both for encryption and decryption of the same data. Oracle Database provides the Advanced Encryption Standard (AES) symmetric cryptosystem for protecting the confidentiality of Oracle Net Services traffic.
 ## Native Network Encryption Algorithm Support by Cryptographic Provider
 The encryption algorithms available for explicit configuration depend on the active cryptographic provider.
+
 | Algorithm | Legacy provider (Default) | Next-Generation provider |
 |---|---|---|
 | AES256 | Supported | Supported |
@@ -25,6 +26,7 @@ The encryption algorithms available for explicit configuration depend on the act
 | RC4_128 | Supported (deprecated) | Not supported |
 | RC4_56 | Supported (deprecated) | Not supported |
 | RC4_40 | Supported (deprecated) | Not supported |
+
 Oracle recommends AES256 for deployments that require explicit algorithm configuration:
 ```
 SQLNET.ENCRYPTION_TYPES_SERVER = (AES256)
