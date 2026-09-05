@@ -17,6 +17,10 @@
 
 > 源 CHM zip（约 2GB）在仓库外。每页以 `## <标题>` 分隔，标题来自原 HTML 的 `DC.Title`。
 
+## 高级包参考（`高级包.md`）
+
+[`高级包.md`](高级包.md)：从最全版本抽取的 29 个 `DBE_`/`PKG_` 高级包参考页 + Oracle↔GaussDB 兼容性对照表，去重整理（官方中文原文）。含 DBE_SCHEDULER、DBE_SQL、DBE_LOB、DBE_OUTPUT、DBE_FILE、DBE_UTILITY、PKG_UTIL 等，是 openGauss/GaussDB dbe_* 实现的直接参考。
+
 ## 源 CHM 分片（`chm/`，本地，未推送）
 
 `chm/` 存放 10 个原始 CHM 的归档（1.5GB）：3 个 <100MB 整片，7 个切成 90MB 分片（`*.chm.partNNN`，含 `reassemble.py` 可还原）。因总量 1.5GB 超 GitHub 单次推送能力（SSH 上传会被掐断），**整个 `chm/` 已 gitignore，仅本地留存**；云端只保留可检索的 Markdown。如需源 CHM 上云，建议用 Git LFS 或外部对象存储。
