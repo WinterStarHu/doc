@@ -1,3 +1,2 @@
-# GaussDB CHM source archive (1.5GB, split into parts) — local-only,
-# too large for GitHub push. Cloud keeps searchable Markdown (G/*.md).
-G/chm/
+# Reassembled CHM files (>100MB, local-only)
+G/chm/reassembled/
