@@ -1,0 +1,20 @@
+# Reassembled CHM files (>100MB, local-only)
+G/chm/reassembled/
+
+# Redundant per-page MDs (archived in archive/full branch; single-file in O/md, Chinese in O/zh)
+O/en/sqlrf/
+O/en/dbseg/
+O/en/tdddg/
+O/en/refrn/
+O/en/arpls/
+
+# PostgreSQL per-page MDs (merged into single file; source HTML local)
+P/md/
+P/source/
+
+# MySQL source PDF (MD in M/md/)
+M/*.pdf
+
+# PG/MySQL per-page Chinese MDs (merged into single file)
+P/zh/
+M/zh/
